@@ -1,0 +1,17 @@
+一、需要爬取得url的规律
+    https://www.douban.com/xxx  
+	https://xxx.douban.com/  
+	豆瓣的模块
+
+	https://www.douban.com/group/  分组
+	https://www.douban.com/update/topic/ 忽略 
+	https://www.douban.com/partner/   广告
+	https://www.douban.com/location/   同城
+	https://www.douban.com/group/explore 探索
+	https://www.douban.com/about 豆瓣其他
+	https://www.douban.com/note/xxx  话题
+	
+	感兴趣的模块：
+	https://music.douban.com
+	https://movie.douban.com
+	https://book.douban.com
