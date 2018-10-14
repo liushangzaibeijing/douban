@@ -3,6 +3,8 @@ package com.xiu.crawling.douban;
 import com.xiu.crawling.douban.bean.Book;
 import com.xiu.crawling.douban.bean.UrlInfo;
 import com.xiu.crawling.douban.bean.UrlInfoExample;
+import com.xiu.crawling.douban.core.BookThreadTask;
+import com.xiu.crawling.douban.mapper.BookMapper;
 import com.xiu.crawling.douban.mapper.UrlInfoMapper;
 import com.xiu.crawling.douban.utils.HttpUtil;
 import com.xiu.crawling.douban.utils.JsonUtil;
@@ -19,10 +21,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * author  Administrator
@@ -35,6 +36,8 @@ import java.util.Map;
 public class HttpTest {
     @Autowired
     private UrlInfoMapper urlInfoMapper;
+    @Autowired
+    private BookMapper bookMapper;
 
     /**
      * 爬去豆瓣首页的数据
@@ -221,12 +224,12 @@ public class HttpTest {
         List<Book> books = new ArrayList<>();
         for(Element node:elements){
             //获取图片
-            Elements  picNode = node.select("div.pic").;
+            Elements  picNode = node.select("div.pic img");
 
             String imgUrl = picNode.get(0).attr("src");
 
             //简介信息过少情况下 爬取到该页面进行爬取书籍简介信息
-            String  contentUrl = node.select("div.pic>img").attr("href");
+            String  contentUrl = node.select("div.pic a").attr("href");
 
             String bookName = node.select("div.info.a").text();
             //去掉空格
@@ -236,31 +239,83 @@ public class HttpTest {
             //从左到右 一次是 作者，译者， 出版社 出版日期，价格
             String[] array = data.split("/");
 
+
             //评分
             Double score = Double.parseDouble(node.select("span.rating_nums").text());
             //评论人数
-            Integer evaluateNumber = Integer.parseInt(node.select("div.star > span.p1").text());
+            String numStr = node.select("span.pl").text().replace("人评价","")
+                        .replace("(","")
+                        .replace(")","");
+            Integer evaluateNumber = Integer.parseInt(numStr);
 
             //描述
             String descption = node.select("p").text();
 
+            String author = null;
+            String translator = null;
+            String publicHouse = null;
+            Date publicDate = null;
+            Double price = null;
 
+            if(array.length==4){
+                //没有译者信息（国产作品）
+                author = array[0];
+                publicHouse =array[1];
+                publicDate = DateUtils.parseDate(array[2]);
+                //使用正则匹配数字
+                price = getNumberByRegex(array[3]);
+            }
+            if(array.length==5) {
+                author = array[0];
+                translator =array[1];
+                publicHouse =array[2];
+                publicDate = DateUtils.parseDate(array[3]);
+                price = getNumberByRegex(array[4]);
+            }
             Book book = new Book();
             book.setName(bookName);
-            book.setAuthor(array[0]);
-            book.setTranslator(array[1]);
-            book.setPublisHouse(array[2]);
-            book.setPublicationDate(DateUtils.parseDate(array[3]));
-            book.setPrice(Double.parseDouble(array[5]));
+            book.setAuthor(author);
+            book.setTranslator(translator);
+            book.setPublisHouse(publicHouse);
+            book.setPublicationDate(publicDate);
+            book.setPrice(price);
             book.setScore(score);
             book.setPicture(imgUrl);
             book.setDescption(descption);
+
+            log.info("书籍信息：{}",JsonUtil.obj2str(book));
 
             books.add(book);
 
         }
 
-        log.info("书籍信息：{}",JsonUtil.obj2str(books));
+        //log.info("书籍信息：{}",JsonUtil.obj2str(books));
 
+    }
+
+    @Test
+    public void testBookTask(){
+        BookThreadTask task = new BookThreadTask("文学","https://book.douban.com/tag/文学",bookMapper);
+        Thread thead = new Thread(task);
+        thead.start();
+    }
+
+
+
+
+    private Double getNumberByRegex(String input) {
+        Double price = null;
+        //使用正则匹配数字
+
+        String regex = "(\\d+)(.?)(\\d*)";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher m = pattern.matcher(input);
+        if(m.find()){
+            log.info("find {}", m.group(0));
+            price = Double.parseDouble(m.group(0));
+        }else{
+            log.info("no find");
+        }
+        return price;
     }
 }
