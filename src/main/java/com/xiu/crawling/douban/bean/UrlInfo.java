@@ -1,9 +1,5 @@
 package com.xiu.crawling.douban.bean;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
-
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class UrlInfo {
     private Integer id;
 
@@ -12,6 +8,10 @@ public class UrlInfo {
     private Integer active;
 
     private String descption;
+
+    private Integer label;
+
+    private Integer mark;
 
     public Integer getId() {
         return id;
@@ -43,5 +43,21 @@ public class UrlInfo {
 
     public void setDescption(String descption) {
         this.descption = descption == null ? null : descption.trim();
+    }
+
+    public Integer getLabel() {
+        return label;
+    }
+
+    public void setLabel(Integer label) {
+        this.label = label;
+    }
+
+    public Integer getMark() {
+        return mark;
+    }
+
+    public void setMark(Integer mark) {
+        this.mark = mark;
     }
 }

@@ -5,7 +5,8 @@ import org.apache.commons.io.IOUtils;
         import org.apache.http.HttpResponse;
         import org.apache.http.HttpStatus;
         import org.apache.http.NameValuePair;
-        import org.apache.http.client.HttpClient;
+import org.apache.http.client.CookieStore;
+import org.apache.http.client.HttpClient;
         import org.apache.http.client.config.RequestConfig;
         import org.apache.http.client.entity.UrlEncodedFormEntity;
         import org.apache.http.client.methods.CloseableHttpResponse;
@@ -16,11 +17,13 @@ import org.apache.commons.io.IOUtils;
         import org.apache.http.conn.ssl.TrustStrategy;
         import org.apache.http.conn.ssl.X509HostnameVerifier;
         import org.apache.http.entity.StringEntity;
-        import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.BasicCookieStore;
+import org.apache.http.impl.client.CloseableHttpClient;
         import org.apache.http.impl.client.DefaultHttpClient;
         import org.apache.http.impl.client.HttpClients;
         import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
-        import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.impl.cookie.BasicClientCookie;
+import org.apache.http.message.BasicNameValuePair;
         import org.apache.http.util.EntityUtils;
 
         import javax.net.ssl.SSLContext;
@@ -33,10 +36,7 @@ import org.apache.commons.io.IOUtils;
         import java.security.GeneralSecurityException;
         import java.security.cert.CertificateException;
         import java.security.cert.X509Certificate;
-        import java.util.ArrayList;
-        import java.util.HashMap;
-        import java.util.List;
-        import java.util.Map;
+import java.util.*;
 
 /**
  * HTTP 请求工具类
@@ -50,6 +50,11 @@ public class HttpUtil {
     private static PoolingHttpClientConnectionManager connMgr;
     private static RequestConfig requestConfig;
     private static final int MAX_TIMEOUT = 7000;
+
+    /**
+     * 模拟的浏览器请求
+     */
+    private  static String userAgent;
 
     static {
         // 设置连接池
@@ -68,6 +73,12 @@ public class HttpUtil {
         // 在提交请求之前 测试连接是否可用
         configBuilder.setStaleConnectionCheckEnabled(true);
         requestConfig = configBuilder.build();
+
+        //
+        //String[] userAgents = {""};
+        //Random random = new Random();
+        //userAgent = userAgents[random.nextInt(userAgents.length)+1];
+
     }
 
     /**
@@ -101,9 +112,11 @@ public class HttpUtil {
         }
         apiUrl += param;
         String result = null;
-        HttpClient httpclient = new DefaultHttpClient();
         try {
             HttpGet httpPost = new HttpGet(apiUrl);
+
+            CloseableHttpClient httpclient = getCloseableHttpClient();
+
             HttpResponse response = httpclient.execute(httpPost);
             int statusCode = response.getStatusLine().getStatusCode();
 
@@ -118,6 +131,19 @@ public class HttpUtil {
             e.printStackTrace();
         }
         return result;
+    }
+
+    private static CloseableHttpClient getCloseableHttpClient() {
+        CookieStore cookieStore = new BasicCookieStore();
+        BasicClientCookie cookie = new BasicClientCookie("bid", "mABx-QaEx5U");
+        cookie.setVersion(0);
+        cookie.setDomain("*");
+        cookie.setPath("/");
+        cookieStore.addCookie(cookie);
+
+        return HttpClients.custom()
+                .setDefaultCookieStore(cookieStore)
+                .build();
     }
 
     /**
@@ -136,7 +162,6 @@ public class HttpUtil {
      * @return
      */
     public static String doPost(String apiUrl, Map<String, Object> params) {
-        CloseableHttpClient httpClient = HttpClients.createDefault();
         String httpStr = null;
         HttpPost httpPost = new HttpPost(apiUrl);
         CloseableHttpResponse response = null;
@@ -150,7 +175,8 @@ public class HttpUtil {
                 pairList.add(pair);
             }
             httpPost.setEntity(new UrlEncodedFormEntity(pairList, Charset.forName("UTF-8")));
-            response = httpClient.execute(httpPost);
+            CloseableHttpClient httpclient = getCloseableHttpClient();
+            response = httpclient.execute(httpPost);
             System.out.println(response.toString());
             HttpEntity entity = response.getEntity();
             httpStr = EntityUtils.toString(entity, "UTF-8");

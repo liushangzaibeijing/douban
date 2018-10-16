@@ -254,14 +254,14 @@ public class HttpTest {
             String author = null;
             String translator = null;
             String publicHouse = null;
-            Date publicDate = null;
+            String publicDate = null;
             Double price = null;
 
             if(array.length==4){
                 //没有译者信息（国产作品）
                 author = array[0];
                 publicHouse =array[1];
-                publicDate = DateUtils.parseDate(array[2]);
+                publicDate = array[2];
                 //使用正则匹配数字
                 price = getNumberByRegex(array[3]);
             }
@@ -269,7 +269,7 @@ public class HttpTest {
                 author = array[0];
                 translator =array[1];
                 publicHouse =array[2];
-                publicDate = DateUtils.parseDate(array[3]);
+                publicDate =array[3];
                 price = getNumberByRegex(array[4]);
             }
             Book book = new Book();
@@ -295,7 +295,7 @@ public class HttpTest {
 
     @Test
     public void testBookTask(){
-        BookThreadTask task = new BookThreadTask("文学","https://book.douban.com/tag/文学",bookMapper);
+        BookThreadTask task = new BookThreadTask("文学","https://book.douban.com/tag/文学",bookMapper,urlInfoMapper);
         Thread thead = new Thread(task);
         thead.start();
     }

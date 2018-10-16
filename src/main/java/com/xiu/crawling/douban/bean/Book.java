@@ -3,60 +3,29 @@ package com.xiu.crawling.douban.bean;
 import java.util.Date;
 
 public class Book {
-    /**
-     * 主键
-     */
     private Integer id;
 
-    /**
-     * 书名
-     */
     private String name;
 
-    /**
-     * 作者
-     */
     private String author;
 
-    /**
-     * 译者
-     */
     private String translator;
 
-    /**
-     * 出版社
-     */
     private String publisHouse;
 
-    /**
-     * 出版日期
-     */
-    private Date publicationDate;
+    private String publicationDate;
 
-    /**
-     * 价格
-     */
     private Double price;
 
-    /**
-     * 得分
-     */
     private Double score;
 
-    /**
-     * 评价人数
-     */
     private Integer evaluateNumber;
 
-    /**
-     * 图片
-     */
     private String picture;
 
-    /**
-     * 描述
-     */
     private String descption;
+
+    private String tag;
 
     public Integer getId() {
         return id;
@@ -98,11 +67,11 @@ public class Book {
         this.publisHouse = publisHouse == null ? null : publisHouse.trim();
     }
 
-    public Date getPublicationDate() {
+    public String getPublicationDate() {
         return publicationDate;
     }
 
-    public void setPublicationDate(Date publicationDate) {
+    public void setPublicationDate(String publicationDate) {
         this.publicationDate = publicationDate;
     }
 
@@ -144,5 +113,13 @@ public class Book {
 
     public void setDescption(String descption) {
         this.descption = descption == null ? null : descption.trim();
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag == null ? null : tag.trim();
     }
 }

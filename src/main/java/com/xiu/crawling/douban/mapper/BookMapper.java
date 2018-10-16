@@ -1,8 +1,10 @@
 package com.xiu.crawling.douban.mapper;
 
 import com.xiu.crawling.douban.bean.Book;
-import com.xiu.crawling.douban.bean.BookExample;
+
 import java.util.List;
+
+import com.xiu.crawling.douban.bean.BookExample;
 import org.apache.ibatis.annotations.Param;
 
 public interface BookMapper {

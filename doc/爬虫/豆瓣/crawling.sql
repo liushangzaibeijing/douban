@@ -21,11 +21,11 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `book`;
 CREATE TABLE `book` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `name` varchar(50) NOT NULL COMMENT '书籍名称',
+  `name` varchar(150) NOT NULL COMMENT '书籍名称',
   `author` varchar(50) NOT NULL COMMENT '作者',
   `translator` varchar(50) DEFAULT NULL COMMENT '译者',
   `publis_house` varchar(100) NOT NULL COMMENT '出版社',
-  `publication_date` date NOT NULL COMMENT '出版日期',
+  `publication_date` varchar(12)  COMMENT '出版日期',
   `price` double(5,2) NOT NULL,
   `score` double(5,1) DEFAULT NULL COMMENT '评分，保留一位小数',
   `evaluate_number` int(11) DEFAULT NULL COMMENT '评价人数',

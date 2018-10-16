@@ -363,6 +363,126 @@ public class UrlInfoExample {
             addCriterion("descption not between", value1, value2, "descption");
             return (Criteria) this;
         }
+
+        public Criteria andLabelIsNull() {
+            addCriterion("label is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelIsNotNull() {
+            addCriterion("label is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelEqualTo(Integer value) {
+            addCriterion("label =", value, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelNotEqualTo(Integer value) {
+            addCriterion("label <>", value, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelGreaterThan(Integer value) {
+            addCriterion("label >", value, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelGreaterThanOrEqualTo(Integer value) {
+            addCriterion("label >=", value, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelLessThan(Integer value) {
+            addCriterion("label <", value, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelLessThanOrEqualTo(Integer value) {
+            addCriterion("label <=", value, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelIn(List<Integer> values) {
+            addCriterion("label in", values, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelNotIn(List<Integer> values) {
+            addCriterion("label not in", values, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelBetween(Integer value1, Integer value2) {
+            addCriterion("label between", value1, value2, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelNotBetween(Integer value1, Integer value2) {
+            addCriterion("label not between", value1, value2, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkIsNull() {
+            addCriterion("mark is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkIsNotNull() {
+            addCriterion("mark is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkEqualTo(Integer value) {
+            addCriterion("mark =", value, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkNotEqualTo(Integer value) {
+            addCriterion("mark <>", value, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkGreaterThan(Integer value) {
+            addCriterion("mark >", value, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkGreaterThanOrEqualTo(Integer value) {
+            addCriterion("mark >=", value, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkLessThan(Integer value) {
+            addCriterion("mark <", value, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkLessThanOrEqualTo(Integer value) {
+            addCriterion("mark <=", value, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkIn(List<Integer> values) {
+            addCriterion("mark in", values, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkNotIn(List<Integer> values) {
+            addCriterion("mark not in", values, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkBetween(Integer value1, Integer value2) {
+            addCriterion("mark between", value1, value2, "mark");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkNotBetween(Integer value1, Integer value2) {
+            addCriterion("mark not between", value1, value2, "mark");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

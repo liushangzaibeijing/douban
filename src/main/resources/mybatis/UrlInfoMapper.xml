@@ -6,6 +6,8 @@
     <result column="url" jdbcType="VARCHAR" property="url" />
     <result column="active" jdbcType="INTEGER" property="active" />
     <result column="descption" jdbcType="VARCHAR" property="descption" />
+    <result column="label" jdbcType="INTEGER" property="label" />
+    <result column="mark" jdbcType="INTEGER" property="mark" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, url, active, descption
+    id, url, active, descption, label, mark
   </sql>
   <select id="selectByExample" parameterType="com.xiu.crawling.douban.bean.UrlInfoExample" resultMap="BaseResultMap">
     select
@@ -90,9 +92,11 @@
   </delete>
   <insert id="insert" parameterType="com.xiu.crawling.douban.bean.UrlInfo">
     insert into url_info (id, url, active, 
-      descption)
+      descption, label, mark
+      )
     values (#{id,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{active,jdbcType=INTEGER}, 
-      #{descption,jdbcType=VARCHAR})
+      #{descption,jdbcType=VARCHAR}, #{label,jdbcType=INTEGER}, #{mark,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.xiu.crawling.douban.bean.UrlInfo">
     insert into url_info
@@ -109,6 +113,12 @@
       <if test="descption != null">
         descption,
       </if>
+      <if test="label != null">
+        label,
+      </if>
+      <if test="mark != null">
+        mark,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -122,6 +132,12 @@
       </if>
       <if test="descption != null">
         #{descption,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null">
+        #{label,jdbcType=INTEGER},
+      </if>
+      <if test="mark != null">
+        #{mark,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -146,6 +162,12 @@
       <if test="record.descption != null">
         descption = #{record.descption,jdbcType=VARCHAR},
       </if>
+      <if test="record.label != null">
+        label = #{record.label,jdbcType=INTEGER},
+      </if>
+      <if test="record.mark != null">
+        mark = #{record.mark,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -156,7 +178,9 @@
     set id = #{record.id,jdbcType=INTEGER},
       url = #{record.url,jdbcType=VARCHAR},
       active = #{record.active,jdbcType=INTEGER},
-      descption = #{record.descption,jdbcType=VARCHAR}
+      descption = #{record.descption,jdbcType=VARCHAR},
+      label = #{record.label,jdbcType=INTEGER},
+      mark = #{record.mark,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

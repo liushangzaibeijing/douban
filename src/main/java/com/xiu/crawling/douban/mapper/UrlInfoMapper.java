@@ -1,9 +1,8 @@
 package com.xiu.crawling.douban.mapper;
 
-import java.util.List;
-
 import com.xiu.crawling.douban.bean.UrlInfo;
 import com.xiu.crawling.douban.bean.UrlInfoExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface UrlInfoMapper {
