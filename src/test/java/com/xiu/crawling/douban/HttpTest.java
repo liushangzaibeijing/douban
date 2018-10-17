@@ -9,7 +9,6 @@ import com.xiu.crawling.douban.mapper.UrlInfoMapper;
 import com.xiu.crawling.douban.utils.HttpUtil;
 import com.xiu.crawling.douban.utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.client.utils.DateUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -255,7 +254,7 @@ public class HttpTest {
             String translator = null;
             String publicHouse = null;
             String publicDate = null;
-            Double price = null;
+            String price = null;
 
             if(array.length==4){
                 //没有译者信息（国产作品）
@@ -263,14 +262,14 @@ public class HttpTest {
                 publicHouse =array[1];
                 publicDate = array[2];
                 //使用正则匹配数字
-                price = getNumberByRegex(array[3]);
+                price =  array[3];
             }
             if(array.length==5) {
                 author = array[0];
                 translator =array[1];
                 publicHouse =array[2];
                 publicDate =array[3];
-                price = getNumberByRegex(array[4]);
+                price =  array[4];
             }
             Book book = new Book();
             book.setName(bookName);

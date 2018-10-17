@@ -8,7 +8,7 @@
     <result column="translator" jdbcType="VARCHAR" property="translator" />
     <result column="publis_house" jdbcType="VARCHAR" property="publisHouse" />
     <result column="publication_date" jdbcType="VARCHAR" property="publicationDate" />
-    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="price" jdbcType="VARCHAR" property="price" />
     <result column="score" jdbcType="DOUBLE" property="score" />
     <result column="evaluate_number" jdbcType="INTEGER" property="evaluateNumber" />
     <result column="picture" jdbcType="VARCHAR" property="picture" />
@@ -105,7 +105,7 @@
       )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
       #{translator,jdbcType=VARCHAR}, #{publisHouse,jdbcType=VARCHAR}, #{publicationDate,jdbcType=VARCHAR}, 
-      #{price,jdbcType=DOUBLE}, #{score,jdbcType=DOUBLE}, #{evaluateNumber,jdbcType=INTEGER}, 
+      #{price,jdbcType=VARCHAR}, #{score,jdbcType=DOUBLE}, #{evaluateNumber,jdbcType=INTEGER}, 
       #{picture,jdbcType=VARCHAR}, #{descption,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}
       )
   </insert>
@@ -169,7 +169,7 @@
         #{publicationDate,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
-        #{price,jdbcType=DOUBLE},
+        #{price,jdbcType=VARCHAR},
       </if>
       <if test="score != null">
         #{score,jdbcType=DOUBLE},
@@ -216,7 +216,7 @@
         publication_date = #{record.publicationDate,jdbcType=VARCHAR},
       </if>
       <if test="record.price != null">
-        price = #{record.price,jdbcType=DOUBLE},
+        price = #{record.price,jdbcType=VARCHAR},
       </if>
       <if test="record.score != null">
         score = #{record.score,jdbcType=DOUBLE},
@@ -246,7 +246,7 @@
       translator = #{record.translator,jdbcType=VARCHAR},
       publis_house = #{record.publisHouse,jdbcType=VARCHAR},
       publication_date = #{record.publicationDate,jdbcType=VARCHAR},
-      price = #{record.price,jdbcType=DOUBLE},
+      price = #{record.price,jdbcType=VARCHAR},
       score = #{record.score,jdbcType=DOUBLE},
       evaluate_number = #{record.evaluateNumber,jdbcType=INTEGER},
       picture = #{record.picture,jdbcType=VARCHAR},

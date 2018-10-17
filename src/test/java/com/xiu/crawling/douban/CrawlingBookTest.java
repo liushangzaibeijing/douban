@@ -30,6 +30,7 @@ import java.util.concurrent.Executors;
 @SpringBootTest(classes = DoubanApplication.class)
 @WebAppConfiguration
 public class CrawlingBookTest {
+    public static Integer THREAD_NUMBER = 5;
     @Autowired
     private UrlInfoMapper urlInfoMapper;
     @Autowired
@@ -39,20 +40,37 @@ public class CrawlingBookTest {
      * 爬取豆瓣的书籍信息
      */
     @Test
-    public void crawlingBook() throws InterruptedException {
-         //先进行查询书籍url 分页处理
-        Integer count = 2;
-        PageHelper.startPage(1,count);
+    public void crawlingBookIndex() throws InterruptedException {
+        //先查询总记录数 按照记录数循环查询
+        UrlInfoExample urlInfoExampleU = new UrlInfoExample();
+        urlInfoExampleU.createCriteria().andUrlLike("https://book.douban.com/tag/%").andActiveEqualTo(ActiveEnum.ACTIVE.getCode());
+
+        List<UrlInfo> urlInfoCounts = urlInfoMapper.selectByExample(urlInfoExampleU);
+
+        int count = urlInfoCounts.size()%5==0?urlInfoCounts.size()/5:urlInfoCounts.size()/5+1;
+
+        log.info("需要爬取的书籍中的总的url个数：{}",count);
+        for(int i =0;i<count;i++);{
+            crawlingBook();
+        }
+
+
+
+    }
+
+    private void crawlingBook() throws InterruptedException {
+        //先进行查询书籍url 分页处理
+        PageHelper.startPage(1,THREAD_NUMBER);
         UrlInfoExample urlInfoExample = new UrlInfoExample();
         urlInfoExample.createCriteria().andUrlLike("https://book.douban.com/tag/%").andActiveEqualTo(ActiveEnum.ACTIVE.getCode());
         List<UrlInfo> urlInfos = urlInfoMapper.selectByExample(urlInfoExample);
-        log.info("urlinfos {}",JsonUtil.obj2str(urlInfos));
+        log.info("urlinfos {}", JsonUtil.obj2str(urlInfos));
 
         //使用多线程去进行爬取数据
-        CountDownLatch latch = new CountDownLatch(count);
+        CountDownLatch latch = new CountDownLatch(THREAD_NUMBER);
 
         //固定线程池
-        Executor executor =Executors.newFixedThreadPool(count);
+        Executor executor = Executors.newFixedThreadPool(THREAD_NUMBER);
         //创建多线程任务
         List<BookThreadTask> bookThreadTasks = new ArrayList<>();
         for(UrlInfo urlInfo : urlInfos){

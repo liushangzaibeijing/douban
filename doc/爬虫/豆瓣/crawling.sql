@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2018-10-16 21:40:07
+Date: 2018-10-17 22:21:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,15 +25,28 @@ CREATE TABLE `book` (
   `author` varchar(100) NOT NULL COMMENT '作者',
   `translator` varchar(50) DEFAULT NULL COMMENT '译者',
   `publis_house` varchar(100) DEFAULT NULL COMMENT '出版社',
-  `publication_date` varchar(12) DEFAULT NULL COMMENT '出版日期',
-  `price` double(5,2) DEFAULT NULL,
+  `publication_date` varchar(20) DEFAULT NULL COMMENT '出版日期',
+  `price` varchar(30) DEFAULT NULL,
   `score` double(5,1) DEFAULT NULL COMMENT '评分，保留一位小数',
   `evaluate_number` int(11) DEFAULT NULL COMMENT '评价人数',
   `picture` varchar(255) DEFAULT NULL COMMENT '图片路径',
   `descption` varchar(500) DEFAULT NULL COMMENT '描述',
   `tag` varchar(20) DEFAULT NULL COMMENT '书籍所属标签',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COMMENT='豆瓣书籍信息';
+) ENGINE=InnoDB AUTO_INCREMENT=2439 DEFAULT CHARSET=utf8 COMMENT='豆瓣书籍信息';
+
+-- ----------------------------
+-- Table structure for err_url
+-- ----------------------------
+DROP TABLE IF EXISTS `err_url`;
+CREATE TABLE `err_url` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `error_url` varchar(100) DEFAULT NULL COMMENT '爬取的错误的url信息',
+  `module` varchar(100) DEFAULT NULL COMMENT '模块 音乐 读书，电影等',
+  `name` varchar(150) DEFAULT NULL COMMENT '爬取的名称（书籍模块 书籍信息）',
+  `info` text COMMENT '错误原因',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for url_info

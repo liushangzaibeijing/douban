@@ -1,7 +1,5 @@
 package com.xiu.crawling.douban.bean;
 
-import java.util.Date;
-
 public class Book {
     private Integer id;
 
@@ -15,7 +13,7 @@ public class Book {
 
     private String publicationDate;
 
-    private Double price;
+    private String price;
 
     private Double score;
 
@@ -72,15 +70,15 @@ public class Book {
     }
 
     public void setPublicationDate(String publicationDate) {
-        this.publicationDate = publicationDate;
+        this.publicationDate = publicationDate == null ? null : publicationDate.trim();
     }
 
-    public Double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setPrice(String price) {
+        this.price = price == null ? null : price.trim();
     }
 
     public Double getScore() {
