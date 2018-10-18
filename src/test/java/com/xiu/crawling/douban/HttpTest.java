@@ -1,10 +1,12 @@
 package com.xiu.crawling.douban;
 
 import com.xiu.crawling.douban.bean.Book;
+import com.xiu.crawling.douban.bean.ErrUrl;
 import com.xiu.crawling.douban.bean.UrlInfo;
 import com.xiu.crawling.douban.bean.UrlInfoExample;
 import com.xiu.crawling.douban.core.BookThreadTask;
 import com.xiu.crawling.douban.mapper.BookMapper;
+import com.xiu.crawling.douban.mapper.ErrUrlMapper;
 import com.xiu.crawling.douban.mapper.UrlInfoMapper;
 import com.xiu.crawling.douban.utils.HttpUtil;
 import com.xiu.crawling.douban.utils.JsonUtil;
@@ -37,6 +39,9 @@ public class HttpTest {
     private UrlInfoMapper urlInfoMapper;
     @Autowired
     private BookMapper bookMapper;
+
+    @Autowired
+    private ErrUrlMapper errUrlMapper;
 
     /**
      * 爬去豆瓣首页的数据
@@ -294,12 +299,40 @@ public class HttpTest {
 
     @Test
     public void testBookTask(){
-        BookThreadTask task = new BookThreadTask("文学","https://book.douban.com/tag/文学",bookMapper,urlInfoMapper);
+        BookThreadTask task = new BookThreadTask("文学","https://book.douban.com/tag/文学",bookMapper,urlInfoMapper,errUrlMapper);
         Thread thead = new Thread(task);
         thead.start();
     }
 
 
+    /**
+     * 测试插入数据出错后，捕获错误处理的时候将该数据存储
+     */
+    @Test
+    public void testInsertAfterException() {
+
+        ErrUrl errUrl = new ErrUrl();
+        errUrl.setId(1);
+        errUrl.setName("两性认知");
+        errUrl.setErrorUrl("htttp://wwww.test.com");
+        errUrl.setInfo("测试书籍信息");
+        errUrl.setModule("书籍");
+
+        try {
+            errUrlMapper.insert(errUrl);
+        }catch (Exception e){
+            ErrUrl errUrlT = new ErrUrl();
+            errUrlT.setName("两性认知");
+            errUrlT.setErrorUrl("htttp://wwww.test.com");
+            errUrlT.setInfo("爬取该信息出现错误");
+            errUrlT.setModule("书籍");
+            errUrlMapper.insert(errUrlT);
+        }
+
+
+
+
+    }
 
 
     private Double getNumberByRegex(String input) {

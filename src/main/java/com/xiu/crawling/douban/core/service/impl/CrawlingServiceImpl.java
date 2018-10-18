@@ -1,36 +1,30 @@
-package com.xiu.crawling.douban;
+package com.xiu.crawling.douban.core.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.xiu.crawling.douban.bean.UrlInfo;
 import com.xiu.crawling.douban.bean.UrlInfoExample;
 import com.xiu.crawling.douban.common.ActiveEnum;
 import com.xiu.crawling.douban.core.BookThreadTask;
+import com.xiu.crawling.douban.core.service.CrawlingService;
 import com.xiu.crawling.douban.mapper.BookMapper;
 import com.xiu.crawling.douban.mapper.ErrUrlMapper;
 import com.xiu.crawling.douban.mapper.UrlInfoMapper;
 import com.xiu.crawling.douban.utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.*;
 
 /**
  * author  Administrator
- * date   2018/10/12
+ * date   2018/10/18
  */
 @Slf4j
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = DoubanApplication.class)
-@WebAppConfiguration
-public class CrawlingBookTest {
+@Service
+public class CrawlingServiceImpl implements CrawlingService{
     public static Integer THREAD_NUMBER = 5;
     @Autowired
     private UrlInfoMapper urlInfoMapper;
@@ -38,30 +32,9 @@ public class CrawlingBookTest {
     private BookMapper bookMapper;
     @Autowired
     private ErrUrlMapper errUrlMapper;
-    /**
-     * 爬取豆瓣的书籍信息 使用for循环进行爬取 但是在多线程的情况下，一次性会生成上百个线程，容易造成ip封锁 不可取
-     */
-    @Test
-    public void crawlingBookIndex() throws InterruptedException {
-        //先查询总记录数 按照记录数循环查询
-        UrlInfoExample urlInfoExampleU = new UrlInfoExample();
-        urlInfoExampleU.createCriteria().andUrlLike("https://book.douban.com/tag/%").andActiveEqualTo(ActiveEnum.ACTIVE.getCode());
 
-        List<UrlInfo> urlInfoCounts = urlInfoMapper.selectByExample(urlInfoExampleU);
-
-        int count = urlInfoCounts.size()%5==0?urlInfoCounts.size()/5:urlInfoCounts.size()/5+1;
-
-        log.info("需要爬取的书籍中的总的url个数：{}",count);
-        for(int i =0;i<count;i++){
-            log.info("当前第几次爬取：{}",i);
-            crawlingBook();
-        }
-
-
-
-    }
-
-    private void crawlingBook() throws InterruptedException {
+    @Override
+    public void crawlingBook() throws InterruptedException {
         //先进行查询书籍url 分页处理
         PageHelper.startPage(1,THREAD_NUMBER);
         UrlInfoExample urlInfoExample = new UrlInfoExample();
@@ -72,8 +45,10 @@ public class CrawlingBookTest {
         //使用多线程去进行爬取数据
         CountDownLatch latch = new CountDownLatch(THREAD_NUMBER);
 
-        //固定线程池
-        Executor executor = Executors.newFixedThreadPool(THREAD_NUMBER);
+        ExecutorService executor = Executors.newFixedThreadPool(THREAD_NUMBER);
+
+        /*手动创建线程池*/
+        //ThreadPoolExecutor executor = new ThreadPoolExecutor(THREAD_NUMBER,THREAD_NUMBER,1000, TimeUnit.MILLISECONDS,null);
         //创建多线程任务
         List<BookThreadTask> bookThreadTasks = new ArrayList<>();
         for(UrlInfo urlInfo : urlInfos){

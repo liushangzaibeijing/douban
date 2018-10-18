@@ -57,20 +57,22 @@ public class BookThreadTask implements  Runnable{
     private CountDownLatch latch;
 
 
-    public BookThreadTask(String tagName, String url, BookMapper bookMapper,UrlInfoMapper urlInfoMapper) {
+    public BookThreadTask(String tagName, String url, BookMapper bookMapper,UrlInfoMapper urlInfoMapper,ErrUrlMapper errUrlMapper) {
         this.tagName = tagName;
         this.url = url;
         this.bookMapper = bookMapper;
         this.urlInfoMapper = urlInfoMapper;
-    }
-    public BookThreadTask(String tagName, String url, BookMapper bookMapper,UrlInfoMapper urlInfoMapper,CountDownLatch countDownLatch) {
-        this.tagName = tagName;
-        this.url = url;
-        this.bookMapper = bookMapper;
-        this.urlInfoMapper = urlInfoMapper;
-        this.latch = countDownLatch;
+        this.errUrlMapper = errUrlMapper;
     }
 
+    public BookThreadTask(String tagName, String url, BookMapper bookMapper, UrlInfoMapper urlInfoMapper, ErrUrlMapper errUrlMapper, CountDownLatch latch) {
+        this.tagName = tagName;
+        this.url = url;
+        this.bookMapper = bookMapper;
+        this.urlInfoMapper = urlInfoMapper;
+        this.errUrlMapper = errUrlMapper;
+        this.latch = latch;
+    }
 
     /**
      * 支持首页列表 以及第几页数据的爬取操作
@@ -142,9 +144,12 @@ public class BookThreadTask implements  Runnable{
                 errUrl.setErrorUrl(url);
                 errUrl.setName(name);
                 errUrl.setInfo(e.getMessage());
+            try {
                 errUrlMapper.insert(errUrl);
+            }catch (Exception e2){
                 e.printStackTrace();
-        }
+            }
+       }
 
         //默认只有二十个每页，所以需要获取到总的记录条数，循环改变start去获取
 

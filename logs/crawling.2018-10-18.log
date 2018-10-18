@@ -1,0 +1,88 @@
+2018-10-18.14:29:18 INFO  [main] c.x.c.d.DoubanApplication.logStarting:50  Starting DoubanApplication on PC-2018HWL with PID 13184 (D:\workspace\douban\target\classes started by Administrator in D:\workspace\douban)
+2018-10-18.14:29:18 DEBUG [main] c.x.c.d.DoubanApplication.logStarting:53  Running with Spring Boot v2.0.5.RELEASE, Spring v5.0.9.RELEASE
+2018-10-18.14:29:18 INFO  [main] c.x.c.d.DoubanApplication.logStartupProfileInfo:680  No active profile set, falling back to default profiles: default
+2018-10-18.14:29:22 INFO  [pool-1-thread-1] c.x.c.d.c.CrawlingScheduledTask.crawlBookScheduledTask:26  爬取书籍的定时任务开始
+2018-10-18.14:29:26 INFO  [main] c.x.c.d.DoubanApplication.logStarted:59  Started DoubanApplication in 7.758 seconds (JVM running for 8.448)
+2018-10-18.14:29:26 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample_COUNT.debug:159  ==>  Preparing: SELECT count(0) FROM url_info WHERE (url LIKE ? AND active = ?) 
+2018-10-18.14:29:27 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample_COUNT.debug:159  ==> Parameters: https://book.douban.com/tag/%(String), 1(Integer)
+2018-10-18.14:29:27 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample_COUNT.debug:159  <==      Total: 1
+2018-10-18.14:29:27 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample.debug:159  ==>  Preparing: select id, url, active, descption, label, mark from url_info WHERE ( url like ? and active = ? ) LIMIT ? 
+2018-10-18.14:29:27 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample.debug:159  ==> Parameters: https://book.douban.com/tag/%(String), 1(Integer), 5(Integer)
+2018-10-18.14:29:27 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample.debug:159  <==      Total: 5
+2018-10-18.14:29:28 INFO  [pool-1-thread-1] c.x.c.d.c.s.i.CrawlingServiceImpl.crawlingBook:43  urlinfos [{"id":60,"url":"https://book.douban.com/tag/J.K.罗琳","active":1,"descption":"J.K.罗琳","label":null,"mark":null},{"id":48,"url":"https://book.douban.com/tag/UCD","active":1,"descption":"UCD","label":null,"mark":null},{"id":68,"url":"https://book.douban.com/tag/UE","active":1,"descption":"UE","label":null,"mark":null},{"id":131,"url":"https://book.douban.com/tag/web","active":1,"descption":"web","label":null,"mark":null},{"id":100,"url":"https://book.douban.com/tag/三毛","active":1,"descption":"三毛","label":null,"mark":null}]
+2018-10-18.14:30:23 INFO  [main] c.x.c.d.DoubanApplication.logStarting:50  Starting DoubanApplication on PC-2018HWL with PID 3472 (D:\workspace\douban\target\classes started by Administrator in D:\workspace\douban)
+2018-10-18.14:30:23 DEBUG [main] c.x.c.d.DoubanApplication.logStarting:53  Running with Spring Boot v2.0.5.RELEASE, Spring v5.0.9.RELEASE
+2018-10-18.14:30:23 INFO  [main] c.x.c.d.DoubanApplication.logStartupProfileInfo:680  No active profile set, falling back to default profiles: default
+2018-10-18.14:30:40 INFO  [pool-1-thread-1] c.x.c.d.c.CrawlingScheduledTask.crawlBookScheduledTask:26  爬取书籍的定时任务开始
+2018-10-18.14:30:40 INFO  [main] c.x.c.d.DoubanApplication.logStarted:59  Started DoubanApplication in 17.77 seconds (JVM running for 18.4)
+2018-10-18.14:30:41 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample_COUNT.debug:159  ==>  Preparing: SELECT count(0) FROM url_info WHERE (url LIKE ? AND active = ?) 
+2018-10-18.14:30:41 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample_COUNT.debug:159  ==> Parameters: https://book.douban.com/tag/%(String), 1(Integer)
+2018-10-18.14:30:41 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample_COUNT.debug:159  <==      Total: 1
+2018-10-18.14:30:41 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample.debug:159  ==>  Preparing: select id, url, active, descption, label, mark from url_info WHERE ( url like ? and active = ? ) LIMIT ? 
+2018-10-18.14:30:41 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample.debug:159  ==> Parameters: https://book.douban.com/tag/%(String), 1(Integer), 5(Integer)
+2018-10-18.14:30:41 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample.debug:159  <==      Total: 5
+2018-10-18.14:30:41 INFO  [pool-1-thread-1] c.x.c.d.c.s.i.CrawlingServiceImpl.crawlingBook:43  urlinfos [{"id":60,"url":"https://book.douban.com/tag/J.K.罗琳","active":1,"descption":"J.K.罗琳","label":null,"mark":null},{"id":48,"url":"https://book.douban.com/tag/UCD","active":1,"descption":"UCD","label":null,"mark":null},{"id":68,"url":"https://book.douban.com/tag/UE","active":1,"descption":"UE","label":null,"mark":null},{"id":131,"url":"https://book.douban.com/tag/web","active":1,"descption":"web","label":null,"mark":null},{"id":100,"url":"https://book.douban.com/tag/三毛","active":1,"descption":"三毛","label":null,"mark":null}]
+2018-10-18.14:35:19 INFO  [main] c.x.c.d.DoubanApplication.logStarting:50  Starting DoubanApplication on PC-2018HWL with PID 13468 (D:\workspace\douban\target\classes started by Administrator in D:\workspace\douban)
+2018-10-18.14:35:19 DEBUG [main] c.x.c.d.DoubanApplication.logStarting:53  Running with Spring Boot v2.0.5.RELEASE, Spring v5.0.9.RELEASE
+2018-10-18.14:35:19 INFO  [main] c.x.c.d.DoubanApplication.logStartupProfileInfo:680  No active profile set, falling back to default profiles: default
+2018-10-18.14:35:23 INFO  [pool-1-thread-1] c.x.c.d.c.CrawlingScheduledTask.crawlBookScheduledTask:26  爬取书籍的定时任务开始
+2018-10-18.14:35:23 INFO  [main] c.x.c.d.DoubanApplication.logStarted:59  Started DoubanApplication in 4.137 seconds (JVM running for 4.829)
+2018-10-18.14:35:23 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample_COUNT.debug:159  ==>  Preparing: SELECT count(0) FROM url_info WHERE (url LIKE ? AND active = ?) 
+2018-10-18.14:35:23 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample_COUNT.debug:159  ==> Parameters: https://book.douban.com/tag/%(String), 1(Integer)
+2018-10-18.14:35:23 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample_COUNT.debug:159  <==      Total: 1
+2018-10-18.14:35:23 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample.debug:159  ==>  Preparing: select id, url, active, descption, label, mark from url_info WHERE ( url like ? and active = ? ) LIMIT ? 
+2018-10-18.14:35:23 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample.debug:159  ==> Parameters: https://book.douban.com/tag/%(String), 1(Integer), 5(Integer)
+2018-10-18.14:35:23 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample.debug:159  <==      Total: 5
+2018-10-18.14:35:23 INFO  [pool-1-thread-1] c.x.c.d.c.s.i.CrawlingServiceImpl.crawlingBook:43  urlinfos [{"id":60,"url":"https://book.douban.com/tag/J.K.罗琳","active":1,"descption":"J.K.罗琳","label":null,"mark":null},{"id":48,"url":"https://book.douban.com/tag/UCD","active":1,"descption":"UCD","label":null,"mark":null},{"id":68,"url":"https://book.douban.com/tag/UE","active":1,"descption":"UE","label":null,"mark":null},{"id":131,"url":"https://book.douban.com/tag/web","active":1,"descption":"web","label":null,"mark":null},{"id":100,"url":"https://book.douban.com/tag/三毛","active":1,"descption":"三毛","label":null,"mark":null}]
+2018-10-18.14:35:24 DEBUG [pool-2-thread-4] c.x.c.d.m.U.updateByExampleSelective.debug:159  ==>  Preparing: update url_info SET active = ? WHERE ( url = ? ) 
+2018-10-18.14:35:24 DEBUG [pool-2-thread-1] c.x.c.d.m.U.updateByExampleSelective.debug:159  ==>  Preparing: update url_info SET active = ? WHERE ( url = ? ) 
+2018-10-18.14:35:24 DEBUG [pool-2-thread-4] c.x.c.d.m.U.updateByExampleSelective.debug:159  ==> Parameters: 0(Integer), https://book.douban.com/tag/web(String)
+2018-10-18.14:35:24 DEBUG [pool-2-thread-5] c.x.c.d.m.U.updateByExampleSelective.debug:159  ==>  Preparing: update url_info SET active = ? WHERE ( url = ? ) 
+2018-10-18.14:35:24 DEBUG [pool-2-thread-5] c.x.c.d.m.U.updateByExampleSelective.debug:159  ==> Parameters: 0(Integer), https://book.douban.com/tag/三毛(String)
+2018-10-18.14:35:24 DEBUG [pool-2-thread-4] c.x.c.d.m.U.updateByExampleSelective.debug:159  <==    Updates: 1
+2018-10-18.14:35:24 DEBUG [pool-2-thread-2] c.x.c.d.m.U.updateByExampleSelective.debug:159  ==>  Preparing: update url_info SET active = ? WHERE ( url = ? ) 
+2018-10-18.14:35:24 INFO  [pool-2-thread-4] c.x.c.d.c.BookThreadTask.endCrawl:108  web 标签下的书籍信息爬取完毕
+2018-10-18.14:35:24 DEBUG [pool-2-thread-2] c.x.c.d.m.U.updateByExampleSelective.debug:159  ==> Parameters: 0(Integer), https://book.douban.com/tag/UCD(String)
+2018-10-18.14:35:24 DEBUG [pool-2-thread-5] c.x.c.d.m.U.updateByExampleSelective.debug:159  <==    Updates: 1
+2018-10-18.14:35:24 INFO  [pool-2-thread-5] c.x.c.d.c.BookThreadTask.endCrawl:108  三毛 标签下的书籍信息爬取完毕
+2018-10-18.14:35:24 DEBUG [pool-2-thread-1] c.x.c.d.m.U.updateByExampleSelective.debug:159  ==> Parameters: 0(Integer), https://book.douban.com/tag/J.K.罗琳(String)
+2018-10-18.14:35:24 DEBUG [pool-2-thread-2] c.x.c.d.m.U.updateByExampleSelective.debug:159  <==    Updates: 1
+2018-10-18.14:35:24 INFO  [pool-2-thread-2] c.x.c.d.c.BookThreadTask.endCrawl:108  UCD 标签下的书籍信息爬取完毕
+2018-10-18.14:35:24 DEBUG [pool-2-thread-1] c.x.c.d.m.U.updateByExampleSelective.debug:159  <==    Updates: 1
+2018-10-18.14:35:24 INFO  [pool-2-thread-1] c.x.c.d.c.BookThreadTask.endCrawl:108  J.K.罗琳 标签下的书籍信息爬取完毕
+2018-10-18.14:35:24 DEBUG [pool-2-thread-3] c.x.c.d.m.U.updateByExampleSelective.debug:159  ==>  Preparing: update url_info SET active = ? WHERE ( url = ? ) 
+2018-10-18.14:35:24 DEBUG [pool-2-thread-3] c.x.c.d.m.U.updateByExampleSelective.debug:159  ==> Parameters: 0(Integer), https://book.douban.com/tag/UE(String)
+2018-10-18.14:35:24 DEBUG [pool-2-thread-3] c.x.c.d.m.U.updateByExampleSelective.debug:159  <==    Updates: 1
+2018-10-18.14:35:24 INFO  [pool-2-thread-3] c.x.c.d.c.BookThreadTask.endCrawl:108  UE 标签下的书籍信息爬取完毕
+2018-10-18.14:35:24 INFO  [pool-1-thread-1] c.x.c.d.c.s.i.CrawlingServiceImpl.crawlingBook:61  end ............
+2018-10-18.14:35:24 INFO  [pool-1-thread-1] c.x.c.d.c.CrawlingScheduledTask.crawlBookScheduledTask:32  爬取书籍的定时任务结束
+2018-10-18.14:50:21 INFO  [pool-1-thread-1] c.x.c.d.c.CrawlingScheduledTask.crawlBookScheduledTask:26  爬取书籍的定时任务开始
+2018-10-18.14:50:21 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample_COUNT.debug:159  ==>  Preparing: SELECT count(0) FROM url_info WHERE (url LIKE ? AND active = ?) 
+2018-10-18.14:50:21 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample_COUNT.debug:159  ==> Parameters: https://book.douban.com/tag/%(String), 1(Integer)
+2018-10-18.14:50:21 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample_COUNT.debug:159  <==      Total: 1
+2018-10-18.14:50:21 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample.debug:159  ==>  Preparing: select id, url, active, descption, label, mark from url_info WHERE ( url like ? and active = ? ) LIMIT ? 
+2018-10-18.14:50:21 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample.debug:159  ==> Parameters: https://book.douban.com/tag/%(String), 1(Integer), 5(Integer)
+2018-10-18.14:50:21 DEBUG [pool-1-thread-1] c.x.c.d.m.U.selectByExample.debug:159  <==      Total: 5
+2018-10-18.14:50:21 INFO  [pool-1-thread-1] c.x.c.d.c.s.i.CrawlingServiceImpl.crawlingBook:43  urlinfos [{"id":38,"url":"https://book.douban.com/tag/东野圭吾","active":1,"descption":"东野圭吾","label":null,"mark":null},{"id":7,"url":"https://book.douban.com/tag/两性","active":1,"descption":"两性","label":null,"mark":null},{"id":2,"url":"https://book.douban.com/tag/中国历史","active":1,"descption":"中国历史","label":null,"mark":null},{"id":116,"url":"https://book.douban.com/tag/中国文学","active":1,"descption":"中国文学","label":null,"mark":null},{"id":140,"url":"https://book.douban.com/tag/二战","active":1,"descption":"二战","label":null,"mark":null}]
+2018-10-18.14:50:21 DEBUG [pool-3-thread-3] c.x.c.d.m.U.updateByExampleSelective.debug:159  ==>  Preparing: update url_info SET active = ? WHERE ( url = ? ) 
+2018-10-18.14:50:21 DEBUG [pool-3-thread-3] c.x.c.d.m.U.updateByExampleSelective.debug:159  ==> Parameters: 0(Integer), https://book.douban.com/tag/中国历史(String)
+2018-10-18.14:50:21 DEBUG [pool-3-thread-5] c.x.c.d.m.U.updateByExampleSelective.debug:159  ==>  Preparing: update url_info SET active = ? WHERE ( url = ? ) 
+2018-10-18.14:50:21 DEBUG [pool-3-thread-5] c.x.c.d.m.U.updateByExampleSelective.debug:159  ==> Parameters: 0(Integer), https://book.douban.com/tag/二战(String)
+2018-10-18.14:50:21 DEBUG [pool-3-thread-1] c.x.c.d.m.U.updateByExampleSelective.debug:159  ==>  Preparing: update url_info SET active = ? WHERE ( url = ? ) 
+2018-10-18.14:50:21 DEBUG [pool-3-thread-4] c.x.c.d.m.U.updateByExampleSelective.debug:159  ==>  Preparing: update url_info SET active = ? WHERE ( url = ? ) 
+2018-10-18.14:50:21 DEBUG [pool-3-thread-1] c.x.c.d.m.U.updateByExampleSelective.debug:159  ==> Parameters: 0(Integer), https://book.douban.com/tag/东野圭吾(String)
+2018-10-18.14:50:21 DEBUG [pool-3-thread-4] c.x.c.d.m.U.updateByExampleSelective.debug:159  ==> Parameters: 0(Integer), https://book.douban.com/tag/中国文学(String)
+2018-10-18.14:50:21 DEBUG [pool-3-thread-3] c.x.c.d.m.U.updateByExampleSelective.debug:159  <==    Updates: 1
+2018-10-18.14:50:21 INFO  [pool-3-thread-3] c.x.c.d.c.BookThreadTask.endCrawl:108  中国历史 标签下的书籍信息爬取完毕
+2018-10-18.14:50:21 DEBUG [pool-3-thread-2] c.x.c.d.m.U.updateByExampleSelective.debug:159  ==>  Preparing: update url_info SET active = ? WHERE ( url = ? ) 
+2018-10-18.14:50:21 DEBUG [pool-3-thread-2] c.x.c.d.m.U.updateByExampleSelective.debug:159  ==> Parameters: 0(Integer), https://book.douban.com/tag/两性(String)
+2018-10-18.14:50:21 DEBUG [pool-3-thread-5] c.x.c.d.m.U.updateByExampleSelective.debug:159  <==    Updates: 1
+2018-10-18.14:50:21 INFO  [pool-3-thread-5] c.x.c.d.c.BookThreadTask.endCrawl:108  二战 标签下的书籍信息爬取完毕
+2018-10-18.14:50:21 DEBUG [pool-3-thread-4] c.x.c.d.m.U.updateByExampleSelective.debug:159  <==    Updates: 1
+2018-10-18.14:50:21 DEBUG [pool-3-thread-1] c.x.c.d.m.U.updateByExampleSelective.debug:159  <==    Updates: 1
+2018-10-18.14:50:21 INFO  [pool-3-thread-4] c.x.c.d.c.BookThreadTask.endCrawl:108  中国文学 标签下的书籍信息爬取完毕
+2018-10-18.14:50:21 INFO  [pool-3-thread-1] c.x.c.d.c.BookThreadTask.endCrawl:108  东野圭吾 标签下的书籍信息爬取完毕
+2018-10-18.14:50:21 DEBUG [pool-3-thread-2] c.x.c.d.m.U.updateByExampleSelective.debug:159  <==    Updates: 1
+2018-10-18.14:50:21 INFO  [pool-3-thread-2] c.x.c.d.c.BookThreadTask.endCrawl:108  两性 标签下的书籍信息爬取完毕
+2018-10-18.14:50:21 INFO  [pool-1-thread-1] c.x.c.d.c.s.i.CrawlingServiceImpl.crawlingBook:61  end ............
+2018-10-18.14:50:21 INFO  [pool-1-thread-1] c.x.c.d.c.CrawlingScheduledTask.crawlBookScheduledTask:32  爬取书籍的定时任务结束
