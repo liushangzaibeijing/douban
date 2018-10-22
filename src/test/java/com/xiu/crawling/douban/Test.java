@@ -1,6 +1,7 @@
 package com.xiu.crawling.douban;
 
 import com.xiu.crawling.douban.core.BookThreadTask;
+import com.xiu.crawling.douban.utils.RandCookie;
 
 /**
  * author   xieqx
@@ -19,6 +20,11 @@ public class Test {
     public void test(){
       String str = "Understanding Your Users : A Practical Guide to User Requirements Methods, Tools, and Techniques (The Morgan Kaufmann Serie)";
       System.out.println(str.length());
+    }
+
+    @org.junit.Test
+    public void testCookie(){
+        RandCookie.getRandomCode(11);
     }
 
 }

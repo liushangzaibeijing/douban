@@ -90,7 +90,7 @@ public class HttpTest {
 
         log.info(result);
 
-        /*
+
         Document document = Jsoup.parseBodyFragment(result);
 
         String regex = "a[href~=https://\\S*.douban.*]";
@@ -114,12 +114,12 @@ public class HttpTest {
         log.info("需要爬取得数据信息 {}",JsonUtil.obj2str(data));
 
         //遍历map
-        //for(Map.Entry entry:data.entrySet()){
-            //UrlInfo urlInfo = (UrlInfo) entry.getValue();
+        for(Map.Entry entry:data.entrySet()){
+            UrlInfo urlInfo = (UrlInfo) entry.getValue();
 
-            //urlInfoMapper.insertSelective(urlInfo);
-        //}
-    */
+            urlInfoMapper.insertSelective(urlInfo);
+        }
+
     }
 
 

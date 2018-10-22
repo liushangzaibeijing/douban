@@ -37,6 +37,19 @@
         此时策略就更简单了：随机bid值，并加入到Cookie中进行页面请求，当发现被封时，清除Cookie，随机更换bid值。
 
         douban  bid=mABx-QaEx5U bid=mABx-QaEx5U
+                bid=W8Nxhu07kdA
+
+        无法解决ip的问题
+
+        频繁爬取出现会相应如下的脚本信息:
+        <script>
+            var d=[navigator.platform,navigator.userAgent,navigator.vendor].join("|");
+        	window.location.href="https://sec.douban.com/a?c=d8210b&d="+d+"&
+        	r=https%3A%2F%2Fbook.douban.com%2Ftag%2F%25E4%25B8%259C%25E9%2587%258E%25E5%259C%25AD%25E5%2590%25BE&k=HRR6j3b02rDvqjPPa0Ix1ppfRlDOmgEc8E7v57d6z64";
+        </script>
+
+        解析执行出现ip访问受限
+
 
 4、获取的书籍信息中的 作者，译者， 出版社 出版日期，价格这些参数以数据/分隔
       1）、// 作者，译者， 出版社 出版日期，价格 中可能会缺失其中的一部分 所以需要进行判断
@@ -48,3 +61,5 @@
    1、在爬取出错后，捕获异常，并将相关的出错信息保存在数据库中
       问题：出现抛出失误后的数据无法保存到数据库中
       解决：考虑先使用error级别的错误日志去进行保存，通过查看日志来定位出错信息
+
+

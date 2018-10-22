@@ -21,7 +21,7 @@ public class CrawlingScheduledTask {
      * 每二十分钟执行一次 参考http://cron.qqe2.com/
      */
     //@Scheduled(cron = "0 0/20 * * * ? *")
-    @Scheduled(fixedRate=1000*60*15)
+    @Scheduled(fixedRate=1000*60*5)
     public void crawlBookScheduledTask(){
         log.info("爬取书籍的定时任务开始");
         try {

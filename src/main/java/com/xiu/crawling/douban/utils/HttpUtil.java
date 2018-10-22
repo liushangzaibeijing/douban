@@ -135,7 +135,7 @@ public class HttpUtil {
 
     private static CloseableHttpClient getCloseableHttpClient() {
         CookieStore cookieStore = new BasicCookieStore();
-        BasicClientCookie cookie = new BasicClientCookie("bid", "mABx-QaEx5U");
+        BasicClientCookie cookie = new BasicClientCookie("bid",RandCookie.getRandomCode(11));
         cookie.setVersion(0);
         cookie.setDomain("*");
         cookie.setPath("/");
