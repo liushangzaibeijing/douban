@@ -13,6 +13,7 @@ import com.xiu.crawling.douban.mapper.BookMapper;
 import com.xiu.crawling.douban.mapper.ErrUrlMapper;
 import com.xiu.crawling.douban.mapper.UrlInfoMapper;
 import com.xiu.crawling.douban.proxypool.http.HttpManager;
+import com.xiu.crawling.douban.utils.HttpUtil;
 import com.xiu.crawling.douban.utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpEntity;
@@ -316,7 +317,7 @@ public class HttpTest {
 
     @Test
     public void testBookTask(){
-        BookThreadTask task = new BookThreadTask("文学","https://book.douban.com/tag/文学",bookMapper,urlInfoMapper,errUrlMapper,null);
+        BookThreadTask task = new BookThreadTask("文学","https://book.douban.com/tag/文学",bookMapper,urlInfoMapper,errUrlMapper,null,null);
         Thread thead = new Thread(task);
         thead.start();
     }
@@ -405,5 +406,14 @@ public class HttpTest {
 
     }
 
+    @Test
+    public void testCanUserProxy() throws IOException {
+        HttpHost proxy = proxyService.findCanUseProxy();
+        String result = HttpUtil.doGet("https://movie.douban.com/j/search_subjects?type=movie&tag=热门",null);
+
+        log.info("result {}",result);
+
+
+    }
 
 }

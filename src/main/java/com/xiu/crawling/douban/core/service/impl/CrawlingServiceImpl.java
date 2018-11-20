@@ -20,6 +20,7 @@ import com.xiu.crawling.douban.mapper.BookMapper;
 import com.xiu.crawling.douban.mapper.ErrUrlMapper;
 import com.xiu.crawling.douban.mapper.MovieMapper;
 import com.xiu.crawling.douban.mapper.UrlInfoMapper;
+import com.xiu.crawling.douban.proxypool.job.ScheduleJobs;
 import com.xiu.crawling.douban.utils.HttpUtil;
 import com.xiu.crawling.douban.utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -54,6 +55,10 @@ public class CrawlingServiceImpl implements CrawlingService{
     @Autowired
     private ProxyService proxyService;
 
+    @Autowired
+    private ScheduleJobs scheduleJobs;
+
+
     @Override
     public void crawlingBook() throws InterruptedException {
         //先进行查询书籍url 分页处理
@@ -72,7 +77,7 @@ public class CrawlingServiceImpl implements CrawlingService{
         List<BookThreadTask> bookThreadTasks = new ArrayList<>();
         for(UrlInfo urlInfo : urlInfos){
             BookThreadTask bookThreadTask = new BookThreadTask(urlInfo.getDescption(),urlInfo.getUrl(),bookMapper,urlInfoMapper,
-                    errUrlMapper,proxyService,latch);
+                    errUrlMapper,proxyService,latch,scheduleJobs);
             executor.execute(bookThreadTask);
         }
         //Now wait till all services are checked
@@ -102,7 +107,7 @@ public class CrawlingServiceImpl implements CrawlingService{
             for (UrlInfo urlInfo : urlInfos) {
 
                 MovieThreadTask bookThreadTask = new MovieThreadTask(urlInfo.getLabel(), urlInfo.getUrl(), urlInfo.getMark(), movieMapper, urlInfoMapper,
-                        errUrlMapper, proxyService, latch);
+                        errUrlMapper, proxyService, latch,scheduleJobs);
                 executor.execute(bookThreadTask);
             }
             //Now wait till all services are checked

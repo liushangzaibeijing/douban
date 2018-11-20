@@ -70,6 +70,7 @@
   <sql id="Base_Column_List">
     id, type, ip, port, success_time, canUse
   </sql>
+
   <select id="selectByExample" parameterType="com.xiu.crawling.douban.bean.ProxydataExample" resultMap="BaseResultMap" flushCache="true">
     select
     <if test="distinct">
@@ -83,6 +84,21 @@
     <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
+  </select>
+
+  <select id="selectProxyListNoCache" parameterType="map" resultMap="BaseResultMap" flushCache="true">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from proxydata
+    <where>
+        <if test="canUse != null">
+           and canUse = ${canUse}
+        </if>
+    </where>
+      LIMIT ${start},${limit}
   </select>
   <delete id="deleteByExample" parameterType="com.xiu.crawling.douban.bean.ProxydataExample">
     delete from proxydata
@@ -186,7 +202,7 @@
     </if>
   </update>
 
-  <select id="canUserCounts" resultType="long">
+  <select id="canUserCounts" resultType="long" flushCache="true">
     select count(0) from proxydata
         where canUse = 1
   </select>

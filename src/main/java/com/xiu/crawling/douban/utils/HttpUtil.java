@@ -1,5 +1,6 @@
 package com.xiu.crawling.douban.utils;
 
+import com.xiu.crawling.douban.proxypool.config.Constant;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.*;
 import org.apache.http.client.CookieStore;
@@ -109,6 +110,8 @@ public class HttpUtil {
         String result = null;
         try {
             HttpGet httpGet = new HttpGet(apiUrl);
+            httpGet.setHeader("User-Agent", Constant.userAgentArray[new Random().nextInt(Constant.userAgentArray.length)]);
+
 
             RequestConfig requestConfig=RequestConfig.custom().setProxy(proxy).build();
             CloseableHttpClient httpclient = getCloseableHttpClient();
@@ -134,12 +137,50 @@ public class HttpUtil {
 
     private static CloseableHttpClient getCloseableHttpClient() {
         CookieStore cookieStore = new BasicCookieStore();
+        /**
+         * __utma    .movie.douban.com    /
+         *  __utmc 223695111
+         *  __utmz 223695111.1542685731.3.3.utmcsr=open.weixin.qq.com|utmccn=(referral)|utmcmd=referral|utmcct=/connect/qrconnect
+         *  _pk_id.100001.4cf6  788cf61a5f78dd1e.1539257636.3.1542685731.1541070833.  movie.douban.com
+         *  _pk_ref.100001.4cf6  %5B%22%22%2C%22%22%2C1542685731%2C%22https%3A%2F%2Fopen.weixin.qq.com%2Fconnect%2Fqrconnect%3Fappid%3Dwxd9c1c6bbd5d59980%26redirect_uri%3Dhttps%253A%252F%252Fwww.douban.com%252Faccounts%252Fconnect%252Fwechat%252Fcallback%26response_type%3Dcode%26scope%3Dsnsapi_login%26state%3DmABx-QaEx5U%252523douban-web%252523https%25253A%252F%252Fmovie.douban.com%252Ftyperank%25253Ftype_name%25253D%252525E5%25252589%252525A7%252525E6%25252583%25252585%252526type%25253D11%252526interval_id%25253D100%25253A90%252526action%25253D%22%5D
+         */
         BasicClientCookie cookie = new BasicClientCookie("bid",RandCookie.getRandomCode(11));
+
         cookie.setVersion(0);
         cookie.setDomain("*");
         cookie.setPath("/");
-        cookieStore.addCookie(cookie);
 
+        BasicClientCookie __utma = new BasicClientCookie("__utma","223695111.1100173818.1539257636.1541070696.1542685731.3");
+        __utma.setVersion(0);
+        __utma.setDomain(".movie.douban.com");
+        __utma.setPath("/");
+
+        BasicClientCookie __utmc = new BasicClientCookie("__utmc","223695111");
+        __utmc.setVersion(0);
+        __utmc.setDomain(".movie.douban.com");
+        __utmc.setPath("/");
+
+        BasicClientCookie __utmz = new BasicClientCookie("__utmc","223695111");
+        __utmz.setVersion(0);
+        __utmz.setDomain(".movie.douban.com");
+        __utmz.setPath("/");
+
+        BasicClientCookie _pk_id = new BasicClientCookie("_pk_id.100001.4cf6","788cf61a5f78dd1e.1539257636.3.1542685731.1541070833.");
+        _pk_id.setVersion(0);
+        _pk_id.setDomain("movie.douban.com");
+        _pk_id.setPath("/");
+
+        BasicClientCookie _pk_ref = new BasicClientCookie("_pk_ref.100001.4cf6","%5B%22%22%2C%22%22%2C1542685731%2C%22https%3A%2F%2Fopen.weixin.qq.com%2Fconnect%2Fqrconnect%3Fappid%3Dwxd9c1c6bbd5d59980%26redirect_uri%3Dhttps%253A%252F%252Fwww.douban.com%252Faccounts%252Fconnect%252Fwechat%252Fcallback%26response_type%3Dcode%26scope%3Dsnsapi_login%26state%3DmABx-QaEx5U%252523douban-web%252523https%25253A%252F%252Fmovie.douban.com%252Ftyperank%25253Ftype_name%25253D%252525E5%25252589%252525A7%252525E6%25252583%25252585%252526type%25253D11%252526interval_id%25253D100%25253A90%252526action%25253D%22%5D");
+        _pk_ref.setVersion(0);
+        _pk_ref.setDomain("movie.douban.com");
+        _pk_ref.setPath("/");
+
+
+        cookieStore.addCookie(__utma);
+        cookieStore.addCookie(__utmc);
+        cookieStore.addCookie(__utmz);
+        cookieStore.addCookie(_pk_id);
+        cookieStore.addCookie(_pk_ref);
         return HttpClients.custom()
                 .setDefaultCookieStore(cookieStore)
                 .build();
@@ -167,6 +208,7 @@ public class HttpUtil {
 
         try {
             httpPost.setConfig(requestConfig);
+            httpPost.setHeader("User-Agent", Constant.userAgentArray[new Random().nextInt(Constant.userAgentArray.length)]);
             List<NameValuePair> pairList = new ArrayList<>(params.size());
             for (Map.Entry<String, Object> entry : params.entrySet()) {
                 NameValuePair pair = new BasicNameValuePair(entry.getKey(), entry

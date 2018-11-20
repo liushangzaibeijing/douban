@@ -7,12 +7,15 @@ import org.springframework.util.StringUtils;
 /**
  * author   xieqx
  * createTime  2018/11/10
- * desc 一句话描述该功能
+ * desc 拼接动态的url连接
  */
 @Setter
 @Getter
 public class UrlVO {
     //https://movie.douban.com/j/search_subjects?type=movie&tag=%E7%83%AD%E9%97%A8&sort=recommend&page_limit=100000000000&page_start=0
+
+    //https://movie.douban.com/j/chart/top_list?type=11&interval_id=100%3A90&action=&start=0&limit=20
+    //https://movie.douban.com/j/chart/top_list_count?type=11&interval_id=100%3A90
 
     private String baseUrl;
 
@@ -22,9 +25,41 @@ public class UrlVO {
 
     private String pageStart;
 
+    //intervalId 格式 100:90
+    private String intervalId;
+
+    private String start;
+
+    private String limit;
+
 
     public UrlVO addUrl(String url){
         this.baseUrl = url;
+        return  this;
+    }
+
+    public UrlVO addIntervalId(String intervalId) throws Exception {
+        if(StringUtils.isEmpty(baseUrl)){
+            throw new Exception("base URL 不能为空");
+        }
+
+        baseUrl +="&intervalId="+intervalId;
+        return  this;
+    }
+
+    public UrlVO addStart(Integer start) throws Exception {
+        if(StringUtils.isEmpty(baseUrl)){
+            throw new Exception("base URL 不能为空");
+        }
+        baseUrl +="&start="+start;
+        return  this;
+    }
+
+    public UrlVO addLimit(Integer limit) throws Exception {
+        if(StringUtils.isEmpty(baseUrl)){
+            throw new Exception("base URL 不能为空");
+        }
+        baseUrl +="&limit="+limit;
         return  this;
     }
 

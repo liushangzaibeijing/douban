@@ -16,6 +16,12 @@ import java.util.regex.Pattern;
  */
 @Slf4j
 public class AbstractThreadTask {
+    public static final int ONE = 1;
+    public static final int TWO = 2;
+    public static final int THREE = 3;
+    public static final int FOUR = 4;
+    public static final int FIVE = 5;
+    public static final int SIX = 6;
 
     /**
      * 获取代理服务
@@ -26,9 +32,15 @@ public class AbstractThreadTask {
      */
     public ErrUrlMapper errUrlMapper ;
 
-    public AbstractThreadTask(ProxyService proxyService,ErrUrlMapper errUrlMapper){
+    /**
+     * 获取代理服务
+     */
+    public ScheduleJobs scheduleJobs;
+
+    public AbstractThreadTask(ProxyService proxyService,ErrUrlMapper errUrlMapper,ScheduleJobs scheduleJobs){
         this.proxyService = proxyService;
         this.errUrlMapper = errUrlMapper;
+        this.scheduleJobs = scheduleJobs;
     }
 
     /**

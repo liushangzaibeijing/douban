@@ -38,16 +38,15 @@ public class ScheduleJobs {
     @Autowired
     ProxydataMapper proxydataMapper;
 
-    /*
-      代理对象的核心处理
+    /**
+     * 代理对象的核心处理
      */
     ProxyManager proxyManager = ProxyManager.get();
 
     /**
      * 每隔几个小时跑一次任务
      */
-    //@Scheduled(cron="${cronJob.schedule}")
-    @Scheduled(fixedRate=1000*60*5)
+    //@Scheduled(fixedRate=1000*60*5)
     public void cronJob() {
 
         //1.检查job的状态
@@ -90,24 +89,17 @@ public class ScheduleJobs {
         //if (Preconditions.isNotBlank(list)) {
         if (list!=null && list.size()>0) {
             // 10. list的数量<=15时，不删除数据库里的老数据
-            if (list.size()>40) {
-                proxydataMapper.deleteByExample(new ProxydataExample());
-                log.info("Job after deleteAll");
-            }
+            proxydataMapper.deleteByExample(new ProxydataExample());
+            log.info("Job after deleteAll");
 
             //11. 然后再进行插入新的proxy
             for (Proxydata p:list) {
-                //if(!p.getType().equals("https")){
-                    p.setCanuse(1);
-                    proxydataMapper.insert(p);
-                //}
+                p.setCanuse(1);
+                proxydataMapper.insert(p);
 
             }
             log.info("Job save count = "+list.size());
 
-            //jobLog.setResultDesc(String.format("success save count = %s", list.size()));
-            //jobLog.setEndTime(JodaUtils.formatDateTime(new Date()));
-            //commonDao.saveJobLog(jobLog);
 
         } else {
             log.info("Job proxyList is empty...");

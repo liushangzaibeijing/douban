@@ -30,7 +30,7 @@ import java.util.Map;
 public class Test {
 
     public static void main(String[] args){
-        BookThreadTask task = new BookThreadTask("文学","https://book.douban.com/tag/文学",null,null,null,null);
+        BookThreadTask task = new BookThreadTask("文学","https://book.douban.com/tag/文学",null,null,null,null,null);
         Thread thead = new Thread(task);
         thead.start();
     }
