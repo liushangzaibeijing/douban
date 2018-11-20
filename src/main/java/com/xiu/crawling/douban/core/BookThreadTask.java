@@ -1,13 +1,19 @@
 package com.xiu.crawling.douban.core;
 
 import com.xiu.crawling.douban.bean.*;
+import com.xiu.crawling.douban.bean.vo.Result;
 import com.xiu.crawling.douban.common.ActiveEnum;
+import com.xiu.crawling.douban.core.service.AbstractThreadTask;
+import com.xiu.crawling.douban.core.service.ProxyService;
 import com.xiu.crawling.douban.mapper.BookMapper;
 import com.xiu.crawling.douban.mapper.ErrUrlMapper;
 import com.xiu.crawling.douban.mapper.UrlInfoMapper;
+import com.xiu.crawling.douban.proxypool.http.HttpManager;
+import com.xiu.crawling.douban.proxypool.job.ScheduleJobs;
 import com.xiu.crawling.douban.utils.HttpUtil;
 import com.xiu.crawling.douban.utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.HttpHost;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -25,7 +31,7 @@ import java.util.regex.Pattern;
  * desc 读取书籍信息的子线程 每一个分类tag 用一个线程进行读取
  */
 @Slf4j
-public class BookThreadTask implements  Runnable{
+public class BookThreadTask extends AbstractThreadTask implements  Runnable{
     /**
      * 标签名称
      */
@@ -47,30 +53,31 @@ public class BookThreadTask implements  Runnable{
     private UrlInfoMapper urlInfoMapper;
 
     /**
-     * 存储出错的url信息
-     */
-    private ErrUrlMapper errUrlMapper;
-
-    /**
      * 并行操作
      */
     private CountDownLatch latch;
 
+    /*
+     用于存储可用的代理对象
+     */
+    private HttpHost proxy;
 
-    public BookThreadTask(String tagName, String url, BookMapper bookMapper,UrlInfoMapper urlInfoMapper,ErrUrlMapper errUrlMapper) {
+
+    public BookThreadTask(String tagName, String url, BookMapper bookMapper,UrlInfoMapper urlInfoMapper,ErrUrlMapper errUrlMapper,ProxyService proxyService) {
+        super(proxyService,errUrlMapper);
         this.tagName = tagName;
         this.url = url;
         this.bookMapper = bookMapper;
         this.urlInfoMapper = urlInfoMapper;
-        this.errUrlMapper = errUrlMapper;
+
     }
 
-    public BookThreadTask(String tagName, String url, BookMapper bookMapper, UrlInfoMapper urlInfoMapper, ErrUrlMapper errUrlMapper, CountDownLatch latch) {
+    public BookThreadTask(String tagName, String url, BookMapper bookMapper, UrlInfoMapper urlInfoMapper, ErrUrlMapper errUrlMapper, ProxyService proxyService,CountDownLatch latch) {
+        super(proxyService,errUrlMapper);
         this.tagName = tagName;
         this.url = url;
         this.bookMapper = bookMapper;
         this.urlInfoMapper = urlInfoMapper;
-        this.errUrlMapper = errUrlMapper;
         this.latch = latch;
     }
 
@@ -114,65 +121,65 @@ public class BookThreadTask implements  Runnable{
      * @param url
      */
     private  void crawlBook(String tagName,String url){
-        String result = HttpUtil.doGet(url);
+        proxy = proxyService.findCanUseProxy();
+        String result = null;
+        while(true) {
+            //获取HttpHost 从
+            result = HttpUtil.doGet(url,proxy);
 
-        Document document = Jsoup.parseBodyFragment(result);
-        List<Book> books = null;
-        String name = null;
-        try {
-            //解析书籍信息
-             books = parseBooks(document);
-            //循环插入
+            proxy = checkProxy(result,proxy);
+            if(proxy==null){
+                break;
+            }
 
-            if(books!=null && books.size()>0) {
-                for (Book book : books) {
-                    //先查询是否重复，重复不进行插入操作
-                    BookExample example = new BookExample();
-                    example.createCriteria().andNameEqualTo(book.getName());
-                    List<Book> bookList = bookMapper.selectByExample(example);
-                    if (bookList == null || bookList.size() == 0) {
-                        name =  book.getName();
-                        bookMapper.insertSelective(book);
+        }
+            Document document = Jsoup.parseBodyFragment(result);
+            Result resultData = null;
+            List<Book> books = null;
+            String name = null;
+            try {
+                //解析书籍信息
+                books = parseBooks(document);
+                if (books != null && books.size() > 0) {
+                    for (Book book : books) {
+                        //先查询是否重复，重复不进行插入操作
+                        BookExample example = new BookExample();
+                        example.createCriteria().andNameEqualTo(book.getName());
+                        List<Book> bookList = bookMapper.selectByExample(example);
+                        if (bookList == null || bookList.size() == 0) {
+                            name = book.getName();
+                            bookMapper.insertSelective(book);
 
+                        }
                     }
                 }
+            } catch (Exception e) {
+                log.info("{} 模块下的 {} 中的 {} 爬取出错，请重试", "书籍", name, url);
+                insertErrUrl(url, name, e.getMessage(),"书籍");
             }
-        }catch (Exception e){
-                log.info("{} 模块下的 {} 中的 {} 爬取出错，请重试","书籍",name,url);
-                ErrUrl errUrl = new ErrUrl();
-                errUrl.setModule("书籍");
-                errUrl.setErrorUrl(url);
-                errUrl.setName(name);
-                errUrl.setInfo(e.getMessage());
-            try {
-                errUrlMapper.insert(errUrl);
-            }catch (Exception e2){
-                e.printStackTrace();
-            }
-       }
 
-        //默认只有二十个每页，所以需要获取到总的记录条数，循环改变start去获取
+            //默认只有二十个每页，所以需要获取到总的记录条数，循环改变start去获取
 
-        //获取后一页的url信息 如果没有说明爬取书籍中已经没有了相关的信息 不需要重构url进行爬取信息
-        //GET /tag/文学?start=40&type=T HTTP/1.1
-        if(books!=null&&books.size()!=0){
-            String apiUrl = document.select("div.paginator span.next link").attr("href");
-            //书籍中的标签列表 可能没有基础的url地址 所以需要进行添加操作 baseURL
-            if(!apiUrl.contains("https://book.douban.com")){
-                apiUrl = "https://book.douban.com"+apiUrl;
-                log.info(apiUrl);
+            //获取后一页的url信息 如果没有说明爬取书籍中已经没有了相关的信息 不需要重构url进行爬取信息
+            //GET /tag/文学?start=40&type=T HTTP/1.1
+            if (books != null && books.size() != 0) {
+                String apiUrl = document.select("div.paginator span.next link").attr("href");
+                //书籍中的标签列表 可能没有基础的url地址 所以需要进行添加操作 baseURL
+                if (!apiUrl.contains("https://book.douban.com")) {
+                    apiUrl = "https://book.douban.com" + apiUrl;
+                    log.info(apiUrl);
 
-                try {
-                    Thread.sleep(20);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    try {
+                        Thread.sleep(20);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    crawlBook(tagName, apiUrl);
+                } else {
+                    return;
                 }
-
-                crawlBook(tagName,apiUrl);
-            }else{
-                return ;
             }
-        }
     }
 
 
@@ -184,7 +191,9 @@ public class BookThreadTask implements  Runnable{
     private List<Book> parseBooks(Document document) throws  Exception{
         //<li class="subject-item"
         Elements elements = document.getElementsByClass("subject-item");
+        //先判断是否为一些限制ip的脚本
         if(elements.size()==0){
+            log.info("请求信息：{}",document.text());
             return null;
         }
 
@@ -289,63 +298,6 @@ public class BookThreadTask implements  Runnable{
         return books;
     }
 
-    /**
-     * 获取字符中的浮点数
-     * @param input 目标字符串
-     * @return 浮点数信息
-     */
-    private Double getNumberByRegex(String input) {
-        Double price = null;
-        //使用正则匹配数字
-
-        String regex = "(\\d+)(.?)(\\d*)";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher m = pattern.matcher(input);
-        if(m.find()){
-            //log.info("find {}", m.group(0));
-            price = Double.parseDouble(m.group(0));
-        }else{
-            log.info("no find");
-        }
-        return price;
-    }
-
-    /**
-     * 获取字符中的浮点数
-     * @param input 目标字符串
-     * @return 浮点数信息
-     */
-    private Integer getIntByRegex(String input) {
-        Integer number = null;
-        //使用正则匹配数字
-        String regex = "(\\d+)";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher m = pattern.matcher(input);
-        if(m.find()){
-            //log.info("find {}", m.group(0));
-            number = Integer.parseInt(m.group(0));
-        }else{
-            log.info("no find");
-        }
-        return number;
-    }
 
 
-    /**
-     * 获取字符中的浮点数
-     * @param input 目标字符串
-     * @return 浮点数信息
-     */
-    private Boolean isContainNumber(String input) {
-        Integer number = null;
-        //使用正则匹配数字
-        String regex = "(\\d+)";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher m = pattern.matcher(input);
-        if(m.find()){
-            return  true;
-        }else{
-            return false;
-        }
-    }
 }

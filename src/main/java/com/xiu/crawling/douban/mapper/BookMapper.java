@@ -6,9 +6,6 @@ import com.xiu.crawling.douban.bean.Book;
 import com.xiu.crawling.douban.bean.BookExample;
 import org.apache.ibatis.annotations.Param;
 
-/**
- * 书籍mapper
- */
 public interface BookMapper {
     long countByExample(BookExample example);
 

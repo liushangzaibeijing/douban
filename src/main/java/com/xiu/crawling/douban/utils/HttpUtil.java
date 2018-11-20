@@ -1,47 +1,43 @@
 package com.xiu.crawling.douban.utils;
 
 import org.apache.commons.io.IOUtils;
-        import org.apache.http.HttpEntity;
-        import org.apache.http.HttpResponse;
-        import org.apache.http.HttpStatus;
-        import org.apache.http.NameValuePair;
+import org.apache.http.*;
 import org.apache.http.client.CookieStore;
-import org.apache.http.client.HttpClient;
-        import org.apache.http.client.config.RequestConfig;
-        import org.apache.http.client.entity.UrlEncodedFormEntity;
-        import org.apache.http.client.methods.CloseableHttpResponse;
-        import org.apache.http.client.methods.HttpGet;
-        import org.apache.http.client.methods.HttpPost;
-        import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-        import org.apache.http.conn.ssl.SSLContextBuilder;
-        import org.apache.http.conn.ssl.TrustStrategy;
-        import org.apache.http.conn.ssl.X509HostnameVerifier;
-        import org.apache.http.entity.StringEntity;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.conn.ssl.SSLContextBuilder;
+import org.apache.http.conn.ssl.TrustStrategy;
+import org.apache.http.conn.ssl.X509HostnameVerifier;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.CloseableHttpClient;
-        import org.apache.http.impl.client.DefaultHttpClient;
-        import org.apache.http.impl.client.HttpClients;
-        import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.impl.cookie.BasicClientCookie;
 import org.apache.http.message.BasicNameValuePair;
-        import org.apache.http.util.EntityUtils;
+import org.apache.http.util.EntityUtils;
 
-        import javax.net.ssl.SSLContext;
-        import javax.net.ssl.SSLException;
-        import javax.net.ssl.SSLSession;
-        import javax.net.ssl.SSLSocket;
-        import java.io.IOException;
-        import java.io.InputStream;
-        import java.nio.charset.Charset;
-        import java.security.GeneralSecurityException;
-        import java.security.cert.CertificateException;
-        import java.security.cert.X509Certificate;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLException;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocket;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
+import java.security.GeneralSecurityException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.*;
 
 /**
  * HTTP 请求工具类
  *
- * @author : liii
+ * @author :
  * @version : 1.0.0
  * @date : 2015/7/21
  * @see : TODO
@@ -71,7 +67,6 @@ public class HttpUtil {
         // 设置从连接池获取连接实例的超时
         configBuilder.setConnectionRequestTimeout(MAX_TIMEOUT);
         // 在提交请求之前 测试连接是否可用
-        configBuilder.setStaleConnectionCheckEnabled(true);
         requestConfig = configBuilder.build();
 
         //
@@ -86,8 +81,8 @@ public class HttpUtil {
      * @param url
      * @return
      */
-    public static String doGet(String url) {
-        return doGet(url, new HashMap<String, Object>());
+    public static String doGet(String url,HttpHost proxy) {
+        return doGet(url, proxy,new HashMap<String, Object>());
     }
 
     /**
@@ -96,7 +91,7 @@ public class HttpUtil {
      * @param params
      * @return
      */
-    public static String doGet(String url, Map<String, Object> params) {
+    public static String doGet(String url,HttpHost proxy, Map<String, Object> params) {
         String apiUrl = url;
         StringBuffer param = new StringBuffer();
         int i = 0;
@@ -107,20 +102,24 @@ public class HttpUtil {
             else {
                 param.append("&");
             }
-             param.append(key).append("=").append(params.get(key));
+            param.append(key).append("=").append(params.get(key));
             i++;
         }
         apiUrl += param;
         String result = null;
         try {
-            HttpGet httpPost = new HttpGet(apiUrl);
+            HttpGet httpGet = new HttpGet(apiUrl);
 
+            RequestConfig requestConfig=RequestConfig.custom().setProxy(proxy).build();
             CloseableHttpClient httpclient = getCloseableHttpClient();
 
-            HttpResponse response = httpclient.execute(httpPost);
+            HttpResponse response = httpclient.execute(httpGet);
             int statusCode = response.getStatusLine().getStatusCode();
 
             System.out.println("执行状态码 : " + statusCode);
+            if(statusCode == 403){
+                return statusCode+"";
+            }
 
             HttpEntity entity = response.getEntity();
             if (entity != null) {

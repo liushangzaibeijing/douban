@@ -32,7 +32,7 @@ public class RandCookie {
             codeNum+=(char)code[random.nextInt(3)];
         }
 
-        log.info("生成的11位数cookie：{}",codeNum);
+        //log.info("生成的11位数cookie：{}",codeNum);
         return codeNum;
     }
 

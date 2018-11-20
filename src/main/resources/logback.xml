@@ -25,6 +25,9 @@
 			<pattern>${normal-pattern}</pattern>
 			<charset>${encoding}</charset>
 		</encoder>
+		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+		　　<maxFileSize>5000MB</maxFileSize>
+		</triggeringPolicy>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<fileNamePattern>${log.dir}/crawling.%d{yyyy-MM-dd}.log
 			</fileNamePattern>

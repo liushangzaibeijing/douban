@@ -1,16 +1,28 @@
 package com.xiu.crawling.douban;
 
+import com.github.pagehelper.PageHelper;
 import com.xiu.crawling.douban.bean.Book;
 import com.xiu.crawling.douban.bean.ErrUrl;
 import com.xiu.crawling.douban.bean.UrlInfo;
 import com.xiu.crawling.douban.bean.UrlInfoExample;
+import com.xiu.crawling.douban.common.MarkEnum;
 import com.xiu.crawling.douban.core.BookThreadTask;
+import com.xiu.crawling.douban.core.service.CrawlingService;
+import com.xiu.crawling.douban.core.service.ProxyService;
 import com.xiu.crawling.douban.mapper.BookMapper;
 import com.xiu.crawling.douban.mapper.ErrUrlMapper;
 import com.xiu.crawling.douban.mapper.UrlInfoMapper;
-import com.xiu.crawling.douban.utils.HttpUtil;
+import com.xiu.crawling.douban.proxypool.http.HttpManager;
 import com.xiu.crawling.douban.utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -22,6 +34,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -36,6 +49,8 @@ import java.util.regex.Pattern;
 @WebAppConfiguration
 public class HttpTest {
     @Autowired
+    private CrawlingService crawlingService;
+    @Autowired
     private UrlInfoMapper urlInfoMapper;
     @Autowired
     private BookMapper bookMapper;
@@ -43,12 +58,14 @@ public class HttpTest {
     @Autowired
     private ErrUrlMapper errUrlMapper;
 
+    @Autowired
+    private ProxyService proxyService;
     /**
      * 爬去豆瓣首页的数据
      */
     @Test
     public void testDoubanIndex(){
-       String result =  HttpUtil.doGet("https://www.douban.com/");
+       String result =  HttpManager.get().getResponseStr("https://www.douban.com/");
 
         Document document = Jsoup.parseBodyFragment(result);
 
@@ -86,7 +103,7 @@ public class HttpTest {
      */
     @Test
     public void testDoubanBook() {
-        String result = HttpUtil.doGet("https://book.douban.com/");
+        String result = HttpManager.get().getResponseStr("https://book.douban.com/");
 
         log.info(result);
 
@@ -128,7 +145,7 @@ public class HttpTest {
      */
     @Test
     public void testDoubanBookTagList() {
-        String result = HttpUtil.doGet("https://book.douban.com/tag/?view=type&icn=index-sorttags-hot");
+        String result = HttpManager.get().getResponseStr("https://book.douban.com/tag/?view=type&icn=index-sorttags-hot");
         log.info(result);
 
         Document document = Jsoup.parseBodyFragment(result);
@@ -217,7 +234,7 @@ public class HttpTest {
      */
     @Test
     public void testDoubanBookInfoList() {
-        String result = HttpUtil.doGet("https://book.douban.com/tag/文学");
+        String result = HttpManager.get().getResponseStr("https://book.douban.com/tag/文学");
         log.info(result);
 
         Document document = Jsoup.parseBodyFragment(result);
@@ -299,7 +316,7 @@ public class HttpTest {
 
     @Test
     public void testBookTask(){
-        BookThreadTask task = new BookThreadTask("文学","https://book.douban.com/tag/文学",bookMapper,urlInfoMapper,errUrlMapper);
+        BookThreadTask task = new BookThreadTask("文学","https://book.douban.com/tag/文学",bookMapper,urlInfoMapper,errUrlMapper,null);
         Thread thead = new Thread(task);
         thead.start();
     }
@@ -350,4 +367,43 @@ public class HttpTest {
         }
         return price;
     }
+
+
+    @Test
+    public void testHttpProxy() throws IOException {
+         HttpHost proxy = proxyService.findCanUseProxy();
+        CloseableHttpClient httpClient= HttpClients.createDefault();// 创建httpClient实例
+      HttpGet httpGet=new HttpGet("https://www.taobao.com/"); // 创建httpget实例
+        RequestConfig requestConfig=RequestConfig.custom().setProxy(proxy).build();
+        httpGet.setConfig(requestConfig);
+        httpGet.setHeader("User-Agent","Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:50.0) Gecko/20100101 Firefox/50.0");
+        CloseableHttpResponse response=httpClient.execute(httpGet);// 执行http get请求
+        HttpEntity entity=response.getEntity(); // 获取返回实体
+        System.out.println("网页内容："+ entity);// 获取网页内容
+        response.close();// response关闭
+         httpClient.close();// httpClient关闭
+
+    }
+
+    @Test
+    public void testCrawlingMovie() throws IOException {
+        try {
+            crawlingService.crawlingMovie   ();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testCrawlingMovieInfo() throws IOException {
+        PageHelper.startPage(1,5);
+        UrlInfoExample urlInfoExample = new UrlInfoExample();
+        urlInfoExample.createCriteria().andMarkEqualTo(MarkEnum.TV_MOVIE.getCode());
+        List<UrlInfo> urlInfos = urlInfoMapper.selectByExample(urlInfoExample);
+
+        log.info("urlinfos {}",JsonUtil.obj2str(urlInfos));
+
+    }
+
+
 }

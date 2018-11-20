@@ -374,52 +374,62 @@ public class UrlInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andLabelEqualTo(Integer value) {
+        public Criteria andLabelEqualTo(String value) {
             addCriterion("label =", value, "label");
             return (Criteria) this;
         }
 
-        public Criteria andLabelNotEqualTo(Integer value) {
+        public Criteria andLabelNotEqualTo(String value) {
             addCriterion("label <>", value, "label");
             return (Criteria) this;
         }
 
-        public Criteria andLabelGreaterThan(Integer value) {
+        public Criteria andLabelGreaterThan(String value) {
             addCriterion("label >", value, "label");
             return (Criteria) this;
         }
 
-        public Criteria andLabelGreaterThanOrEqualTo(Integer value) {
+        public Criteria andLabelGreaterThanOrEqualTo(String value) {
             addCriterion("label >=", value, "label");
             return (Criteria) this;
         }
 
-        public Criteria andLabelLessThan(Integer value) {
+        public Criteria andLabelLessThan(String value) {
             addCriterion("label <", value, "label");
             return (Criteria) this;
         }
 
-        public Criteria andLabelLessThanOrEqualTo(Integer value) {
+        public Criteria andLabelLessThanOrEqualTo(String value) {
             addCriterion("label <=", value, "label");
             return (Criteria) this;
         }
 
-        public Criteria andLabelIn(List<Integer> values) {
+        public Criteria andLabelLike(String value) {
+            addCriterion("label like", value, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelNotLike(String value) {
+            addCriterion("label not like", value, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelIn(List<String> values) {
             addCriterion("label in", values, "label");
             return (Criteria) this;
         }
 
-        public Criteria andLabelNotIn(List<Integer> values) {
+        public Criteria andLabelNotIn(List<String> values) {
             addCriterion("label not in", values, "label");
             return (Criteria) this;
         }
 
-        public Criteria andLabelBetween(Integer value1, Integer value2) {
+        public Criteria andLabelBetween(String value1, String value2) {
             addCriterion("label between", value1, value2, "label");
             return (Criteria) this;
         }
 
-        public Criteria andLabelNotBetween(Integer value1, Integer value2) {
+        public Criteria andLabelNotBetween(String value1, String value2) {
             addCriterion("label not between", value1, value2, "label");
             return (Criteria) this;
         }

@@ -9,7 +9,7 @@ public class UrlInfo {
 
     private String descption;
 
-    private Integer label;
+    private String label;
 
     private Integer mark;
 
@@ -45,12 +45,12 @@ public class UrlInfo {
         this.descption = descption == null ? null : descption.trim();
     }
 
-    public Integer getLabel() {
+    public String getLabel() {
         return label;
     }
 
-    public void setLabel(Integer label) {
-        this.label = label;
+    public void setLabel(String label) {
+        this.label = label == null ? null : label.trim();
     }
 
     public Integer getMark() {

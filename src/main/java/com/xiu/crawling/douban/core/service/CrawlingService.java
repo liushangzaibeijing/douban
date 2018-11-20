@@ -11,4 +11,16 @@ public interface CrawlingService {
      * 爬取书籍信息
      */
     void crawlingBook() throws InterruptedException;
+
+
+    /**
+     * 爬取电影信息
+     */
+    void crawlingMovie() throws InterruptedException;
+
+    /**
+     * 爬取电影啥的url信息
+     * @throws InterruptedException
+     */
+    void crawlingMovieURL() throws InterruptedException;
 }

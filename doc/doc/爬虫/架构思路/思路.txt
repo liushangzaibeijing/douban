@@ -1,0 +1,25 @@
+一、工具的使用
+    1、使用fiddler来进行请求，摸索相关规律
+	2、fiddler监听https请求的处理
+	3、fiddler只监听特定url（fiddler过滤）
+	
+二、整个项目仿照webmagic处理
+      1、爬去所有的url存储 （存储使用什么方式）--->使用数据库来存储 url去重，是否爬取过判断  以及相关的调度
+	     1.1 不简单的url去重处理
+		    1、使用hashSet进行处理 并设置阈值200url,存储到数据库中
+			2、使用nosql数据库存放
+			3、使用第三方的框架处理
+			参考
+			https://blog.csdn.net/historyasamirror/article/details/6746217
+		1.2、jsoup解析html操作
+			http://www.open-open.com/jsoup/selector-syntax.htm
+			https://www.cnblogs.com/jycboy/p/jsoupdoc.html
+			
+			//获取子元素
+			https://stackoverrun.com/cn/q/4362471
+		 
+	  2、开始，获取url去爬页面，并进行解析 存储
+
+
+	  3、使用httpclient,jsoup,以及正则表达式，多线程等
+	  

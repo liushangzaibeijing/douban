@@ -21,7 +21,7 @@ public class CrawlingScheduledTask {
      * 每二十分钟执行一次 参考http://cron.qqe2.com/
      */
     //@Scheduled(cron = "0 0/20 * * * ? *")
-    @Scheduled(fixedRate=1000*60*5)
+    //@Scheduled(fixedRate=1000*60*5)
     public void crawlBookScheduledTask(){
         log.info("爬取书籍的定时任务开始");
         try {
@@ -30,5 +30,16 @@ public class CrawlingScheduledTask {
             e.printStackTrace();
         }
         log.info("爬取书籍的定时任务结束");
+    }
+
+    @Scheduled(fixedRate=1000*60*10)
+    public void crawlMovieScheduledTask(){
+        log.info("爬取电影的定时任务开始");
+        try {
+            crawlingService.crawlingMovie();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        log.info("爬取电影的定时任务结束");
     }
 }

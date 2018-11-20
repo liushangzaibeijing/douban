@@ -1,15 +1,19 @@
 package com.xiu.crawling.douban;
 
 import com.github.pagehelper.PageHelper;
+import com.xiu.crawling.douban.bean.Movie;
 import com.xiu.crawling.douban.bean.UrlInfo;
 import com.xiu.crawling.douban.bean.UrlInfoExample;
 import com.xiu.crawling.douban.common.ActiveEnum;
 import com.xiu.crawling.douban.core.BookThreadTask;
+import com.xiu.crawling.douban.core.MovieThreadTask;
+import com.xiu.crawling.douban.core.service.ProxyService;
 import com.xiu.crawling.douban.mapper.BookMapper;
 import com.xiu.crawling.douban.mapper.ErrUrlMapper;
 import com.xiu.crawling.douban.mapper.UrlInfoMapper;
 import com.xiu.crawling.douban.utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.HttpHost;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,12 +81,31 @@ public class CrawlingBookTest {
         //创建多线程任务
         List<BookThreadTask> bookThreadTasks = new ArrayList<>();
         for(UrlInfo urlInfo : urlInfos){
-            BookThreadTask bookThreadTask = new BookThreadTask(urlInfo.getDescption(),urlInfo.getUrl(),bookMapper,urlInfoMapper,errUrlMapper,latch);
+            BookThreadTask bookThreadTask = new BookThreadTask(urlInfo.getDescption(),urlInfo.getUrl(),bookMapper,urlInfoMapper,errUrlMapper,null,latch);
             executor.execute(bookThreadTask);
         }
         //Now wait till all services are checked
         latch.await();
 
         log.info("end ............");
+    }
+
+
+    @Test
+    public void testCrawling(){
+        MovieThreadTask movieThreadTask = new MovieThreadTask(null, null, null, null, null, null, new ProxyService() {
+            @Override
+            public HttpHost findCanUseProxy() {
+                return null;
+            }
+
+            @Override
+            public Boolean updateProxy(Boolean flag, HttpHost proxy) {
+                return null;
+            }
+        });
+        //String urlDetail = "https://movie.douban.com/subject/26636712/";
+        String urlDetail = "https://movie.douban.com/subject/30317630/";
+        Movie movie = movieThreadTask.crawlMovie("电影", urlDetail);
     }
 }

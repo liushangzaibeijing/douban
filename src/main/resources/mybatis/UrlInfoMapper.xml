@@ -6,7 +6,7 @@
     <result column="url" jdbcType="VARCHAR" property="url" />
     <result column="active" jdbcType="INTEGER" property="active" />
     <result column="descption" jdbcType="VARCHAR" property="descption" />
-    <result column="label" jdbcType="INTEGER" property="label" />
+    <result column="label" jdbcType="VARCHAR" property="label" />
     <result column="mark" jdbcType="INTEGER" property="mark" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -95,7 +95,7 @@
       descption, label, mark
       )
     values (#{id,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{active,jdbcType=INTEGER}, 
-      #{descption,jdbcType=VARCHAR}, #{label,jdbcType=INTEGER}, #{mark,jdbcType=INTEGER}
+      #{descption,jdbcType=VARCHAR}, #{label,jdbcType=VARCHAR}, #{mark,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.xiu.crawling.douban.bean.UrlInfo">
@@ -134,7 +134,7 @@
         #{descption,jdbcType=VARCHAR},
       </if>
       <if test="label != null">
-        #{label,jdbcType=INTEGER},
+        #{label,jdbcType=VARCHAR},
       </if>
       <if test="mark != null">
         #{mark,jdbcType=INTEGER},
@@ -163,7 +163,7 @@
         descption = #{record.descption,jdbcType=VARCHAR},
       </if>
       <if test="record.label != null">
-        label = #{record.label,jdbcType=INTEGER},
+        label = #{record.label,jdbcType=VARCHAR},
       </if>
       <if test="record.mark != null">
         mark = #{record.mark,jdbcType=INTEGER},
@@ -179,7 +179,7 @@
       url = #{record.url,jdbcType=VARCHAR},
       active = #{record.active,jdbcType=INTEGER},
       descption = #{record.descption,jdbcType=VARCHAR},
-      label = #{record.label,jdbcType=INTEGER},
+      label = #{record.label,jdbcType=VARCHAR},
       mark = #{record.mark,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
