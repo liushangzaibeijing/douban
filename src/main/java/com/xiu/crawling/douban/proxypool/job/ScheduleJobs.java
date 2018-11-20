@@ -46,7 +46,7 @@ public class ScheduleJobs {
     /**
      * 每隔几个小时跑一次任务
      */
-    //@Scheduled(fixedRate=1000*60*5)
+    @Scheduled(fixedRate=1000*60*5)
     public void cronJob() {
 
         //1.检查job的状态

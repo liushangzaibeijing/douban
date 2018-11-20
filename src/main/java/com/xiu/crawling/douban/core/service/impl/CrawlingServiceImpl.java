@@ -5,10 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.github.pagehelper.PageHelper;
-import com.xiu.crawling.douban.bean.Book;
-import com.xiu.crawling.douban.bean.BookExample;
-import com.xiu.crawling.douban.bean.UrlInfo;
-import com.xiu.crawling.douban.bean.UrlInfoExample;
+import com.xiu.crawling.douban.bean.*;
 import com.xiu.crawling.douban.bean.vo.Result;
 import com.xiu.crawling.douban.bean.vo.UrlVO;
 import com.xiu.crawling.douban.common.*;
@@ -16,10 +13,7 @@ import com.xiu.crawling.douban.core.BookThreadTask;
 import com.xiu.crawling.douban.core.MovieThreadTask;
 import com.xiu.crawling.douban.core.service.CrawlingService;
 import com.xiu.crawling.douban.core.service.ProxyService;
-import com.xiu.crawling.douban.mapper.BookMapper;
-import com.xiu.crawling.douban.mapper.ErrUrlMapper;
-import com.xiu.crawling.douban.mapper.MovieMapper;
-import com.xiu.crawling.douban.mapper.UrlInfoMapper;
+import com.xiu.crawling.douban.mapper.*;
 import com.xiu.crawling.douban.proxypool.job.ScheduleJobs;
 import com.xiu.crawling.douban.utils.HttpUtil;
 import com.xiu.crawling.douban.utils.JsonUtil;
@@ -57,6 +51,10 @@ public class CrawlingServiceImpl implements CrawlingService{
 
     @Autowired
     private ScheduleJobs scheduleJobs;
+
+
+    @Autowired
+    private ErrTempurlMapper errTempurlMapper;
 
 
     @Override
@@ -100,14 +98,14 @@ public class CrawlingServiceImpl implements CrawlingService{
 
             //使用多线程去进行爬取数据
             CountDownLatch latch = new CountDownLatch(THREAD_NUMBER);
-            ExecutorService executor = Executors.newFixedThreadPool(2);
+            ExecutorService executor = Executors.newFixedThreadPool(1);
 
             //创建多线程任务
             List<BookThreadTask> bookThreadTasks = new ArrayList<>();
             for (UrlInfo urlInfo : urlInfos) {
 
                 MovieThreadTask bookThreadTask = new MovieThreadTask(urlInfo.getLabel(), urlInfo.getUrl(), urlInfo.getMark(), movieMapper, urlInfoMapper,
-                        errUrlMapper, proxyService, latch,scheduleJobs);
+                        errUrlMapper, proxyService, latch,scheduleJobs,errTempurlMapper);
                 executor.execute(bookThreadTask);
             }
             //Now wait till all services are checked

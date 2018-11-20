@@ -43,7 +43,7 @@ public class CrawlingMovieTest {
         String result = HttpUtil.doGet(url,null);
 
 
-        MovieThreadTask task = new MovieThreadTask(null,null,null,null,null,null,null,null);
+        MovieThreadTask task = new MovieThreadTask(null,null,null,null,null,null,null,null,null);
         Movie movie = task.parseMovie( Jsoup.parse(result),"");
 
         log.info("movie info {}",JsonUtil.obj2str(movie));

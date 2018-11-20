@@ -104,7 +104,7 @@ public class CrawlingBookTest {
             public Boolean updateProxy(Boolean flag, HttpHost proxy) {
                 return null;
             }
-        },null);
+        },null,null);
         //String urlDetail = "https://movie.douban.com/subject/26636712/";
         String urlDetail = "https://movie.douban.com/subject/30317630/";
         Movie movie = movieThreadTask.crawlMovie("电影", urlDetail);

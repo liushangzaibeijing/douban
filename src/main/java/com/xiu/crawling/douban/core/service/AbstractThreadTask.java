@@ -108,6 +108,7 @@ public class AbstractThreadTask {
         if (result.equals("403") || result.contains("<script>var d=[navigator.platform,navigator.userAgent,navigator.vendor].join(\"|\");")
                 || result.contains("400 The plain HTTP request was sent to HTTPS port 400 Bad Request The plain HTTP request was sent to HTTPS port nginx")
                 || result.contains("检测到有异常请求从你的 IP 发出")) {
+
             log.info("ip受到限制，重新换取ip");
             //先更新，再查询新的ip代理
             proxyService.updateProxy(false, proxy);

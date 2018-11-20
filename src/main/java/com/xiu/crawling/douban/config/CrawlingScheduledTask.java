@@ -32,7 +32,7 @@ public class CrawlingScheduledTask {
         log.info("爬取书籍的定时任务结束");
     }
 
-    //@Scheduled(fixedRate=1000*60*10)
+    @Scheduled(fixedRate=1000*60*10)
     public void crawlMovieScheduledTask(){
         log.info("爬取电影的定时任务开始");
         try {

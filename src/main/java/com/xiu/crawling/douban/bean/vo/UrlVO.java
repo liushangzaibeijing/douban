@@ -2,6 +2,7 @@ package com.xiu.crawling.douban.bean.vo;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.omg.PortableInterceptor.INACTIVE;
 import org.springframework.util.StringUtils;
 
 /**
@@ -12,29 +13,48 @@ import org.springframework.util.StringUtils;
 @Setter
 @Getter
 public class UrlVO {
-    //https://movie.douban.com/j/search_subjects?type=movie&tag=%E7%83%AD%E9%97%A8&sort=recommend&page_limit=100000000000&page_start=0
 
-    //https://movie.douban.com/j/chart/top_list?type=11&interval_id=100%3A90&action=&start=0&limit=20
-    //https://movie.douban.com/j/chart/top_list_count?type=11&interval_id=100%3A90
-
-    private String baseUrl;
+    private String url;
 
     private String sort;
 
-    private String pageLimit;
+    private Integer type;
 
-    private String pageStart;
-
-    //intervalId 格式 100:90
+    /**
+     * intervalId 格式 100:90
+     */
     private String intervalId;
 
-    private String start;
 
-    private String limit;
 
+    /********************* 非持久化数据 ************************/
+    private String baseUrl;
+
+    private Integer pageLimit;
+
+    private Integer pageStart;
+
+    private Integer start;
+
+    private Integer pageSize;
+
+    private Integer limit;
+
+    private Integer pageIndex;
 
     public UrlVO addUrl(String url){
-        this.baseUrl = url;
+        this.url = url;
+        return  this;
+    }
+
+    public UrlVO addType(Integer type) throws Exception {
+        if(StringUtils.isEmpty(baseUrl)){
+            throw new Exception("base URL 不能为空");
+        }
+        if(type !=null){
+            this.type = type;
+            baseUrl +="&type="+type;
+        }
         return  this;
     }
 
@@ -42,8 +62,10 @@ public class UrlVO {
         if(StringUtils.isEmpty(baseUrl)){
             throw new Exception("base URL 不能为空");
         }
-
-        baseUrl +="&intervalId="+intervalId;
+        if(!StringUtils.isEmpty(intervalId)) {
+            this.intervalId = intervalId;
+            baseUrl += "&intervalId=" + intervalId;
+        }
         return  this;
     }
 
@@ -51,7 +73,10 @@ public class UrlVO {
         if(StringUtils.isEmpty(baseUrl)){
             throw new Exception("base URL 不能为空");
         }
-        baseUrl +="&start="+start;
+        if(start !=null) {
+            this.start = start;
+            baseUrl += "&start=" + start;
+        }
         return  this;
     }
 
@@ -59,7 +84,10 @@ public class UrlVO {
         if(StringUtils.isEmpty(baseUrl)){
             throw new Exception("base URL 不能为空");
         }
-        baseUrl +="&limit="+limit;
+        if(limit !=null) {
+            this.limit = limit;
+            baseUrl += "&limit=" + limit;
+        }
         return  this;
     }
 
@@ -67,23 +95,32 @@ public class UrlVO {
         if(StringUtils.isEmpty(baseUrl)){
             throw new Exception("base URL 不能为空");
         }
-        baseUrl +="&sort="+sort;
+        if(!StringUtils.isEmpty(sort)) {
+            this.sort = sort;
+            baseUrl += "&sort=" + sort;
+        }
         return  this;
     }
 
-    public UrlVO addPageLimit(int pageSize)throws Exception {
+    public UrlVO addPageLimit(Integer pageSize)throws Exception {
         if(StringUtils.isEmpty(baseUrl)){
             throw new Exception("base URL 不能为空");
         }
-        baseUrl +="&page_limit="+pageSize;
+        if(pageSize !=null) {
+            this.pageSize = pageSize;
+            baseUrl += "&page_limit=" + pageSize;
+        }
         return  this;
     }
 
-    public UrlVO addPageStart(int pageStart)throws Exception {
+    public UrlVO addPageStart(Integer pageStart)throws Exception {
         if(StringUtils.isEmpty(baseUrl)){
             throw new Exception("base URL 不能为空");
         }
-        baseUrl +="&page_start="+pageStart;
+        if(pageStart !=null) {
+            this.pageStart = pageStart;
+            baseUrl += "&page_start=" + pageStart;
+        }
         return  this;
     }
 

@@ -10,6 +10,7 @@ import com.xiu.crawling.douban.common.Constant;
 import com.xiu.crawling.douban.common.SortEnum;
 import com.xiu.crawling.douban.core.service.AbstractThreadTask;
 import com.xiu.crawling.douban.core.service.ProxyService;
+import com.xiu.crawling.douban.mapper.ErrTempurlMapper;
 import com.xiu.crawling.douban.mapper.ErrUrlMapper;
 import com.xiu.crawling.douban.mapper.MovieMapper;
 import com.xiu.crawling.douban.mapper.UrlInfoMapper;
@@ -41,6 +42,7 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
 
     private static final int MOVIEANDTV = 3;
     private static final int CHART = 4;
+    private static final int TAG = 5;
     private static final int INTERVALID = 10;
 
     /**
@@ -69,6 +71,11 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
     private UrlInfoMapper urlInfoMapper;
 
     /**
+     * 存储爬取出错的url信息
+     */
+    private ErrTempurlMapper errTempurlMapper;
+
+    /**
      * 并行操作
      */
     private CountDownLatch latch;
@@ -79,7 +86,8 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
     private HttpHost proxy;
 
 
-    public MovieThreadTask(String tagName, String url, Integer mark, MovieMapper movieMapper, UrlInfoMapper urlInfoMapper, ErrUrlMapper errUrlMapper, ProxyService proxyService,ScheduleJobs scheduleJobs) {
+    public MovieThreadTask(String tagName, String url, Integer mark, MovieMapper movieMapper, UrlInfoMapper urlInfoMapper,
+                           ErrUrlMapper errUrlMapper, ProxyService proxyService,ScheduleJobs scheduleJobs,ErrTempurlMapper errTempurlMapper) {
         super(proxyService,errUrlMapper,scheduleJobs);
         this.tagName = tagName;
         this.url = url;
@@ -87,10 +95,11 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
         this.movieMapper = movieMapper;
         this.urlInfoMapper = urlInfoMapper;
         this.errUrlMapper = errUrlMapper;
-
+        this.errTempurlMapper = errTempurlMapper;
     }
 
-    public MovieThreadTask(String tagName, String url, Integer mark, MovieMapper movieMapper, UrlInfoMapper urlInfoMapper, ErrUrlMapper errUrlMapper, ProxyService proxyService, CountDownLatch latch,ScheduleJobs scheduleJobs) {
+    public MovieThreadTask(String tagName, String url, Integer mark, MovieMapper movieMapper, UrlInfoMapper urlInfoMapper,
+                           ErrUrlMapper errUrlMapper, ProxyService proxyService, CountDownLatch latch,ScheduleJobs scheduleJobs,ErrTempurlMapper errTempurlMapper) {
         super(proxyService,errUrlMapper,scheduleJobs);
         this.tagName = tagName;
         this.url = url;
@@ -98,6 +107,7 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
         this.movieMapper = movieMapper;
         this.urlInfoMapper = urlInfoMapper;
         this.errUrlMapper = errUrlMapper;
+        this.errTempurlMapper = errTempurlMapper;
         this.latch = latch;
     }
 
@@ -148,13 +158,83 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
         //转换url https://movie.douban.com/j/search_subjects?type=movie&tag=%E7%83%AD%E9%97%A8&sort=recommend&page_limit=100000000000&page_start=0
         //https://movie.douban.com/j/search_subjectstype=tv&tag=纪录片
 
+        //电影电视剧
         if (mark == MOVIEANDTV) {
-            saveMovieAndTv(tagName, url);
+            saveMovieAndTv(tagName, url,mark);
         }
+        //排行榜
         if (mark == CHART) {
-            saveMovieChart(tagName, url);
+            saveMovieChart(tagName, url,mark);
         }
+        //标签
+        if (mark == TAG) {
+            saveMovieTag(tagName, url,mark);
+        }
+        //
 
+    }
+
+    /**
+     * 保存标签类型的电影信息
+     * @param tagName 标签名称
+     * @param url url地址
+     */
+    private void saveMovieTag(String tagName, String url,Integer mark) {
+        String result;
+        int pageIndex = 0;
+        while (true) {
+            UrlVO urlVO = new UrlVO();
+            try {
+                //先查询如果存在则将将新的url放入UrlVO
+                urlVO = findTempUrl(tagName,mark);
+                if(urlVO == null){
+                    urlVO.addUrl(url).addStart(pageIndex*Constant.pageSize);
+                }else{
+                    pageIndex = urlVO.getPageIndex();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            log.info("请求的url : {}",urlVO.getBaseUrl());
+            while(true){
+                result = HttpUtil.doGet(urlVO.getBaseUrl(), proxy);
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                proxy = checkProxy(result,proxy);
+                if(proxy == null){
+                    saveErrTempUrl(urlVO,tagName,mark);
+                    break;
+                }
+            }
+
+            JSONArray array = JSON.parseArray(result);
+            if (array.size() == 0) {
+                log.warn("爬取完成 pageIndex: {}",pageIndex);
+                break;
+            }
+            pageIndex ++;
+            for (int i = 0; i < array.size(); i++) {
+                JSONObject object = array.getJSONObject(i);
+                String urlDetail = object.getString("url");
+                try {
+                    Movie movie = crawlMovie(tagName, urlDetail);
+                    //电影去重
+                    MovieExample movieExample = new MovieExample();
+                    movieExample.createCriteria().andNameEqualTo(movie.getName());
+                    List<Movie> movies = movieMapper.selectByExample(movieExample);
+                    if (movies == null || movies.size() == 0) {
+                        movieMapper.insert(movie);
+                    }
+                }catch (Exception e){
+                    log.info("{} 模块下的 {} 中的 {} 爬取出错，请重试", "电影", tagName, url);
+                    insertErrUrl(urlDetail,tagName,e.getMessage(),"电影");
+                }
+            }
+
+        }
     }
 
     /**
@@ -162,23 +242,36 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
      * @param tagName 标签名
      * @param url URL地址
      */
-    private void saveMovieAndTv(String tagName, String url) {
+    private void saveMovieAndTv(String tagName, String url,Integer mark) {
         String result;
         int pageIndex = 0;
         while (true) {
             UrlVO urlVO = new UrlVO();
             try {
-                urlVO.addUrl(url).addSort(SortEnum.RECOMMEND.getCode())
-                        .addPageStart(pageIndex* Constant.pageSize)
-                        .addPageLimit(Constant.pageSize);
+                urlVO = findTempUrl(tagName,mark);
+                if(urlVO == null){
+                    urlVO.addUrl(url).addSort(SortEnum.RECOMMEND.getCode())
+                            .addPageStart(pageIndex* Constant.pageSize)
+                            .addPageLimit(Constant.pageSize);
+                }else{
+                    pageIndex = urlVO.getPageIndex();
+                }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
             log.info("请求的url : {}",urlVO.getBaseUrl());
             while(true){
                 result = HttpUtil.doGet(urlVO.getBaseUrl(), proxy);
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 proxy = checkProxy(result,proxy);
                 if(proxy == null){
+                    //保存当前爬取的url地址
+                    saveErrTempUrl(urlVO,tagName,mark);
                     break;
                 }
             }
@@ -211,24 +304,31 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
         }
     }
 
+
     /**
      * 获取排行榜中的电影
      * @param tagName 标签名
      * @param url url地址
      */
-    private void saveMovieChart(String tagName, String url) {
+    private void saveMovieChart(String tagName, String url,Integer mark) {
         String result;//先查询总记录数
         for(int i=INTERVALID;i>0;i--){
             String intervalId = i*10+":"+(i-1)*10;
             UrlVO countUrl = new UrlVO();
             try {
-                countUrl.addUrl(Constant.CHART_TOP_COUNT).addIntervalId(intervalId);
+                String type = url.split("\\?")[1].split("=")[1];
+                countUrl.addUrl(Constant.CHART_TOP_COUNT).addType(Integer.parseInt(type)).addIntervalId(intervalId);
             } catch (Exception e) {
                 e.printStackTrace();
             }
                 //查询总记录数
                 while(true){
                     result = HttpUtil.doGet(countUrl.getBaseUrl(), proxy);
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     proxy = checkProxy(result,proxy);
                     if(proxy == null){
                         break;
@@ -238,20 +338,36 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
                 //https://movie.douban.com/j/chart/top_list?type=11&interval_id=100%3A90&action=&start=0&limit=20
                 Integer pageNum = total%Constant.pageSize==0?total/Constant.pageSize:total/Constant.pageSize+1;
 
-                UrlVO urlVO = new UrlVO();
-                for(int j =0;j<pageNum;i++) {
+                UrlVO urlVO = null;
+                urlVO = findTempUrl(tagName,mark);
+                Integer pageIndex = 0;
+                if(urlVO != null) {
+                    pageIndex = urlVO.getPageIndex();
+                }
+
+                //这边需要进行改变
+                for(int j =pageIndex;j<pageNum;i++) {
                     try {
-                        urlVO.addUrl(url).addIntervalId(intervalId).addStart(pageNum*Constant.pageSize)
-                                .addLimit(Constant.pageSize);
+                        if(urlVO == null){
+                            urlVO = new UrlVO();
+                            urlVO.addUrl(url).addIntervalId(intervalId).addStart(j*Constant.pageSize)
+                                    .addLimit(Constant.pageSize);
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
 
-                    String  resultInfo;
+                    String  resultInfo = null;
                     while(true){
                         resultInfo = HttpUtil.doGet(urlVO.getBaseUrl(), proxy);
+                        try {
+                            Thread.sleep(5000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         proxy = checkProxy(resultInfo,proxy);
                         if(proxy == null){
+                            saveErrTempUrl(urlVO,tagName,mark);
                             break;
                         }
                     }
@@ -279,13 +395,42 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
         }
     }
 
+    /**
+     * 保存因为url 请求ip被封的时候的url地址
+     * @param urlVO urlVo对象
+     * @param tagName  标签
+     * @param mark 标识
+     */
+    private void saveErrTempUrl(UrlVO urlVO, String tagName, Integer mark) {
+        ErrTempurl errTempurl = new ErrTempurl();
+        errTempurl.setUrl(urlVO.getUrl());
+        errTempurl.setIntervalid(urlVO.getIntervalId());
+        errTempurl.setLabel(tagName);
+        errTempurl.setMark(mark);
+        errTempurl.setSort(urlVO.getSort());
+        errTempurl.setType(urlVO.getType());
+        Integer pageIndex = null;
+        if(mark == MOVIEANDTV){
+            pageIndex = urlVO.getPageStart()/Constant.pageSize;
+        }
+        if(mark == CHART || mark == TAG){
+            pageIndex = urlVO.getStart()/Constant.pageSize;
+        }
+
+        errTempurl.setPageindex(pageIndex);
+
+        errTempurlMapper.insert(errTempurl);
+
+    }
+
+
     public Movie crawlMovie(String tagName, String url) {
         proxy = proxyService.findCanUseProxy();
-        String result = HttpUtil.doGet(url,proxy);
+        String result = null;
         while (true){
             result = HttpUtil.doGet(url, proxy);
             try {
-                Thread.sleep(2000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -478,9 +623,39 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
                 movieInfo.put("runTime",msg);
             }
         }
-
-
         return movieInfo;
+    }
+
+
+    public UrlVO findTempUrl(String tagName,Integer mark){
+        ErrTempurlExample errTempurlExample = new ErrTempurlExample();
+        errTempurlExample.createCriteria().andLabelEqualTo(tagName).andMarkEqualTo(mark);
+        errTempurlExample.setOrderByClause("pageIndex ASC");
+
+        List<ErrTempurl> list = errTempurlMapper.selectByExample(errTempurlExample);
+        UrlVO urlVO = null;
+        if(list != null && list.size()>0){
+            ErrTempurl tempurl = list.get(0);
+            try {
+                urlVO = new UrlVO();
+                urlVO.addUrl(tempurl.getUrl()).addType(tempurl.getType()).addSort(tempurl.getSort())
+                        .addIntervalId(tempurl.getIntervalid());
+                Integer pageIndex = tempurl.getPageindex();
+                if(mark == MOVIEANDTV){
+                    urlVO.setPageStart(pageIndex*Constant.pageSize);
+                    urlVO.addPageLimit(Constant.pageSize);
+                }
+                if(mark == TAG || mark == CHART){
+                    urlVO.addStart(pageIndex*Constant.pageSize);
+                    urlVO.addLimit(Constant.pageSize);
+                }
+                urlVO.setPageIndex(pageIndex);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return  urlVO;
     }
 
 
