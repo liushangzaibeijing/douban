@@ -1,9 +1,6 @@
 package com.xiu.crawling.douban.core.service;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import com.xiu.crawling.douban.bean.Proxydata;
 import org.apache.http.HttpHost;
-import org.apache.http.client.methods.HttpPost;
 
 /**
  * author   xieqx
