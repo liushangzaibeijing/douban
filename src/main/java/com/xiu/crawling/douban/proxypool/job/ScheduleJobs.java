@@ -87,10 +87,12 @@ public class ScheduleJobs {
         CopyOnWriteArrayList<Proxydata> list = getProxyDataList(ProxyPool.proxyList);
         log.info("Job ProxyData list size = "+list.size());
         //if (Preconditions.isNotBlank(list)) {
+        List<Proxydata> proxydatas = proxydataMapper.selectByExample(new ProxydataExample());
         if (list!=null && list.size()>0) {
-            // 10. list的数量<=15时，不删除数据库里的老数据
-            proxydataMapper.deleteByExample(new ProxydataExample());
-            log.info("Job after deleteAll");
+            if(proxydatas.size()>20){
+                proxydataMapper.deleteByExample(new ProxydataExample());
+                log.info("Job after deleteAll");
+            }
 
             //11. 然后再进行插入新的proxy
             for (Proxydata p:list) {

@@ -44,6 +44,7 @@ public class UrlVO {
 
     public UrlVO addUrl(String url){
         this.url = url;
+        baseUrl = url;
         return  this;
     }
 

@@ -203,10 +203,13 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                proxy = checkProxy(result,proxy);
+                HttpHost newProxy = checkProxy(result,proxy);
+                if(isSampleProxy(proxy,newProxy)){
+                    break;
+                }
+                //比较proxy 如果是空则保存，和原来的porxy一样 退出，否则循环处理
                 if(proxy == null){
                     saveErrTempUrl(urlVO,tagName,mark);
-                    break;
                 }
             }
 
@@ -246,10 +249,11 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
         String result;
         int pageIndex = 0;
         while (true) {
-            UrlVO urlVO = new UrlVO();
+            UrlVO urlVO =null;
             try {
                 urlVO = findTempUrl(tagName,mark);
                 if(urlVO == null){
+                    urlVO = new UrlVO();
                     urlVO.addUrl(url).addSort(SortEnum.RECOMMEND.getCode())
                             .addPageStart(pageIndex* Constant.pageSize)
                             .addPageLimit(Constant.pageSize);
@@ -268,11 +272,13 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                proxy = checkProxy(result,proxy);
-                if(proxy == null){
-                    //保存当前爬取的url地址
-                    saveErrTempUrl(urlVO,tagName,mark);
+                HttpHost newProxy = checkProxy(result,proxy);
+                if(isSampleProxy(proxy,newProxy)){
                     break;
+                }
+                //比较proxy 如果是空则保存，和原来的porxy一样 退出，否则循环处理
+                if(proxy == null){
+                     saveErrTempUrl(urlVO,tagName,mark);
                 }
             }
 
@@ -329,9 +335,13 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    proxy = checkProxy(result,proxy);
-                    if(proxy == null){
+                   HttpHost newProxy = checkProxy(result,proxy);
+                    if(isSampleProxy(proxy,newProxy)){
                         break;
+                    }
+                    //比较proxy 如果是空则保存，和原来的porxy一样 退出，否则循环处理
+                    if(proxy == null){
+                        saveErrTempUrl(countUrl,tagName,mark);
                     }
                 }
                 Integer total = JSONObject.parseObject(result).getInteger("total");
@@ -402,6 +412,13 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
      * @param mark 标识
      */
     private void saveErrTempUrl(UrlVO urlVO, String tagName, Integer mark) {
+        ErrTempurlExample errTempurlExample = new ErrTempurlExample();
+        errTempurlExample.createCriteria().andLabelEqualTo(tagName);
+        errTempurlExample.createCriteria().andMarkEqualTo(mark);
+
+        //删除以前的数据
+        errTempurlMapper.deleteByExample(errTempurlExample);
+
         ErrTempurl errTempurl = new ErrTempurl();
         errTempurl.setUrl(urlVO.getUrl());
         errTempurl.setIntervalid(urlVO.getIntervalId());
@@ -425,7 +442,7 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
 
 
     public Movie crawlMovie(String tagName, String url) {
-        proxy = proxyService.findCanUseProxy();
+        HttpHost proxy = proxyService.findCanUseProxy();
         String result = null;
         while (true){
             result = HttpUtil.doGet(url, proxy);
@@ -434,8 +451,8 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            proxy = checkProxy(result,proxy);
-            if(proxy == null){
+            HttpHost  newProxy = checkProxy(result,proxy);
+            if(isSampleProxy(proxy,newProxy)){
                 break;
             }
         }
@@ -472,11 +489,11 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
         }
         String runTime = info.get("runTime");
         if(!StringUtils.isEmpty(runTime)){
-            String runtime = movie.getMovieLength();
-            if(!StringUtils.isEmpty(runtime)){
-                runTime+=runtime;
+            String movieLength = movie.getMovieLength();
+            if(!StringUtils.isEmpty(movieLength)){
+                movieLength+=runTime;
             }
-            movie.setMovieLength(runTime);
+            movie.setMovieLength(movieLength);
         }
         String alias = info.get("alias");
         if(!StringUtils.isEmpty(alias)){
@@ -507,23 +524,26 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
         }
         //类型 v:genre 上映时间  v:initialReleaseDate 片长  v:runtime
         Elements typeElements =  document.select("#info > span[property=v:genre]");
-        StringBuilder typebuilder = new StringBuilder();
-        for(Element element : typeElements){
-            typebuilder.append(element.text()).append("/");
+        if(typeElements.size()>0){
+            StringBuilder typebuilder = new StringBuilder();
+            for(Element element : typeElements){
+                typebuilder.append(element.text()).append("/");
+            }
+            typebuilder.replace(typebuilder.length()-1,typebuilder.length(),"");
+            movie.setTag(typebuilder.toString());
         }
-        typebuilder.replace(typebuilder.length()-1,typebuilder.length(),"");
-        movie.setTag(typebuilder.toString());
 
         Elements relaseDataElements =  document.select("#info > span[property=v:initialReleaseDate]");
-        StringBuilder relaseDataBuilder = new StringBuilder();
-        for(Element element : relaseDataElements){
-            relaseDataBuilder.append(element.text()).append("/");
+        if(relaseDataElements.size()>0) {
+            StringBuilder relaseDataBuilder = new StringBuilder();
+            for (Element element : relaseDataElements) {
+                relaseDataBuilder.append(element.text()).append("/");
+            }
+            relaseDataBuilder.replace(relaseDataBuilder.length() - 1, relaseDataBuilder.length(), "");
+            movie.setReleaseTime(relaseDataBuilder.toString());
         }
-        relaseDataBuilder.replace(relaseDataBuilder.length()-1,relaseDataBuilder.length(),"");
-        movie.setReleaseTime(relaseDataBuilder.toString());
-
         Elements runTimeElements =  document.select("#info > span[property=v:runtime]");
-        if(runTimeElements.size()!=0){
+        if(runTimeElements.size()>0){
             StringBuilder runTimeBuilder = new StringBuilder();
             for(Element element : runTimeElements){
                 runTimeBuilder.append(element.text()).append("/");
@@ -608,7 +628,7 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
                 continue;
             }
             //语言 不太恰当
-            if(msg.contains("语")){
+            if(msg.contains("语")||msg.contains("語") ||msg.contains("话") || msg.contains("无对白") || msg.toLowerCase().contains("english")|| msg.contains("方言")||msg.contains("英文")){
                String alias =  movieInfo.get("alias");
                 if(!StringUtils.isEmpty(alias) && alias.equals(msg)){
                    //不做任何操作
@@ -642,7 +662,7 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
                         .addIntervalId(tempurl.getIntervalid());
                 Integer pageIndex = tempurl.getPageindex();
                 if(mark == MOVIEANDTV){
-                    urlVO.setPageStart(pageIndex*Constant.pageSize);
+                    urlVO.addPageStart(pageIndex*Constant.pageSize);
                     urlVO.addPageLimit(Constant.pageSize);
                 }
                 if(mark == TAG || mark == CHART){
@@ -658,5 +678,9 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
         return  urlVO;
     }
 
+
+    public boolean isSampleProxy(HttpHost proxy,HttpHost newProxy){
+         return proxy.getHostName().equals(newProxy.getHostName())&&proxy.getPort()==newProxy.getPort()&&proxy.getSchemeName().equals(proxy.getSchemeName());
+    }
 
 }

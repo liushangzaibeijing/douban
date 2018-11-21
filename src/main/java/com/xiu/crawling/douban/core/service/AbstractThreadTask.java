@@ -127,7 +127,7 @@ public class AbstractThreadTask {
 
             return newProxy;
         }
-        return null;
+        return proxy;
     }
 
     public void insertErrUrl(String url, String name, String message,String moduleName) {

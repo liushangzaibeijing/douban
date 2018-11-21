@@ -98,10 +98,9 @@ public class CrawlingServiceImpl implements CrawlingService{
 
             //使用多线程去进行爬取数据
             CountDownLatch latch = new CountDownLatch(THREAD_NUMBER);
-            ExecutorService executor = Executors.newFixedThreadPool(1);
+            ExecutorService executor = Executors.newFixedThreadPool(3);
 
             //创建多线程任务
-            List<BookThreadTask> bookThreadTasks = new ArrayList<>();
             for (UrlInfo urlInfo : urlInfos) {
 
                 MovieThreadTask bookThreadTask = new MovieThreadTask(urlInfo.getLabel(), urlInfo.getUrl(), urlInfo.getMark(), movieMapper, urlInfoMapper,
