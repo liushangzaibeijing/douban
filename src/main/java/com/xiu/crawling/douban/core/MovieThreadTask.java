@@ -45,6 +45,8 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
     private static final int TAG = 5;
     private static final int INTERVALID = 10;
 
+    private static final String NOT_FOUND = "404";
+
     /**
      * 标签名称
      */
@@ -204,12 +206,11 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
                     e.printStackTrace();
                 }
                 HttpHost newProxy = checkProxy(result,proxy);
-                if(isSampleProxy(proxy,newProxy)){
-                    break;
-                }
-                //比较proxy 如果是空则保存，和原来的porxy一样 退出，否则循环处理
-                if(proxy == null){
+                if(newProxy == null){
                     saveErrTempUrl(urlVO,tagName,mark);
+                }
+                else if(isSampleProxy(proxy,newProxy)){
+                    break;
                 }
             }
 
@@ -224,6 +225,9 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
                 String urlDetail = object.getString("url");
                 try {
                     Movie movie = crawlMovie(tagName, urlDetail);
+                    if(movie == null){
+                        continue;
+                    }
                     //电影去重
                     MovieExample movieExample = new MovieExample();
                     movieExample.createCriteria().andNameEqualTo(movie.getName());
@@ -273,12 +277,11 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
                     e.printStackTrace();
                 }
                 HttpHost newProxy = checkProxy(result,proxy);
-                if(isSampleProxy(proxy,newProxy)){
-                    break;
+                if(newProxy == null){
+                    saveErrTempUrl(urlVO,tagName,mark);
                 }
-                //比较proxy 如果是空则保存，和原来的porxy一样 退出，否则循环处理
-                if(proxy == null){
-                     saveErrTempUrl(urlVO,tagName,mark);
+                else if(isSampleProxy(proxy,newProxy)){
+                    break;
                 }
             }
 
@@ -339,12 +342,11 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
                     if(isSampleProxy(proxy,newProxy)){
                         break;
                     }
-                    //比较proxy 如果是空则保存，和原来的porxy一样 退出，否则循环处理
-                    if(proxy == null){
-                        saveErrTempUrl(countUrl,tagName,mark);
-                    }
+
                 }
                 Integer total = JSONObject.parseObject(result).getInteger("total");
+
+                log.warn("{} 下的影视有 {} 部",tagName,total);
                 //https://movie.douban.com/j/chart/top_list?type=11&interval_id=100%3A90&action=&start=0&limit=20
                 Integer pageNum = total%Constant.pageSize==0?total/Constant.pageSize:total/Constant.pageSize+1;
 
@@ -370,20 +372,25 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
                     String  resultInfo = null;
                     while(true){
                         resultInfo = HttpUtil.doGet(urlVO.getBaseUrl(), proxy);
+                        log.info("请求的url:{}",urlVO.getBaseUrl());
                         try {
                             Thread.sleep(5000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        proxy = checkProxy(resultInfo,proxy);
-                        if(proxy == null){
+                        HttpHost newProxy = checkProxy(resultInfo,proxy);
+                        //比较proxy 如果是空则保存，和原来的porxy一样 退出，否则循环处理
+                        if(newProxy == null){
                             saveErrTempUrl(urlVO,tagName,mark);
+                        }
+                        else if(isSampleProxy(proxy,newProxy)){
                             break;
                         }
+
                     }
                     JSONArray array = JSON.parseArray(resultInfo);
                     for(int t = 0;t<array.size();t++) {
-                        JSONObject object = array.getJSONObject(i);
+                        JSONObject object = array.getJSONObject(t);
                         String urlDetail = object.getString("url");
                         try {
                             Movie movie = crawlMovie(tagName, urlDetail);
@@ -417,7 +424,9 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
         errTempurlExample.createCriteria().andMarkEqualTo(mark);
 
         //删除以前的数据
-        errTempurlMapper.deleteByExample(errTempurlExample);
+        if(errTempurlMapper.deleteByExample(errTempurlExample)>0){
+            log.info("删除成功");
+        }
 
         ErrTempurl errTempurl = new ErrTempurl();
         errTempurl.setUrl(urlVO.getUrl());
@@ -457,7 +466,7 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
             }
         }
 
-        if(!StringUtils.isEmpty(result)){
+        if(!StringUtils.isEmpty(result) || !result.equals(NOT_FOUND)){
             Document document = Jsoup.parse(result);
             return parseMovie(document,tagName);
         }
@@ -468,6 +477,14 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
     public Movie parseMovie(Document document,String tagName) {
         Movie movie =  new Movie();
         movie.setType(tagName);
+
+        String title = document.select("title").text();
+
+        if(title.contains("页面不存在")){
+            return null;
+        }
+
+
         //获取导演 编剧主演的信息
         movie = fillMovieInfo(document, movie);
 
@@ -509,13 +526,16 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
         for(Element element : elements) {
             String text = element.text();
             if (text.contains("导演")) {
-                movie.setDirector(StringUtils.trimAllWhitespace(text.split(":")[1]));
+                String director = cutOutChar(StringUtils.trimAllWhitespace(text.split(":")[1]),Movie.DIRECTOR_LENGTH);
+                movie.setDirector(director);
             }
             if (text.contains("主演")) {
-                movie.setLeadActor(StringUtils.trimAllWhitespace(text.split(":")[1]));
+                String leadActor = cutOutChar(StringUtils.trimAllWhitespace(text.split(":")[1]),Movie.LEADACTOR_LENGTH);
+                movie.setLeadActor(leadActor);
             }
             if (text.contains("编剧")) {
-                movie.setScreenWriter(StringUtils.trimAllWhitespace(text.split(":")[1]));
+                String screenWriter = cutOutChar(StringUtils.trimAllWhitespace(text.split(":")[1]),Movie.SCREENWRITER_LENGTH);
+                movie.setScreenWriter(screenWriter);
             }
             //判断 如果三者不为null 则直接退出
             if(movie.getDirector()!=null&&movie.getLeadActor()!=null&&movie.getScreenWriter()!=null){
@@ -540,7 +560,7 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
                 relaseDataBuilder.append(element.text()).append("/");
             }
             relaseDataBuilder.replace(relaseDataBuilder.length() - 1, relaseDataBuilder.length(), "");
-            movie.setReleaseTime(relaseDataBuilder.toString());
+            movie.setReleaseTime(cutOutChar(relaseDataBuilder.toString(),Movie.RELEASETIME_LENGTH));
         }
         Elements runTimeElements =  document.select("#info > span[property=v:runtime]");
         if(runTimeElements.size()>0){
@@ -601,7 +621,7 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
 
         //截取 出来的长度 3  4 有集数
         String info = textBuilder.toString();
-        log.info("info {}",info);
+        //log.info("info {}",info);
         String[] array =  info.split("\\|");
         Map<String,String> movieInfo = new HashMap<>(5);
 
@@ -681,6 +701,24 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
 
     public boolean isSampleProxy(HttpHost proxy,HttpHost newProxy){
          return proxy.getHostName().equals(newProxy.getHostName())&&proxy.getPort()==newProxy.getPort()&&proxy.getSchemeName().equals(proxy.getSchemeName());
+    }
+
+
+    /**
+     * 对于字符串信息超过存储长度的进行截取
+     * @param info 要存储的信息
+     * @param length 最大长度（已经去除空格）
+     * @return
+     */
+    public  String cutOutChar(String info,Integer length){
+         Integer realLength = info.length();
+         if(realLength > length){
+               String infotemp = info.substring(0,length);
+              int temp = infotemp.lastIndexOf("/");
+               info = infotemp.substring(0,temp);
+         }
+         return  info;
+
     }
 
 }

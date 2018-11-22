@@ -69,7 +69,7 @@ public class CrawlingServiceImpl implements CrawlingService{
         //使用多线程去进行爬取数据
         CountDownLatch latch = new CountDownLatch(THREAD_NUMBER);
 
-        ExecutorService executor = Executors.newFixedThreadPool(1);
+        ExecutorService executor = Executors.newFixedThreadPool(THREAD_NUMBER);
 
         //创建多线程任务
         List<BookThreadTask> bookThreadTasks = new ArrayList<>();
@@ -92,13 +92,13 @@ public class CrawlingServiceImpl implements CrawlingService{
             //https://movie.douban.com/j/search_subjects?type=movie&tag=%E7%83%AD%E9%97%A8&sort=recommend&page_limit=100000000000&page_start=0
             PageHelper.startPage(1, THREAD_NUMBER);
             UrlInfoExample urlInfoExample = new UrlInfoExample();
-            urlInfoExample.createCriteria().andMarkEqualTo(MarkEnum.TV_MOVIE.getCode())
+            urlInfoExample.createCriteria().andMarkBetween(MarkEnum.TV_MOVIE.getCode(),MarkEnum.TAG.getCode())
               .andActiveEqualTo(ActiveEnum.ACTIVE.getCode());
             List<UrlInfo> urlInfos = urlInfoMapper.selectByExample(urlInfoExample);
 
             //使用多线程去进行爬取数据
             CountDownLatch latch = new CountDownLatch(THREAD_NUMBER);
-            ExecutorService executor = Executors.newFixedThreadPool(3);
+            ExecutorService executor = Executors.newFixedThreadPool(4);
 
             //创建多线程任务
             for (UrlInfo urlInfo : urlInfos) {

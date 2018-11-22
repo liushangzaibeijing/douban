@@ -3,13 +3,24 @@ package com.xiu.crawling.douban.bean;
 public class Movie {
     private Integer id;
 
+    /**
+     * 电影名 200
+     */
     private String name;
+
+    public static final Integer NAME_LENGTH = 150;
 
     private String director;
 
+    public static final Integer DIRECTOR_LENGTH = 200;
+
     private String screenWriter;
 
+    public static final Integer SCREENWRITER_LENGTH = 200;
+
     private String leadActor;
+
+    public static final Integer LEADACTOR_LENGTH = 500;
 
     private String tag;
 
@@ -20,6 +31,8 @@ public class Movie {
     private String language;
 
     private String releaseTime;
+
+    public static final Integer RELEASETIME_LENGTH = 150;
 
     private String movieLength;
 

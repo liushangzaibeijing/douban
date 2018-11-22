@@ -54,7 +54,12 @@ public class UrlVO {
         }
         if(type !=null){
             this.type = type;
-            baseUrl +="&type="+type;
+            if(!baseUrl.contains("?")){
+                baseUrl +="?type="+type;
+            }else{
+                baseUrl +="&type="+type;
+            }
+
         }
         return  this;
     }
@@ -65,7 +70,12 @@ public class UrlVO {
         }
         if(!StringUtils.isEmpty(intervalId)) {
             this.intervalId = intervalId;
-            baseUrl += "&intervalId=" + intervalId;
+            if(!baseUrl.contains("?")){
+                baseUrl +="?interval_id="+intervalId;
+            }else {
+                baseUrl += "&interval_id=" + intervalId;
+            }
+
         }
         return  this;
     }
@@ -76,7 +86,12 @@ public class UrlVO {
         }
         if(start !=null) {
             this.start = start;
-            baseUrl += "&start=" + start;
+            if(!baseUrl.contains("?")){
+                baseUrl +="?start="+start;
+            }else {
+                baseUrl += "&start=" + start;
+            }
+
         }
         return  this;
     }
@@ -87,7 +102,11 @@ public class UrlVO {
         }
         if(limit !=null) {
             this.limit = limit;
-            baseUrl += "&limit=" + limit;
+            if(!baseUrl.contains("?")){
+                baseUrl +="?limit="+limit;
+            }else {
+                baseUrl += "&limit=" + limit;
+            }
         }
         return  this;
     }
@@ -98,7 +117,11 @@ public class UrlVO {
         }
         if(!StringUtils.isEmpty(sort)) {
             this.sort = sort;
-            baseUrl += "&sort=" + sort;
+            if(!baseUrl.contains("?")){
+                baseUrl +="?sort="+sort;
+            }else {
+                baseUrl += "&sort=" + sort;
+            }
         }
         return  this;
     }
@@ -109,7 +132,11 @@ public class UrlVO {
         }
         if(pageSize !=null) {
             this.pageSize = pageSize;
-            baseUrl += "&page_limit=" + pageSize;
+            if(!baseUrl.contains("?")){
+                baseUrl +="?pageSize="+pageSize;
+            }else {
+                baseUrl += "&page_limit=" + pageSize;
+            }
         }
         return  this;
     }
@@ -120,7 +147,11 @@ public class UrlVO {
         }
         if(pageStart !=null) {
             this.pageStart = pageStart;
-            baseUrl += "&page_start=" + pageStart;
+            if(!baseUrl.contains("?")){
+                baseUrl +="?pageSize="+pageSize;
+            }else {
+                baseUrl += "&page_start=" + pageStart;
+            }
         }
         return  this;
     }
