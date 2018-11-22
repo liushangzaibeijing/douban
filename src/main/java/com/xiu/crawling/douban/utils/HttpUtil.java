@@ -119,8 +119,8 @@ public class HttpUtil {
             HttpResponse response = httpclient.execute(httpGet);
             int statusCode = response.getStatusLine().getStatusCode();
 
-            System.out.println("执行状态码 : " + statusCode);
-            if(statusCode == 403){
+            System.out.println("url: "+url+" 执行状态码 : " + statusCode);
+            if(statusCode == 403 ||statusCode == 404){
                 return statusCode+"";
             }
 

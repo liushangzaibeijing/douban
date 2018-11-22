@@ -355,24 +355,32 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
                 Integer pageIndex = 0;
                 if(urlVO != null) {
                     pageIndex = urlVO.getPageIndex();
+                    intervalId = urlVO.getIntervalId();
+                    i = Integer.parseInt(intervalId.split(":")[1])/10;
                 }
 
                 //这边需要进行改变
-                for(int j =pageIndex;j<pageNum;i++) {
+                for(int j =pageIndex;j<pageNum;j++) {
+                    UrlVO nerUrlVO = new UrlVO();
                     try {
-                        if(urlVO == null){
-                            urlVO = new UrlVO();
-                            urlVO.addUrl(url).addIntervalId(intervalId).addStart(j*Constant.pageSize)
+
+                        if(urlVO ==null){
+                            nerUrlVO.addUrl(url).addIntervalId(intervalId).addStart(j*Constant.pageSize)
                                     .addLimit(Constant.pageSize);
                         }
+                        if(urlVO !=null){
+                            nerUrlVO.addUrl(urlVO.getUrl()).addIntervalId(urlVO.getIntervalId()).addStart(j*Constant.pageSize)
+                                    .addLimit(Constant.pageSize);
+                        }
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
 
                     String  resultInfo = null;
                     while(true){
-                        resultInfo = HttpUtil.doGet(urlVO.getBaseUrl(), proxy);
-                        log.info("请求的url:{}",urlVO.getBaseUrl());
+                        resultInfo = HttpUtil.doGet(nerUrlVO.getBaseUrl(), proxy);
+                        log.info("请求的url:{}",nerUrlVO.getBaseUrl());
                         try {
                             Thread.sleep(5000);
                         } catch (InterruptedException e) {
@@ -464,6 +472,10 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
             if(isSampleProxy(proxy,newProxy)){
                 break;
             }
+        }
+
+        if(result.equals("404")){
+            return  null;
         }
 
         if(!StringUtils.isEmpty(result) || !result.equals(NOT_FOUND)){
