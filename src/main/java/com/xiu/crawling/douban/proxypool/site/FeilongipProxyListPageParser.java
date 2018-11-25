@@ -30,7 +30,7 @@ public class FeilongipProxyListPageParser implements ProxyListPageParser {
 
             String isAnonymous = element.select("td:eq(3)").first().text();
             String type = element.select("td:eq(4)").first().text();
-            if(!anonymousFlag || isAnonymous.contains("匿") || isAnonymous.contains("anonymous")){
+            if(!anonymousFlag || isAnonymous.contains("高匿") || isAnonymous.contains("anonymous")){
                 proxyList.add(new Proxy(ip, Integer.valueOf(port), type, Constant.TIME_INTERVAL));
             }
         }

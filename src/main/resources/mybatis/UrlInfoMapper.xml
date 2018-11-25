@@ -70,7 +70,7 @@
   <sql id="Base_Column_List">
     id, url, active, descption, label, mark
   </sql>
-  <select id="selectByExample" parameterType="com.xiu.crawling.douban.bean.UrlInfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.xiu.crawling.douban.bean.UrlInfoExample" resultMap="BaseResultMap" flushCache="true" useCache="false">
     select
     <if test="distinct">
       distinct
@@ -141,7 +141,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.xiu.crawling.douban.bean.UrlInfoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.xiu.crawling.douban.bean.UrlInfoExample" resultType="java.lang.Long" flushCache="true" useCache="false">
     select count(*) from url_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

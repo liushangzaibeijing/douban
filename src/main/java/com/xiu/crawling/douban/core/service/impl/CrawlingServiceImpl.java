@@ -37,7 +37,7 @@ import java.util.concurrent.*;
 @Slf4j
 @Service
 public class CrawlingServiceImpl implements CrawlingService{
-    public static Integer THREAD_NUMBER = 5;
+    public static Integer THREAD_NUMBER = 1;
     @Autowired
     private UrlInfoMapper urlInfoMapper;
     @Autowired
@@ -98,7 +98,7 @@ public class CrawlingServiceImpl implements CrawlingService{
 
             //使用多线程去进行爬取数据
             CountDownLatch latch = new CountDownLatch(THREAD_NUMBER);
-            ExecutorService executor = Executors.newFixedThreadPool(4);
+            ExecutorService executor = Executors.newFixedThreadPool(THREAD_NUMBER);
 
             //创建多线程任务
             for (UrlInfo urlInfo : urlInfos) {

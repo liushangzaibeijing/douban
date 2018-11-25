@@ -70,6 +70,8 @@ public class ProxyServiceImpl implements ProxyService{
         if(size<=0){
             //开启代理池ip获取
             scheduleJobs.cronJob();
+            //递归调用
+            findCanUseProxy();
 
         }
 

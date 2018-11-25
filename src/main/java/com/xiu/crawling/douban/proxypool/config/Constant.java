@@ -55,7 +55,7 @@ public class Constant {
         //proxyMap.put("http://www.data5u.com/", Data4uProxyListPageParser.class);
         //proxyMap.put("https://list.proxylistplus.com/Fresh-HTTP-Proxy-List-1", ProxyListPlusProxyListPageParser.class);
         //proxyMap.put("http://www.ip3366.net/", Ip3366ProxyListPageParser.class);//TODO gb2312如何处理？
-        //proxyMap.put("http://www.feilongip.com/", FeilongipProxyListPageParser.class);
+        proxyMap.put("http://www.feilongip.com/", FeilongipProxyListPageParser.class);
         //proxyMap.put("http://proxydb.net/", ProxyDbProxyListPageParser.class);
         proxyMap.put("http://www.xiaohexia.cn/", XiaoHeXiaProxyListPageParser.class);
     }

@@ -40,6 +40,8 @@ import java.util.concurrent.CountDownLatch;
 @Slf4j
 public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
 
+    private static final Integer SLEEPTIM = 3000;
+
     private static final int MOVIEANDTV = 3;
     private static final int CHART = 4;
     private static final int TAG = 5;
@@ -201,7 +203,7 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
             while(true){
                 result = HttpUtil.doGet(urlVO.getBaseUrl(), proxy);
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(SLEEPTIM);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -272,7 +274,7 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
             while(true){
                 result = HttpUtil.doGet(urlVO.getBaseUrl(), proxy);
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(SLEEPTIM);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -321,7 +323,18 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
      */
     private void saveMovieChart(String tagName, String url,Integer mark) {
         String result;//先查询总记录数
-        for(int i=INTERVALID;i>0;i--){
+        UrlVO urlVO = null;
+        urlVO = findTempUrl(tagName,mark);
+        int currentIntervId = INTERVALID;
+        Integer currentIndex = null;
+        if(urlVO != null) {
+            String intervalId = urlVO.getIntervalId();
+            currentIntervId = Integer.parseInt(intervalId.split(":")[0])/10;
+            currentIndex = urlVO.getPageIndex();
+        }
+
+        urlVO = null;
+        for(int i=currentIntervId;i>0;i--){
             String intervalId = i*10+":"+(i-1)*10;
             UrlVO countUrl = new UrlVO();
             try {
@@ -334,7 +347,7 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
                 while(true){
                     result = HttpUtil.doGet(countUrl.getBaseUrl(), proxy);
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(SLEEPTIM);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -350,29 +363,18 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
                 //https://movie.douban.com/j/chart/top_list?type=11&interval_id=100%3A90&action=&start=0&limit=20
                 Integer pageNum = total%Constant.pageSize==0?total/Constant.pageSize:total/Constant.pageSize+1;
 
-                UrlVO urlVO = null;
-                urlVO = findTempUrl(tagName,mark);
                 Integer pageIndex = 0;
-                if(urlVO != null) {
-                    pageIndex = urlVO.getPageIndex();
-                    intervalId = urlVO.getIntervalId();
-                    i = Integer.parseInt(intervalId.split(":")[1])/10;
+                if(currentIndex != null) {
+                    pageIndex = currentIndex;
+                    currentIndex = null;
                 }
 
                 //这边需要进行改变
                 for(int j =pageIndex;j<pageNum;j++) {
                     UrlVO nerUrlVO = new UrlVO();
                     try {
-
-                        if(urlVO ==null){
-                            nerUrlVO.addUrl(url).addIntervalId(intervalId).addStart(j*Constant.pageSize)
-                                    .addLimit(Constant.pageSize);
-                        }
-                        if(urlVO !=null){
-                            nerUrlVO.addUrl(urlVO.getUrl()).addIntervalId(urlVO.getIntervalId()).addStart(j*Constant.pageSize)
-                                    .addLimit(Constant.pageSize);
-                        }
-
+                        nerUrlVO.addUrl(url).addIntervalId(intervalId).addStart(j*Constant.pageSize)
+                                .addLimit(Constant.pageSize);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -382,7 +384,7 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
                         resultInfo = HttpUtil.doGet(nerUrlVO.getBaseUrl(), proxy);
                         log.info("请求的url:{}",nerUrlVO.getBaseUrl());
                         try {
-                            Thread.sleep(5000);
+                            Thread.sleep(SLEEPTIM);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -464,7 +466,7 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
         while (true){
             result = HttpUtil.doGet(url, proxy);
             try {
-                Thread.sleep(5000);
+                Thread.sleep(SLEEPTIM);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -540,14 +542,17 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
             if (text.contains("导演")) {
                 String director = cutOutChar(StringUtils.trimAllWhitespace(text.split(":")[1]),Movie.DIRECTOR_LENGTH);
                 movie.setDirector(director);
+                continue;
             }
             if (text.contains("主演")) {
                 String leadActor = cutOutChar(StringUtils.trimAllWhitespace(text.split(":")[1]),Movie.LEADACTOR_LENGTH);
                 movie.setLeadActor(leadActor);
+                continue;
             }
             if (text.contains("编剧")) {
                 String screenWriter = cutOutChar(StringUtils.trimAllWhitespace(text.split(":")[1]),Movie.SCREENWRITER_LENGTH);
                 movie.setScreenWriter(screenWriter);
+                continue;
             }
             //判断 如果三者不为null 则直接退出
             if(movie.getDirector()!=null&&movie.getLeadActor()!=null&&movie.getScreenWriter()!=null){
@@ -584,10 +589,18 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
             movie.setMovieLength(runTimeBuilder.toString());
         }
         //得分 评价人数  图片 电影  名称 剧情 季数
-        Integer ratePeople =  Integer.parseInt(document.select("span[property=v:votes]").text());
-        movie.setEvaluateNumber(ratePeople);
-        Float score =  Float.parseFloat(document.select("strong.rating_num").text());
-        movie.setScore(score);
+        String ratePeopleStr = document.select("span[property=v:votes]").text();
+        if(!StringUtils.isEmpty(ratePeopleStr)){
+            Integer ratePeople =  Integer.parseInt(ratePeopleStr);
+            movie.setEvaluateNumber(ratePeople);
+        }
+
+
+        String scoreStr = document.select("strong.rating_num").text();
+        if(!StringUtils.isEmpty(ratePeopleStr)) {
+            Float score =  Float.parseFloat(scoreStr);
+            movie.setScore(score);
+        }
         String  movieName = document.select("span[property=v:itemreviewed]").text();
         movie.setName(movieName);
 
@@ -660,7 +673,8 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
                 continue;
             }
             //语言 不太恰当
-            if(msg.contains("语")||msg.contains("語") ||msg.contains("话") || msg.contains("无对白") || msg.toLowerCase().contains("english")|| msg.contains("方言")||msg.contains("英文")){
+            if((msg.contains("语")||msg.contains("語") ||msg.contains("话") || msg.contains("无对白") || msg.toLowerCase().contains("english")|| msg.contains("方言")||msg.contains("英文"))
+                    && !msg.contains("分钟")){
                String alias =  movieInfo.get("alias");
                 if(!StringUtils.isEmpty(alias) && alias.equals(msg)){
                    //不做任何操作

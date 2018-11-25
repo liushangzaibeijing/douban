@@ -89,15 +89,20 @@ public class ScheduleJobs {
         //if (Preconditions.isNotBlank(list)) {
         List<Proxydata> proxydatas = proxydataMapper.selectByExample(new ProxydataExample());
         if (list!=null && list.size()>0) {
-            if(proxydatas.size()>20){
+            if(proxydatas.size()>200){
                 proxydataMapper.deleteByExample(new ProxydataExample());
                 log.info("Job after deleteAll");
             }
 
             //11. 然后再进行插入新的proxy
             for (Proxydata p:list) {
-                p.setCanuse(1);
-                proxydataMapper.insert(p);
+                ProxydataExample proxydataExample = new ProxydataExample();
+                proxydataExample.createCriteria().andIpEqualTo(p.getIp()).andPortEqualTo(p.getPort());
+                List<Proxydata> proxys = proxydataMapper.selectByExample(proxydataExample);
+                if(proxydatas == null || proxydatas.size()==0){
+                    p.setCanuse(1);
+                    proxydataMapper.insert(p);
+                }
 
             }
             log.info("Job save count = "+list.size());

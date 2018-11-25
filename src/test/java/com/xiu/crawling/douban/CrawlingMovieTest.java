@@ -6,10 +6,7 @@ import com.xiu.crawling.douban.common.ActiveEnum;
 import com.xiu.crawling.douban.core.BookThreadTask;
 import com.xiu.crawling.douban.core.MovieThreadTask;
 import com.xiu.crawling.douban.core.service.ProxyService;
-import com.xiu.crawling.douban.mapper.BookMapper;
-import com.xiu.crawling.douban.mapper.ErrUrlMapper;
-import com.xiu.crawling.douban.mapper.MovieMapper;
-import com.xiu.crawling.douban.mapper.UrlInfoMapper;
+import com.xiu.crawling.douban.mapper.*;
 import com.xiu.crawling.douban.utils.HttpUtil;
 import com.xiu.crawling.douban.utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -51,10 +48,13 @@ public class CrawlingMovieTest {
     @Autowired
     private MovieMapper movieMapper;
 
+    @Autowired
+    private ProxydataMapper proxydataMapper;
+
 
     @Test
     public void parseMovie(){
-        String url = "https://movie.douban.com/subject/5450891/";
+        String url = "https://movie.douban.com/subject/3036473/";
         String result = HttpUtil.doGet(url,null);
 
 
@@ -63,6 +63,8 @@ public class CrawlingMovieTest {
 
         log.info("movie info {}",JsonUtil.obj2str(movie));
     }
+
+
 
 
     /**
@@ -76,10 +78,14 @@ public class CrawlingMovieTest {
 
         List<ErrUrl> errUrls = errUrlMapper.selectByExample(errUrlExample);
 
-        List<Movie> movies = new ArrayList<>();
-
         for(ErrUrl errUrl : errUrls){
             String result = HttpUtil.doGet(errUrl.getErrorUrl(),null);
+            if(result.equals("404")){
+                ErrUrlExample deleteErr = new ErrUrlExample();
+                deleteErr.createCriteria().andIdEqualTo(errUrl.getId());
+                errUrlMapper.deleteByExample(deleteErr);
+                continue;
+            }
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
@@ -89,18 +95,22 @@ public class CrawlingMovieTest {
             MovieThreadTask task = new MovieThreadTask(null,null,null,null,null,null,null,null,null,null);
             Movie movie = task.parseMovie(Jsoup.parse(result),errUrl.getName());
 
-            movies.add(movie);
+            try {
+                MovieExample movieExample = new MovieExample();
+                movieExample.createCriteria().andNameEqualTo(movie.getName());
+
+                List<Movie> movieList = movieMapper.selectByExample(movieExample);
+                if (movieList == null || movieList.size() == 0) {
+                    int index = movieMapper.insert(movie);
+                }
+                ErrUrlExample deleteErr = new ErrUrlExample();
+                deleteErr.createCriteria().andIdEqualTo(errUrl.getId());
+                errUrlMapper.deleteByExample(deleteErr);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
 
-        for(Movie movie : movies){
-           MovieExample movieExample = new MovieExample();
-           movieExample.createCriteria().andNameEqualTo(movie.getName());
-
-           List<Movie> movieList = movieMapper.selectByExample(movieExample);
-           if(movieList==null ||movieList.size()==0){
-               movieMapper.insert(movie);
-           }
-        }
 
     }
 
@@ -112,6 +122,21 @@ public class CrawlingMovieTest {
         log.info("length :  {}",result.length());
 
     }
+
+    @Test
+    public void tsetMapperCache(){
+
+       List<Proxydata> proxydatas =  proxydataMapper.selectByExample(new ProxydataExample());
+        log.info("proxy list size:  {}",proxydatas.size());
+       proxydatas =  proxydataMapper.selectByExample(new ProxydataExample());
+        log.info("proxy list size :  {}",proxydatas.size());
+
+    }
+
+
+
+
+
 
 
 }

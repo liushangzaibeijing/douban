@@ -71,7 +71,7 @@
     id, type, ip, port, success_time, canUse
   </sql>
 
-  <select id="selectByExample" parameterType="com.xiu.crawling.douban.bean.ProxydataExample" resultMap="BaseResultMap" flushCache="true">
+  <select id="selectByExample" parameterType="com.xiu.crawling.douban.bean.ProxydataExample" resultMap="BaseResultMap" flushCache="true" useCache="false">
     select
     <if test="distinct">
       distinct
@@ -86,7 +86,7 @@
     </if>
   </select>
 
-  <select id="selectProxyListNoCache" parameterType="map" resultMap="BaseResultMap" flushCache="true">
+  <select id="selectProxyListNoCache" parameterType="map" resultMap="BaseResultMap" flushCache="true" >
     select
     <if test="distinct">
       distinct
