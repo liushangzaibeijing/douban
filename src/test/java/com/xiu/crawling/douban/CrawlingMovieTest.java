@@ -54,14 +54,15 @@ public class CrawlingMovieTest {
 
     @Test
     public void parseMovie(){
-        String url = "https://movie.douban.com/subject/3036473/";
+        String url = "https://movie.douban.com/subject/1305069/";
         String result = HttpUtil.doGet(url,null);
 
 
         MovieThreadTask task = new MovieThreadTask(null,null,null,null,null,null,null,null,null,null);
         Movie movie = task.parseMovie(Jsoup.parse(result),"");
-
         log.info("movie info {}",JsonUtil.obj2str(movie));
+        saveMovie(movie);
+
     }
 
 
@@ -73,6 +74,7 @@ public class CrawlingMovieTest {
     @Test
     public void insertErrMovie(){
         //查询出错的url 电影
+        PageHelper.startPage(0,10);;
         ErrUrlExample errUrlExample = new ErrUrlExample();
         errUrlExample.createCriteria().andModuleEqualTo("电影");
 
@@ -95,23 +97,29 @@ public class CrawlingMovieTest {
             MovieThreadTask task = new MovieThreadTask(null,null,null,null,null,null,null,null,null,null);
             Movie movie = task.parseMovie(Jsoup.parse(result),errUrl.getName());
 
-            try {
-                MovieExample movieExample = new MovieExample();
-                movieExample.createCriteria().andNameEqualTo(movie.getName());
+            Integer errId = errUrl.getId();
+            saveMovie(movie);
+            ErrUrlExample deleteErr = new ErrUrlExample();
+            deleteErr.createCriteria().andIdEqualTo(errId);
+            errUrlMapper.deleteByExample(deleteErr);
 
-                List<Movie> movieList = movieMapper.selectByExample(movieExample);
-                if (movieList == null || movieList.size() == 0) {
-                    int index = movieMapper.insert(movie);
-                }
-                ErrUrlExample deleteErr = new ErrUrlExample();
-                deleteErr.createCriteria().andIdEqualTo(errUrl.getId());
-                errUrlMapper.deleteByExample(deleteErr);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
         }
 
 
+    }
+
+    private void saveMovie(Movie movie) {
+        try {
+            MovieExample movieExample = new MovieExample();
+            movieExample.createCriteria().andNameEqualTo(movie.getName());
+
+            List<Movie> movieList = movieMapper.selectByExample(movieExample);
+            if (movieList == null || movieList.size() == 0) {
+                int index = movieMapper.insert(movie);
+            }
+         }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 
