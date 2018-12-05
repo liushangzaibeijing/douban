@@ -1,0 +1,6 @@
+2018-11-20.23:02:53 INFO  [main] c.x.c.d.DoubanApplication.logStarting:50  Starting DoubanApplication on xiu with PID 2000 (F:\ideaWorkspace\douban\target\classes started by xieqixiu in F:\ideaWorkspace\douban)
+2018-11-20.23:02:53 DEBUG [main] c.x.c.d.DoubanApplication.logStarting:53  Running with Spring Boot v2.0.5.RELEASE, Spring v5.0.9.RELEASE
+2018-11-20.23:02:53 INFO  [main] c.x.c.d.DoubanApplication.logStartupProfileInfo:680  No active profile set, falling back to default profiles: default
+2018-11-20.23:03:49 INFO  [main] c.x.c.d.DoubanApplication.logStarting:50  Starting DoubanApplication on xiu with PID 5300 (F:\ideaWorkspace\douban\target\classes started by xieqixiu in F:\ideaWorkspace\douban)
+2018-11-20.23:03:49 DEBUG [main] c.x.c.d.DoubanApplication.logStarting:53  Running with Spring Boot v2.0.5.RELEASE, Spring v5.0.9.RELEASE
+2018-11-20.23:03:49 INFO  [main] c.x.c.d.DoubanApplication.logStartupProfileInfo:680  No active profile set, falling back to default profiles: default
