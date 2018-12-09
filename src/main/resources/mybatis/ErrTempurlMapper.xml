@@ -72,7 +72,7 @@
   <sql id="Base_Column_List">
     id, url, sort, type, intervalId, label, mark, pageIndex
   </sql>
-  <select id="selectByExample" parameterType="com.xiu.crawling.douban.bean.ErrTempurlExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.xiu.crawling.douban.bean.ErrTempurlExample" resultMap="BaseResultMap" flushCache="true">
     select
     <if test="distinct">
       distinct
@@ -86,13 +86,13 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.xiu.crawling.douban.bean.ErrTempurlExample">
+  <delete id="deleteByExample" parameterType="com.xiu.crawling.douban.bean.ErrTempurlExample" flushCache="true">
     delete from err_tempurl
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.xiu.crawling.douban.bean.ErrTempurl">
+  <insert id="insert" parameterType="com.xiu.crawling.douban.bean.ErrTempurl" flushCache="true">
     insert into err_tempurl (id, url, sort, 
       type, intervalId, label, 
       mark, pageIndex)
@@ -100,7 +100,7 @@
       #{type,jdbcType=INTEGER}, #{intervalid,jdbcType=VARCHAR}, #{label,jdbcType=VARCHAR}, 
       #{mark,jdbcType=INTEGER}, #{pageindex,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.xiu.crawling.douban.bean.ErrTempurl">
+  <insert id="insertSelective" parameterType="com.xiu.crawling.douban.bean.ErrTempurl" flushCache="true">
     insert into err_tempurl
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -155,7 +155,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.xiu.crawling.douban.bean.ErrTempurlExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.xiu.crawling.douban.bean.ErrTempurlExample" resultType="java.lang.Long" flushCache="true">
     select count(*) from err_tempurl
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -193,7 +193,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map">
+  <update id="updateByExample" parameterType="map" flushCache="true">
     update err_tempurl
     set id = #{record.id,jdbcType=INTEGER},
       url = #{record.url,jdbcType=VARCHAR},

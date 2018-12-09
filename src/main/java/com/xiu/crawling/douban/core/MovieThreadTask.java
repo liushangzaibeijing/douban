@@ -187,11 +187,12 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
         String result;
         int pageIndex = 0;
         while (true) {
-            UrlVO urlVO = new UrlVO();
+            UrlVO urlVO  = null;
             try {
                 //先查询如果存在则将将新的url放入UrlVO
                 urlVO = findTempUrl(tagName,mark);
                 if(urlVO == null){
+                    urlVO = new UrlVO();
                     urlVO.addUrl(url).addStart(pageIndex*Constant.pageSize);
                 }else{
                     pageIndex = urlVO.getPageIndex();
@@ -200,23 +201,24 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
                 e.printStackTrace();
             }
             log.info("请求的url : {}",urlVO.getBaseUrl());
-            while(true){
-                result = HttpUtil.doGet(urlVO.getBaseUrl(), proxy);
-                try {
-                    Thread.sleep(SLEEPTIM);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                HttpHost newProxy = checkProxy(result,proxy);
-                if(newProxy == null){
-                    saveErrTempUrl(urlVO,tagName,mark);
-                }
-                else if(isSampleProxy(proxy,newProxy)){
-                    break;
-                }
-            }
-
-            JSONArray array = JSON.parseArray(result);
+            result = findReponse(tagName,mark,urlVO);
+//            while(true){
+//                result = HttpUtil.doGet(urlVO.getBaseUrl(), proxy);
+//                try {
+//                    Thread.sleep(SLEEPTIM);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                HttpHost newProxy = checkProxy(result,proxy);
+//                if(newProxy == null){
+//                    saveErrTempUrl(urlVO,tagName,mark);
+//                }
+//                else if(isSampleProxy(proxy,newProxy)){
+//                    break;
+//                }
+//            }
+            JSONObject data = JSON.parseObject(result);
+            JSONArray array = JSON.parseArray(data.getString("data"));
             if (array.size() == 0) {
                 log.warn("爬取完成 pageIndex: {}",pageIndex);
                 break;
@@ -238,8 +240,9 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
                         movieMapper.insert(movie);
                     }
                 }catch (Exception e){
-                    log.info("{} 模块下的 {} 中的 {} 爬取出错，请重试", "电影", tagName, url);
+                    log.info("{} 模块下的 {} 中的 {} 爬取出错，请重试", "电影", tagName, urlDetail);
                     insertErrUrl(urlDetail,tagName,e.getMessage(),"电影");
+                    saveErrTempUrl(urlVO,tagName,mark);
                 }
             }
 
@@ -271,21 +274,7 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
                 e.printStackTrace();
             }
             log.info("请求的url : {}",urlVO.getBaseUrl());
-            while(true){
-                result = HttpUtil.doGet(urlVO.getBaseUrl(), proxy);
-                try {
-                    Thread.sleep(SLEEPTIM);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                HttpHost newProxy = checkProxy(result,proxy);
-                if(newProxy == null){
-                    saveErrTempUrl(urlVO,tagName,mark);
-                }
-                else if(isSampleProxy(proxy,newProxy)){
-                    break;
-                }
-            }
+            result = findReponse(tagName, mark, urlVO);
 
             JSONObject obj = JSON.parseObject(result);
             JSONArray array = obj.getJSONArray("subjects");
@@ -295,23 +284,48 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
             }
             pageIndex ++;
             for (int i = 0; i < array.size(); i++) {
-                JSONObject object = array.getJSONObject(i);
-                String urlDetail = object.getString("url");
-                try {
-                    Movie movie = crawlMovie(tagName, urlDetail);
-                    //电影去重
-                    MovieExample movieExample = new MovieExample();
-                    movieExample.createCriteria().andNameEqualTo(movie.getName());
-                    List<Movie> movies = movieMapper.selectByExample(movieExample);
-                    if (movies == null || movies.size() == 0) {
-                        movieMapper.insert(movie);
-                    }
-                }catch (Exception e){
-                    log.info("{} 模块下的 {} 中的 {} 爬取出错，请重试", "电影", tagName, url);
-                    insertErrUrl(urlDetail,tagName,e.getMessage(),"电影");
-                }
+                parserAndSave(tagName, url, mark, urlVO, array, i);
             }
 
+        }
+    }
+
+    private String findReponse(String tagName, Integer mark, UrlVO urlVO) {
+        String result;
+        while(true){
+            result = HttpUtil.doGet(urlVO.getBaseUrl(), proxy);
+            try {
+                Thread.sleep(SLEEPTIM);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            HttpHost newProxy = checkProxy(result,proxy);
+            if(newProxy == null){
+                saveErrTempUrl(urlVO,tagName,mark);
+            }
+            else if(isSampleProxy(proxy,newProxy)){
+                break;
+            }
+        }
+        return result;
+    }
+
+    private void parserAndSave(String tagName, String url, Integer mark, UrlVO urlVO, JSONArray array, int index) {
+        JSONObject object = array.getJSONObject(index);
+        String urlDetail = object.getString("url");
+        try {
+            Movie movie = crawlMovie(tagName, urlDetail);
+            //电影去重
+            MovieExample movieExample = new MovieExample();
+            movieExample.createCriteria().andNameEqualTo(movie.getName());
+            List<Movie> movies = movieMapper.selectByExample(movieExample);
+            if (movies == null || movies.size() == 0) {
+                movieMapper.insert(movie);
+            }
+        }catch (Exception e){
+            log.info("{} 模块下的 {} 中的 {} 爬取出错，请重试", "电影", tagName, url);
+            insertErrUrl(urlDetail,tagName,e.getMessage(),"电影");
+            saveErrTempUrl(urlVO,tagName,mark);
         }
     }
 
@@ -379,42 +393,28 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
                         e.printStackTrace();
                     }
 
-                    String  resultInfo = null;
-                    while(true){
-                        resultInfo = HttpUtil.doGet(nerUrlVO.getBaseUrl(), proxy);
-                        log.info("请求的url:{}",nerUrlVO.getBaseUrl());
-                        try {
-                            Thread.sleep(SLEEPTIM);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        HttpHost newProxy = checkProxy(resultInfo,proxy);
-                        //比较proxy 如果是空则保存，和原来的porxy一样 退出，否则循环处理
-                        if(newProxy == null){
-                            saveErrTempUrl(urlVO,tagName,mark);
-                        }
-                        else if(isSampleProxy(proxy,newProxy)){
-                            break;
-                        }
-
-                    }
+                    String  resultInfo = findReponse(tagName,mark,urlVO);
+//                    while(true){
+//                        resultInfo = HttpUtil.doGet(nerUrlVO.getBaseUrl(), proxy);
+//                        log.info("请求的url:{}",nerUrlVO.getBaseUrl());
+//                        try {
+//                            Thread.sleep(SLEEPTIM);
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
+//                        HttpHost newProxy = checkProxy(resultInfo,proxy);
+//                        //比较proxy 如果是空则保存，和原来的porxy一样 退出，否则循环处理
+//                        if(newProxy == null){
+//                            saveErrTempUrl(urlVO,tagName,mark);
+//                        }
+//                        else if(isSampleProxy(proxy,newProxy)){
+//                            break;
+//                        }
+//
+//                    }
                     JSONArray array = JSON.parseArray(resultInfo);
                     for(int t = 0;t<array.size();t++) {
-                        JSONObject object = array.getJSONObject(t);
-                        String urlDetail = object.getString("url");
-                        try {
-                            Movie movie = crawlMovie(tagName, urlDetail);
-                            //电影去重
-                            MovieExample movieExample = new MovieExample();
-                            movieExample.createCriteria().andNameEqualTo(movie.getName());
-                            List<Movie> movies = movieMapper.selectByExample(movieExample);
-                            if (movies == null || movies.size() == 0) {
-                                movieMapper.insert(movie);
-                            }
-                        }catch (Exception e){
-                            log.info("{} 模块下的 {} 中的 {} 爬取出错，请重试", "电影", tagName, url);
-                            insertErrUrl(urlDetail,tagName,e.getMessage(),"电影");
-                        }
+                        parserAndSave(tagName, url, mark, urlVO, array, t);
                     }
 
                 }
@@ -719,9 +719,19 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            deleteTempUrl(list.get(0).getId());
         }
+        //执行删除操作
+
 
         return  urlVO;
+    }
+
+    private void deleteTempUrl(Integer id) {
+        ErrTempurlExample errTempurlExample = new ErrTempurlExample();
+        errTempurlExample.createCriteria().andIdEqualTo(id);
+        errTempurlMapper.deleteByExample(errTempurlExample);
+
     }
 
 
