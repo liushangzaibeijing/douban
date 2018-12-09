@@ -99,7 +99,7 @@ public class ScheduleJobs {
                 ProxydataExample proxydataExample = new ProxydataExample();
                 proxydataExample.createCriteria().andIpEqualTo(p.getIp()).andPortEqualTo(p.getPort());
                 List<Proxydata> proxys = proxydataMapper.selectByExample(proxydataExample);
-                if(proxydatas == null || proxydatas.size()==0){
+                if(proxys == null || proxys.size()==0){
                     p.setCanuse(1);
                     proxydataMapper.insert(p);
                 }
