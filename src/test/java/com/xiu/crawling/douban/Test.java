@@ -1,6 +1,7 @@
 package com.xiu.crawling.douban;
 
 import com.xiu.crawling.douban.bean.Movie;
+import com.xiu.crawling.douban.bean.dto.Data;
 import com.xiu.crawling.douban.core.BookThreadTask;
 import com.xiu.crawling.douban.proxypool.domain.Page;
 import com.xiu.crawling.douban.utils.HttpUtil;
@@ -17,6 +18,9 @@ import org.springframework.util.StringUtils;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -245,5 +249,28 @@ public class Test {
         String result = "波兰语 / 法语 / 德语 / 克罗地亚语 / 意大利语 / 俄语";
         log.info("length :  {}",result.length());
      }
+
+     @org.junit.Test
+    public void testUrlDecoder() throws UnsupportedEncodingException {
+        String urldecoder = "https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI08264852810353918&g_tk=5381&loginUin=1374523006&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data=%7B%22comm%22%3A%7B%22ct%22%3A24%2C%22cv%22%3A0%7D%2C%22singer%22%3A%7B%22method%22%3A%22get_singer_detail_info%22%2C%22param%22%3A%7B%22sort%22%3A5%2C%22singermid%22%3A%22001fNHEf1SFEFN%22%2C%22sin%22%3A0%2C%22num%22%3A10%7D%2C%22module%22%3A%22music.web_singer_info_svr%22%7D%7D";
+        String url = URLDecoder.decode(urldecoder, "UTF-8");
+        log.info("查询url:{}",url);
+
+     }
+
+
+     @org.junit.Test
+     public void testParse(){
+        String url =
+                "https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_singer_desc.fcg?singermid=004Be55m1SJaLk&utf8=1&outCharset=utf-8&format=xml&r=1567573980893";
+
+         Long time = 1567573446498L;
+        Date date =  new Date(time);
+        String result = HttpUtil.doGet(url);
+        log.info("请求结果信息：{}",result);
+     }
+
+
+
 
 }
