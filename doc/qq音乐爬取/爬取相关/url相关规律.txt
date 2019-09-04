@@ -1,0 +1,130 @@
+
+北汽安鹏  10   
+鑫融北汽安鹏 10
+XMGJB    10
+HXB  10
+鑫融HXB  10
+HBJZ  10
+
+
+一、网页版本的qq音乐爬取
+1、QQ音乐首页
+  https://y.qq.com/   
+2、歌手列表（json）  获取所有的歌手的singermid singer_pic 歌曲图片 为获取歌手详细信息 
+   https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI8991517745080486&g_tk=1370299737&loginUin=1169704579&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json
+   &needNewCode=0&data=%7B%22comm%22%3A%7B%22ct%22%3A24%2C%22cv%22%3A0%7D%2C%22singerList%22%3A%7B%22module%22%3A%22Music.SingerListServer%22%2C%22method%22%3A%22get_singer_list%22%2C%22param%22%3A%7B%22area%22%3A-100%2C%22sex%22%3A-100%2C%22genre%22%3A-100%2C%22index%22%3A-100%2C%22sin%22%3A0%2C%22cur_page%22%3A1%7D%7D%7D  
+   urlDecode 解码后的
+   https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI8991517745080486&g_tk=1370299737&loginUin=1169704579&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data={"comm":{"ct":24,"cv":0},"singerList":{"module":"Music.SingerListServer","method":"get_singer_list","param":{"area":-100,"sex":-100,"genre":-100,"index":-100,"sin":0,"cur_page":1}}}
+
+   
+   https://u.y.qq.com/cgi-bin/musicu.fcg
+      ?-=getUCGI8991517745080486 （每次请求都是变化的，目前没有找到其中的规律 暂时按照固定进行处理 个人猜测属于qq音乐的分布式 UGI）
+	  &g_tk=1370299737  不变
+	  &loginUin=1169704579  不变
+	  &hostUin=0   不变
+	  &format=json  不变
+	  &inCharset=utf8  不变
+	  &outCharset=utf-8  不变
+	  &notice=0&   不变
+	  platform=yqq.json  不变
+      &needNewCode=0&  不变
+   data=
+      {
+		  "comm": {
+			"ct": 24, 
+			"cv": 0
+		  }, 
+		  "singerList": {
+			"module": "Music.SingerListServer", 
+			"method": "get_singer_list", 
+			"param": {
+			  "area": -100, 
+			  "sex": -100, 
+			  "genre": -100, 
+			  "index": -100, 
+			  "sin": 0,   页数 每页80条
+			  "cur_page": 1  页数
+			}
+		  }
+	 }
+   
+   
+   https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI4359341313230507&g_tk=1370299737&loginUin=1169704579&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json
+   &needNewCode=0&
+   data={"comm":{"ct":24,"cv":0},"singerList":{"module":"Music.SingerListServer","method":"get_singer_list",
+   "param":{"area":-100,"sex":-100,"genre":-100,"index":-100,"sin":80,"cur_page":2}}}
+
+   
+ 
+      "sex": -100,    # 性别 -100全部  0男 1女 2组合
+      "index": -100,  # 索引  歌手首字母
+      "genre": -100,  #类型  
+    
+
+3、歌手详情
+   https://y.qq.com/n/yqq/singer/003U6coz1AhN3H.html	
+   https://y.qq.com/n/yqq/singer/ + singer_mid.html;
+   
+   歌手详细信息 
+   https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_singer_desc.fcg?singermid=001fNHEf1SFEFN&utf8=1&outCharset=utf-8&format=xml&r=1567511096166
+   
+   https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_singer_desc.fcg?singermid=002vALgR3hRRlv&utf8=1&outCharset=utf-8&format=xml&r=1567573446498
+   
+   xml类型
+   
+   
+   //歌曲列表：
+   https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI048295277528706215&g_tk=1370299737&loginUin=1169704579&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data=%7B%22comm%22%3A%7B%22ct%22%3A24%2C%22cv%22%3A0%7D%2C%22singer%22%3A%7B%22method%22%3A%22get_singer_detail_info%22%2C%22param%22%3A%7B%22sort%22%3A5%2C%22singermid%22%3A%22003U6coz1AhN3H%22%2C%22sin%22%3A0%2C%22num%22%3A10%7D%2C%22module%22%3A%22music.web_singer_info_svr%22%7D%7D
+   
+   https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI048295277528706215&g_tk=1370299737&loginUin=1169704579&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data={"comm":{"ct":24,"cv":0},"singer":{"method":"get_singer_detail_info","param":{"sort":5,"singermid":"003U6coz1AhN3H","sin":0,"num":10},"module":"music.web_singer_info_svr"}}
+
+   
+   https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI08264852810353918&g_tk=5381&loginUin=1374523006&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data={"comm":{"ct":24,"cv":0},"singer":{"method":"get_singer_detail_info","param":{"sort":5,"singermid":"001fNHEf1SFEFN","sin":0,"num":10},"module":"music.web_singer_info_svr"}}
+
+   
+   https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI048295277528706215&g_tk=1370299737&loginUin=1169704579&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&
+   data={"comm":{"ct":24,"cv":0},"singer":{"method":"get_singer_detail_info",
+   "param":{
+       "sort":5,
+	   "singermid":"003U6coz1AhN3H", 歌手mid
+	   "sin":0, 页码
+	   "num":10  每页显示条数
+	   }
+	   ,"module":"music.web_singer_info_svr"}}
+	   
+	   
+4、歌曲信息	   
+    
+
+   
+    https://u.y.qq.com/cgi-bin/musicu.fcg?-=getplaysongvkey46824830924874816&g_tk=5381&loginUin=1374523006&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data={"req":{"module":"CDN.SrfCdnDispatchServer","method":"GetCdnDispatch","param":{"guid":"3194677648","calltype":0,"userip":""}},"req_0":{"module":"vkey.GetVkeyServer","method":"CgiGetVkey","param":{"guid":"3194677648","songmid":["0041EAWY2D9o9j"],"songtype":[0],"uin":"1374523006","loginflag":1,"platform":"20"}},"comm":{"uin":"1374523006","format":"json","ct":24,"cv":0}}
+ 
+   
+    https://u.y.qq.com/cgi-bin/musicu.fcg?-=getplaysongvkey46824830924874816
+	&g_tk=5381
+	&loginUin=1374523006
+	&hostUin=0
+	&format=json
+	&inCharset=utf8
+	&outCharset=utf-8
+	&notice=0&platform=yqq.json
+	&needNewCode=0
+	&data={"req":{"module":"CDN.SrfCdnDispatchServer","method":"GetCdnDispatch",
+	"param":{"guid":"3194677648","calltype":0,"userip":""}},
+	     "req_0":{"module":"vkey.GetVkeyServer","method":"CgiGetVkey",
+		 "param":{"guid":"3194677648",
+		  "songmid":["0041EAWY2D9o9j"],"songtype":[0],"uin":"1374523006","loginflag":1,"platform":"20"}},"comm":{"uin":"1374523006","format":"json","ct":24,"cv":0}}
+
+		  
+  
+   http://ws.stream.qqmusic.qq.com/C400003mAan70zUy5O.m4a?guid=7352675290&vkey=F69D79DF0673C7E2A7954DC1AEDAEDFA6F355DF6C79DF6FC2159F264A9115A04C9D394B050D8686976B88C66E9C1FA6436FDA8633B34A2D9&uin=1667&fromtag=3&r=8531483368012223
+   
+   
+   http://ws.stream.qqmusic.qq.com/C400003mAan70zUy5O.m4a
+     ?guid=7352675290
+	 &vkey=F69D79DF0673C7E2A7954DC1AEDAEDFA6F355DF6C79DF6FC2159F264A9115A04C9D394B050D8686976B88C66E9C1FA6436FDA8633B34A2D9
+	 &uin=1667
+	 &fromtag=3
+	 &r=8531483368012223
+   
+   

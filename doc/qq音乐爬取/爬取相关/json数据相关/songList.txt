@@ -1,0 +1,1080 @@
+{
+  "singer": {
+    "data": {
+      "songlist": [
+        {
+          "id": 109122270, 
+          "type": 0, 
+          "mid": "002xdDqK3GkHVO", 
+          "name": "你一定要幸福", 
+          "title": "你一定要幸福", 
+          "subtitle": "", 
+          "singer": [
+            {
+              "id": 31035, 
+              "mid": "003U6coz1AhN3H", 
+              "name": "简弘亦", 
+              "title": "简弘亦", 
+              "type": 0, 
+              "uin": 4437232
+            }
+          ], 
+          "album": {
+            "id": 1678148, 
+            "mid": "000e3JpH2czOKP", 
+            "name": "你一定要幸福", 
+            "title": "你一定要幸福", 
+            "subtitle": "", 
+            "time_public": "2016-11-08"
+          }, 
+          "mv": {
+            "id": 0, 
+            "vid": "", 
+            "name": "", 
+            "title": ""
+          }, 
+          "interval": 268, 
+          "isonly": 0, 
+          "language": 0, 
+          "genre": 1, 
+          "index_cd": 0, 
+          "index_album": 1, 
+          "time_public": "2016-11-08", 
+          "status": 0, 
+          "fnote": 4009, 
+          "file": {
+            "media_mid": "001k6xl23RfpGf", 
+            "size_24aac": 831880, 
+            "size_48aac": 1629952, 
+            "size_96aac": 3266873, 
+            "size_192ogg": 5668356, 
+            "size_192aac": 6480540, 
+            "size_128mp3": 4290557, 
+            "size_320mp3": 10726083, 
+            "size_ape": 0, 
+            "size_flac": 24245314, 
+            "size_dts": 0, 
+            "size_try": 0, 
+            "try_begin": 0, 
+            "try_end": 0, 
+            "url": "", 
+            "size_hires": 0, 
+            "hires_sample": 0, 
+            "hires_bitdepth": 0, 
+            "b_30s": 0, 
+            "e_30s": 0
+          }, 
+          "pay": {
+            "pay_month": 1, 
+            "price_track": 200, 
+            "price_album": 0, 
+            "pay_play": 0, 
+            "pay_down": 1, 
+            "pay_status": 0, 
+            "time_free": 0
+          }, 
+          "action": {
+            "switch_id": 17413891, 
+            "msgid": 14, 
+            "alert": 2, 
+            "icons": 8527740, 
+            "msgshare": 0, 
+            "msgfav": 0, 
+            "msgdown": 0, 
+            "msgpay": 6
+          }, 
+          "ksong": {
+            "id": 2408053, 
+            "mid": "000vkB044Lqjcz"
+          }, 
+          "volume": {
+            "gain": -6.393, 
+            "peak": 0.99, 
+            "lra": 13.714
+          }, 
+          "label": "4611686018431582209", 
+          "url": "http://stream8.qqmusic.qq.com/121122270.wma", 
+          "bpm": 0, 
+          "version": 0, 
+          "trace": "", 
+          "data_type": 0, 
+          "modify_stamp": 0, 
+          "pingpong": ""
+        }, 
+        {
+          "id": 215374252, 
+          "type": 0, 
+          "mid": "0041EAWY2D9o9j", 
+          "name": "不染", 
+          "title": "不染", 
+          "subtitle": "", 
+          "singer": [
+            {
+              "id": 31035, 
+              "mid": "003U6coz1AhN3H", 
+              "name": "简弘亦", 
+              "title": "简弘亦", 
+              "type": 0, 
+              "uin": 4437232
+            }
+          ], 
+          "album": {
+            "id": 4289332, 
+            "mid": "002xSwB5359vcP", 
+            "name": "不染", 
+            "title": "不染", 
+            "subtitle": "", 
+            "time_public": "2018-08-16"
+          }, 
+          "mv": {
+            "id": 0, 
+            "vid": "", 
+            "name": "", 
+            "title": ""
+          }, 
+          "interval": 325, 
+          "isonly": 1, 
+          "language": 0, 
+          "genre": 1, 
+          "index_cd": 0, 
+          "index_album": 1, 
+          "time_public": "2018-08-16", 
+          "status": 0, 
+          "fnote": 4009, 
+          "file": {
+            "media_mid": "0022595J1sCF42", 
+            "size_24aac": 1013483, 
+            "size_48aac": 1992238, 
+            "size_96aac": 4003594, 
+            "size_192ogg": 6711969, 
+            "size_192aac": 7834887, 
+            "size_128mp3": 5214230, 
+            "size_320mp3": 13035292, 
+            "size_ape": 29191155, 
+            "size_flac": 29310332, 
+            "size_dts": 0, 
+            "size_try": 0, 
+            "try_begin": 89447, 
+            "try_end": 118112, 
+            "url": "", 
+            "size_hires": 0, 
+            "hires_sample": 0, 
+            "hires_bitdepth": 0, 
+            "b_30s": 0, 
+            "e_30s": 0
+          }, 
+          "pay": {
+            "pay_month": 1, 
+            "price_track": 200, 
+            "price_album": 0, 
+            "pay_play": 0, 
+            "pay_down": 1, 
+            "pay_status": 0, 
+            "time_free": 0
+          }, 
+          "action": {
+            "switch_id": 17413891, 
+            "msgid": 14, 
+            "alert": 2, 
+            "icons": 8527740, 
+            "msgshare": 0, 
+            "msgfav": 0, 
+            "msgdown": 0, 
+            "msgpay": 6
+          }, 
+          "ksong": {
+            "id": 4462189, 
+            "mid": "001z14x12UmeHg"
+          }, 
+          "volume": {
+            "gain": -7.337, 
+            "peak": 1, 
+            "lra": 12.448
+          }, 
+          "label": "0", 
+          "url": "http://stream2.qqmusic.qq.com/227374252.wma", 
+          "bpm": 68, 
+          "version": 0, 
+          "trace": "", 
+          "data_type": 0, 
+          "modify_stamp": 0, 
+          "pingpong": ""
+        }, 
+        {
+          "id": 200209728, 
+          "type": 0, 
+          "mid": "0024d1NU2wc9uI", 
+          "name": "你就不要想起我", 
+          "title": "你就不要想起我", 
+          "subtitle": "", 
+          "singer": [
+            {
+              "id": 31035, 
+              "mid": "003U6coz1AhN3H", 
+              "name": "简弘亦", 
+              "title": "简弘亦", 
+              "type": 0, 
+              "uin": 4437232
+            }
+          ], 
+          "album": {
+            "id": 1790631, 
+            "mid": "004Sl7m70PymQU", 
+            "name": "你就不要想起我", 
+            "title": "你就不要想起我", 
+            "subtitle": "", 
+            "time_public": "2016-12-28"
+          }, 
+          "mv": {
+            "id": 0, 
+            "vid": "", 
+            "name": "", 
+            "title": ""
+          }, 
+          "interval": 280, 
+          "isonly": 0, 
+          "language": 0, 
+          "genre": 1, 
+          "index_cd": 0, 
+          "index_album": 1, 
+          "time_public": "2016-12-28", 
+          "status": 0, 
+          "fnote": 4009, 
+          "file": {
+            "media_mid": "001N9WNO1Lasb4", 
+            "size_24aac": 873302, 
+            "size_48aac": 1710573, 
+            "size_96aac": 3422661, 
+            "size_192ogg": 6091977, 
+            "size_192aac": 6779161, 
+            "size_128mp3": 4495779, 
+            "size_320mp3": 11239132, 
+            "size_ape": 0, 
+            "size_flac": 28539739, 
+            "size_dts": 0, 
+            "size_try": 0, 
+            "try_begin": 0, 
+            "try_end": 0, 
+            "url": "", 
+            "size_hires": 0, 
+            "hires_sample": 0, 
+            "hires_bitdepth": 0, 
+            "b_30s": 0, 
+            "e_30s": 0
+          }, 
+          "pay": {
+            "pay_month": 1, 
+            "price_track": 200, 
+            "price_album": 0, 
+            "pay_play": 0, 
+            "pay_down": 1, 
+            "pay_status": 0, 
+            "time_free": 0
+          }, 
+          "action": {
+            "switch_id": 17413891, 
+            "msgid": 14, 
+            "alert": 2, 
+            "icons": 8527740, 
+            "msgshare": 0, 
+            "msgfav": 0, 
+            "msgdown": 0, 
+            "msgpay": 6
+          }, 
+          "ksong": {
+            "id": 2463519, 
+            "mid": "004IzHNE0xqJsW"
+          }, 
+          "volume": {
+            "gain": -8.31, 
+            "peak": 1, 
+            "lra": 14.06
+          }, 
+          "label": "0", 
+          "url": "http://stream1.qqmusic.qq.com/212209728.wma", 
+          "bpm": 0, 
+          "version": 0, 
+          "trace": "", 
+          "data_type": 0, 
+          "modify_stamp": 0, 
+          "pingpong": ""
+        }, 
+        {
+          "id": 102206717, 
+          "type": 0, 
+          "mid": "000QZ2MH4BACQZ", 
+          "name": "问", 
+          "title": "问", 
+          "subtitle": "", 
+          "singer": [
+            {
+              "id": 31035, 
+              "mid": "003U6coz1AhN3H", 
+              "name": "简弘亦", 
+              "title": "简弘亦", 
+              "type": 0, 
+              "uin": 4437232
+            }
+          ], 
+          "album": {
+            "id": 8623, 
+            "mid": "001ZaCQY2OxVMg", 
+            "name": "空", 
+            "title": "空", 
+            "subtitle": "", 
+            "time_public": "1990-10-01"
+          }, 
+          "mv": {
+            "id": 0, 
+            "vid": "", 
+            "name": "", 
+            "title": ""
+          }, 
+          "interval": 231, 
+          "isonly": 0, 
+          "language": 0, 
+          "genre": 1, 
+          "index_cd": 0, 
+          "index_album": 100, 
+          "time_public": "1990-10-01", 
+          "status": 0, 
+          "fnote": 4009, 
+          "file": {
+            "media_mid": "002ckval2Nv2SY", 
+            "size_24aac": 720583, 
+            "size_48aac": 1410931, 
+            "size_96aac": 2850353, 
+            "size_192ogg": 4649657, 
+            "size_192aac": 5563368, 
+            "size_128mp3": 3700378, 
+            "size_320mp3": 9250259, 
+            "size_ape": 0, 
+            "size_flac": 0, 
+            "size_dts": 0, 
+            "size_try": 0, 
+            "try_begin": 0, 
+            "try_end": 0, 
+            "url": "", 
+            "size_hires": 0, 
+            "hires_sample": 0, 
+            "hires_bitdepth": 0, 
+            "b_30s": 0, 
+            "e_30s": 0
+          }, 
+          "pay": {
+            "pay_month": 1, 
+            "price_track": 200, 
+            "price_album": 0, 
+            "pay_play": 0, 
+            "pay_down": 1, 
+            "pay_status": 0, 
+            "time_free": 0
+          }, 
+          "action": {
+            "switch_id": 17413891, 
+            "msgid": 14, 
+            "alert": 2, 
+            "icons": 8527740, 
+            "msgshare": 0, 
+            "msgfav": 0, 
+            "msgdown": 0, 
+            "msgpay": 6
+          }, 
+          "ksong": {
+            "id": 2670892, 
+            "mid": "002qsqMy1pz28R"
+          }, 
+          "volume": {
+            "gain": -7.828, 
+            "peak": 1, 
+            "lra": 8.243
+          }, 
+          "label": "4611686153723052033", 
+          "url": "http://stream4.qqmusic.qq.com/114206717.wma", 
+          "bpm": 0, 
+          "version": 0, 
+          "trace": "", 
+          "data_type": 0, 
+          "modify_stamp": 0, 
+          "pingpong": ""
+        }, 
+        {
+          "id": 215029988, 
+          "type": 0, 
+          "mid": "0023QABu1bowVM", 
+          "name": "出卖", 
+          "title": "出卖 (Live)", 
+          "subtitle": "", 
+          "singer": [
+            {
+              "id": 31035, 
+              "mid": "003U6coz1AhN3H", 
+              "name": "简弘亦", 
+              "title": "简弘亦", 
+              "type": 0, 
+              "uin": 4437232
+            }
+          ], 
+          "album": {
+            "id": 4233894, 
+            "mid": "000Znylj1H4DRV", 
+            "name": "简弘亦“柔软的国”2018全国巡回演唱会", 
+            "title": "简弘亦“柔软的国”2018全国巡回演唱会", 
+            "subtitle": "", 
+            "time_public": "2018-07-25"
+          }, 
+          "mv": {
+            "id": 0, 
+            "vid": "", 
+            "name": "", 
+            "title": ""
+          }, 
+          "interval": 215, 
+          "isonly": 1, 
+          "language": 0, 
+          "genre": 1, 
+          "index_cd": 0, 
+          "index_album": 10, 
+          "time_public": "2018-07-25", 
+          "status": 0, 
+          "fnote": 4009, 
+          "file": {
+            "media_mid": "0023QABu1bowVM", 
+            "size_24aac": 669745, 
+            "size_48aac": 1316213, 
+            "size_96aac": 2629509, 
+            "size_192ogg": 4636651, 
+            "size_192aac": 5215682, 
+            "size_128mp3": 3449225, 
+            "size_320mp3": 8622585, 
+            "size_ape": 42425229, 
+            "size_flac": 42419677, 
+            "size_dts": 0, 
+            "size_try": 0, 
+            "try_begin": 90558, 
+            "try_end": 121712, 
+            "url": "", 
+            "size_hires": 0, 
+            "hires_sample": 0, 
+            "hires_bitdepth": 0, 
+            "b_30s": 0, 
+            "e_30s": 0
+          }, 
+          "pay": {
+            "pay_month": 1, 
+            "price_track": 200, 
+            "price_album": 0, 
+            "pay_play": 0, 
+            "pay_down": 1, 
+            "pay_status": 0, 
+            "time_free": 0
+          }, 
+          "action": {
+            "switch_id": 17413891, 
+            "msgid": 14, 
+            "alert": 2, 
+            "icons": 8527740, 
+            "msgshare": 0, 
+            "msgfav": 0, 
+            "msgdown": 0, 
+            "msgpay": 6
+          }, 
+          "ksong": {
+            "id": 4410149, 
+            "mid": "000BJLhI09WOYn"
+          }, 
+          "volume": {
+            "gain": -4.487, 
+            "peak": 1, 
+            "lra": 10.584
+          }, 
+          "label": "0", 
+          "url": "http://stream4.qqmusic.qq.com/227029988.wma", 
+          "bpm": 62, 
+          "version": 3, 
+          "trace": "", 
+          "data_type": 0, 
+          "modify_stamp": 0, 
+          "pingpong": ""
+        }, 
+        {
+          "id": 204490267, 
+          "type": 0, 
+          "mid": "003PEnmV03p7nt", 
+          "name": "阍者", 
+          "title": "阍者", 
+          "subtitle": "", 
+          "singer": [
+            {
+              "id": 31035, 
+              "mid": "003U6coz1AhN3H", 
+              "name": "简弘亦", 
+              "title": "简弘亦", 
+              "type": 0, 
+              "uin": 4437232
+            }
+          ], 
+          "album": {
+            "id": 3833308, 
+            "mid": "0049VGCy2Fa6mx", 
+            "name": "柔软的国", 
+            "title": "柔软的国", 
+            "subtitle": "", 
+            "time_public": "2017-12-23"
+          }, 
+          "mv": {
+            "id": 1441943, 
+            "vid": "z0025914oom", 
+            "name": "", 
+            "title": ""
+          }, 
+          "interval": 296, 
+          "isonly": 0, 
+          "language": 0, 
+          "genre": 1, 
+          "index_cd": 0, 
+          "index_album": 3, 
+          "time_public": "2017-12-23", 
+          "status": 0, 
+          "fnote": 4009, 
+          "file": {
+            "media_mid": "003PEnmV03p7nt", 
+            "size_24aac": 916798, 
+            "size_48aac": 1797291, 
+            "size_96aac": 3612534, 
+            "size_192ogg": 6468366, 
+            "size_192aac": 7154134, 
+            "size_128mp3": 4742354, 
+            "size_320mp3": 11855602, 
+            "size_ape": 27641393, 
+            "size_flac": 27801933, 
+            "size_dts": 0, 
+            "size_try": 0, 
+            "try_begin": 85422, 
+            "try_end": 123840, 
+            "url": "", 
+            "size_hires": 0, 
+            "hires_sample": 0, 
+            "hires_bitdepth": 0, 
+            "b_30s": 0, 
+            "e_30s": 0
+          }, 
+          "pay": {
+            "pay_month": 1, 
+            "price_track": 200, 
+            "price_album": 0, 
+            "pay_play": 0, 
+            "pay_down": 1, 
+            "pay_status": 0, 
+            "time_free": 0
+          }, 
+          "action": {
+            "switch_id": 17413891, 
+            "msgid": 14, 
+            "alert": 2, 
+            "icons": 8527740, 
+            "msgshare": 0, 
+            "msgfav": 0, 
+            "msgdown": 0, 
+            "msgpay": 6
+          }, 
+          "ksong": {
+            "id": 3027941, 
+            "mid": "000FZN7L1QR6fs"
+          }, 
+          "volume": {
+            "gain": -6.699, 
+            "peak": 1, 
+            "lra": 12.708
+          }, 
+          "label": "0", 
+          "url": "http://stream8.qqmusic.qq.com/216490267.wma", 
+          "bpm": 99, 
+          "version": 0, 
+          "trace": "", 
+          "data_type": 0, 
+          "modify_stamp": 0, 
+          "pingpong": ""
+        }, 
+        {
+          "id": 215030008, 
+          "type": 0, 
+          "mid": "003qJOgn2JyFkE", 
+          "name": "问", 
+          "title": "问 (Live)", 
+          "subtitle": "", 
+          "singer": [
+            {
+              "id": 31035, 
+              "mid": "003U6coz1AhN3H", 
+              "name": "简弘亦", 
+              "title": "简弘亦", 
+              "type": 0, 
+              "uin": 4437232
+            }
+          ], 
+          "album": {
+            "id": 4233894, 
+            "mid": "000Znylj1H4DRV", 
+            "name": "简弘亦“柔软的国”2018全国巡回演唱会", 
+            "title": "简弘亦“柔软的国”2018全国巡回演唱会", 
+            "subtitle": "", 
+            "time_public": "2018-07-25"
+          }, 
+          "mv": {
+            "id": 0, 
+            "vid": "", 
+            "name": "", 
+            "title": ""
+          }, 
+          "interval": 229, 
+          "isonly": 1, 
+          "language": 0, 
+          "genre": 1, 
+          "index_cd": 0, 
+          "index_album": 8, 
+          "time_public": "2018-07-25", 
+          "status": 0, 
+          "fnote": 4009, 
+          "file": {
+            "media_mid": "003qJOgn2JyFkE", 
+            "size_24aac": 711364, 
+            "size_48aac": 1396170, 
+            "size_96aac": 2792395, 
+            "size_192ogg": 4893506, 
+            "size_192aac": 5545289, 
+            "size_128mp3": 3665726, 
+            "size_320mp3": 9163979, 
+            "size_ape": 45889930, 
+            "size_flac": 45861301, 
+            "size_dts": 0, 
+            "size_try": 0, 
+            "try_begin": 47735, 
+            "try_end": 77386, 
+            "url": "", 
+            "size_hires": 0, 
+            "hires_sample": 0, 
+            "hires_bitdepth": 0, 
+            "b_30s": 0, 
+            "e_30s": 0
+          }, 
+          "pay": {
+            "pay_month": 1, 
+            "price_track": 200, 
+            "price_album": 0, 
+            "pay_play": 0, 
+            "pay_down": 1, 
+            "pay_status": 0, 
+            "time_free": 0
+          }, 
+          "action": {
+            "switch_id": 17413891, 
+            "msgid": 14, 
+            "alert": 2, 
+            "icons": 8527740, 
+            "msgshare": 0, 
+            "msgfav": 0, 
+            "msgdown": 0, 
+            "msgpay": 6
+          }, 
+          "ksong": {
+            "id": 4434957, 
+            "mid": "0027F0Wh3gY2v6"
+          }, 
+          "volume": {
+            "gain": -5.63, 
+            "peak": 0.998, 
+            "lra": 8.748
+          }, 
+          "label": "0", 
+          "url": "http://stream4.qqmusic.qq.com/227030008.wma", 
+          "bpm": 61, 
+          "version": 3, 
+          "trace": "", 
+          "data_type": 0, 
+          "modify_stamp": 0, 
+          "pingpong": ""
+        }, 
+        {
+          "id": 102951916, 
+          "type": 0, 
+          "mid": "003jYQxd1yAOR7", 
+          "name": "默", 
+          "title": "默", 
+          "subtitle": "", 
+          "singer": [
+            {
+              "id": 31035, 
+              "mid": "003U6coz1AhN3H", 
+              "name": "简弘亦", 
+              "title": "简弘亦", 
+              "type": 0, 
+              "uin": 4437232
+            }
+          ], 
+          "album": {
+            "id": 1047610, 
+            "mid": "0023bpua3xosdD", 
+            "name": "默", 
+            "title": "默", 
+            "subtitle": "", 
+            "time_public": "2015-07-27"
+          }, 
+          "mv": {
+            "id": 0, 
+            "vid": "", 
+            "name": "", 
+            "title": ""
+          }, 
+          "interval": 311, 
+          "isonly": 0, 
+          "language": 0, 
+          "genre": 1, 
+          "index_cd": 0, 
+          "index_album": 1, 
+          "time_public": "2015-07-27", 
+          "status": 31, 
+          "fnote": 0, 
+          "file": {
+            "media_mid": "003jYQxd1yAOR7", 
+            "size_24aac": 937860, 
+            "size_48aac": 1866453, 
+            "size_96aac": 3650196, 
+            "size_192ogg": 6286565, 
+            "size_192aac": 6710785, 
+            "size_128mp3": 4986439, 
+            "size_320mp3": 12465818, 
+            "size_ape": 26646195, 
+            "size_flac": 26503611, 
+            "size_dts": 0, 
+            "size_try": 0, 
+            "try_begin": 55479, 
+            "try_end": 137221, 
+            "url": "", 
+            "size_hires": 0, 
+            "hires_sample": 0, 
+            "hires_bitdepth": 0, 
+            "b_30s": 0, 
+            "e_30s": 0
+          }, 
+          "pay": {
+            "pay_month": 0, 
+            "price_track": 0, 
+            "price_album": 0, 
+            "pay_play": 0, 
+            "pay_down": 0, 
+            "pay_status": 0, 
+            "time_free": 0
+          }, 
+          "action": {
+            "switch_id": 605971, 
+            "msgid": 0, 
+            "alert": 11, 
+            "icons": 135752, 
+            "msgshare": 0, 
+            "msgfav": 0, 
+            "msgdown": 0, 
+            "msgpay": 0
+          }, 
+          "ksong": {
+            "id": 163421, 
+            "mid": "002SyjE52LKZM1"
+          }, 
+          "volume": {
+            "gain": -6.326, 
+            "peak": 1, 
+            "lra": 16.938
+          }, 
+          "label": "4611686153723052033", 
+          "url": "http://stream10.qqmusic.qq.com/114951916.wma", 
+          "bpm": 69, 
+          "version": 0, 
+          "trace": "", 
+          "data_type": 0, 
+          "modify_stamp": 0, 
+          "pingpong": ""
+        }, 
+        {
+          "id": 108552615, 
+          "type": 0, 
+          "mid": "003qCpHb2yBMAL", 
+          "name": "情歌", 
+          "title": "情歌", 
+          "subtitle": "", 
+          "singer": [
+            {
+              "id": 31035, 
+              "mid": "003U6coz1AhN3H", 
+              "name": "简弘亦", 
+              "title": "简弘亦", 
+              "type": 0, 
+              "uin": 4437232
+            }
+          ], 
+          "album": {
+            "id": 1608450, 
+            "mid": "003CCYqc2j7J2E", 
+            "name": "情歌", 
+            "title": "情歌", 
+            "subtitle": "", 
+            "time_public": "2016-09-18"
+          }, 
+          "mv": {
+            "id": 1044998, 
+            "vid": "t002137hzbi", 
+            "name": "", 
+            "title": ""
+          }, 
+          "interval": 264, 
+          "isonly": 0, 
+          "language": 0, 
+          "genre": 1, 
+          "index_cd": 0, 
+          "index_album": 1, 
+          "time_public": "2016-09-18", 
+          "status": 0, 
+          "fnote": 4009, 
+          "file": {
+            "media_mid": "002shhLI2E28M1", 
+            "size_24aac": 827114, 
+            "size_48aac": 1624376, 
+            "size_96aac": 3269667, 
+            "size_192ogg": 5313260, 
+            "size_192aac": 6441084, 
+            "size_128mp3": 4239968, 
+            "size_320mp3": 10599635, 
+            "size_ape": 0, 
+            "size_flac": 22386235, 
+            "size_dts": 0, 
+            "size_try": 0, 
+            "try_begin": 0, 
+            "try_end": 0, 
+            "url": "", 
+            "size_hires": 0, 
+            "hires_sample": 0, 
+            "hires_bitdepth": 0, 
+            "b_30s": 0, 
+            "e_30s": 0
+          }, 
+          "pay": {
+            "pay_month": 1, 
+            "price_track": 200, 
+            "price_album": 0, 
+            "pay_play": 0, 
+            "pay_down": 1, 
+            "pay_status": 0, 
+            "time_free": 0
+          }, 
+          "action": {
+            "switch_id": 17413891, 
+            "msgid": 14, 
+            "alert": 2, 
+            "icons": 8527740, 
+            "msgshare": 0, 
+            "msgfav": 0, 
+            "msgdown": 0, 
+            "msgpay": 6
+          }, 
+          "ksong": {
+            "id": 2367102, 
+            "mid": "004Q1i7Y2wr17L"
+          }, 
+          "volume": {
+            "gain": -6.485, 
+            "peak": 1, 
+            "lra": 12.341
+          }, 
+          "label": "4611686018431582209", 
+          "url": "http://stream10.qqmusic.qq.com/120552615.wma", 
+          "bpm": 0, 
+          "version": 0, 
+          "trace": "", 
+          "data_type": 0, 
+          "modify_stamp": 0, 
+          "pingpong": ""
+        }, 
+        {
+          "id": 104897653, 
+          "type": 0, 
+          "mid": "000peutR1eIemM", 
+          "name": "就算我唱遍所有情歌", 
+          "title": "就算我唱遍所有情歌", 
+          "subtitle": "", 
+          "singer": [
+            {
+              "id": 31035, 
+              "mid": "003U6coz1AhN3H", 
+              "name": "简弘亦", 
+              "title": "简弘亦", 
+              "type": 0, 
+              "uin": 4437232
+            }
+          ], 
+          "album": {
+            "id": 1194462, 
+            "mid": "002IeUcW3fT4t7", 
+            "name": "就算我唱遍所有情歌", 
+            "title": "就算我唱遍所有情歌", 
+            "subtitle": "", 
+            "time_public": "2015-11-19"
+          }, 
+          "mv": {
+            "id": 0, 
+            "vid": "", 
+            "name": "", 
+            "title": ""
+          }, 
+          "interval": 260, 
+          "isonly": 0, 
+          "language": 0, 
+          "genre": 1, 
+          "index_cd": 0, 
+          "index_album": 1, 
+          "time_public": "2015-11-19", 
+          "status": 0, 
+          "fnote": 4009, 
+          "file": {
+            "media_mid": "000peutR1eIemM", 
+            "size_24aac": 832686, 
+            "size_48aac": 1654376, 
+            "size_96aac": 3344727, 
+            "size_192ogg": 5852355, 
+            "size_192aac": 6185498, 
+            "size_128mp3": 4175630, 
+            "size_320mp3": 10438748, 
+            "size_ape": 28380915, 
+            "size_flac": 28083000, 
+            "size_dts": 0, 
+            "size_try": 0, 
+            "try_begin": 79713, 
+            "try_end": 110995, 
+            "url": "", 
+            "size_hires": 0, 
+            "hires_sample": 0, 
+            "hires_bitdepth": 0, 
+            "b_30s": 0, 
+            "e_30s": 0
+          }, 
+          "pay": {
+            "pay_month": 1, 
+            "price_track": 200, 
+            "price_album": 0, 
+            "pay_play": 0, 
+            "pay_down": 1, 
+            "pay_status": 0, 
+            "time_free": 0
+          }, 
+          "action": {
+            "switch_id": 17413891, 
+            "msgid": 14, 
+            "alert": 2, 
+            "icons": 8527740, 
+            "msgshare": 0, 
+            "msgfav": 0, 
+            "msgdown": 0, 
+            "msgpay": 6
+          }, 
+          "ksong": {
+            "id": 184123, 
+            "mid": "002jrmEd2WRnln"
+          }, 
+          "volume": {
+            "gain": -7.21, 
+            "peak": 1, 
+            "lra": 14.289
+          }, 
+          "label": "4611686018431582209", 
+          "url": "http://stream2.qqmusic.qq.com/116897653.wma", 
+          "bpm": 60, 
+          "version": 0, 
+          "trace": "", 
+          "data_type": 0, 
+          "modify_stamp": 0, 
+          "pingpong": ""
+        }
+      ], 
+      "singer_info": {
+        "area": 1, 
+        "attribute4": 2, 
+        "genre": 17, 
+        "other_name": "", 
+        "id": 31035, 
+        "mid": "003U6coz1AhN3H", 
+        "name": "简弘亦", 
+        "fans": 726914
+      }, 
+      "singer_brief": "简弘亦，中国内地男歌手、音乐制作人。他演唱的歌曲全网破放量高达70亿。他唱与作的影视剧全网累计播放量300亿，被称为影视剧OST，护航“锦鲤”。他是集演唱，作曲，编曲，制作于一身的“全能唱作人”。 他是从你歌单里走出的男人————简弘亦。2014年第六届“华语金曲奖”全能唱作艺⼈；2015年第七届“华语金曲奖”我最喜爱的影视作品大奖。简弘亦2016年发布第一张专辑《树先生》，凭借《树先生》获得“华语金曲奖”年度最佳国语男新⼈奖。2017年第二张专辑中的《阍者》《感觉好像在一夜之间老了好几十岁》而被大众传唱，2018年发布第三张专辑《成人书》，2018参加《声入人心》再次进入大众视野，2019年4月，开启简弘亦“亦X不染”全国巡回演唱会。基本资料：中文名:简弘亦国籍:中国民族:汉出生地:湖南常德代表作品:《树先生》《不染》《阍者》《就算我唱遍所有情歌》《不说再见》主要成就:华语金曲奖最佳国语男新人、最佳影视歌曲奖。从艺历程：2007年，担任文化跨界活动“唱响诗歌”的音乐总监，并首度获得舒婷的作品《思念》演唱授权。2008年，在广州、长沙举办个人诗歌音乐会。简弘亦拜师于台湾音乐制作人涂惠源，期间参与曹格、孙楠、郁可唯等歌手的专辑制作。2012年，受邀为电影《匹夫》创作并演唱片尾曲《风归云》。2014年，获得第五届“华语金曲奖”年度唱作艺人奖；2016年，发布第一张个人专辑《树先生》并在北京举办《树先生》专辑首唱会；4月,凭借专辑《树先生》入围“华语金曲奖”年度最佳国语男新人奖；12月与李易峰合作德芙圣诞广告歌曲《DO YOU LOVE ME》。2017年，简弘亦发起“诗词歌赋”活动，陆续推出专辑《诗词歌赋》中歌曲《一剪梅 舟过吴江》、《青玉案元夕》；2017年第二张专辑发布，其中《感觉好像在一夜之间老了好几十岁》、《阍者》被大众所传播。2017年，开启简弘亦个人全国巡回演唱会。2018年，发布第三张专辑《成人书》；2018年，热播剧《香蜜沉沉尽如霜》中简弘亦作曲的《不染》，被大家所熟知，更有众多影视剧的唱作出自他手，其中包括《青云志》中的《伤心花》；《思美人》中的《思美人》《天问》；《龙珠传奇》中的《天地眉间》《明珠》；《风再起时》中的《背影》；《猎毒人》中的《致爱》；《都挺好》中的《就当做没发生过》；以及还未上映的剧版《悲伤逆流成河》中的歌曲。2018年参加湖南卫视制作的原创新形态声乐表演节目《声入人心》，被公认为梅溪湖36子中的全能“唱作人”。并创作了节目中梅溪湖36子首支团单《不说再见》。2019年，参与录制CCTV1《经典永流传》，参与录制CCTV15《音乐公开课》；2019年4月，开启简弘亦“亦X不染”全国巡回演唱会。荣誉记录：华语金曲奖2016 “华语金曲奖”年度最佳国语男新人奖《树先生》（获奖）2016 “华语金曲奖”年度最佳国语男新人《树先生》（提名）2015 第七届“华语金曲奖”我最喜爱的影视作品大奖《我的特一营》（获奖）2014 第五届“华语金曲奖”年度唱作艺人奖（获奖）2013 第五届“华语金曲奖”最佳唱作艺人《失语者》（获奖）“一带一路”丝路凝聚力盛典2017年度凝聚力唱作男歌手 （获奖）", 
+      "music_grp": [ ], 
+      "total_album": 57, 
+      "total_mv": 53, 
+      "total_song": 553, 
+      "yinyueren": "2", 
+      "show_singer_desc": true, 
+      "extras": [
+        {
+          "listen_count": 117473678, 
+          "upload_time": "2016-11-06 03:13:13", 
+          "is_only": 0, 
+          "is_new": 0
+        }, 
+        {
+          "listen_count": 112032316, 
+          "upload_time": "2018-08-02 15:26:36", 
+          "is_only": 0, 
+          "is_new": 0
+        }, 
+        {
+          "listen_count": 107516528, 
+          "upload_time": "2016-12-26 01:53:53", 
+          "is_only": 0, 
+          "is_new": 0
+        }, 
+        {
+          "listen_count": 105828464, 
+          "upload_time": "2015-03-18 11:31:29", 
+          "is_only": 0, 
+          "is_new": 0
+        }, 
+        {
+          "listen_count": 101861673, 
+          "upload_time": "2018-07-23 16:07:58", 
+          "is_only": 0, 
+          "is_new": 0
+        }, 
+        {
+          "listen_count": 101409652, 
+          "upload_time": "2017-10-13 18:28:55", 
+          "is_only": 0, 
+          "is_new": 0
+        }, 
+        {
+          "listen_count": 101114018, 
+          "upload_time": "2018-07-23 16:07:58", 
+          "is_only": 0, 
+          "is_new": 0
+        }, 
+        {
+          "listen_count": 101060683, 
+          "upload_time": "2015-07-27 14:36:50", 
+          "is_only": 0, 
+          "is_new": 0
+        }, 
+        {
+          "listen_count": 101020272, 
+          "upload_time": "2016-09-18 15:17:00", 
+          "is_only": 0, 
+          "is_new": 0
+        }, 
+        {
+          "listen_count": 100778427, 
+          "upload_time": "2015-11-02 12:03:49", 
+          "is_only": 0, 
+          "is_new": 0
+        }
+      ]
+    }, 
+    "code": 0
+  }, 
+  "code": 0, 
+  "ts": 1567485041020
+}

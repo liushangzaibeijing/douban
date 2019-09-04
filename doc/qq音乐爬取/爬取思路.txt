@@ -1,0 +1,137 @@
+一、数据库构建大方向分析
+
+    1、歌手  
+	    id
+		爬取方的唯一标识
+		歌手全名
+		外文名
+		歌手简称（别名 多个） 	
+		国籍（字典表）
+		出生地（字典表）
+		职业（需要需要字典表）
+		组合成员（歌手id 多个以，分隔）
+		歌手性别 （0男 1女 2组合）
+		歌手所在地区
+		歌手流派
+		歌手首字母（便于查询）
+		简介
+		民族
+		经纪公司
+		出道时间
+		歌手图片（大图）
+		
+  详细信息
+        
+		身高
+		体重
+		血型
+		毕业学校
+		星座
+		语言
+		粉丝名称
+		应援色
+		特长
+		主要成就（数据过长单独存储还是 ）
+		从艺历程（关联表）  区分小模块 音乐奖项 电影奖项（也可能没有）
+		荣誉记录（关联表）  节目榜单   获奖详情
+		社会活动 (不详 关联表)   根据年份 
+		
+		个人作品（关联表）
+		代表作品（多个作品id 以，分隔）
+		单曲（计算得出）
+		专辑（计算得出） 
+		MV (计算得出)
+		
+		歌手图片（小图）
+	
+
+
+
+排行榜
+   流行排行榜
+   地区排行榜
+   
+所有的歌手 列表  
+data参数进行了url 编码   
+http://u.y.qq.com/cgi-bin/musicu.fcg?_=1567306761096&g_tk=5381&uin=0&format=json&inCharset=utf-8&outCharset=utf-8&notice=0&platform=wk_v17&needNewCode=1&data=%7B%22comm%22%3A%7B%22cv%22%3A1700%2C%22ct%22%3A20%7D%2C%22singerList%22%3A%7B%22module%22%3A%22Music.SingerListServer%22%2C%22method%22%3A%22get_singer_list%22%2C%22param%22%3A%7B%22area%22%3A-100%2C%22sex%22%3A-100%2C%22index%22%3A-100%2C%22genre%22%3A-100%2C%22cur_page%22%3A1%2C%22sin%22%3A0%7D%7D%7D   
+
+
+http://u.y.qq.com/cgi-bin/musicu.fcg?_=1567306761096&g_tk=5381&uin=0&format=json&inCharset=utf-8&outCharset=utf-8&notice=0&platform=wk_v17&needNewCode=1&data={"comm":{"cv":1700,"ct":20},"singerList":{"module":"Music.SingerListServer","method":"get_singer_list","param":{"area":-100,"sex":-100,"index":-100,"genre":-100,"cur_page":1,"sin":0}}}
+
+url解码后的url地址
+http://u.y.qq.com/cgi-bin/musicu.fcg?_=1567306761096&g_tk=5381&uin=0&format=json&inCharset=utf-8&outCharset=utf-8&notice=0&platform=wk_v17&needNewCode=1&
+data={
+  "comm": {
+    "cv": 1700, 
+    "ct": 20
+  }, 
+  "singerList": {
+    "module": "Music.SingerListServer", 
+    "method": "get_singer_list", 
+    "param": {
+      "area": -100,   #区域   所有区域的字典表（没找到对应的地址） 
+  	      {
+            "id": 200, 
+            "name": "内地"
+          }, 
+          {
+            "id": 2, 
+            "name": "港台"
+          }, 
+          {
+            "id": 5, 
+            "name": "欧美"
+          }, 
+          {
+            "id": 4, 
+            "name": "日本"
+          }, 
+          {
+            "id": 3, 
+            "name": "韩国"
+          }, 
+          {
+            "id": 6, 
+            "name": "其他"
+          }
+      "sex": -100,    # 性别 -100全部  0男 1女 2组合
+      "index": -100,  # 索引  歌手首字母
+      "genre": -100,  #类型  
+      "cur_page": 1, 
+      "sin": 0
+    }
+  }
+}
+
+
+二、歌曲信息
+     歌曲id
+	 歌曲的mid(qq音乐的唯一标识)
+	 歌曲名
+	 歌曲类型
+	 所属专辑
+	 所属歌手
+	 歌曲风格 
+	 发行时间
+	 歌曲属性  mp3 mp4 m4a
+	 歌曲图片
+	 歌曲时长
+	 歌曲描述
+	 歌曲播放数量
+	 歌词（文件路径）
+	 歌曲内容（歌曲存放路径） 暂时不使用用文件存储开源组件
+	 其他业务字段
+	 
+三、专辑信息
+    专辑id
+	专辑的mid(qq音乐的唯一标识)
+	专辑名
+	专辑类型
+	专辑图片
+	发行时间
+	流派
+	唱片公司
+	专辑简介
+	
+	
+	
