@@ -86,6 +86,15 @@ public class HttpUtil {
     public static String doGet(String url) {
         return doGet(url, null,new HashMap<String, Object>());
     }
+
+    /**
+     * 发送 GET 请求（HTTP），不带输入数据
+     * @param url
+     * @return
+     */
+    public static String doGet(String url,Map<String,String> headers) {
+        return doGetByHeader(url, null,headers);
+    }
     /**
      * 发送 GET 请求（HTTP），不带输入数据
      * @param url
@@ -93,6 +102,15 @@ public class HttpUtil {
      */
     public static String doGet(String url,HttpHost proxy) {
         return doGet(url, proxy,new HashMap<String, Object>());
+    }
+
+    /**
+     * 发送 GET 请求（HTTP），不带输入数据
+     * @param url
+     * @return
+     */
+    public static String doGetByHeader(String url,HttpHost proxy,Map<String,String> headers) {
+        return doGet(url, proxy,new HashMap<String, Object>(),headers);
     }
 
     /**
@@ -119,6 +137,56 @@ public class HttpUtil {
         String result = null;
         try {
             HttpGet httpGet = new HttpGet(apiUrl);
+            httpGet.setHeader("User-Agent", Constant.userAgentArray[new Random().nextInt(Constant.userAgentArray.length)]);
+            CloseableHttpClient httpclient = getCloseableHttpClient(proxy);
+
+            HttpResponse response = httpclient.execute(httpGet);
+            int statusCode = response.getStatusLine().getStatusCode();
+
+            System.out.println("url: "+url+" 执行状态码 : " + statusCode);
+            if(statusCode == 403 ||statusCode == 404){
+                return statusCode+"";
+            }
+
+            HttpEntity entity = response.getEntity();
+            if (entity != null) {
+                InputStream instream = entity.getContent();
+                result = IOUtils.toString(instream, "UTF-8");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+
+    /**
+     * 发送 GET 请求（HTTP），K-V形式
+     * @param url
+     * @param params
+     * @return
+     */
+    public static String doGet(String url,HttpHost proxy, Map<String, Object> params,Map<String,String> headers) {
+        String apiUrl = url;
+        StringBuffer param = new StringBuffer();
+        int i = 0;
+        for (String key : params.keySet()) {
+            if (i == 0) {
+                param.append("?");
+            }
+            else {
+                param.append("&");
+            }
+            param.append(key).append("=").append(params.get(key));
+            i++;
+        }
+        apiUrl += param;
+        String result = null;
+        try {
+            HttpGet httpGet = new HttpGet(apiUrl);
+            for(Map.Entry<String,String> header:headers.entrySet()){
+                httpGet.setHeader(header.getKey(),header.getValue());
+            }
             httpGet.setHeader("User-Agent", Constant.userAgentArray[new Random().nextInt(Constant.userAgentArray.length)]);
             CloseableHttpClient httpclient = getCloseableHttpClient(proxy);
 

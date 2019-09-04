@@ -55,7 +55,7 @@ public class CrawlingMovieTest {
     @Test
     public void parseMovie(){
         String url = "https://movie.douban.com/subject/1305069/";
-        String result = HttpUtil.doGet(url,null);
+        String result = HttpUtil.doGet(url);
 
 
         MovieThreadTask task = new MovieThreadTask(null,null,null,null,null,null,null,null,null,null);

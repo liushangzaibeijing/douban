@@ -113,7 +113,7 @@ public class Test {
          // 中国大陆|汉语普通话|36|45分钟|原来你还在这里电视剧版
          //截取 出来的长度 3  4 有集数
         String info = textBuilder.toString();
-         log.info("info {}",info);
+//         log.info("info {}",info);
         String[] array =  info.split("\\|");
         Map<String,String> movieInfo = new HashMap<>();
         if(array.length==4){
@@ -146,7 +146,7 @@ public class Test {
     }
 
     private Movie parseMovie(String url) {
-        String result = HttpUtil.doGet(url,null);
+        String result = HttpUtil.doGet(url);
         Movie movie = null;
         if(!StringUtils.isEmpty(result)){
            Document document = Jsoup.parse(result);
@@ -156,7 +156,7 @@ public class Test {
            Elements elements =  document.select("#info > span");
            for(int i = 0; i<elements.size();i++) {
                String text = elements.get(i).text();
-               log.info(text);
+//               log.info(text);
                if (text.contains("导演")) {
                    movie.setDirector(StringUtils.trimAllWhitespace(text.split(":")[1]));
                }
@@ -262,10 +262,22 @@ public class Test {
      @org.junit.Test
      public void testParse(){
         String url =
-                "https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_singer_desc.fcg?singermid=004Be55m1SJaLk&utf8=1&outCharset=utf-8&format=xml&r=1567573980893";
+                "https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_singer_desc.fcg?singermid=004Be55m1SJaLk&utf8=1&outCharset=utf-8&format=xml&r="+new Date().getTime();
 
-         Long time = 1567573446498L;
-        Date date =  new Date(time);
+         /**
+         Accept-Encoding: gzip, deflate, br
+         Accept-Language: zh-CN,zh;q=0.9
+                 */
+        Map<String,Object> headers = new HashMap<>();
+         headers.put("Host","c.y.qq.com");
+         headers.put("Connection","keep-alive");
+         headers.put("Sec-Fetch-Mode","cors");
+         headers.put("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36");
+         headers.put("Accept","same-origin");
+         headers.put("Referer","https://c.y.qq.com/xhr_proxy_utf8.html");
+         headers.put("Cookie","pgv_pvi=6434184192; RK=A+y0Ekf4c+; ptcz=1298d2ea8ab28c3f1ed5b5072d2d5474aa1ac0292e5148c93d8d3dd74207c8c4; tvfe_boss_uuid=ec09c7142a8a1107; ts_uid=883180610; pgv_pvid=4956931700; pgv_info=ssid=s7000389619; pgv_si=s4030064640; userAction=1; ts_last=y.qq.com/portal/singer_list.html; yqq_stat=0");
+
+
         String result = HttpUtil.doGet(url);
         log.info("请求结果信息：{}",result);
      }
