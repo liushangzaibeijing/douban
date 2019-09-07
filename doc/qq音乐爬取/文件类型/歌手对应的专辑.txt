@@ -1,0 +1,185 @@
+{
+  "singerAlbum": {
+    "data": {
+      "list": [
+        {
+          "albumid": 7254198,
+          "album_mid": "002nTtQV4MpUJm",
+          "album_name": "KILL THIS LOVE -JP Ver.-",
+          "albumtype": "EP单曲",
+          "company": {
+            "companyid": 1432,
+            "company_name": "Universal Music"
+          },
+          "desc": "“ワールドNo.1ガールクラッシュ”!世界のティーンが最も熱狂するが、世界的アーティストを擁するInterscope Recordsから日本上陸!第...",
+          "attribute5": "0",
+          "ftype": "11",
+          "type": 0,
+          "lan": "日语",
+          "latest_song": {
+            "song_count": 5,
+            "songid": 235043424,
+            "track_name": "DDU-DU DDU-DU"
+          },
+          "listen_count": 0,
+          "pub_time": "",
+          "score": "0",
+          "shoufa": 0,
+          "singer_id": 1190986,
+          "singer_mid": "003DBAjk2MMfhR",
+          "singer_name": "BLACKPINK",
+          "singers": [
+            {
+              "singer_id": 1190986,
+              "singer_mid": "003DBAjk2MMfhR",
+              "singer_name": "BLACKPINK"
+            }
+          ]
+        },
+        {
+          "albumid": 7799890,
+          "album_mid": "002PWx4c47jBKo",
+          "album_name": "BLACKPINK 2018 TOUR 'IN YOUR AREA' SEOUL (Live)",
+          "albumtype": "现场专辑",
+          "company": {
+            "companyid": 0,
+            "company_name": ""
+          },
+          "desc": "BLACKPINK在韩国的专场演唱会，进驻首尔奥林匹克竞技场，超强感染力的LIVE音源正式公开！",
+          "attribute5": "0",
+          "ftype": "1",
+          "type": 0,
+          "lan": "韩语",
+          "latest_song": {
+            "song_count": 14,
+            "songid": 237240315,
+            "track_name": "STAY"
+          },
+          "listen_count": 0,
+          "pub_time": "2019-08-30",
+          "score": "0",
+          "shoufa": 0,
+          "singer_id": 1190986,
+          "singer_mid": "003DBAjk2MMfhR",
+          "singer_name": "BLACKPINK",
+          "singers": [
+            {
+              "singer_id": 1190986,
+              "singer_mid": "003DBAjk2MMfhR",
+              "singer_name": "BLACKPINK"
+            }
+          ]
+        },
+        {
+          "albumid": 6576190,
+          "album_mid": "001MSwNx1pfiAF",
+          "album_name": "KILL THIS LOVE",
+          "albumtype": "EP单曲",
+          "company": {
+            "companyid": 1021,
+            "company_name": "YG Entertainment"
+          },
+          "desc": "@ BLACKPINK ABOUT2016年8月8日BLACKPINK推出了单曲《SQUARE ONE》，进行了华丽的出道宣告式。BLACKPINK",
+          "attribute5": "0",
+          "ftype": "11",
+          "type": 0,
+          "lan": "韩语",
+          "latest_song": {
+            "song_count": 5,
+            "songid": 230975179,
+            "track_name": "DDU-DU DDU-DU"
+          },
+          "listen_count": 0,
+          "pub_time": "2019-04-04",
+          "score": "0",
+          "shoufa": 0,
+          "singer_id": 1190986,
+          "singer_mid": "003DBAjk2MMfhR",
+          "singer_name": "BLACKPINK",
+          "singers": [
+            {
+              "singer_id": 1190986,
+              "singer_mid": "003DBAjk2MMfhR",
+              "singer_name": "BLACKPINK"
+            }
+          ]
+        },
+        {
+          "albumid": 6661244,
+          "album_mid": "000RnJqb3YovOP",
+          "album_name": "BLACKPINK IN YOUR AREA TOUR: STUDIO VERSIONS [Japanese Edition]",
+          "albumtype": "录音室专辑",
+          "company": {
+            "companyid": 0,
+            "company_name": ""
+          },
+          "desc": "BLACKPINK IN YOUR AREA TOUR: STUDIO VERSIONS [Japanese Edition]",
+          "attribute5": "0",
+          "ftype": "0",
+          "type": 0,
+          "lan": "日语",
+          "latest_song": {
+            "song_count": 10,
+            "songid": 231632740,
+            "track_name": "As If It's Your Last"
+          },
+          "listen_count": 0,
+          "pub_time": "2019-03-24",
+          "score": "0",
+          "shoufa": 0,
+          "singer_id": 1190986,
+          "singer_mid": "003DBAjk2MMfhR",
+          "singer_name": "BLACKPINK",
+          "singers": [
+            {
+              "singer_id": 1190986,
+              "singer_mid": "003DBAjk2MMfhR",
+              "singer_name": "BLACKPINK"
+            }
+          ]
+        },
+        {
+          "albumid": 6661282,
+          "album_mid": "001OTT6J3uh2iI",
+          "album_name": "BLACKPINK IN YOUR AREA TOUR: STUDIO VERSIONS [Instrumental]",
+          "albumtype": "录音室专辑",
+          "company": {
+            "companyid": 0,
+            "company_name": ""
+          },
+          "desc": "BLACKPINK IN YOUR AREA TOUR: STUDIO VERSIONS [Instrumental]",
+          "attribute5": "0",
+          "ftype": "0",
+          "type": 0,
+          "lan": "纯音乐",
+          "latest_song": {
+            "song_count": 13,
+            "songid": 231633177,
+            "track_name": "WHISTLE"
+          },
+          "listen_count": 0,
+          "pub_time": "2019-03-23",
+          "score": "0",
+          "shoufa": 0,
+          "singer_id": 1190986,
+          "singer_mid": "003DBAjk2MMfhR",
+          "singer_name": "BLACKPINK",
+          "singers": [
+            {
+              "singer_id": 1190986,
+              "singer_mid": "003DBAjk2MMfhR",
+              "singer_name": "BLACKPINK"
+            }
+          ]
+        }
+      ],
+      "singer_id": 1190986,
+      "singer_mid": "003DBAjk2MMfhR",
+      "singer_name": "BLACKPINK",
+      "total": 16
+    },
+    "code": 0
+  },
+  "code": 0,
+  "ts": 1567660287179
+}

@@ -2,11 +2,13 @@
   * Copyright 2019 bejson.com 
   */
 package com.xiu.crawling.douban.bean.dto;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.List;
 import java.util.Date;
 
 /**
- * Auto-generated: 2019-09-03 12:53:16
+ * Auto-generated: 2019-09-07 14:46:10
  *
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
@@ -28,6 +30,7 @@ public class Songlist {
     private int genre;
     private int index_cd;
     private int index_album;
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date time_public;
     private int status;
     private int fnote;

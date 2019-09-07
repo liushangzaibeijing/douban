@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xiu.crawling.douban.mapper.MusicTagMapper" >
+<mapper namespace="com.xiu.crawling.douban.mapper.SingerOtherMapper" >
 
-    <resultMap id="BaseResultMap" type="com.xiu.crawling.douban.bean.MusicTag" >
+    <resultMap id="BaseResultMap" type="com.xiu.crawling.douban.bean.SingerOther" >
         <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="singer_id" property="singerId" jdbcType="INTEGER" />
         <result column="type" property="type" jdbcType="VARCHAR" />
-        <result column="name" property="name" jdbcType="VARCHAR" />
-        <result column="parent_id" property="parent_id" jdbcType="INTEGER" />
+        <result column="value" property="value" jdbcType="LONGVARCHAR" />
     </resultMap>
 
     <sql id="Example_Where_Clause" >
@@ -70,17 +70,17 @@
     </sql>
 
     <sql id="Base_Column_List" >
-        id, type, name, parent_id
+        id, singer_id, type, value
     </sql>
 
-    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xiu.crawling.douban.bean.MusicTagExample" >
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xiu.crawling.douban.bean.SingerOtherExample" >
         select
         <if test="distinct" >
             distinct
         </if>
         'true' as QUERYID,
         <include refid="Base_Column_List" />
-        from music_tag
+        from singer_other
         <if test="_parameter != null" >
             <include refid="Example_Where_Clause" />
         </if>
@@ -92,82 +92,82 @@
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select 
         <include refid="Base_Column_List" />
-        from music_tag
+        from singer_other
         where id = #{id,jdbcType=INTEGER}
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-        delete from music_tag
+        delete from singer_other
         where id = #{id,jdbcType=INTEGER}
     </delete>
 
-    <delete id="deleteByExample" parameterType="com.xiu.crawling.douban.bean.MusicTagExample" >
-        delete from music_tag
+    <delete id="deleteByExample" parameterType="com.xiu.crawling.douban.bean.SingerOtherExample" >
+        delete from singer_other
         <if test="_parameter != null" >
             <include refid="Example_Where_Clause" />
         </if>
     </delete>
 
-    <insert id="insert" parameterType="com.xiu.crawling.douban.bean.MusicTag" >
+    <insert id="insert" parameterType="com.xiu.crawling.douban.bean.SingerOther" >
         <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into music_tag (type, name, parent_id
+        insert into singer_other (singer_id, type, value
             )
-        values (#{type,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{parent_id,jdbcType=INTEGER}
+        values (#{singerId,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{value,jdbcType=LONGVARCHAR}
             )
     </insert>
 
-    <insert id="insertSelective" parameterType="com.xiu.crawling.douban.bean.MusicTag" >
+    <insert id="insertSelective" parameterType="com.xiu.crawling.douban.bean.SingerOther" >
         <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into music_tag
+        insert into singer_other
         <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="singerId != null" >
+                singer_id,
+            </if>
             <if test="type != null" >
                 type,
             </if>
-            <if test="name != null" >
-                name,
-            </if>
-            <if test="parent_id != null" >
-                parent_id,
+            <if test="value != null" >
+                value,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="singerId != null" >
+                #{singerId,jdbcType=INTEGER},
+            </if>
             <if test="type != null" >
                 #{type,jdbcType=VARCHAR},
             </if>
-            <if test="name != null" >
-                #{name,jdbcType=VARCHAR},
-            </if>
-            <if test="parent_id != null" >
-                #{parent_id,jdbcType=INTEGER},
+            <if test="value != null" >
+                #{value,jdbcType=LONGVARCHAR},
             </if>
         </trim>
     </insert>
 
-    <select id="countByExample" parameterType="com.xiu.crawling.douban.bean.MusicTagExample" resultType="java.lang.Integer" >
-        select count(*) from music_tag
+    <select id="countByExample" parameterType="com.xiu.crawling.douban.bean.SingerOtherExample" resultType="java.lang.Integer" >
+        select count(*) from singer_other
         <if test="_parameter != null" >
             <include refid="Example_Where_Clause" />
         </if>
     </select>
 
     <update id="updateByExampleSelective" parameterType="map" >
-        update music_tag
+        update singer_other
         <set >
             <if test="record.id != null" >
                 id = #{record.id,jdbcType=INTEGER},
             </if>
+            <if test="record.singerId != null" >
+                singer_id = #{record.singerId,jdbcType=INTEGER},
+            </if>
             <if test="record.type != null" >
                 type = #{record.type,jdbcType=VARCHAR},
             </if>
-            <if test="record.name != null" >
-                name = #{record.name,jdbcType=VARCHAR},
-            </if>
-            <if test="record.parent_id != null" >
-                parent_id = #{record.parent_id,jdbcType=INTEGER},
+            <if test="record.value != null" >
+                value = #{record.value,jdbcType=LONGVARCHAR},
             </if>
         </set>
         <if test="_parameter != null" >
@@ -176,37 +176,37 @@
     </update>
 
     <update id="updateByExample" parameterType="map" >
-        update music_tag
+        update singer_other
         set id = #{record.id,jdbcType=INTEGER},
+            singer_id = #{record.singerId,jdbcType=INTEGER},
             type = #{record.type,jdbcType=VARCHAR},
-            name = #{record.name,jdbcType=VARCHAR},
-            parent_id = #{record.parent_id,jdbcType=INTEGER}
+            value = #{record.value,jdbcType=LONGVARCHAR}
         <if test="_parameter != null" >
             <include refid="Update_By_Example_Where_Clause" />
         </if>
     </update>
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.xiu.crawling.douban.bean.MusicTag" >
-        update music_tag
+    <update id="updateByPrimaryKeySelective" parameterType="com.xiu.crawling.douban.bean.SingerOther" >
+        update singer_other
         <set >
+            <if test="singerId != null" >
+                singer_id = #{singerId,jdbcType=INTEGER},
+            </if>
             <if test="type != null" >
                 type = #{type,jdbcType=VARCHAR},
             </if>
-            <if test="name != null" >
-                name = #{name,jdbcType=VARCHAR},
-            </if>
-            <if test="parent_id != null" >
-                parent_id = #{parent_id,jdbcType=INTEGER},
+            <if test="value != null" >
+                value = #{value,jdbcType=LONGVARCHAR},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="com.xiu.crawling.douban.bean.MusicTag" >
-        update music_tag
-        set type = #{type,jdbcType=VARCHAR},
-            name = #{name,jdbcType=VARCHAR},
-            parent_id = #{parent_id,jdbcType=INTEGER}
+    <update id="updateByPrimaryKey" parameterType="com.xiu.crawling.douban.bean.SingerOther" >
+        update singer_other
+        set singer_id = #{singerId,jdbcType=INTEGER},
+            type = #{type,jdbcType=VARCHAR},
+            value = #{value,jdbcType=LONGVARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
 </mapper>

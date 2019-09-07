@@ -3,14 +3,18 @@
   */
 package com.xiu.crawling.douban.bean.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 /**
- * Auto-generated: 2019-09-03 12:53:16
+ * Auto-generated: 2019-09-07 14:46:10
  *
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
  */
 public class Action {
 
+    @JsonProperty("switch")
     private long switch_id;
     private int msgid;
     private int alert;

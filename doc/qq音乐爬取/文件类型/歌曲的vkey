@@ -1,0 +1,89 @@
+{
+  "req": {
+    "data": {
+      "expiration": 86400,
+      "freeflowsip": [
+        "http://220.112.25.15/amobile.music.tc.qq.com/",
+        "http://220.112.25.16/amobile.music.tc.qq.com/",
+        "http://220.112.25.17/amobile.music.tc.qq.com/"
+      ],
+      "keepalivefile": "C400004TsFuW2mZbRR.m4a?guid=7254122593&vkey=A1214F0A457702280DA4E802AF43568DC21526FE7E9F47659458724EE6C6C52AB742EF4FD0FB107DF893A319E2C7297E27C33ED7C28C1C33&uin=3710&fromtag=3",
+      "msg": "ok",
+      "retcode": 0,
+      "servercheck": "155c57056732bb59fac69cacde77b049",
+      "sip": [
+        "http://220.112.25.15/amobile.music.tc.qq.com/",
+        "http://220.112.25.16/amobile.music.tc.qq.com/",
+        "http://isure.stream.qqmusic.qq.com/",
+        "http://220.112.25.17/amobile.music.tc.qq.com/",
+        "http://ws.stream.qqmusic.qq.com/"
+      ],
+      "testfile2g": "C400003mAan70zUy5O.m4a?guid=7254122593&vkey=D3D6476EF82BA6FD93923A0E531A6EC161F55E4FFB3BF84E1267FD60589306D6AECA3828230BE9113CAABDF5B326AF7F2303BD306A0CD1CB&uin=3710&fromtag=3",
+      "testfilewifi": "C400003mAan70zUy5O.m4a?guid=7254122593&vkey=D3D6476EF82BA6FD93923A0E531A6EC161F55E4FFB3BF84E1267FD60589306D6AECA3828230BE9113CAABDF5B326AF7F2303BD306A0CD1CB&uin=3710&fromtag=3",
+      "uin": "",
+      "userip": "124.193.223.82",
+      "vkey": "77BD27AAC4916AA2453EDA3987E99248AF3FC612A781AAF9350B02B8570FBD6F5F62587199FDFA3C7353A1E5EB551D2EA19E27805FF5841E"
+    },
+    "code": 0
+  },
+  "req_0": {
+    "data": {
+      "expiration": 80400,
+      "login_key": "",
+      "midurlinfo": [
+        {
+          "common_downfromtag": 0,
+          "errtype": "",
+          "filename": "C400001L1mv24ORYiL.m4a",
+          "flowfromtag": "",
+          "flowurl": "",
+          "hisbuy": 0,
+          "hisdown": 0,
+          "isbuy": 0,
+          "isonly": 0,
+          "onecan": 0,
+          "opi128kurl": "",
+          "opi192koggurl": "",
+          "opi192kurl": "",
+          "opi30surl": "",
+          "opi48kurl": "",
+          "opi96kurl": "",
+          "opiflackurl": "",
+          "p2pfromtag": 0,
+          "pdl": 0,
+          "pneed": 0,
+          "pneedbuy": 0,
+          "premain": 0,
+          "purl": "C400001L1mv24ORYiL.m4a?guid=7254122593&vkey=5C5F52389AD940693D66365725675BFE986BDF3EB3A6706A38A0A80CF6BA0D6851466DC52389845E4D2455869C8832BE55ECB7D61C17FBEB&uin=3710&fromtag=66",
+          "qmdlfromtag": 0,
+          "result": 0,
+          "songmid": "000P8peU0HhORi",
+          "tips": "",
+          "uiAlert": 0,
+          "vip_downfromtag": 0,
+          "vkey": "5C5F52389AD940693D66365725675BFE986BDF3EB3A6706A38A0A80CF6BA0D6851466DC52389845E4D2455869C8832BE55ECB7D61C17FBEB",
+          "wififromtag": "",
+          "wifiurl": ""
+        }
+      ],
+      "msg": "124.193.223.82",
+      "retcode": 0,
+      "servercheck": "c47f75c07c78e7e218d8a926578b29f6",
+      "sip": [
+        "http://ws.stream.qqmusic.qq.com/",
+        "http://isure.stream.qqmusic.qq.com/"
+      ],
+      "testfile2g": "C400003mAan70zUy5O.m4a?guid=7254122593&vkey=33D9737BB82D1605D5201B46279C3E8E6E6E40C4CC996AA159813826834A361981257A056A346BBC827BC444FF3415B5F8A2F217F479DD53&uin=&fromtag=3",
+      "testfilewifi": "C400003mAan70zUy5O.m4a?guid=7254122593&vkey=33D9737BB82D1605D5201B46279C3E8E6E6E40C4CC996AA159813826834A361981257A056A346BBC827BC444FF3415B5F8A2F217F479DD53&uin=&fromtag=3",
+      "thirdip": [
+        "",
+        ""
+      ],
+      "uin": "",
+      "verify_type": 0
+    },
+    "code": 0
+  },
+  "code": 0,
+  "ts": 1567844533573
+}

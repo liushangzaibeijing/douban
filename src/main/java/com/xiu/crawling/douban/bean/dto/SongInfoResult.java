@@ -5,50 +5,22 @@ package com.xiu.crawling.douban.bean.dto;
 import java.util.List;
 
 /**
- * Auto-generated: 2019-09-03 12:53:16
+ * Auto-generated: 2019-09-07 14:46:10
  *
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
  */
-public class Data {
+public class SongInfoResult {
 
-    /**
-     * 歌曲列表
-     */
     private List<Songlist> songlist;
-    /**
-     * 歌手信息
-     */
     private Singer_info singer_info;
-    /**
-     * 歌手简介
-     */
     private String singer_brief;
     private List<String> music_grp;
-    /**
-     * 所有专辑数
-     */
-
     private int total_album;
-    /**
-     * 所有mv
-     */
     private int total_mv;
-    /**
-     * 总歌曲数
-     */
     private int total_song;
-    /**
-     * 音乐人
-     */
     private String yinyueren;
-    /**
-     * 是否显示歌手描述
-     */
     private boolean show_singer_desc;
-    /**
-     * 每一个歌曲的播放量信息
-     */
     private List<Extras> extras;
     public void setSonglist(List<Songlist> songlist) {
          this.songlist = songlist;

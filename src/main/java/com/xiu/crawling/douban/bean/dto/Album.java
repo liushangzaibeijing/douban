@@ -2,10 +2,13 @@
   * Copyright 2019 bejson.com 
   */
 package com.xiu.crawling.douban.bean.dto;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
- * Auto-generated: 2019-09-03 12:53:16
+ * Auto-generated: 2019-09-07 14:46:10
  *
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
@@ -17,6 +20,7 @@ public class Album {
     private String name;
     private String title;
     private String subtitle;
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date time_public;
     public void setId(long id) {
          this.id = id;

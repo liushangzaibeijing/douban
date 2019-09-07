@@ -11,7 +11,7 @@
    https://u.y.qq.com/cgi-bin/musicu.fcg
       ?-=getUCGI8991517745080486 （每次请求都是变化的，目前没有找到其中的规律 暂时按照固定进行处理 个人猜测属于qq音乐的分布式 UGI）
 	  &g_tk=1370299737  不变
-	  &loginUin=1169704579  不变
+	  &loginUin=1169704579  不变 邮箱
 	  &hostUin=0   不变
 	  &format=json  不变
 	  &inCharset=utf8  不变
@@ -83,11 +83,27 @@
 	   }
 	   ,"module":"music.web_singer_info_svr"}}
 	   
-	   
-4、歌曲信息	   
-    
+4、专辑信息
 
-   
+  https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI09001568352560829&g_tk=5381&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data={"comm":{"ct":24,"cv":0},"singerAlbum":{"method":"get_singer_album","param":{"singermid":"002vALgR3hRRlv","order":"time","begin":0,"num":5,"exstatus":1},"module":"music.web_singer_info_svr"}}
+
+  https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI09001568352560829&g_tk=5381&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&
+   data={"comm":{"ct":24,"cv":0},"singerAlbum":{"method":"get_singer_album",
+     "param":{"singermid":"002vALgR3hRRlv","order":"time","begin":0,"num":5,"exstatus":1},
+     "module":"music.web_singer_info_svr"}}
+
+
+  专辑图片
+  https://y.gtimg.cn/music/photo_new/T002R300x300M000003nZZyK1DrX6X_1.jpg?max_age=2592000
+  https://y.gtimg.cn/music/photo_new/T002R300x300M0000009gK652Fq2OD_1.jpg?max_age=2592000
+  https://y.gtimg.cn/music/photo_new/T002R300x300M000+alumId+_1.jpg?max_age=2592000
+
+5、歌曲信息
+
+    https://u.y.qq.com/cgi-bin/musicu.fcg?-=getplaysongvkey509352456976849&g_tk=5381&loginUin=1374523006&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data=%7B%22req%22%3A%7B%22module%22%3A%22CDN.SrfCdnDispatchServer%22%2C%22method%22%3A%22GetCdnDispatch%22%2C%22param%22%3A%7B%22guid%22%3A%227254122593%22%2C%22calltype%22%3A0%2C%22userip%22%3A%22%22%7D%7D%2C%22req_0%22%3A%7B%22module%22%3A%22vkey.GetVkeyServer%22%2C%22method%22%3A%22CgiGetVkey%22%2C%22param%22%3A%7B%22guid%22%3A%227254122593%22%2C%22songmid%22%3A%5B%22000P8peU0HhORi%22%5D%2C%22songtype%22%3A%5B0%5D%2C%22uin%22%3A%221374523006%22%2C%22loginflag%22%3A1%2C%22platform%22%3A%2220%22%7D%7D%2C%22comm%22%3A%7B%22uin%22%3A%221374523006%22%2C%22format%22%3A%22json%22%2C%22ct%22%3A24%2C%22cv%22%3A0%7D%7D
+
+    //获取歌曲的key
+
     https://u.y.qq.com/cgi-bin/musicu.fcg?-=getplaysongvkey46824830924874816&g_tk=5381&loginUin=1374523006&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data={"req":{"module":"CDN.SrfCdnDispatchServer","method":"GetCdnDispatch","param":{"guid":"3194677648","calltype":0,"userip":""}},"req_0":{"module":"vkey.GetVkeyServer","method":"CgiGetVkey","param":{"guid":"3194677648","songmid":["0041EAWY2D9o9j"],"songtype":[0],"uin":"1374523006","loginflag":1,"platform":"20"}},"comm":{"uin":"1374523006","format":"json","ct":24,"cv":0}}
  
    
@@ -117,5 +133,25 @@
 	 &uin=1667
 	 &fromtag=3
 	 &r=8531483368012223
-   
-   
+
+
+   http://ws.stream.qqmusic.qq.com/C400003mAan70zUy5O.m4a?guid=7254122593&vkey=1D7C9C58C716BD7BADFF374CF25F56376E6F3961FE0D1D68DE72085EC9A42D06C7A7E3125194048A5783A80D5CF488FA396C0FD17BE550A9&uin=3710&fromtag=3&r=914183528691833
+
+
+
+
+   http://dl.stream.qqmusic.qq.com/C400003mAan70zUy5O.m4a?guid=7254122593&vkey=F13CE70E4194287F1D89B6D86510F98F090D694F20F98BFB3F03E5BE373980F1E3549F48D5CFD712CA9F17D468A0E9F974E56AB5842B8A25&uin=3710&fromtag=3&r=914183528691833
+
+
+
+   http://dl.stream.qqmusic.qq.com/C400003mAan70zUy5O.m4a?guid=9545253443&vkey=1D7C9C58C716BD7BADFF374CF25F56376E6F3961FE0D1D68DE72085EC9A42D06C7A7E3125194048A5783A80D5CF488FA396C0FD17BE550A98C&uin=0&fromtag=66
+
+
+
+
+   http://.stream.qqmusic.qq.com/C400003mAan70zUy5O.m4a?guid=7254122593&vkey=D3D6476EF82BA6FD93923A0E531A6EC161F55E4FFB3BF84E1267FD60589306D6AECA3828230BE9113CAABDF5B326AF7F2303BD306A0CD1CB&uin=3710&fromtag=3&r=0006921384872122793isure
+
+   http://ws.stream.qqmusic.qq.com/C400003mAan70zUy5O.m4a?guid=7254122593&vkey=D3D6476EF82BA6FD93923A0E531A6EC161F55E4FFB3BF84E1267FD60589306D6AECA3828230BE9113CAABDF5B326AF7F2303BD306A0CD1CB&uin=3710&fromtag=3&r=4180528580588103
+
+
+   http://isure.stream.qqmusic.qq.com/C400001L1mv24ORYiL.m4a?guid=7254122593&vkey=5C5F52389AD940693D66365725675BFE986BDF3EB3A6706A38A0A80CF6BA0D6851466DC52389845E4D2455869C8832BE55ECB7D61C17FBEB&uin=3710&fromtag=66

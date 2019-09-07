@@ -2,10 +2,13 @@
   * Copyright 2019 bejson.com 
   */
 package com.xiu.crawling.douban.bean.dto;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
- * Auto-generated: 2019-09-03 12:53:16
+ * Auto-generated: 2019-09-07 14:46:10
  *
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
@@ -13,6 +16,7 @@ import java.util.Date;
 public class Extras {
 
     private long listen_count;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date upload_time;
     private int is_only;
     private int is_new;

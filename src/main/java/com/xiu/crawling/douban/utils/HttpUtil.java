@@ -23,13 +23,17 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.impl.cookie.BasicClientCookie;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.apache.xpath.operations.Bool;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLException;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocket;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.security.GeneralSecurityException;
 import java.security.cert.CertificateException;
@@ -92,7 +96,7 @@ public class HttpUtil {
      * @param url
      * @return
      */
-    public static String doGet(String url,Map<String,String> headers) {
+    public static String doGetByHeader(String url,Map<String,String> headers) {
         return doGetByHeader(url, null,headers);
     }
     /**
@@ -161,6 +165,72 @@ public class HttpUtil {
 
 
     /**
+     * 执行下载操作
+     * @param url
+     * @param proxy
+     * @param savePath
+     * @return
+     */
+    public static Boolean doDown(String url, HttpHost proxy, String savePath, String name) {
+        double rtnNumber = 0.0;
+        File file = null;
+        try {
+            HttpGet httpGet = new HttpGet(url);
+            httpGet.setHeader("User-Agent", Constant.userAgentArray[new Random().nextInt(Constant.userAgentArray.length)]);
+            CloseableHttpClient httpclient = getCloseableHttpClient(proxy);
+
+            HttpResponse response = httpclient.execute(httpGet);
+            int statusCode = response.getStatusLine().getStatusCode();
+
+            System.out.println("url: "+url+" 执行状态码 : " + statusCode);
+
+
+            HttpEntity entity = response.getEntity();
+            if (entity == null) {
+                System.out.println("下载失败");
+            }
+            if(statusCode == 403 ||statusCode == 404 || statusCode == 503){
+                System.out.println("拒绝访问");
+                InputStream instream = entity.getContent();
+                String result = IOUtils.toString(instream, "UTF-8");
+                System.out.println("拒绝信息:"+result);
+                return false;
+            }
+            BufferedInputStream bis = new BufferedInputStream(entity.getContent());
+            Long fileLength = entity.getContentLength();
+            file = new File(savePath);
+            if (!file.getParentFile().exists()) {
+                file.mkdirs();
+            }
+            File downFile = new File(file, name+".m4a");
+            OutputStream os = new FileOutputStream(downFile);
+            int size = 0;
+            int len = 0;
+            byte[] buf = new byte[1024];
+            while ((size = bis.read(buf)) != -1) {
+                len += size;
+                os.write(buf, 0, size);
+                // 下载百分比
+                // rtnNumber= len * 100 / fileLength*1.0;
+                System.out.println(name+" 下载了-------> " + len * 100 / fileLength +
+                        "%\n");
+            }
+            System.out.println(bis.read(buf));
+            bis.close();
+            os.close();
+        } catch (MalformedURLException e) {
+
+            e.printStackTrace();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        } finally {
+        }
+        return true;
+    }
+
+
+    /**
      * 发送 GET 请求（HTTP），K-V形式
      * @param url
      * @param params
@@ -184,10 +254,11 @@ public class HttpUtil {
         String result = null;
         try {
             HttpGet httpGet = new HttpGet(apiUrl);
+
+            httpGet.setHeader("User-Agent", Constant.userAgentArray[new Random().nextInt(Constant.userAgentArray.length)]);
             for(Map.Entry<String,String> header:headers.entrySet()){
                 httpGet.setHeader(header.getKey(),header.getValue());
             }
-            httpGet.setHeader("User-Agent", Constant.userAgentArray[new Random().nextInt(Constant.userAgentArray.length)]);
             CloseableHttpClient httpclient = getCloseableHttpClient(proxy);
 
             HttpResponse response = httpclient.execute(httpGet);

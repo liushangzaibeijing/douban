@@ -1,9 +1,8 @@
 package com.xiu.crawling.douban;
 
 import com.xiu.crawling.douban.bean.Movie;
-import com.xiu.crawling.douban.bean.dto.Data;
 import com.xiu.crawling.douban.core.BookThreadTask;
-import com.xiu.crawling.douban.proxypool.domain.Page;
+import com.xiu.crawling.douban.utils.ChineseIndex;
 import com.xiu.crawling.douban.utils.HttpUtil;
 import com.xiu.crawling.douban.utils.JsonUtil;
 import com.xiu.crawling.douban.utils.RandCookie;
@@ -252,37 +251,42 @@ public class Test {
 
      @org.junit.Test
     public void testUrlDecoder() throws UnsupportedEncodingException {
-        String urldecoder = "https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI08264852810353918&g_tk=5381&loginUin=1374523006&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data=%7B%22comm%22%3A%7B%22ct%22%3A24%2C%22cv%22%3A0%7D%2C%22singer%22%3A%7B%22method%22%3A%22get_singer_detail_info%22%2C%22param%22%3A%7B%22sort%22%3A5%2C%22singermid%22%3A%22001fNHEf1SFEFN%22%2C%22sin%22%3A0%2C%22num%22%3A10%7D%2C%22module%22%3A%22music.web_singer_info_svr%22%7D%7D";
+        String urldecoder = "https://u.y.qq.com/cgi-bin/musicu.fcg?-=getplaysongvkey00013837631528097&g_tk=5381&loginUin=1374523006&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data=%7B%22req%22%3A%7B%22module%22%3A%22CDN.SrfCdnDispatchServer%22%2C%22method%22%3A%22GetCdnDispatch%22%2C%22param%22%3A%7B%22guid%22%3A%227254122593%22%2C%22calltype%22%3A0%2C%22userip%22%3A%22%22%7D%7D%2C%22req_0%22%3A%7B%22module%22%3A%22vkey.GetVkeyServer%22%2C%22method%22%3A%22CgiGetVkey%22%2C%22param%22%3A%7B%22guid%22%3A%227254122593%22%2C%22songmid%22%3A%5B%22003clL2S0lVVSF%22%5D%2C%22songtype%22%3A%5B0%5D%2C%22uin%22%3A%221374523006%22%2C%22loginflag%22%3A1%2C%22platform%22%3A%2220%22%7D%7D%2C%22comm%22%3A%7B%22uin%22%3A%221374523006%22%2C%22format%22%3A%22json%22%2C%22ct%22%3A24%2C%22cv%22%3A0%7D%7D;";
         String url = URLDecoder.decode(urldecoder, "UTF-8");
         log.info("查询url:{}",url);
 
+         String index = ChineseIndex.getFirstLetter("李荣浩");
+         log.info("歌手首字母:{}",index.toUpperCase());
      }
 
 
      @org.junit.Test
-     public void testParse(){
-        String url =
-                "https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_singer_desc.fcg?singermid=004Be55m1SJaLk&utf8=1&outCharset=utf-8&format=xml&r="+new Date().getTime();
+     public void testParse() {
 
-         /**
-         Accept-Encoding: gzip, deflate, br
-         Accept-Language: zh-CN,zh;q=0.9
-                 */
-        Map<String,Object> headers = new HashMap<>();
-         headers.put("Host","c.y.qq.com");
-         headers.put("Connection","keep-alive");
-         headers.put("Sec-Fetch-Mode","cors");
-         headers.put("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36");
-         headers.put("Accept","same-origin");
-         headers.put("Referer","https://c.y.qq.com/xhr_proxy_utf8.html");
-         headers.put("Cookie","pgv_pvi=6434184192; RK=A+y0Ekf4c+; ptcz=1298d2ea8ab28c3f1ed5b5072d2d5474aa1ac0292e5148c93d8d3dd74207c8c4; tvfe_boss_uuid=ec09c7142a8a1107; ts_uid=883180610; pgv_pvid=4956931700; pgv_info=ssid=s7000389619; pgv_si=s4030064640; userAction=1; ts_last=y.qq.com/portal/singer_list.html; yqq_stat=0");
+         String[] singerList = {"001fNHEf1SFEFN", "0025NhlN2yWrP4", "001JDzPT3JdvqK", "002J4UUk29y8BY", "004V53Ga0bV65j"};
+         for (String id : singerList) {
+             String url =
+                     "https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_singer_desc.fcg?singermid=" + id + "&utf8=1&outCharset=utf-8&format=xml&&r=" + new Date().getTime();
 
 
-        String result = HttpUtil.doGet(url);
-        log.info("请求结果信息：{}",result);
+             /**
+              Accept-Encoding: gzip, deflate, br
+              Accept-Language: zh-CN,zh;q=0.9
+              */
+             Map<String, String> headers = new HashMap<>();
+             //         headers.put("Host","c.y.qq.com");
+             //         headers.put("Connection","keep-alive");
+             //         headers.put("Sec-Fetch-Mode","cors");
+             //         headers.put("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36");
+             //         headers.put("Accept","same-origin");
+             headers.put("Referer", "https://c.y.qq.com/xhr_proxy_utf8.html");
+             //         headers.put("Cookie","pgv_pvi=6434184192; RK=A+y0Ekf4c+; ptcz=1298d2ea8ab28c3f1ed5b5072d2d5474aa1ac0292e5148c93d8d3dd74207c8c4; tvfe_boss_uuid=ec09c7142a8a1107; ts_uid=883180610; pgv_pvid=4956931700; pgv_info=ssid=s7000389619; pgv_si=s4030064640; userAction=1; ts_last=y.qq.com/portal/singer_list.html; yqq_stat=0");
+
+
+             String result = HttpUtil.doGetByHeader(url, headers);
+             log.info("歌手id 请求结果信息：{}", result);
+         }
+
+
      }
-
-
-
-
 }
