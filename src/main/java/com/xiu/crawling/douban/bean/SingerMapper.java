@@ -1,7 +1,5 @@
-package com.xiu.crawling.douban.mapper;
+package com.xiu.crawling.douban.bean;
 
-import com.xiu.crawling.douban.bean.Singer;
-import com.xiu.crawling.douban.bean.SingerExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

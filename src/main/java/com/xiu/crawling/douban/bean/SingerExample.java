@@ -63,13 +63,6 @@ public class SingerExample {
         distinct = false;
     }
 
-    /**
-     * 
-     * 
-     * @author wcyong
-     * 
-     * @date 2019-09-06
-     */
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
 
@@ -1058,76 +1051,6 @@ public class SingerExample {
 
         public Criteria andFirstLetterNotBetween(String value1, String value2) {
             addCriterion("first_letter not between", value1, value2, "firstLetter");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescptionIsNull() {
-            addCriterion("descption is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescptionIsNotNull() {
-            addCriterion("descption is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescptionEqualTo(String value) {
-            addCriterion("descption =", value, "descption");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescptionNotEqualTo(String value) {
-            addCriterion("descption <>", value, "descption");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescptionGreaterThan(String value) {
-            addCriterion("descption >", value, "descption");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescptionGreaterThanOrEqualTo(String value) {
-            addCriterion("descption >=", value, "descption");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescptionLessThan(String value) {
-            addCriterion("descption <", value, "descption");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescptionLessThanOrEqualTo(String value) {
-            addCriterion("descption <=", value, "descption");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescptionLike(String value) {
-            addCriterion("descption like", value, "descption");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescptionNotLike(String value) {
-            addCriterion("descption not like", value, "descption");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescptionIn(List<String> values) {
-            addCriterion("descption in", values, "descption");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescptionNotIn(List<String> values) {
-            addCriterion("descption not in", values, "descption");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescptionBetween(String value1, String value2) {
-            addCriterion("descption between", value1, value2, "descption");
-            return (Criteria) this;
-        }
-
-        public Criteria andDescptionNotBetween(String value1, String value2) {
-            addCriterion("descption not between", value1, value2, "descption");
             return (Criteria) this;
         }
 
@@ -2250,6 +2173,66 @@ public class SingerExample {
             addCriterion("hobby not between", value1, value2, "hobby");
             return (Criteria) this;
         }
+
+        public Criteria andIsoverIsNull() {
+            addCriterion("isOver is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsoverIsNotNull() {
+            addCriterion("isOver is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsoverEqualTo(Integer value) {
+            addCriterion("isOver =", value, "isover");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsoverNotEqualTo(Integer value) {
+            addCriterion("isOver <>", value, "isover");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsoverGreaterThan(Integer value) {
+            addCriterion("isOver >", value, "isover");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsoverGreaterThanOrEqualTo(Integer value) {
+            addCriterion("isOver >=", value, "isover");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsoverLessThan(Integer value) {
+            addCriterion("isOver <", value, "isover");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsoverLessThanOrEqualTo(Integer value) {
+            addCriterion("isOver <=", value, "isover");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsoverIn(List<Integer> values) {
+            addCriterion("isOver in", values, "isover");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsoverNotIn(List<Integer> values) {
+            addCriterion("isOver not in", values, "isover");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsoverBetween(Integer value1, Integer value2) {
+            addCriterion("isOver between", value1, value2, "isover");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsoverNotBetween(Integer value1, Integer value2) {
+            addCriterion("isOver not between", value1, value2, "isover");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
@@ -2259,13 +2242,6 @@ public class SingerExample {
         }
     }
 
-    /**
-     * 
-     * 
-     * @author wcyong
-     * 
-     * @date 2019-09-06
-     */
     public static class Criterion {
         private String condition;
 

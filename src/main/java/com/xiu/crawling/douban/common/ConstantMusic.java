@@ -14,6 +14,11 @@ public class ConstantMusic {
     private static Integer signerSize = 80;
 
     /**
+     * 歌曲 列表的每页数量
+     */
+    public static Integer songpageSize = 10;
+
+    /**
      * 歌手列表标签
      */
     public final static String MUSIC_SIGNER_LIST ="https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI8991517745080486&g_tk=1370299737&loginUin=1169704579&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&";
@@ -63,7 +68,7 @@ public class ConstantMusic {
      * @return
      */
     public static String getMusicSongListDetailUrl(String singerMid,Integer currentPage){
-        Integer pageSize = 10;
+
         String data = "&data=%7B%22comm%22%3A%7B%22ct%22%3A24%2C%22cv%22%3A0%7D%2C%22singer%22%3A%7B%22method%22%3A%22get_singer_detail_info%22%2C%22param%22%3A%7B%22sort%22%3A5%2C%22singermid%22%3A%22"+singerMid+"%22%2C%22sin%22%3A"+(currentPage-1)+"%2C%22num%22%3A"+pageSize+"%7D%2C%22module%22%3A%22music.web_singer_info_svr%22%7D%7D";
         return MUSIC_SONG_LIST+data;
     }

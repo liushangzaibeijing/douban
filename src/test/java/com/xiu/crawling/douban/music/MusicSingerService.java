@@ -66,10 +66,8 @@ public class MusicSingerService {
             String signerMid = singerJson.getString("singer_mid");
             //singer_pic 歌手图片
             String singerPic = singerJson.getString("singer_pic");
-
             //获取歌手信息
             String detailUrl = ConstantMusic.getMusicSignerDetailUrl(signerMid);
-
             Map<String, String> headers = new HashMap<>();
             headers.put("Referer", "https://c.y.qq.com/xhr_proxy_utf8.html");
             String signerDetailXml = HttpUtil.doGetByHeader(detailUrl,headers);
@@ -123,7 +121,7 @@ public class MusicSingerService {
                     singer.setFirstLetter(ChineseIndex.getFirstLetter(key));
                 }
 
-                if (initSingerOther(singer.getId(), key, value)){
+                if (initSingerOther(singer.getSignerId(), key, value)){
                     log.info("歌手信息对应的key:{} 解析完成",key);
                     continue;
                 }
@@ -167,7 +165,6 @@ public class MusicSingerService {
             insertSingerOther(value,key,id);
             return true;
         }
-
         //从艺历程
         if(key.equals(ConvertMusicSignerEnum.ART_COURSE.getKey())){
             //转换contryId

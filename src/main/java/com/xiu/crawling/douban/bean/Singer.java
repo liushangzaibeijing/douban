@@ -163,6 +163,12 @@ public class Singer {
      */
     private String hobby;
 
+
+    /**
+     * 0未完成 1完成下载
+     */
+    private Integer isOver;
+
     public Integer getId() {
         return id;
     }
@@ -409,5 +415,13 @@ public class Singer {
 
     public void setHobby(String hobby) {
         this.hobby = hobby == null ? null : hobby.trim();
+    }
+
+    public Integer getIsOver() {
+        return isOver;
+    }
+
+    public void setIsOver(Integer isOver) {
+        this.isOver = isOver;
     }
 }

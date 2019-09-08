@@ -50,7 +50,7 @@ public class ScheduleJobs {
     public void cronJob() {
 
         //1.检查job的状态
-        checkRunningStat();
+        //checkRunningStat();
 
         log.info("Job Start...");
 
@@ -62,23 +62,9 @@ public class ScheduleJobs {
             log.info("Job proxyDao.getProxyMap() is empty");
             ProxyPool.proxyMap = Constant.proxyMap;
         }
-
-        //4.每次跑job先清空缓存中的内容
-        //if (cacheManager.getCache("proxys")!=null) {
-            //cacheManager.getCache("proxys").clear();
-        //}
-
-        //5.创建一个日志对象，用于存储job的每次工作记录
-        /*
-        JobLog jobLog = new JobLog();
-        jobLog.setJobName("ScheduleJobs.cronJob");
-        jobLog.setStartTime(JodaUtils.formatDateTime(new Date()));
-        */
         //6.跑任务之前先清空proxyList中上一次job留下的proxy数据，
         ProxyPool.proxyList.clear();
 
-        //7.从数据库中选取10个代理作为种子代理，遇到http 503时使用代理来抓数据
-        // ProxyPool.addProxyList(getProxyList(proxyDao.takeRandomTenProxy()));
         log.info("Job ProxyPool.proxyList size = "+ProxyPool.proxyList.size());
         //8.正式开始，爬代理数据
         proxyManager.start();
