@@ -45,38 +45,44 @@
 
 
 二、歌曲信息（没有进行设计）
-     id signer
-     歌曲id
+     id
+     歌曲id songMid
 	 歌曲的mid(qq音乐的唯一标识)
-	 歌曲名
-	 歌曲类型
+	 歌曲名  name
+	 歌曲类型 type
 	 所属专辑 可能不存在
-	 所属歌手
-	 歌曲风格 
-	 发行时间
-	 歌曲属性  mp3 mp4 m4a
-	 歌曲图片
-	 歌曲时长
-	 歌曲描述
-	 歌曲播放数量
+	 所属歌手 singer_mid
+	 发行时间  time_public
+	 歌曲属性  mp3 mp4 m4a 根据下载的文件后缀获取
+	 歌曲时长 interval
 	 歌词（文件路径）
-	 歌曲内容（歌曲存放路径） 暂时不使用用文件存储开源组件
-	 其他业务字段
-	 
+     歌曲路径 song
+
+     歌曲风格 没找到
+     歌曲描述  没找到
+     歌曲播放数量  没找到
+
+     歌曲显示的图片使用专辑的图片
 三、专辑信息
     id
     专辑id(qq音乐唯一id) albumid
 	专辑的mid(qq音乐的唯一标识) album_mid
 	专辑名 album_name
 	专辑类型 album_type
-	专辑图片 album_pic
+	专辑图片 album_pic   https://y.gtimg.cn/music/photo_new/T002R300x300M000003c616O2Zlswm.jpg?max_age=2592000
+	                    https://y.gtimg.cn/music/photo_new/T002R300x300M000001kgcVb1p6Qao.jpg?max_age=2592000
+	                    https://y.gtimg.cn/music/photo_new/T002R300x300M000000e3JpH2czOKP.jpg?max_age=2592000
+
+	                    https://y.gtimg.cn/music/photo_new/T002R300x300M000+alumbmid+.jpg?max_age=2592000
+	专辑简介desc
 	发行时间pub_time
+	语言 lan
 	歌手signer_mid 或者signer_id （signerid 可能多个）
 	唱片公司company_name
-	专辑简介desc
-	语言 lan
 	得分 score
-	流派 school
+
+	没有
+
 
 
 

@@ -7,6 +7,7 @@ import com.xiu.crawling.douban.utils.HttpUtil;
 import com.xiu.crawling.douban.utils.JsonUtil;
 import com.xiu.crawling.douban.utils.RandCookie;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.xerces.impl.dv.util.Base64;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -23,6 +24,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * author   xieqx
@@ -289,4 +292,20 @@ public class Test {
 
 
      }
+
+
+     //解析歌词
+    @org.junit.Test
+    public void parseLyric(){
+
+        String lric = "W3RpOuacn+W+heeIsV0KW2FyOuael+S/iuadsC/ph5Hojo5dClthbDpKSumZhl0KW2J5Ol0KW29mZnNldDowXQpbMDA6MDAuMTBd5pyf5b6F54ixIC0g5p6X5L+K5p2wIChKSiBMaW4pL+mHkeiOjiAoa3ltIEppbikKWzAwOjAwLjIwXeivje+8muael+aAoeWHpC/orrjnjq/oia8KWzAwOjAwLjMwXeabsu+8muael+S/iuadsApbMDA6MDAuNDBd57yW5puy77ya6JSh5pS/5YuLClswMDowMC41MF0KWzAwOjI4LjQ4XeeUt++8mk15IExpZmUg5LiA55u05Zyo562J5b6FClswMDozNi45M10KWzAwOjM4LjI5XeepuuiNoeeahOWPo+iiiwpbMDA6MzkuODJdClswMDo0MS4wN13mg7PlnKjph4zpnaLmlL4g5LiA5Lu954ixClswMDo0NS4xNl1XaHkg5oC75piv6KKr5omT6LSlClswMDo0OC4yOF0KWzAwOjQ5LjQxXeecn+eahOWlveaXoOWliApbMDA6NTEuMjRdClswMDo1My4xMl3lhbblrp7miJEg5a6e5a6e5Zyo5ZyoClswMDo1NS4yNF3kuI3nrqHluIXkuI3luIUKWzAwOjU3LjY5XeeUt++8muaDs+imgeaJvuWbnuadpQpbMDE6MDAuNjVd5aWz77ya5oOz6KaB5om+5Zue5p2lClswMTowMi4yMF3nlLfvvJroh6rlt7HnmoToioLmi40KWzAxOjAzLjU2XeWls++8muiHquW3seeahOiKguaLjQpbMDE6MDQuODBd55S377ya5omA5Lul6L+Z5LiA5qyhClswMTowNi45OV3lkIjvvJrmiJHopoHli4fmlaIg5aSn5aOw6K+05Ye65p2lClswMToxMi4yNl3lkIjvvJrmnJ/lvoUg5pyf5b6F5L2g5Y+R546w5oiR55qE54ixClswMToxNy41Ml0KWzAxOjE4LjAzXeaXoOaJgOS4jeWcqCDmiJHoh6rnhLbogIznhLbnmoTlhbPmgIAKWzAxOjIzLjQyXeeUt++8muS9oOeahOWtmOWcqApbMDE6MjQuODZd5aWz77ya5L2g55qE5a2Y5ZyoClswMToyNi4yNV3nlLfvvJrlv4PngbXmhJ/lupTnmoTmlrnlkJEKWzAxOjI4Ljc2XeWQiO+8muaIkeS4gOecvOWwseeci+WHuuadpQpbMDE6MzIuMzRdClswMTozMi45OV3mmK/lm6DkuLrniLEKWzAxOjM1LjMwXeWQiO+8muaIkeeMnCDkvaDml6nlt7Llj5HnjrDmiJHnmoTniLEKWzAxOjQwLjEyXQpbMDE6NDAuNzBd57uV5Yeg5Liq5byvIOmdoOi2iui/kei2iuaYjueZvQpbMDE6NDUuNjBd55S377ya5LiN6KaB6LWw5byAClswMTo0Ny40OV3lpbPvvJrkuI3opoHotbDlvIAKWzAxOjQ5LjEwXeeUt++8muW5uOemj+eahOW8gOWniyDlsLHmmK8KWzAxOjUxLjM2XeWQiO+8muaUvuaJi+WOu+eIsQpbMDE6NTQuNjVdClswMjoyMC41Nl3nlLfvvJrmg7PopoHmib7lm57mnaUKWzAyOjIyLjU2XeWls++8muaDs+imgeaJvuWbnuadpQpbMDI6MjMuOTFd55S377ya6Ieq5bex55qE6IqC5ouNClswMjoyNS40Nl3lpbPvvJroh6rlt7HnmoToioLmi40KWzAyOjI2Ljk1XeeUt++8muaJgOS7pei/meS4gOasoQpbMDI6MjguNjdd5ZCI77ya5oiR6KaB5YuH5pWiIOWkp+WjsOivtOWHuuadpQpbMDI6MzQuNTJd5ZCI77ya5pyf5b6FIOacn+W+heS9oOWPkeeOsOaIkeeahOeIsQpbMDI6MzkuOTdd5peg5omA5LiN5ZyoIOaIkeiHqueEtuiAjOeEtueahOWFs+aAgApbMDI6NDUuMTVd55S377ya5L2g55qE5a2Y5ZyoClswMjo0Ni43N13lpbPvvJrkvaDnmoTlrZjlnKgKWzAyOjQ4LjE2XeeUt++8muW/g+eBteaEn+W6lOeahOaWueWQkQpbMDI6NTAuNTZd5ZCI77ya5oiR5LiA55y85bCx55yL5Ye65p2lClswMjo1NC4zNF0KWzAyOjU0Ljg1XeaYr+WboOS4uueIsQpbMDI6NTcuNDNd5ZCI77ya5oiR54ycIOS9oOaXqeW3suWPkeeOsOaIkeeahOeIsQpbMDM6MDEuOTldClswMzowMi42MF3nu5Xlh6DkuKrlvK8g6Z2g6LaK6L+R6LaK5piO55m9ClswMzowOC4wOV3nlLfvvJrkuI3opoHotbDlvIAKWzAzOjA5LjMzXeWls++8muS4jeimgei1sOW8gApbMDM6MTAuNzJd55S377ya5bm456aP55qE5byA5aeLIOWwseaYrwpbMDM6MTMuMTdd5ZCI77ya5pS+5omL5Y6754ixClswMzoxNi42NF3lkIjvvJrlubjnpo/nmoTlvIDlp4sg5bCx5piv5pS+5omL5Y6754ix";
+
+        byte[] decode = Base64.decode(lric);
+
+        String result = new String (decode);
+
+        log.info("歌曲信息：{}",result);
+
+
+    }
 }

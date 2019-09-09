@@ -69,7 +69,7 @@ public class ConstantMusic {
      */
     public static String getMusicSongListDetailUrl(String singerMid,Integer currentPage){
 
-        String data = "&data=%7B%22comm%22%3A%7B%22ct%22%3A24%2C%22cv%22%3A0%7D%2C%22singer%22%3A%7B%22method%22%3A%22get_singer_detail_info%22%2C%22param%22%3A%7B%22sort%22%3A5%2C%22singermid%22%3A%22"+singerMid+"%22%2C%22sin%22%3A"+(currentPage-1)+"%2C%22num%22%3A"+pageSize+"%7D%2C%22module%22%3A%22music.web_singer_info_svr%22%7D%7D";
+        String data = "&data=%7B%22comm%22%3A%7B%22ct%22%3A24%2C%22cv%22%3A0%7D%2C%22singer%22%3A%7B%22method%22%3A%22get_singer_detail_info%22%2C%22param%22%3A%7B%22sort%22%3A5%2C%22singermid%22%3A%22"+singerMid+"%22%2C%22sin%22%3A"+(currentPage-1)+"%2C%22num%22%3A"+songpageSize+"%7D%2C%22module%22%3A%22music.web_singer_info_svr%22%7D%7D";
         return MUSIC_SONG_LIST+data;
     }
 

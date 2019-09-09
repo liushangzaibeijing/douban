@@ -155,3 +155,11 @@
 
 
    http://isure.stream.qqmusic.qq.com/C400001L1mv24ORYiL.m4a?guid=7254122593&vkey=5C5F52389AD940693D66365725675BFE986BDF3EB3A6706A38A0A80CF6BA0D6851466DC52389845E4D2455869C8832BE55ECB7D61C17FBEB&uin=3710&fromtag=66
+
+
+
+  歌词url
+
+  https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg?-=MusicJsonCallback_lrc&pcachetime=1568029110724&songmid=001a69Fl3h6bpK&g_tk=5381&loginUin=1374523006&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0
+
+
