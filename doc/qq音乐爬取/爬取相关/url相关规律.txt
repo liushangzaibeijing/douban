@@ -85,6 +85,9 @@
 	   
 4、专辑信息
 
+
+  https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI5055059892955638&g_tk=5381&loginUin=1374523006&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data=%7B%22comm%22%3A%7B%22ct%22%3A24%2C%22cv%22%3A0%7D%2C%22singerAlbum%22%3A%7B%22method%22%3A%22get_singer_album%22%2C%22param%22%3A%7B%22singermid%22%3A%22001fNHEf1SFEFN%22%2C%22order%22%3A%22time%22%2C%22begin%22%3A0%2C%22num%22%3A5%2C%22exstatus%22%3A1%7D%2C%22module%22%3A%22music.web_singer_info_svr%22%7D%7D
+
   https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI09001568352560829&g_tk=5381&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data={"comm":{"ct":24,"cv":0},"singerAlbum":{"method":"get_singer_album","param":{"singermid":"002vALgR3hRRlv","order":"time","begin":0,"num":5,"exstatus":1},"module":"music.web_singer_info_svr"}}
 
   https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI09001568352560829&g_tk=5381&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&

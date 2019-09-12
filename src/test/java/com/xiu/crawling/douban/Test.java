@@ -24,8 +24,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * author   xieqx
@@ -304,8 +302,9 @@ public class Test {
 
         String result = new String (decode);
 
-        log.info("歌曲信息：{}",result);
+        log.info("歌词信息：{}",result);
 
 
     }
+
 }

@@ -171,8 +171,8 @@ public class HttpUtil {
      * @param savePath
      * @return
      */
-    public static Boolean doDown(String url, HttpHost proxy, String savePath, String name) {
-        double rtnNumber = 0.0;
+    public static String doDown(String url, HttpHost proxy, String savePath, String name) {
+//        double rtnNumber = 0.0;
         File file = null;
         try {
             HttpGet httpGet = new HttpGet(url);
@@ -194,7 +194,7 @@ public class HttpUtil {
                 InputStream instream = entity.getContent();
                 String result = IOUtils.toString(instream, "UTF-8");
                 System.out.println("拒绝信息:"+result);
-                return false;
+                return null;
             }
             BufferedInputStream bis = new BufferedInputStream(entity.getContent());
             Long fileLength = entity.getContentLength();
@@ -205,17 +205,17 @@ public class HttpUtil {
             File downFile = new File(file, name+".m4a");
             OutputStream os = new FileOutputStream(downFile);
             int size = 0;
-            int len = 0;
+//            int len = 0;
             byte[] buf = new byte[1024];
             while ((size = bis.read(buf)) != -1) {
-                len += size;
+//                len += size;
                 os.write(buf, 0, size);
-                // 下载百分比
-                // rtnNumber= len * 100 / fileLength*1.0;
-                System.out.println(name+" 下载了-------> " + len * 100 / fileLength +
-                        "%\n");
+//                // 下载百分比
+//                // rtnNumber= len * 100 / fileLength*1.0;
+//                System.out.println(name+" 下载了-------> " + len * 100 / fileLength +
+//                        "%\n");
             }
-            System.out.println(bis.read(buf));
+//            System.out.println(bis.read(buf));
             bis.close();
             os.close();
         } catch (MalformedURLException e) {
@@ -226,7 +226,7 @@ public class HttpUtil {
             e.printStackTrace();
         } finally {
         }
-        return true;
+        return savePath+"/"+name;
     }
 
 

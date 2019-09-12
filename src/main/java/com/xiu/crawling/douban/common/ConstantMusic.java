@@ -41,6 +41,11 @@ public class ConstantMusic {
 
 
     /**
+     * 获取专辑信息
+     */
+    public final static String ALBUM_LIST = "https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI5055059892955638&g_tk=5381&loginUin=1374523006&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0";
+
+    /**
      * 获取歌手列表url
      * @return
      */
@@ -83,6 +88,20 @@ public class ConstantMusic {
         return MUSIC_SONG_VKEY+data;
     }
 
+    /**
+     * 获取歌手的所有专辑信息
+     * @return
+     */
+    public static String getAlbumList(String singerMid){
+        String data = "&data=%7B%22comm%22%3A%7B%22ct%22%3A24%2C%22cv%22%3A0%7D%2C%22singerAlbum%22%3A%7B%22method%22%3A%22get_singer_album%22%2C%22param%22%3A%7B%22singermid%22%3A%22"+singerMid+"%22%2C%22order%22%3A%22time%22%2C%22begin%22%3A0%2C%22num%22%3A5%2C%22exstatus%22%3A1%7D%2C%22module%22%3A%22music.web_singer_info_svr%22%7D%7D";
+        return ALBUM_LIST+data;
+    }
+
+
+    public static String getAlbumHtml(String albumMid){
+        String data = "https://y.qq.com/n/yqq/album/"+albumMid+".html";
+        return ALBUM_LIST+data;
+    }
 
     /**
      * 获取歌曲的下载
@@ -91,8 +110,6 @@ public class ConstantMusic {
     public static String getSongDownUrl(String purl){
         Date  time = new Date();
         String url = "http://isure.stream.qqmusic.qq.com/"+purl;
-        //String url = "http://ws.stream.qqmusic.qq.com/"+songMid+".m4a?guid=7254122593&vkey="+vkey+"&uin=3710&fromtag=3&r="+time.getTime();
-        //String url = "http://dl.stream.qqmusic.qq.com/"+songMid+".m4a?guid=9545253443&vkey="+vkey+"&uin=0&fromtag=66";
         return url;
     }
 
