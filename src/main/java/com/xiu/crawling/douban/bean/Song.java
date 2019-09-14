@@ -3,7 +3,7 @@ package com.xiu.crawling.douban.bean;
 public class Song {
     private Integer id;
 
-    private Long songId;
+    private Integer songId;
 
     private String songMid;
 
@@ -19,7 +19,7 @@ public class Song {
 
     private String songAttr;
 
-    private String interval;
+    private String duration;
 
     private String lyric;
 
@@ -33,11 +33,11 @@ public class Song {
         this.id = id;
     }
 
-    public Long getSongId() {
+    public Integer getSongId() {
         return songId;
     }
 
-    public void setSongId(Long songId) {
+    public void setSongId(Integer songId) {
         this.songId = songId;
     }
 
@@ -97,12 +97,12 @@ public class Song {
         this.songAttr = songAttr == null ? null : songAttr.trim();
     }
 
-    public String getInterval() {
-        return interval;
+    public String getDuration() {
+        return duration;
     }
 
-    public void setInterval(String interval) {
-        this.interval = interval == null ? null : interval.trim();
+    public void setDuration(String duration) {
+        this.duration = duration == null ? null : duration.trim();
     }
 
     public String getLyric() {

@@ -714,73 +714,73 @@ public class SongExample {
             return (Criteria) this;
         }
 
-        public Criteria andIntervalIsNull() {
-            addCriterion("interval is null");
+        public Criteria andDurationIsNull() {
+            addCriterion("duration is null");
             return (Criteria) this;
         }
 
-        public Criteria andIntervalIsNotNull() {
-            addCriterion("interval is not null");
+        public Criteria andDurationIsNotNull() {
+            addCriterion("duration is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIntervalEqualTo(String value) {
-            addCriterion("interval =", value, "interval");
+        public Criteria andDurationEqualTo(String value) {
+            addCriterion("duration =", value, "duration");
             return (Criteria) this;
         }
 
-        public Criteria andIntervalNotEqualTo(String value) {
-            addCriterion("interval <>", value, "interval");
+        public Criteria andDurationNotEqualTo(String value) {
+            addCriterion("duration <>", value, "duration");
             return (Criteria) this;
         }
 
-        public Criteria andIntervalGreaterThan(String value) {
-            addCriterion("interval >", value, "interval");
+        public Criteria andDurationGreaterThan(String value) {
+            addCriterion("duration >", value, "duration");
             return (Criteria) this;
         }
 
-        public Criteria andIntervalGreaterThanOrEqualTo(String value) {
-            addCriterion("interval >=", value, "interval");
+        public Criteria andDurationGreaterThanOrEqualTo(String value) {
+            addCriterion("duration >=", value, "duration");
             return (Criteria) this;
         }
 
-        public Criteria andIntervalLessThan(String value) {
-            addCriterion("interval <", value, "interval");
+        public Criteria andDurationLessThan(String value) {
+            addCriterion("duration <", value, "duration");
             return (Criteria) this;
         }
 
-        public Criteria andIntervalLessThanOrEqualTo(String value) {
-            addCriterion("interval <=", value, "interval");
+        public Criteria andDurationLessThanOrEqualTo(String value) {
+            addCriterion("duration <=", value, "duration");
             return (Criteria) this;
         }
 
-        public Criteria andIntervalLike(String value) {
-            addCriterion("interval like", value, "interval");
+        public Criteria andDurationLike(String value) {
+            addCriterion("duration like", value, "duration");
             return (Criteria) this;
         }
 
-        public Criteria andIntervalNotLike(String value) {
-            addCriterion("interval not like", value, "interval");
+        public Criteria andDurationNotLike(String value) {
+            addCriterion("duration not like", value, "duration");
             return (Criteria) this;
         }
 
-        public Criteria andIntervalIn(List<String> values) {
-            addCriterion("interval in", values, "interval");
+        public Criteria andDurationIn(List<String> values) {
+            addCriterion("duration in", values, "duration");
             return (Criteria) this;
         }
 
-        public Criteria andIntervalNotIn(List<String> values) {
-            addCriterion("interval not in", values, "interval");
+        public Criteria andDurationNotIn(List<String> values) {
+            addCriterion("duration not in", values, "duration");
             return (Criteria) this;
         }
 
-        public Criteria andIntervalBetween(String value1, String value2) {
-            addCriterion("interval between", value1, value2, "interval");
+        public Criteria andDurationBetween(String value1, String value2) {
+            addCriterion("duration between", value1, value2, "duration");
             return (Criteria) this;
         }
 
-        public Criteria andIntervalNotBetween(String value1, String value2) {
-            addCriterion("interval not between", value1, value2, "interval");
+        public Criteria andDurationNotBetween(String value1, String value2) {
+            addCriterion("duration not between", value1, value2, "duration");
             return (Criteria) this;
         }
 

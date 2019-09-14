@@ -4,21 +4,21 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.xiu.crawling.douban.DoubanApplication;
-import com.xiu.crawling.douban.bean.Singer;
-import com.xiu.crawling.douban.bean.SingerExample;
-import com.xiu.crawling.douban.bean.Song;
-import com.xiu.crawling.douban.bean.SongExample;
+import com.xiu.crawling.douban.bean.*;
 import com.xiu.crawling.douban.bean.dto.SongInfoResult;
 import com.xiu.crawling.douban.bean.dto.Songlist;
 import com.xiu.crawling.douban.common.ConstantMusic;
 import com.xiu.crawling.douban.core.service.ProxyService;
+import com.xiu.crawling.douban.enums.MusicTypeEnum;
 import com.xiu.crawling.douban.mapper.BusSingerMapper;
+import com.xiu.crawling.douban.mapper.CurrPageMapper;
 import com.xiu.crawling.douban.mapper.SingerMapper;
 import com.xiu.crawling.douban.mapper.SongMapper;
 import com.xiu.crawling.douban.utils.HttpUtil;
 import com.xiu.crawling.douban.utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;
+import org.assertj.core.util.DateUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,11 @@ import org.springframework.boot.jackson.JsonObjectDeserializer;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.util.StringUtils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,6 +66,9 @@ public class MusicSongService {
      */
     @Autowired
     ProxyService proxyService;
+
+    @Autowired
+    CurrPageMapper currPageMapper;
 
     /**
      * 歌曲资源根路径
@@ -102,44 +109,49 @@ public class MusicSongService {
                         try {
                             //获取歌曲信息
                             Song song = getSongInfo(songvo);
-
-                            saveSongAndOver(song,singer.getId());
+                            saveSongInfo(song);
                         } catch (Exception e) {
-
                             e.printStackTrace();
                             //保存出错信息 currentPage
+                            Long id = songvo.getId();
+                            updateCurrPageInfo( id.intValue(), MusicTypeEnum.SONG.getCode(),
+                                    singer.getFullName()+"_"+e.getMessage());
 
                         }
                     }
+
                 }
+                log.info("歌手{} 歌曲资源爬取完毕",singer.getFullName());
+                updateSingerIsOver(singer.getId());
             }
         }
     }
 
-    private void saveSongAndOver(Song song,Integer singerId) throws Exception {
+    private void saveSongInfo(Song song) throws Exception {
        try {
            String songMid = song.getSongMid();
            SongExample songExample = new SongExample();
            songExample.createCriteria().andSongMidEqualTo(songMid);
            List<Song> songs = songMapper.selectByExample(songExample);
-           if (songs == null && songs.size() == 0) {
-               //该歌曲已经爬取完成直接的返回
-               return;
+           if (songs == null || songs.size() == 0) {
+               //该歌曲没有被爬取
+               songMapper.insert(song);
            }
 
-           songMapper.insert(song);
-
-           //更新歌手信息
-           Singer singer = new Singer();
-           singer.setId(singerId);
-           singer.setIsOver(1);
-           SingerExample singerExample = new SingerExample();
-           singerExample.createCriteria().andIdEqualTo(singerId);
-           singerMapper.updateByExampleSelective(singer, singerExample);
        }catch (Exception e){
            throw  new Exception(e);
        }
 
+    }
+
+    private void updateSingerIsOver(Integer singerId){
+        //更新歌手信息
+        Singer singer = new Singer();
+        singer.setId(singerId);
+        singer.setIsOver(1);
+        SingerExample singerExample = new SingerExample();
+        singerExample.createCriteria().andIdEqualTo(singerId);
+        singerMapper.updateByExampleSelective(singer, singerExample);
     }
 
     /**
@@ -160,7 +172,14 @@ public class MusicSongService {
         log.info("用户登录的ip地址：{}  爬取的歌曲名称为：{}",userIp,songvo.getName());
         //获取到vkey
         JSONArray midurlinfos = vkeyInfoJson.getJSONObject("req_0").getJSONObject("data").getJSONArray("midurlinfo");
-
+        StringBuilder singerIds = new StringBuilder();
+        StringBuilder singerMids = new StringBuilder();
+        for(com.xiu.crawling.douban.bean.dto.Singer singerDto:songvo.getSinger()){
+            singerIds.append(singerDto.getId()+",");
+            singerMids.append(singerDto.getMid()+",");
+        }
+        String  singerId = singerIds.substring(0,singerIds.length()-1);
+        String  singerMid = singerMids.substring(0,singerMids.length()-1);
         String musicResocure = null;
         if(midurlinfos!=null&&midurlinfos.size()!=0){
             JSONObject  midurlinfo = midurlinfos.getJSONObject(0);
@@ -171,31 +190,56 @@ public class MusicSongService {
             log.info("下载的url:{}",songDownUrl);
             //HttpHost canUseProxy = proxyService.findCanUseProxy();
             //下载操作
-            musicResocure = HttpUtil.doDown(songDownUrl,null,songResourceBasePath,songMid+".m4a");
-
-
+            String savePathDir = generatorSaveDir(songResourceBasePath,singerId.replaceAll(",","_"));
+            musicResocure = HttpUtil.doDown(songDownUrl,null,savePathDir,songMid+".m4a");
         }
         Song song = new Song();
-        song.setSongId(songvo.getId());
+        Long songId = songvo.getId();
+        song.setSongId(songId.intValue());
         song.setSongMid(songMid);
         song.setSongName(songvo.getName());
         song.setSongType(String.valueOf(songvo.getType()));
         song.setAlbumId(songvo.getAlbum().getMid());
-        StringBuilder singerMids = new StringBuilder();
-        for(com.xiu.crawling.douban.bean.dto.Singer singerDto:songvo.getSinger()){
-            singerMids.append(singerDto.getId()+",");
-        }
-        String  singerMid = singerMids.substring(0,singerMids.length()-1);
-        song.setSongMid(singerMid);
-        song.setTimePublic(song.getTimePublic());
+
+        song.setSongMid(songMid);
+        song.setSingerMid(singerMid);
+
+        song.setTimePublic(getStrByDate(songvo.getTime_public()));
         //该字段目前可以不需要song.setSongAttr();
-        song.setInterval(String.valueOf(songvo.getInterval()));
+        song.setDuration(String.valueOf(songvo.getInterval()));
         song.setSongUrl(musicResocure);
         //下载歌词  base64加密过后的
-        String lyricInfoUrl = ConstantMusic.getLyricInfoUrl(songMid);
-        String lyric = HttpUtil.doGet(lyricInfoUrl);
+        String lyric = getLyric(songMid);
         song.setLyric(lyric);
         return song;
+    }
+
+
+    private String getStrByDate(Date timePulic){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormat.format(timePulic);
+    }
+    private String generatorSaveDir(String songResourceBasePath,String singerId) {
+            return songResourceBasePath+"/"+singerId;
+    }
+
+    /**
+     * 获取歌词信息
+     * @param songMid
+     * @return
+     */
+    private String getLyric(String songMid) {
+        String lyricInfoUrl = ConstantMusic.getLyricInfoUrl(songMid);
+        Map<String,String> headers = new HashMap<>();
+        headers.put("Referer"," https://y.qq.com/portal/player.html");
+        String result = HttpUtil.doGetByHeader(lyricInfoUrl,headers);
+        log.info("歌曲长度：{}",result.length());
+        JSONObject lyricJson = JSONObject.parseObject(result);
+        String lyric = lyricJson.getString("lyric");
+        if(StringUtils.isEmpty(lyric)){
+            return null;
+        }
+        return lyric;
     }
 
     /**
@@ -250,4 +294,20 @@ public class MusicSongService {
         return headers;
     }
 
+
+
+    /**
+     * 保存中断导致的信息
+     * @param currentPage
+     * @param type
+     * @param errorMsg
+     */
+    private void updateCurrPageInfo(Integer currentPage, Integer type, String errorMsg) {
+        CurrPage currPage = new CurrPage();
+        currPage.setCurrPage(currentPage);
+        currPage.setType(type);
+        errorMsg = errorMsg.length()>500?errorMsg.substring(0,500):errorMsg;
+        currPage.setMessage(errorMsg);
+        currPageMapper.insert(currPage);
+    }
 }

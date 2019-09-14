@@ -3,7 +3,7 @@
 <mapper namespace="com.xiu.crawling.douban.mapper.SongMapper" >
   <resultMap id="BaseResultMap" type="com.xiu.crawling.douban.bean.Song" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="song_id" property="songId" jdbcType="BIGINT" />
+    <result column="song_id" property="songId" jdbcType="INTEGER" />
     <result column="song_mid" property="songMid" jdbcType="VARCHAR" />
     <result column="song_name" property="songName" jdbcType="VARCHAR" />
     <result column="song_type" property="songType" jdbcType="VARCHAR" />
@@ -11,7 +11,7 @@
     <result column="singer_mid" property="singerMid" jdbcType="VARCHAR" />
     <result column="time_public" property="timePublic" jdbcType="VARCHAR" />
     <result column="song_attr" property="songAttr" jdbcType="VARCHAR" />
-    <result column="interval" property="interval" jdbcType="VARCHAR" />
+    <result column="duration" property="duration" jdbcType="VARCHAR" />
     <result column="lyric" property="lyric" jdbcType="VARCHAR" />
     <result column="song_url" property="songUrl" jdbcType="VARCHAR" />
   </resultMap>
@@ -75,7 +75,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, song_id, song_mid, song_name, song_type, album_id, singer_mid, time_public, song_attr, 
-    interval, lyric, song_url
+    duration, lyric, song_url
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xiu.crawling.douban.bean.SongExample" >
     select
@@ -111,12 +111,12 @@
     insert into song (id, song_id, song_mid, 
       song_name, song_type, album_id, 
       singer_mid, time_public, song_attr, 
-      interval, lyric, song_url
+      duration, lyric, song_url
       )
     values (#{id,jdbcType=INTEGER}, #{songId,jdbcType=INTEGER}, #{songMid,jdbcType=VARCHAR}, 
       #{songName,jdbcType=VARCHAR}, #{songType,jdbcType=VARCHAR}, #{albumId,jdbcType=VARCHAR}, 
       #{singerMid,jdbcType=VARCHAR}, #{timePublic,jdbcType=VARCHAR}, #{songAttr,jdbcType=VARCHAR}, 
-      #{interval,jdbcType=VARCHAR}, #{lyric,jdbcType=VARCHAR}, #{songUrl,jdbcType=VARCHAR}
+      #{duration,jdbcType=VARCHAR}, #{lyric,jdbcType=VARCHAR}, #{songUrl,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.xiu.crawling.douban.bean.Song" >
@@ -149,8 +149,8 @@
       <if test="songAttr != null" >
         song_attr,
       </if>
-      <if test="interval != null" >
-        interval,
+      <if test="duration != null" >
+        duration,
       </if>
       <if test="lyric != null" >
         lyric,
@@ -187,8 +187,8 @@
       <if test="songAttr != null" >
         #{songAttr,jdbcType=VARCHAR},
       </if>
-      <if test="interval != null" >
-        #{interval,jdbcType=VARCHAR},
+      <if test="duration != null" >
+        #{duration,jdbcType=VARCHAR},
       </if>
       <if test="lyric != null" >
         #{lyric,jdbcType=VARCHAR},
@@ -234,8 +234,8 @@
       <if test="record.songAttr != null" >
         song_attr = #{record.songAttr,jdbcType=VARCHAR},
       </if>
-      <if test="record.interval != null" >
-        interval = #{record.interval,jdbcType=VARCHAR},
+      <if test="record.duration != null" >
+        duration = #{record.duration,jdbcType=VARCHAR},
       </if>
       <if test="record.lyric != null" >
         lyric = #{record.lyric,jdbcType=VARCHAR},
@@ -259,7 +259,7 @@
       singer_mid = #{record.singerMid,jdbcType=VARCHAR},
       time_public = #{record.timePublic,jdbcType=VARCHAR},
       song_attr = #{record.songAttr,jdbcType=VARCHAR},
-      interval = #{record.interval,jdbcType=VARCHAR},
+      duration = #{record.duration,jdbcType=VARCHAR},
       lyric = #{record.lyric,jdbcType=VARCHAR},
       song_url = #{record.songUrl,jdbcType=VARCHAR}
     <if test="_parameter != null" >
@@ -293,8 +293,8 @@
       <if test="songAttr != null" >
         song_attr = #{songAttr,jdbcType=VARCHAR},
       </if>
-      <if test="interval != null" >
-        interval = #{interval,jdbcType=VARCHAR},
+      <if test="duration != null" >
+        duration = #{duration,jdbcType=VARCHAR},
       </if>
       <if test="lyric != null" >
         lyric = #{lyric,jdbcType=VARCHAR},
@@ -315,7 +315,7 @@
       singer_mid = #{singerMid,jdbcType=VARCHAR},
       time_public = #{timePublic,jdbcType=VARCHAR},
       song_attr = #{songAttr,jdbcType=VARCHAR},
-      interval = #{interval,jdbcType=VARCHAR},
+      duration = #{duration,jdbcType=VARCHAR},
       lyric = #{lyric,jdbcType=VARCHAR},
       song_url = #{songUrl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
