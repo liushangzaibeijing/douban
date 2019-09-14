@@ -2,78 +2,32 @@ package com.xiu.crawling.douban.bean;
 
 import java.util.Date;
 
-/**
- * 专辑
- * 
- * @author wcyong
- * 
- * @date 2019-09-06
- */
 public class Album {
-    /**
-     * 主键
-     */
     private Integer id;
 
-    /**
-     * qq音乐主键
-     */
     private Integer albumId;
 
-    /**
-     * qq音乐的mid获取专辑信息的相关
-     */
     private String albumMid;
 
-    /**
-     * 专辑名
-     */
     private String albumName;
 
-    /**
-     * 专辑类型
-     */
     private String albumType;
 
-    /**
-     * 专辑图片
-     */
     private String albumPic;
 
-    /**
-     * 发行时间
-     */
-    private Date pubTime;
-
-    /**
-     * 唱片公司
-     */
-    private String companyName;
-
-    /**
-     * 专辑所属歌手 多个歌手mid
-     */
     private String signerMid;
 
-    /**
-     * 专辑简介
-     */
-    private String desc;
+    private String school;
 
-    /**
-     * 语言 语种
-     */
     private String score;
 
-    /**
-     * 得分
-     */
     private String lan;
 
-    /**
-     * 流派
-     */
-    private String school;
+    private String companyName;
+
+    private Date pubTime;
+
+    private String descption;
 
     public Integer getId() {
         return id;
@@ -123,22 +77,6 @@ public class Album {
         this.albumPic = albumPic == null ? null : albumPic.trim();
     }
 
-    public Date getPubTime() {
-        return pubTime;
-    }
-
-    public void setPubTime(Date pubTime) {
-        this.pubTime = pubTime;
-    }
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName == null ? null : companyName.trim();
-    }
-
     public String getSignerMid() {
         return signerMid;
     }
@@ -147,12 +85,12 @@ public class Album {
         this.signerMid = signerMid == null ? null : signerMid.trim();
     }
 
-    public String getDesc() {
-        return desc;
+    public String getSchool() {
+        return school;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
+    public void setSchool(String school) {
+        this.school = school == null ? null : school.trim();
     }
 
     public String getScore() {
@@ -171,11 +109,27 @@ public class Album {
         this.lan = lan == null ? null : lan.trim();
     }
 
-    public String getSchool() {
-        return school;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setSchool(String school) {
-        this.school = school == null ? null : school.trim();
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName == null ? null : companyName.trim();
+    }
+
+    public Date getPubTime() {
+        return pubTime;
+    }
+
+    public void setPubTime(Date pubTime) {
+        this.pubTime = pubTime;
+    }
+
+    public String getDescption() {
+        return descption;
+    }
+
+    public void setDescption(String descption) {
+        this.descption = descption == null ? null : descption.trim();
     }
 }

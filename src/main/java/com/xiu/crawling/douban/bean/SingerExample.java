@@ -2185,52 +2185,52 @@ public class SingerExample {
         }
 
         public Criteria andIsoverEqualTo(Integer value) {
-            addCriterion("isOver =", value, "isover");
+            addCriterion("isOver =", value, "isOver");
             return (Criteria) this;
         }
 
         public Criteria andIsoverNotEqualTo(Integer value) {
-            addCriterion("isOver <>", value, "isover");
+            addCriterion("isOver <>", value, "isOver");
             return (Criteria) this;
         }
 
         public Criteria andIsoverGreaterThan(Integer value) {
-            addCriterion("isOver >", value, "isover");
+            addCriterion("isOver >", value, "isOver");
             return (Criteria) this;
         }
 
         public Criteria andIsoverGreaterThanOrEqualTo(Integer value) {
-            addCriterion("isOver >=", value, "isover");
+            addCriterion("isOver >=", value, "isOver");
             return (Criteria) this;
         }
 
         public Criteria andIsoverLessThan(Integer value) {
-            addCriterion("isOver <", value, "isover");
+            addCriterion("isOver <", value, "isOver");
             return (Criteria) this;
         }
 
         public Criteria andIsoverLessThanOrEqualTo(Integer value) {
-            addCriterion("isOver <=", value, "isover");
+            addCriterion("isOver <=", value, "isOver");
             return (Criteria) this;
         }
 
         public Criteria andIsoverIn(List<Integer> values) {
-            addCriterion("isOver in", values, "isover");
+            addCriterion("isOver in", values, "isOver");
             return (Criteria) this;
         }
 
         public Criteria andIsoverNotIn(List<Integer> values) {
-            addCriterion("isOver not in", values, "isover");
+            addCriterion("isOver not in", values, "isOver");
             return (Criteria) this;
         }
 
         public Criteria andIsoverBetween(Integer value1, Integer value2) {
-            addCriterion("isOver between", value1, value2, "isover");
+            addCriterion("isOver between", value1, value2, "isOver");
             return (Criteria) this;
         }
 
         public Criteria andIsoverNotBetween(Integer value1, Integer value2) {
-            addCriterion("isOver not between", value1, value2, "isover");
+            addCriterion("isOver not between", value1, value2, "isOver");
             return (Criteria) this;
         }
     }

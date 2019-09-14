@@ -63,13 +63,6 @@ public class SongExample {
         distinct = false;
     }
 
-    /**
-     * 
-     * 
-     * @author wcyong
-     * 
-     * @date 2019-09-10
-     */
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
 
@@ -939,13 +932,6 @@ public class SongExample {
         }
     }
 
-    /**
-     * 
-     * 
-     * @author wcyong
-     * 
-     * @date 2019-09-10
-     */
     public static class Criterion {
         private String condition;
 

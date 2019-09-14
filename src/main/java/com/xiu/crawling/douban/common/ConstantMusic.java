@@ -10,8 +10,15 @@ import java.util.Date;
  * desc qq音乐相关常量
  */
 public class ConstantMusic {
+    /**
+     * 歌手的每页爬取的数量
+     */
+    public static Integer signerSize = 80;
 
-    private static Integer signerSize = 80;
+    /**
+     * 专辑的每页爬取的数量
+     */
+    public static Integer albumSize = 5;
 
     /**
      * 歌曲 列表的每页数量
@@ -92,15 +99,15 @@ public class ConstantMusic {
      * 获取歌手的所有专辑信息
      * @return
      */
-    public static String getAlbumList(String singerMid){
-        String data = "&data=%7B%22comm%22%3A%7B%22ct%22%3A24%2C%22cv%22%3A0%7D%2C%22singerAlbum%22%3A%7B%22method%22%3A%22get_singer_album%22%2C%22param%22%3A%7B%22singermid%22%3A%22"+singerMid+"%22%2C%22order%22%3A%22time%22%2C%22begin%22%3A0%2C%22num%22%3A5%2C%22exstatus%22%3A1%7D%2C%22module%22%3A%22music.web_singer_info_svr%22%7D%7D";
+    public static String getAlbumList(String singerMid,Integer currentPage){
+        String data = "&data=%7B%22comm%22%3A%7B%22ct%22%3A24%2C%22cv%22%3A0%7D%2C%22singerAlbum%22%3A%7B%22method%22%3A%22get_singer_album%22%2C%22param%22%3A%7B%22singermid%22%3A%22"+singerMid+"%22%2C%22order%22%3A%22time%22%2C%22begin%22%3A"+currentPage+"%2C%22num%22%3A5%2C%22exstatus%22%3A1%7D%2C%22module%22%3A%22music.web_singer_info_svr%22%7D%7D";
         return ALBUM_LIST+data;
     }
 
 
     public static String getAlbumHtml(String albumMid){
-        String data = "https://y.qq.com/n/yqq/album/"+albumMid+".html";
-        return ALBUM_LIST+data;
+        String htmlUrl = "https://y.qq.com/n/yqq/album/"+albumMid+".html";
+        return htmlUrl;
     }
 
     /**

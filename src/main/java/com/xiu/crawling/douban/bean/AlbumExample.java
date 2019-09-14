@@ -64,13 +64,6 @@ public class AlbumExample {
         distinct = false;
     }
 
-    /**
-     * 专辑
-     * 
-     * @author wcyong
-     * 
-     * @date 2019-09-06
-     */
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
 
@@ -512,136 +505,6 @@ public class AlbumExample {
             return (Criteria) this;
         }
 
-        public Criteria andPubTimeIsNull() {
-            addCriterion("pub_time is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPubTimeIsNotNull() {
-            addCriterion("pub_time is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPubTimeEqualTo(Date value) {
-            addCriterion("pub_time =", value, "pubTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andPubTimeNotEqualTo(Date value) {
-            addCriterion("pub_time <>", value, "pubTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andPubTimeGreaterThan(Date value) {
-            addCriterion("pub_time >", value, "pubTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andPubTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("pub_time >=", value, "pubTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andPubTimeLessThan(Date value) {
-            addCriterion("pub_time <", value, "pubTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andPubTimeLessThanOrEqualTo(Date value) {
-            addCriterion("pub_time <=", value, "pubTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andPubTimeIn(List<Date> values) {
-            addCriterion("pub_time in", values, "pubTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andPubTimeNotIn(List<Date> values) {
-            addCriterion("pub_time not in", values, "pubTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andPubTimeBetween(Date value1, Date value2) {
-            addCriterion("pub_time between", value1, value2, "pubTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andPubTimeNotBetween(Date value1, Date value2) {
-            addCriterion("pub_time not between", value1, value2, "pubTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyNameIsNull() {
-            addCriterion("company_name is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyNameIsNotNull() {
-            addCriterion("company_name is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyNameEqualTo(String value) {
-            addCriterion("company_name =", value, "companyName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyNameNotEqualTo(String value) {
-            addCriterion("company_name <>", value, "companyName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyNameGreaterThan(String value) {
-            addCriterion("company_name >", value, "companyName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyNameGreaterThanOrEqualTo(String value) {
-            addCriterion("company_name >=", value, "companyName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyNameLessThan(String value) {
-            addCriterion("company_name <", value, "companyName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyNameLessThanOrEqualTo(String value) {
-            addCriterion("company_name <=", value, "companyName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyNameLike(String value) {
-            addCriterion("company_name like", value, "companyName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyNameNotLike(String value) {
-            addCriterion("company_name not like", value, "companyName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyNameIn(List<String> values) {
-            addCriterion("company_name in", values, "companyName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyNameNotIn(List<String> values) {
-            addCriterion("company_name not in", values, "companyName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyNameBetween(String value1, String value2) {
-            addCriterion("company_name between", value1, value2, "companyName");
-            return (Criteria) this;
-        }
-
-        public Criteria andCompanyNameNotBetween(String value1, String value2) {
-            addCriterion("company_name not between", value1, value2, "companyName");
-            return (Criteria) this;
-        }
-
         public Criteria andSignerMidIsNull() {
             addCriterion("signer_mid is null");
             return (Criteria) this;
@@ -712,73 +575,73 @@ public class AlbumExample {
             return (Criteria) this;
         }
 
-        public Criteria andDescIsNull() {
-            addCriterion("desc is null");
+        public Criteria andSchoolIsNull() {
+            addCriterion("school is null");
             return (Criteria) this;
         }
 
-        public Criteria andDescIsNotNull() {
-            addCriterion("desc is not null");
+        public Criteria andSchoolIsNotNull() {
+            addCriterion("school is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDescEqualTo(String value) {
-            addCriterion("desc =", value, "desc");
+        public Criteria andSchoolEqualTo(String value) {
+            addCriterion("school =", value, "school");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotEqualTo(String value) {
-            addCriterion("desc <>", value, "desc");
+        public Criteria andSchoolNotEqualTo(String value) {
+            addCriterion("school <>", value, "school");
             return (Criteria) this;
         }
 
-        public Criteria andDescGreaterThan(String value) {
-            addCriterion("desc >", value, "desc");
+        public Criteria andSchoolGreaterThan(String value) {
+            addCriterion("school >", value, "school");
             return (Criteria) this;
         }
 
-        public Criteria andDescGreaterThanOrEqualTo(String value) {
-            addCriterion("desc >=", value, "desc");
+        public Criteria andSchoolGreaterThanOrEqualTo(String value) {
+            addCriterion("school >=", value, "school");
             return (Criteria) this;
         }
 
-        public Criteria andDescLessThan(String value) {
-            addCriterion("desc <", value, "desc");
+        public Criteria andSchoolLessThan(String value) {
+            addCriterion("school <", value, "school");
             return (Criteria) this;
         }
 
-        public Criteria andDescLessThanOrEqualTo(String value) {
-            addCriterion("desc <=", value, "desc");
+        public Criteria andSchoolLessThanOrEqualTo(String value) {
+            addCriterion("school <=", value, "school");
             return (Criteria) this;
         }
 
-        public Criteria andDescLike(String value) {
-            addCriterion("desc like", value, "desc");
+        public Criteria andSchoolLike(String value) {
+            addCriterion("school like", value, "school");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotLike(String value) {
-            addCriterion("desc not like", value, "desc");
+        public Criteria andSchoolNotLike(String value) {
+            addCriterion("school not like", value, "school");
             return (Criteria) this;
         }
 
-        public Criteria andDescIn(List<String> values) {
-            addCriterion("desc in", values, "desc");
+        public Criteria andSchoolIn(List<String> values) {
+            addCriterion("school in", values, "school");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotIn(List<String> values) {
-            addCriterion("desc not in", values, "desc");
+        public Criteria andSchoolNotIn(List<String> values) {
+            addCriterion("school not in", values, "school");
             return (Criteria) this;
         }
 
-        public Criteria andDescBetween(String value1, String value2) {
-            addCriterion("desc between", value1, value2, "desc");
+        public Criteria andSchoolBetween(String value1, String value2) {
+            addCriterion("school between", value1, value2, "school");
             return (Criteria) this;
         }
 
-        public Criteria andDescNotBetween(String value1, String value2) {
-            addCriterion("desc not between", value1, value2, "desc");
+        public Criteria andSchoolNotBetween(String value1, String value2) {
+            addCriterion("school not between", value1, value2, "school");
             return (Criteria) this;
         }
 
@@ -922,73 +785,203 @@ public class AlbumExample {
             return (Criteria) this;
         }
 
-        public Criteria andSchoolIsNull() {
-            addCriterion("school is null");
+        public Criteria andCompanyNameIsNull() {
+            addCriterion("company_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andSchoolIsNotNull() {
-            addCriterion("school is not null");
+        public Criteria andCompanyNameIsNotNull() {
+            addCriterion("company_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSchoolEqualTo(String value) {
-            addCriterion("school =", value, "school");
+        public Criteria andCompanyNameEqualTo(String value) {
+            addCriterion("company_name =", value, "companyName");
             return (Criteria) this;
         }
 
-        public Criteria andSchoolNotEqualTo(String value) {
-            addCriterion("school <>", value, "school");
+        public Criteria andCompanyNameNotEqualTo(String value) {
+            addCriterion("company_name <>", value, "companyName");
             return (Criteria) this;
         }
 
-        public Criteria andSchoolGreaterThan(String value) {
-            addCriterion("school >", value, "school");
+        public Criteria andCompanyNameGreaterThan(String value) {
+            addCriterion("company_name >", value, "companyName");
             return (Criteria) this;
         }
 
-        public Criteria andSchoolGreaterThanOrEqualTo(String value) {
-            addCriterion("school >=", value, "school");
+        public Criteria andCompanyNameGreaterThanOrEqualTo(String value) {
+            addCriterion("company_name >=", value, "companyName");
             return (Criteria) this;
         }
 
-        public Criteria andSchoolLessThan(String value) {
-            addCriterion("school <", value, "school");
+        public Criteria andCompanyNameLessThan(String value) {
+            addCriterion("company_name <", value, "companyName");
             return (Criteria) this;
         }
 
-        public Criteria andSchoolLessThanOrEqualTo(String value) {
-            addCriterion("school <=", value, "school");
+        public Criteria andCompanyNameLessThanOrEqualTo(String value) {
+            addCriterion("company_name <=", value, "companyName");
             return (Criteria) this;
         }
 
-        public Criteria andSchoolLike(String value) {
-            addCriterion("school like", value, "school");
+        public Criteria andCompanyNameLike(String value) {
+            addCriterion("company_name like", value, "companyName");
             return (Criteria) this;
         }
 
-        public Criteria andSchoolNotLike(String value) {
-            addCriterion("school not like", value, "school");
+        public Criteria andCompanyNameNotLike(String value) {
+            addCriterion("company_name not like", value, "companyName");
             return (Criteria) this;
         }
 
-        public Criteria andSchoolIn(List<String> values) {
-            addCriterion("school in", values, "school");
+        public Criteria andCompanyNameIn(List<String> values) {
+            addCriterion("company_name in", values, "companyName");
             return (Criteria) this;
         }
 
-        public Criteria andSchoolNotIn(List<String> values) {
-            addCriterion("school not in", values, "school");
+        public Criteria andCompanyNameNotIn(List<String> values) {
+            addCriterion("company_name not in", values, "companyName");
             return (Criteria) this;
         }
 
-        public Criteria andSchoolBetween(String value1, String value2) {
-            addCriterion("school between", value1, value2, "school");
+        public Criteria andCompanyNameBetween(String value1, String value2) {
+            addCriterion("company_name between", value1, value2, "companyName");
             return (Criteria) this;
         }
 
-        public Criteria andSchoolNotBetween(String value1, String value2) {
-            addCriterion("school not between", value1, value2, "school");
+        public Criteria andCompanyNameNotBetween(String value1, String value2) {
+            addCriterion("company_name not between", value1, value2, "companyName");
+            return (Criteria) this;
+        }
+
+        public Criteria andPubTimeIsNull() {
+            addCriterion("pub_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPubTimeIsNotNull() {
+            addCriterion("pub_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPubTimeEqualTo(Date value) {
+            addCriterion("pub_time =", value, "pubTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPubTimeNotEqualTo(Date value) {
+            addCriterion("pub_time <>", value, "pubTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPubTimeGreaterThan(Date value) {
+            addCriterion("pub_time >", value, "pubTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPubTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("pub_time >=", value, "pubTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPubTimeLessThan(Date value) {
+            addCriterion("pub_time <", value, "pubTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPubTimeLessThanOrEqualTo(Date value) {
+            addCriterion("pub_time <=", value, "pubTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPubTimeIn(List<Date> values) {
+            addCriterion("pub_time in", values, "pubTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPubTimeNotIn(List<Date> values) {
+            addCriterion("pub_time not in", values, "pubTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPubTimeBetween(Date value1, Date value2) {
+            addCriterion("pub_time between", value1, value2, "pubTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPubTimeNotBetween(Date value1, Date value2) {
+            addCriterion("pub_time not between", value1, value2, "pubTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescptionIsNull() {
+            addCriterion("descption is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescptionIsNotNull() {
+            addCriterion("descption is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescptionEqualTo(String value) {
+            addCriterion("descption =", value, "descption");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescptionNotEqualTo(String value) {
+            addCriterion("descption <>", value, "descption");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescptionGreaterThan(String value) {
+            addCriterion("descption >", value, "descption");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescptionGreaterThanOrEqualTo(String value) {
+            addCriterion("descption >=", value, "descption");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescptionLessThan(String value) {
+            addCriterion("descption <", value, "descption");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescptionLessThanOrEqualTo(String value) {
+            addCriterion("descption <=", value, "descption");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescptionLike(String value) {
+            addCriterion("descption like", value, "descption");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescptionNotLike(String value) {
+            addCriterion("descption not like", value, "descption");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescptionIn(List<String> values) {
+            addCriterion("descption in", values, "descption");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescptionNotIn(List<String> values) {
+            addCriterion("descption not in", values, "descption");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescptionBetween(String value1, String value2) {
+            addCriterion("descption between", value1, value2, "descption");
+            return (Criteria) this;
+        }
+
+        public Criteria andDescptionNotBetween(String value1, String value2) {
+            addCriterion("descption not between", value1, value2, "descption");
             return (Criteria) this;
         }
     }
@@ -1000,13 +993,6 @@ public class AlbumExample {
         }
     }
 
-    /**
-     * 专辑
-     * 
-     * @author wcyong
-     * 
-     * @date 2019-09-06
-     */
     public static class Criterion {
         private String condition;
 

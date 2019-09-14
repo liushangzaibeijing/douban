@@ -2,8 +2,9 @@ package com.xiu.crawling.douban.mapper;
 
 import com.xiu.crawling.douban.bean.Album;
 import com.xiu.crawling.douban.bean.AlbumExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface AlbumMapper {
     int countByExample(AlbumExample example);

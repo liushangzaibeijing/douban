@@ -32,7 +32,7 @@
     <result column="speciality" property="speciality" jdbcType="VARCHAR" />
     <result column="native_place" property="nativePlace" jdbcType="VARCHAR" />
     <result column="hobby" property="hobby" jdbcType="VARCHAR" />
-    <result column="isOver" property="isover" jdbcType="INTEGER" />
+    <result column="isOver" property="isOver" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.xiu.crawling.douban.bean.Singer" extends="BaseResultMap" >
     <result column="descption" property="descption" jdbcType="LONGVARCHAR" />
@@ -174,7 +174,7 @@
       #{bloodType,jdbcType=VARCHAR}, #{graduateSchool,jdbcType=VARCHAR}, #{constellation,jdbcType=VARCHAR}, 
       #{language,jdbcType=VARCHAR}, #{fansName,jdbcType=VARCHAR}, #{idolColor,jdbcType=VARCHAR}, 
       #{speciality,jdbcType=VARCHAR}, #{nativePlace,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR}, 
-      #{isover,jdbcType=INTEGER}, #{descption,jdbcType=LONGVARCHAR})
+      #{isOver,jdbcType=INTEGER}, #{descption,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xiu.crawling.douban.bean.Singer" >
     insert into singer
@@ -269,7 +269,7 @@
       <if test="hobby != null" >
         hobby,
       </if>
-      <if test="isover != null" >
+      <if test="isOver != null" >
         isOver,
       </if>
       <if test="descption != null" >
@@ -367,8 +367,8 @@
       <if test="hobby != null" >
         #{hobby,jdbcType=VARCHAR},
       </if>
-      <if test="isover != null" >
-        #{isover,jdbcType=INTEGER},
+      <if test="isOver != null" >
+        #{isOver,jdbcType=INTEGER},
       </if>
       <if test="descption != null" >
         #{descption,jdbcType=LONGVARCHAR},
@@ -474,8 +474,8 @@
       <if test="record.hobby != null" >
         hobby = #{record.hobby,jdbcType=VARCHAR},
       </if>
-      <if test="record.isover != null" >
-        isOver = #{record.isover,jdbcType=INTEGER},
+      <if test="record.isOver != null" >
+        isOver = #{record.isOver,jdbcType=INTEGER},
       </if>
       <if test="record.descption != null" >
         descption = #{record.descption,jdbcType=LONGVARCHAR},
@@ -517,7 +517,7 @@
       speciality = #{record.speciality,jdbcType=VARCHAR},
       native_place = #{record.nativePlace,jdbcType=VARCHAR},
       hobby = #{record.hobby,jdbcType=VARCHAR},
-      isOver = #{record.isover,jdbcType=INTEGER},
+      isOver = #{record.isOver,jdbcType=INTEGER},
       descption = #{record.descption,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -555,7 +555,7 @@
       speciality = #{record.speciality,jdbcType=VARCHAR},
       native_place = #{record.nativePlace,jdbcType=VARCHAR},
       hobby = #{record.hobby,jdbcType=VARCHAR},
-      isOver = #{record.isover,jdbcType=INTEGER}
+      isOver = #{record.isOver,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -650,8 +650,8 @@
       <if test="hobby != null" >
         hobby = #{hobby,jdbcType=VARCHAR},
       </if>
-      <if test="isover != null" >
-        isOver = #{isover,jdbcType=INTEGER},
+      <if test="isOver != null" >
+        isOver = #{isOver,jdbcType=INTEGER},
       </if>
       <if test="descption != null" >
         descption = #{descption,jdbcType=LONGVARCHAR},
@@ -690,7 +690,7 @@
       speciality = #{speciality,jdbcType=VARCHAR},
       native_place = #{nativePlace,jdbcType=VARCHAR},
       hobby = #{hobby,jdbcType=VARCHAR},
-      isOver = #{isover,jdbcType=INTEGER},
+      isOver = #{isOver,jdbcType=INTEGER},
       descption = #{descption,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -725,7 +725,7 @@
       speciality = #{speciality,jdbcType=VARCHAR},
       native_place = #{nativePlace,jdbcType=VARCHAR},
       hobby = #{hobby,jdbcType=VARCHAR},
-      isOver = #{isover,jdbcType=INTEGER}
+      isOver = #{isOver,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

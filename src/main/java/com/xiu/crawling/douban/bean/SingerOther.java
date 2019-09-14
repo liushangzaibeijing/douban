@@ -1,31 +1,12 @@
 package com.xiu.crawling.douban.bean;
 
-/**
- * 歌手其他信息 荣誉记录 个人经历 感情生活等
- * 
- * @author wcyong
- * 
- * @date 2019-09-06
- */
 public class SingerOther {
-    /**
-     * 主键
-     */
     private Integer id;
 
-    /**
-     * 歌手主键
-     */
-    private Integer singerId;
+    private String singerId;
 
-    /**
-     * 社会活动、个人生活
-     */
     private String type;
 
-    /**
-     * 具体的内容很大
-     */
     private String value;
 
     public Integer getId() {
@@ -36,12 +17,12 @@ public class SingerOther {
         this.id = id;
     }
 
-    public Integer getSingerId() {
+    public String getSingerId() {
         return singerId;
     }
 
-    public void setSingerId(Integer singerId) {
-        this.singerId = singerId;
+    public void setSingerId(String singerId) {
+        this.singerId = singerId == null ? null : singerId.trim();
     }
 
     public String getType() {

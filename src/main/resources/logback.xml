@@ -36,9 +36,34 @@
 	</appender>
 
 
+	<appender name="errorFile"
+			  class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<prudent>true</prudent>
+		<Append>true</Append>
+		<encoder>
+			<pattern>${normal-pattern}</pattern>
+			<charset>${encoding}</charset>
+		</encoder>
+		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			　　<maxFileSize>5000MB</maxFileSize>
+		</triggeringPolicy>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.dir}/crawling_error.%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+	</appender>
+
+
 	<logger name="com.xiu.crawling.douban" level="INFO" additivity="false">
 		<appender-ref ref="STDOUT"/>
 		<appender-ref ref="file"/>
+	</logger>
+
+	<!--  设置error级别的日志打印到文件便于分析排查错误 -->
+	<logger name="com.xiu.crawling.douban" level="ERROR" additivity="true">
+		<appender-ref ref="STDOUT"/>
+		<appender-ref ref="errorFile"/>
 	</logger>
 
 

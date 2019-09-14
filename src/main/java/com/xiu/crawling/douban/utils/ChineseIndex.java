@@ -66,7 +66,7 @@ public class ChineseIndex {
                 }
             }
 
-            return chinese;
+            return chinese.toUpperCase();
         }
 
         /**

@@ -199,10 +199,10 @@ public class HttpUtil {
             BufferedInputStream bis = new BufferedInputStream(entity.getContent());
             Long fileLength = entity.getContentLength();
             file = new File(savePath);
-            if (!file.getParentFile().exists()) {
+            if (!file.exists()) {
                 file.mkdirs();
             }
-            File downFile = new File(file, name+".m4a");
+            File downFile = new File(file, name);
             OutputStream os = new FileOutputStream(downFile);
             int size = 0;
 //            int len = 0;

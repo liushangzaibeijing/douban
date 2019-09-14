@@ -90,6 +90,9 @@
 
   https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI09001568352560829&g_tk=5381&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data={"comm":{"ct":24,"cv":0},"singerAlbum":{"method":"get_singer_album","param":{"singermid":"002vALgR3hRRlv","order":"time","begin":0,"num":5,"exstatus":1},"module":"music.web_singer_info_svr"}}
 
+
+  https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI5055059892955638&g_tk=5381&loginUin=1374523006&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0https://y.qq.com/n/yqq/album/004d6hms1otOrs.html
+
   https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI09001568352560829&g_tk=5381&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&
    data={"comm":{"ct":24,"cv":0},"singerAlbum":{"method":"get_singer_album",
      "param":{"singermid":"002vALgR3hRRlv","order":"time","begin":0,"num":5,"exstatus":1},
@@ -166,3 +169,8 @@
   https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg?-=MusicJsonCallback_lrc&pcachetime=1568029110724&songmid=001a69Fl3h6bpK&g_tk=5381&loginUin=1374523006&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0
 
 
+
+
+
+图片信息下载：
+https://y.qq.com/n/yqq/album/004d6hms1otOrs.html

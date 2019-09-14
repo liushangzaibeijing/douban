@@ -24,6 +24,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * author   xieqx
@@ -252,7 +253,7 @@ public class Test {
 
      @org.junit.Test
     public void testUrlDecoder() throws UnsupportedEncodingException {
-        String urldecoder = "https://u.y.qq.com/cgi-bin/musicu.fcg?-=getplaysongvkey00013837631528097&g_tk=5381&loginUin=1374523006&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data=%7B%22req%22%3A%7B%22module%22%3A%22CDN.SrfCdnDispatchServer%22%2C%22method%22%3A%22GetCdnDispatch%22%2C%22param%22%3A%7B%22guid%22%3A%227254122593%22%2C%22calltype%22%3A0%2C%22userip%22%3A%22%22%7D%7D%2C%22req_0%22%3A%7B%22module%22%3A%22vkey.GetVkeyServer%22%2C%22method%22%3A%22CgiGetVkey%22%2C%22param%22%3A%7B%22guid%22%3A%227254122593%22%2C%22songmid%22%3A%5B%22003clL2S0lVVSF%22%5D%2C%22songtype%22%3A%5B0%5D%2C%22uin%22%3A%221374523006%22%2C%22loginflag%22%3A1%2C%22platform%22%3A%2220%22%7D%7D%2C%22comm%22%3A%7B%22uin%22%3A%221374523006%22%2C%22format%22%3A%22json%22%2C%22ct%22%3A24%2C%22cv%22%3A0%7D%7D;";
+        String urldecoder = "https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI5055059892955638&g_tk=5381&loginUin=1374523006&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data=%7B%22comm%22%3A%7B%22ct%22%3A24%2C%22cv%22%3A0%7D%2C%22singerAlbum%22%3A%7B%22method%22%3A%22get_singer_album%22%2C%22param%22%3A%7B%22singermid%22%3A%22002vALgR3hRRlv%22%2C%22order%22%3A%22time%22%2C%22begin%22%3A0%2C%22num%22%3A5%2C%22exstatus%22%3A1%7D%2C%22module%22%3A%22music.web_singer_info_svr%22%7D%7D";
         String url = URLDecoder.decode(urldecoder, "UTF-8");
         log.info("查询url:{}",url);
 
@@ -264,12 +265,10 @@ public class Test {
      @org.junit.Test
      public void testParse() {
 
-         String[] singerList = {"001fNHEf1SFEFN", "0025NhlN2yWrP4", "001JDzPT3JdvqK", "002J4UUk29y8BY", "004V53Ga0bV65j"};
+         String[] singerList = {"001fNHEf1SFEFN"};
          for (String id : singerList) {
              String url =
-                     "https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_singer_desc.fcg?singermid=" + id + "&utf8=1&outCharset=utf-8&format=xml&&r=" + new Date().getTime();
-
-
+                     "https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_singer_desc.fcg?singermid=004U5z7s4ZvRNq&utf8=1&outCharset=utf-8&format=xml&r="+new Date().getTime();
              /**
               Accept-Encoding: gzip, deflate, br
               Accept-Language: zh-CN,zh;q=0.9
@@ -303,6 +302,19 @@ public class Test {
         String result = new String (decode);
 
         log.info("歌词信息：{}",result);
+
+
+    }
+
+
+    @org.junit.Test
+    public void testAutomicInt(){
+        AtomicInteger atomicInteger = new AtomicInteger(1);
+
+        log.info("get(): {}",atomicInteger.get());
+        log.info("getAndIncrement(): {}",atomicInteger.getAndIncrement());
+        log.error("incrementAndGet(): {}",atomicInteger.incrementAndGet());
+
 
 
     }

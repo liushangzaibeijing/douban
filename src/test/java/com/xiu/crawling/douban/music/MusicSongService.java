@@ -6,6 +6,7 @@ import com.github.pagehelper.PageHelper;
 import com.xiu.crawling.douban.DoubanApplication;
 import com.xiu.crawling.douban.bean.Singer;
 import com.xiu.crawling.douban.bean.SingerExample;
+import com.xiu.crawling.douban.bean.Song;
 import com.xiu.crawling.douban.bean.dto.SongInfoResult;
 import com.xiu.crawling.douban.bean.dto.Songlist;
 import com.xiu.crawling.douban.common.ConstantMusic;
@@ -19,6 +20,7 @@ import org.apache.http.HttpHost;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jackson.JsonObjectDeserializer;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -52,6 +54,13 @@ public class MusicSongService {
      */
     @Autowired
     ProxyService proxyService;
+
+    /**
+     * 歌曲资源根路径
+     */
+    @Value("${songResourceBasePath}")
+    String songResourceBasePath;
+
     //获取歌手信息
     @Test
     public void parseSongList(){
@@ -78,9 +87,9 @@ public class MusicSongService {
                     SongInfoResult songInfoResult = getSongInfoResult(singer.getSignerMid(),songIndex+1);
                     List<Songlist> songlist = songInfoResult.getSonglist();
                     HttpHost proxy = null;
-                    for (Songlist song : songlist){
+                    for (Songlist songvo : songlist){
                         //TODO 获取歌曲其他信息存储
-                        String songMid = song.getMid();
+                        String songMid = songvo.getMid();
                         String vKeyUrl = ConstantMusic.getMusicSongVKey(songMid);
                         Map<String, String> headers = generatorHeader();
                         String vkeyInfo = HttpUtil.doGetByHeader(vKeyUrl,headers);
@@ -89,13 +98,12 @@ public class MusicSongService {
 
                         String userIp = vkeyInfoJson.getJSONObject("req").getJSONObject("data").getString("userip");
 
-                        log.info("用户登录的ip地址：{}  爬取的歌曲名称为：{}",userIp,song.getName());
+                        log.info("用户登录的ip地址：{}  爬取的歌曲名称为：{}",userIp,songvo.getName());
                         //获取到vkey
                         JSONArray midurlinfos = vkeyInfoJson.getJSONObject("req_0").getJSONObject("data").getJSONArray("midurlinfo");
 
-                        for(int i=0;i<midurlinfos.size();i++){
-                            //获取purl
-                            JSONObject  midurlinfo = midurlinfos.getJSONObject(i);
+                        if(midurlinfos!=null&&midurlinfos.size()!=0){
+                            JSONObject  midurlinfo = midurlinfos.getJSONObject(0);
                             String purl = midurlinfo.getString("purl");
                             //下载音乐
                             String songDownUrl = ConstantMusic.getSongDownUrl(purl);
@@ -103,8 +111,26 @@ public class MusicSongService {
                             log.info("下载的url:{}",songDownUrl);
                             //HttpHost canUseProxy = proxyService.findCanUseProxy();
                             //下载操作
-                            HttpUtil.doDown(songDownUrl,null,"/home/nas/music/",songMid);
+                            HttpUtil.doDown(songDownUrl,null,"/home/nas/music/",songMid+".m4a");
+
                         }
+                        Song song = new Song();
+
+                        song.setSongId(songvo.getId());
+                        song.setSongMid(songvo.getMid());
+                        song.setSongName(songvo.getName());
+                        song.setSongType(String.valueOf(songvo.getType()));
+                        song.setAlbumId(songvo.getAlbum().getMid());
+                        StringBuilder singerMids = new StringBuilder();
+                        for(com.xiu.crawling.douban.bean.dto.Singer singerDto:songvo.getSinger()){
+                            singerMids.append(singerDto.getId()+",");
+                        }
+                        String  singerMid = singerMids.substring(0,singerMids.length()-1);
+                        song.setSongMid(singerMid);
+                        song.setTimePublic(song.getTimePublic());
+                        //该字段目前可以不需要song.setSongAttr();
+
+
                     }
                 }
             }

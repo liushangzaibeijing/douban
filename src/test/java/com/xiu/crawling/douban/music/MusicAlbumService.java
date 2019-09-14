@@ -32,6 +32,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.util.StringUtils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static com.xiu.crawling.douban.common.Constant.pageSize;
@@ -65,11 +67,7 @@ public class MusicAlbumService {
     SingerMapper singerMapper;
 
 
-    /**
-     * 歌手图片存放根路径
-     */
-    @Value("${singerPicBasePath}")
-    String singerPicBasePath;
+
 
     /**
      * 专辑图片存放根路径
@@ -77,11 +75,6 @@ public class MusicAlbumService {
     @Value("${albumPicBasePath}")
     String albumPicBasePath;
 
-    /**
-     * 歌曲资源根路径
-     */
-    @Value("${songResourceBasePath}")
-    String songResourceBasePath;
 
 
     //获取专辑信息
@@ -100,22 +93,63 @@ public class MusicAlbumService {
             List<Singer> singers = singerMapper.selectByExample(singerExample);
 
             if(singers==null && singers.size()==0){
-                log.info("所有的歌手信息爬取");
+                log.info("所有的歌手信息爬取完成");
                 return;
             }
             //遍历歌手信息
             for(Singer singer:singers){
+                log.info("歌手 {} 的专辑信息爬取开始",singer.getFullName());
                String singerMid = singer.getSignerMid();
-               String singerAblumListUrl = ConstantMusic.getAlbumList(singerMid);
 
-               String result = HttpUtil.doGet(singerAblumListUrl);
+               Integer totalPage = getAlbumToTalPage(singerMid);
 
-               List<Album> albumList = parseAlbum(result);
+               for(int albumIndex = 0; albumIndex<totalPage;albumIndex++){
+                    String singerAblumListUrl = ConstantMusic.getAlbumList(singerMid,albumIndex);
+                    String result = HttpUtil.doGet(singerAblumListUrl);
+                    List<Album> albumList = parseAlbum(result);
+                    log.info("下载的专辑信息:{}",JsonUtil.obj2str(albumList));
+                    insertAlbumBatch(albumList);
 
+                }
+                log.info("歌手 {} 的专辑信息爬取完成",singer.getFullName());
+                crawAblumOver(singer.getId());
             }
         }
 
 
+    }
+
+    /**
+     * 标记该歌手对应的专辑信息已经爬取完毕
+     * @param singerId
+     */
+    private void crawAblumOver(Integer singerId) {
+        //更新歌手信息
+        Singer singerUpdate = new Singer();
+        singerUpdate.setId(singerId);
+        singerUpdate.setIsOver(1);
+        singerMapper.updateByPrimaryKey(singerUpdate);
+    }
+
+    private Integer getAlbumToTalPage(String singerMid) {
+        String singerAblumListUrl = ConstantMusic.getAlbumList(singerMid,1);
+
+        String result = HttpUtil.doGet(singerAblumListUrl);
+        JSONObject albumListStr = JSONObject.parseObject(result);
+        //获取专辑列表信息
+        Integer total = albumListStr.getJSONObject("singerAlbum").getJSONObject("data").getInteger("total");
+        return  total%ConstantMusic.albumSize==0
+                ?total/ConstantMusic.albumSize:total/ConstantMusic.albumSize+1;
+    }
+
+    /**
+     * 批量插入专辑信息
+     * @param albumList 专辑信息集合对象
+     */
+    private void insertAlbumBatch(List<Album> albumList) {
+        for (Album album : albumList) {
+            albumMapper.insert(album);
+        }
     }
 
     /**
@@ -131,7 +165,7 @@ public class MusicAlbumService {
         //获取专辑列表
         for(int i=0;i<albumList.size();i++){
             Album albumBean = new Album();
-            JSONObject album = albumList.getJSONObject(0);
+            JSONObject album = albumList.getJSONObject(i);
 
             Integer albumid = album.getInteger("albumid");
             albumBean.setAlbumId(albumid);
@@ -145,15 +179,7 @@ public class MusicAlbumService {
             albumBean.setCompanyName(companyName);
             String lan = getStringByJson(album, "lan");
             albumBean.setLan(lan);
-            //TODO  "singers": [
-            //            {
-            //              "singer_id": 1190986,
-            //              "singer_mid": "003DBAjk2MMfhR",
-            //              "singer_name": "BLACKPINK"
-            //            }
-            //          ]
-
-            String singerMids = getSingersByJson(album, "singer_mid");
+            String singerMids = getSingersByJson(album, "singers");
             albumBean.setSignerMid(singerMids);
             Date pubTime = getDateByJson(album, "pub_time");
             albumBean.setPubTime(pubTime);
@@ -161,36 +187,46 @@ public class MusicAlbumService {
             albumBean.setScore(score);
 
             String albumHtmlUrl = getAlbumHtml(albumMid);
+
             String htmlResult = HttpUtil.doGet(albumHtmlUrl);
+//            log.info("htmlResult:{}",htmlResult);
             Document document = Jsoup.parseBodyFragment(htmlResult);
             //从html页面中获取其他更加详细的数据信息
             parseAlbumOther(albumBean,document);
-
             albums.add(albumBean);
         }
-
         return albums;
     }
 
+    /**
+     * 从对应专辑的html 获取图片和desc信息
+     * @param albumBean
+     * @param document
+     */
     private void parseAlbumOther(Album albumBean, Document document) {
         //TODO 图片
         //<li class="subject-item"
-        Elements  picNode  = document.select("div.main.mod_data img#albumImg");
+        Elements  picNode  = document.select("img#albumImg");
 
         String imgUrl = picNode.get(0).attr("src");
         //下载并存放
 
-        imgUrl = "https"+imgUrl;
-        String albumDir = generatorSaveDir(albumPicBasePath,albumBean.getSignerMid());
-        String albumPicUrl = HttpUtil.doDown(imgUrl,null,albumDir,albumBean.getAlbumMid());
+        imgUrl = "http:"+imgUrl;
 
+        log.info("专辑图片：{}",imgUrl);
+        String albumDir = generatorSaveDir(albumPicBasePath,albumBean.getSignerMid());
+        String albumPicUrl = HttpUtil.doDown(imgUrl,null,albumDir,albumBean.getAlbumMid()+".jpg");
+         //album_desc
         albumBean.setAlbumPic(albumPicUrl);
         //TODO desc 描述
-
+        Elements  descNode  = document.select("div#album_desc .about__cont p");
+        String desc = descNode.text();
+        albumBean.setDescption(desc);
 
     }
 
     private String generatorSaveDir(String albumPicBasePath, String signerMid) {
+        signerMid = signerMid.replaceAll(",","_");
       return albumPicBasePath+"/"+signerMid+"/";
     }
 
@@ -213,8 +249,13 @@ public class MusicAlbumService {
         if(StringUtils.isEmpty(value)){
             return null;
         }
-        Date date = DateUtils.parseDate(value);
-        return date;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            return dateFormat.parse(value);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
 
     }
 

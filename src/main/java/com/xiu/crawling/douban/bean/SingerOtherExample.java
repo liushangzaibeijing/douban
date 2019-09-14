@@ -63,13 +63,6 @@ public class SingerOtherExample {
         distinct = false;
     }
 
-    /**
-     * 歌手其他信息 荣誉记录 个人经历 感情生活等
-     * 
-     * @author wcyong
-     * 
-     * @date 2019-09-06
-     */
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
 
@@ -181,52 +174,62 @@ public class SingerOtherExample {
             return (Criteria) this;
         }
 
-        public Criteria andSingerIdEqualTo(Integer value) {
+        public Criteria andSingerIdEqualTo(String value) {
             addCriterion("singer_id =", value, "singerId");
             return (Criteria) this;
         }
 
-        public Criteria andSingerIdNotEqualTo(Integer value) {
+        public Criteria andSingerIdNotEqualTo(String value) {
             addCriterion("singer_id <>", value, "singerId");
             return (Criteria) this;
         }
 
-        public Criteria andSingerIdGreaterThan(Integer value) {
+        public Criteria andSingerIdGreaterThan(String value) {
             addCriterion("singer_id >", value, "singerId");
             return (Criteria) this;
         }
 
-        public Criteria andSingerIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andSingerIdGreaterThanOrEqualTo(String value) {
             addCriterion("singer_id >=", value, "singerId");
             return (Criteria) this;
         }
 
-        public Criteria andSingerIdLessThan(Integer value) {
+        public Criteria andSingerIdLessThan(String value) {
             addCriterion("singer_id <", value, "singerId");
             return (Criteria) this;
         }
 
-        public Criteria andSingerIdLessThanOrEqualTo(Integer value) {
+        public Criteria andSingerIdLessThanOrEqualTo(String value) {
             addCriterion("singer_id <=", value, "singerId");
             return (Criteria) this;
         }
 
-        public Criteria andSingerIdIn(List<Integer> values) {
+        public Criteria andSingerIdLike(String value) {
+            addCriterion("singer_id like", value, "singerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSingerIdNotLike(String value) {
+            addCriterion("singer_id not like", value, "singerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSingerIdIn(List<String> values) {
             addCriterion("singer_id in", values, "singerId");
             return (Criteria) this;
         }
 
-        public Criteria andSingerIdNotIn(List<Integer> values) {
+        public Criteria andSingerIdNotIn(List<String> values) {
             addCriterion("singer_id not in", values, "singerId");
             return (Criteria) this;
         }
 
-        public Criteria andSingerIdBetween(Integer value1, Integer value2) {
+        public Criteria andSingerIdBetween(String value1, String value2) {
             addCriterion("singer_id between", value1, value2, "singerId");
             return (Criteria) this;
         }
 
-        public Criteria andSingerIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andSingerIdNotBetween(String value1, String value2) {
             addCriterion("singer_id not between", value1, value2, "singerId");
             return (Criteria) this;
         }
@@ -300,76 +303,6 @@ public class SingerOtherExample {
             addCriterion("type not between", value1, value2, "type");
             return (Criteria) this;
         }
-
-        public Criteria andValueIsNull() {
-            addCriterion("value is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andValueIsNotNull() {
-            addCriterion("value is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andValueEqualTo(String value) {
-            addCriterion("value =", value, "value");
-            return (Criteria) this;
-        }
-
-        public Criteria andValueNotEqualTo(String value) {
-            addCriterion("value <>", value, "value");
-            return (Criteria) this;
-        }
-
-        public Criteria andValueGreaterThan(String value) {
-            addCriterion("value >", value, "value");
-            return (Criteria) this;
-        }
-
-        public Criteria andValueGreaterThanOrEqualTo(String value) {
-            addCriterion("value >=", value, "value");
-            return (Criteria) this;
-        }
-
-        public Criteria andValueLessThan(String value) {
-            addCriterion("value <", value, "value");
-            return (Criteria) this;
-        }
-
-        public Criteria andValueLessThanOrEqualTo(String value) {
-            addCriterion("value <=", value, "value");
-            return (Criteria) this;
-        }
-
-        public Criteria andValueLike(String value) {
-            addCriterion("value like", value, "value");
-            return (Criteria) this;
-        }
-
-        public Criteria andValueNotLike(String value) {
-            addCriterion("value not like", value, "value");
-            return (Criteria) this;
-        }
-
-        public Criteria andValueIn(List<String> values) {
-            addCriterion("value in", values, "value");
-            return (Criteria) this;
-        }
-
-        public Criteria andValueNotIn(List<String> values) {
-            addCriterion("value not in", values, "value");
-            return (Criteria) this;
-        }
-
-        public Criteria andValueBetween(String value1, String value2) {
-            addCriterion("value between", value1, value2, "value");
-            return (Criteria) this;
-        }
-
-        public Criteria andValueNotBetween(String value1, String value2) {
-            addCriterion("value not between", value1, value2, "value");
-            return (Criteria) this;
-        }
     }
 
     public static class Criteria extends GeneratedCriteria {
@@ -379,13 +312,6 @@ public class SingerOtherExample {
         }
     }
 
-    /**
-     * 歌手其他信息 荣誉记录 个人经历 感情生活等
-     * 
-     * @author wcyong
-     * 
-     * @date 2019-09-06
-     */
     public static class Criterion {
         private String condition;
 

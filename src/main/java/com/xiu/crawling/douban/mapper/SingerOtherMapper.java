@@ -17,15 +17,21 @@ public interface SingerOtherMapper {
 
     int insertSelective(SingerOther record);
 
+    List<SingerOther> selectByExampleWithBLOBs(SingerOtherExample example);
+
     List<SingerOther> selectByExample(SingerOtherExample example);
 
     SingerOther selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") SingerOther record, @Param("example") SingerOtherExample example);
 
+    int updateByExampleWithBLOBs(@Param("record") SingerOther record, @Param("example") SingerOtherExample example);
+
     int updateByExample(@Param("record") SingerOther record, @Param("example") SingerOtherExample example);
 
     int updateByPrimaryKeySelective(SingerOther record);
+
+    int updateByPrimaryKeyWithBLOBs(SingerOther record);
 
     int updateByPrimaryKey(SingerOther record);
 }
