@@ -52,6 +52,8 @@ public class ConstantMusic {
      */
     public final static String ALBUM_LIST = "https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI5055059892955638&g_tk=5381&loginUin=1374523006&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0";
 
+
+
     /**
      * 获取歌手列表url
      * @return
@@ -120,6 +122,15 @@ public class ConstantMusic {
         return url;
     }
 
+
+    /**
+     * 获取歌词信息
+     * @param songMid 歌手唯一标识
+     * @return
+     */
+    public static String getLyricInfoUrl(String songMid){
+        return "https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg?-=MusicJsonCallback_lrc&pcachetime=1568029110724&songmid="+songMid+"&g_tk=5381&loginUin=1374523006&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0";
+    }
 
 
 }
