@@ -104,9 +104,13 @@ public class MusicSongService {
                             songIndex+1);
                     //获取一个歌手的全部信息qq音乐页面的json信息
                     List<Songlist> songlist = songInfoResult.getSonglist();
+                    log.info("爬取的歌曲信息为：{}",JsonUtil.obj2str(songlist));
                     HttpHost proxy = null;
                     for (Songlist songvo : songlist){
                         try {
+                            if(getSongIsExist(songvo.getMid())){
+                               continue;
+                            }
                             //获取歌曲信息
                             Song song = getSongInfo(songvo);
                             saveSongInfo(song);
@@ -127,21 +131,40 @@ public class MusicSongService {
         }
     }
 
+    @Test
+    public void resetSong(){
+
+
+       String purl = "F0000039MnYb0qxYhV.flac?guid=ABB0D1BD7886FB31112EE64C48EEFC32&vkey=B48D2F08DE025E9FCE5CF873D07478BC3C3D2D5F1C6BAEA144C53D2A917802E1C59DD6548F2A18BDE0E749B8695946D5883F559184F2128F&uin=3710";
+        //下载音乐
+        String songDownUrl = ConstantMusic.getSongVipDownUrl(purl);
+
+        log.info("下载的url:{}",songDownUrl);
+        //HttpHost canUseProxy = proxyService.findCanUseProxy();
+        //下载操作
+        String savePathDir = generatorSaveDir(songResourceBasePath,"tmp");
+        String  musicResocure = HttpUtil.doDown(songDownUrl,null,savePathDir,"test.flac");
+        //存储
+
+    }
+
     private void saveSongInfo(Song song) throws Exception {
        try {
-           String songMid = song.getSongMid();
-           SongExample songExample = new SongExample();
-           songExample.createCriteria().andSongMidEqualTo(songMid);
-           List<Song> songs = songMapper.selectByExample(songExample);
-           if (songs == null || songs.size() == 0) {
-               //该歌曲没有被爬取
                songMapper.insert(song);
-           }
-
        }catch (Exception e){
            throw  new Exception(e);
        }
 
+    }
+
+    private Boolean getSongIsExist(String songMid) {
+        SongExample songExample = new SongExample();
+        songExample.createCriteria().andSongMidEqualTo(songMid);
+        List<Song> songs = songMapper.selectByExample(songExample);
+        if (songs == null || songs.size() == 0) {
+            return false;
+        }
+        return true;
     }
 
     private void updateSingerIsOver(Integer singerId){
@@ -216,9 +239,13 @@ public class MusicSongService {
 
 
     private String getStrByDate(Date timePulic){
+        if(timePulic==null){
+            return null;
+        }
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(timePulic);
     }
+
     private String generatorSaveDir(String songResourceBasePath,String singerId) {
             return songResourceBasePath+"/"+singerId;
     }

@@ -3,6 +3,7 @@
   */
 package com.xiu.crawling.douban.bean.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.List;
 import java.util.Date;
@@ -31,6 +32,7 @@ public class Songlist {
     private int index_cd;
     private int index_album;
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date time_public;
     private int status;
     private int fnote;

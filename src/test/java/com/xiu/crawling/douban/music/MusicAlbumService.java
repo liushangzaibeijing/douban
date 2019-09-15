@@ -10,8 +10,10 @@ import com.xiu.crawling.douban.bean.dto.SongInfoResult;
 import com.xiu.crawling.douban.bean.dto.Songlist;
 import com.xiu.crawling.douban.common.ConstantMusic;
 import com.xiu.crawling.douban.core.service.ProxyService;
+import com.xiu.crawling.douban.enums.MusicTypeEnum;
 import com.xiu.crawling.douban.mapper.AlbumMapper;
 import com.xiu.crawling.douban.mapper.BusSingerMapper;
+import com.xiu.crawling.douban.mapper.CurrPageMapper;
 import com.xiu.crawling.douban.mapper.SingerMapper;
 import com.xiu.crawling.douban.utils.HttpUtil;
 import com.xiu.crawling.douban.utils.JsonUtil;
@@ -66,9 +68,6 @@ public class MusicAlbumService {
     @Autowired
     SingerMapper singerMapper;
 
-
-
-
     /**
      * 专辑图片存放根路径
      */
@@ -76,6 +75,8 @@ public class MusicAlbumService {
     String albumPicBasePath;
 
 
+    @Autowired
+    CurrPageMapper currPageMapper;
 
     //获取专辑信息
     @Test
@@ -104,11 +105,19 @@ public class MusicAlbumService {
                Integer totalPage = getAlbumToTalPage(singerMid);
 
                for(int albumIndex = 0; albumIndex<totalPage;albumIndex++){
-                    String singerAblumListUrl = ConstantMusic.getAlbumList(singerMid,albumIndex);
-                    String result = HttpUtil.doGet(singerAblumListUrl);
-                    List<Album> albumList = parseAlbum(result);
-                    log.info("下载的专辑信息:{}",JsonUtil.obj2str(albumList));
-                    insertAlbumBatch(albumList);
+                   try{
+                       String singerAblumListUrl = ConstantMusic.getAlbumList(singerMid,albumIndex);
+                       String result = HttpUtil.doGet(singerAblumListUrl);
+                       List<Album> albumList = parseAlbum(result);
+                       log.info("下载的专辑信息:{}",JsonUtil.obj2str(albumList));
+                       insertAlbumBatch(albumList);
+                   }catch (Exception ex){
+                       Integer id = singer.getId();
+                       updateCurrPageInfo( id, MusicTypeEnum.ABLUM.getCode(),
+                               singer.getFullName()+"_"+ex.getMessage());
+
+                   }
+
 
                 }
                 log.info("歌手 {} 的专辑信息爬取完成",singer.getFullName());
@@ -268,5 +277,21 @@ public class MusicAlbumService {
 
     }
 
+
+    /**
+     * 保存中断导致的信息
+     * @param currentPage
+     * @param type
+     * @param errorMsg
+     */
+    private void updateCurrPageInfo(Integer currentPage, Integer type, String errorMsg) {
+        CurrPage currPage = new CurrPage();
+        currPage.setCurrPage(currentPage);
+        log.info("爬取专辑信息出现的问题");
+        currPage.setType(type);
+        errorMsg = errorMsg.length()>500?errorMsg.substring(0,500):errorMsg;
+        currPage.setMessage(errorMsg);
+        currPageMapper.insert(currPage);
+    }
 
 }

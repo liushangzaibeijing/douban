@@ -41,6 +41,7 @@ public class ConstantMusic {
     public final static String MUSIC_SONG_LIST = "https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI048295277528706215&g_tk=1370299737&loginUin=1169704579&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0";
 
 
+
     /**
      * 获取歌手的vkey
      */
@@ -82,8 +83,7 @@ public class ConstantMusic {
      * @return
      */
     public static String getMusicSongListDetailUrl(String singerMid,Integer currentPage){
-
-        String data = "&data=%7B%22comm%22%3A%7B%22ct%22%3A24%2C%22cv%22%3A0%7D%2C%22singer%22%3A%7B%22method%22%3A%22get_singer_detail_info%22%2C%22param%22%3A%7B%22sort%22%3A5%2C%22singermid%22%3A%22"+singerMid+"%22%2C%22sin%22%3A"+(currentPage-1)+"%2C%22num%22%3A"+songpageSize+"%7D%2C%22module%22%3A%22music.web_singer_info_svr%22%7D%7D";
+        String data = "&data=%7B%22comm%22%3A%7B%22ct%22%3A24%2C%22cv%22%3A0%7D%2C%22singer%22%3A%7B%22method%22%3A%22get_singer_detail_info%22%2C%22param%22%3A%7B%22sort%22%3A5%2C%22singermid%22%3A%22"+singerMid+"%22%2C%22sin%22%3A"+(currentPage-1)*songpageSize+"%2C%22num%22%3A"+songpageSize+"%7D%2C%22module%22%3A%22music.web_singer_info_svr%22%7D%7D";
         return MUSIC_SONG_LIST+data;
     }
 
@@ -117,7 +117,6 @@ public class ConstantMusic {
      * @return
      */
     public static String getSongDownUrl(String purl){
-        Date  time = new Date();
         String url = "http://isure.stream.qqmusic.qq.com/"+purl;
         return url;
     }
@@ -129,8 +128,21 @@ public class ConstantMusic {
      * @return
      */
     public static String getLyricInfoUrl(String songMid){
-        return "https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg?-=MusicJsonCallback_lrc&pcachetime="+new Date().getTime()+"&songmid="+songMid+"&g_tk=5381&loginUin=1374523006&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0";
+        Date date = new Date();
+        Long time = date.getTime();
+        return "https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg?-=MusicJsonCallback_lrc&pcachetime="+time+"&songmid="+songMid+"&g_tk=5381&loginUin=1374523006&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0";
     }
+
+
+    /**
+     * 获取歌曲vip无损音质下载
+     * @return
+     */
+    public static String getSongVipDownUrl(String purl){
+        String url = "http://ws.stream.qqmusic.qq.com/"+purl;
+        return url;
+    }
+
 
 
 }

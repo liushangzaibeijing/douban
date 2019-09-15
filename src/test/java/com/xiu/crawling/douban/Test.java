@@ -254,7 +254,7 @@ public class Test {
 
      @org.junit.Test
     public void testUrlDecoder() throws UnsupportedEncodingException {
-        String urldecoder = "https://u.y.qq.com/cgi-bin/musicu.fcg?-=getUCGI5055059892955638&g_tk=5381&loginUin=1374523006&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data=%7B%22comm%22%3A%7B%22ct%22%3A24%2C%22cv%22%3A0%7D%2C%22singerAlbum%22%3A%7B%22method%22%3A%22get_singer_album%22%2C%22param%22%3A%7B%22singermid%22%3A%22002vALgR3hRRlv%22%2C%22order%22%3A%22time%22%2C%22begin%22%3A0%2C%22num%22%3A5%2C%22exstatus%22%3A1%7D%2C%22module%22%3A%22music.web_singer_info_svr%22%7D%7D";
+        String urldecoder = "https://u.y.qq.com/cgi-bin/musicu.fcg?-=getplaysongvkey509352456976849&g_tk=5381&loginUin=1374523006&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0&data=%7B%22req%22%3A%7B%22module%22%3A%22CDN.SrfCdnDispatchServer%22%2C%22method%22%3A%22GetCdnDispatch%22%2C%22param%22%3A%7B%22guid%22%3A%227254122593%22%2C%22calltype%22%3A0%2C%22userip%22%3A%22%22%7D%7D%2C%22req_0%22%3A%7B%22module%22%3A%22vkey.GetVkeyServer%22%2C%22method%22%3A%22CgiGetVkey%22%2C%22param%22%3A%7B%22guid%22%3A%227254122593%22%2C%22songmid%22%3A%5B%220039MnYb0qxYhV%22%5D%2C%22songtype%22%3A%5B0%5D%2C%22uin%22%3A%221374523006%22%2C%22loginflag%22%3A1%2C%22platform%22%3A%2220%22%7D%7D%2C%22comm%22%3A%7B%22uin%22%3A%221374523006%22%2C%22format%22%3A%22json%22%2C%22ct%22%3A24%2C%22cv%22%3A0%7D%7D";
         String url = URLDecoder.decode(urldecoder, "UTF-8");
         log.info("查询url:{}",url);
 
@@ -296,7 +296,7 @@ public class Test {
     @org.junit.Test
     public void parseLyric(){
         String url = "https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg?-=MusicJsonCallback_lrc&pcachetime="+new Date().getTime()+"&songmid=001a69Fl3h6bpK&g_tk=5381&loginUin=1374523006&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0";
-                    url =  "https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg?-=MusicJsonCallback_lrc&pcachetime=1568472549423&songmid=004WeN6l3hHiXr&g_tk=5381&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0";
+                    url =  "https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg?-=MusicJsonCallback_lrc&pcachetime=1568472549423&songmid=001rBM4W0oL0CXXr&g_tk=5381&loginUin=1374523006&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq.json&needNewCode=0";
         String lyric = getLyric(url);
         if (lyric == null) return;
 
@@ -336,4 +336,20 @@ public class Test {
 
     }
 
+
+    @org.junit.Test
+    public void testVipDown(){
+        Date time = new Date();
+        Long timeL = time.getTime();
+        String url = "https://ws.y.qq.com/cgi-bin/musics.fcg?pcachetime="+timeL;
+        Map<String,String> headers = new HashMap<>();
+        headers.put("Mask","qGHc2HKDjY0BEj5N0/PlMrUSEhSBdLv/ovQbcI0xhmvOx+cUTeOYBVHLd1qaePgUGO3UDf7ndmDndenurQ6saASKxbxkKl7T4DibJsi0jJQ=");
+        headers.put("Sign","RVFVRlNUUEZRS1dUZLuqtfDDYQuhDYG2E+KntRqMpR8=");
+
+        String json = "{\"comm\":{\"ct\":\"19\",\"cv\":\"1712\",\"patch\":\"118\",\"uin\":\"1374523006\",\"wid\":\"7585820891367763367\"},\"queryvkey\":{\"method\":\"CgiGetEVkey\",\"module\":\"vkey.GetEVkeyServer\",\"param\":{\"checklimit\":0,\"ctx\":1,\"downloadfrom\":0,\"filename\":[\"F0M0002qU5aY3Qu24y.mflac\",\"F0M0002MXZNu1GToOk.mflac\"],\"guid\":\"ABB0D1BD7886FB31112EE64C48EEFC32\",\"musicfile\":[\"F0M0002qU5aY3Qu24y.mflac\",\"F0M0002MXZNu1GToOk.mflac\"],\"nettype\":\"\",\"referer\":\"y.qq.com\",\"scene\":0,\"songmid\":[\"002qU5aY3Qu24y\",\"002MXZNu1GToOk\"],\"songtype\":[1,1],\"uin\":\"1374523006\"}}}";
+
+        String result  = HttpUtil.doPostSSL(url, json);
+        log.info("result:{}",result);
+
+    }
 }

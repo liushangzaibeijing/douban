@@ -1,28 +1,71 @@
 package com.xiu.crawling.douban.bean;
 
+/**
+ * 
+ * 
+ * @author wcyong
+ * 
+ * @date 2019-09-15
+ */
 public class Song {
+    /**
+     * 主键
+     */
     private Integer id;
 
+    /**
+     * qq音乐id
+     */
     private Integer songId;
 
+    /**
+     * qq音乐mid
+     */
     private String songMid;
 
+    /**
+     * 歌曲名称
+     */
     private String songName;
 
+    /**
+     * 歌曲类型
+     */
     private String songType;
 
+    /**
+     * 所属专辑
+     */
     private String albumId;
 
+    /**
+     * 所属歌手
+     */
     private String singerMid;
 
+    /**
+     * 发行时间
+     */
     private String timePublic;
 
+    /**
+     * 歌曲属性
+     */
     private String songAttr;
 
+    /**
+     * 歌曲时长
+     */
     private String duration;
 
+    /**
+     * 歌词信息
+     */
     private String lyric;
 
+    /**
+     * 歌曲路径
+     */
     private String songUrl;
 
     public Integer getId() {

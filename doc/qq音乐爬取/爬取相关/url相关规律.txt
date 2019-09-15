@@ -45,7 +45,7 @@
    data={"comm":{"ct":24,"cv":0},"singerList":{"module":"Music.SingerListServer","method":"get_singer_list",
    "param":{"area":-100,"sex":-100,"genre":-100,"index":-100,"sin":80,"cur_page":2}}}
 
-   
+   http://u.y.qq.com/cgi-bin/musicu.fcg?_=1568524310712&g_tk=213269514&uin=1374523006&format=json&inCharset=utf-8&outCharset=utf-8&notice=0&platform=wk_v17&needNewCode=1&data=%7B%22comm%22%3A%7B%22cv%22%3A1700%2C%22ct%22%3A20%7D%2C%22singerList%22%3A%7B%22module%22%3A%22Music.SingerListServer%22%2C%22method%22%3A%22get_singer_list%22%2C%22param%22%3A%7B%22area%22%3A-100%2C%22sex%22%3A-100%2C%22index%22%3A-100%2C%22genre%22%3A-100%2C%22cur_page%22%3A1%2C%22sin%22%3A0%7D%7D%7D
  
       "sex": -100,    # 性别 -100全部  0男 1女 2组合
       "index": -100,  # 索引  歌手首字母
@@ -157,7 +157,7 @@
 
    http://.stream.qqmusic.qq.com/C400003mAan70zUy5O.m4a?guid=7254122593&vkey=D3D6476EF82BA6FD93923A0E531A6EC161F55E4FFB3BF84E1267FD60589306D6AECA3828230BE9113CAABDF5B326AF7F2303BD306A0CD1CB&uin=3710&fromtag=3&r=0006921384872122793isure
 
-   http://ws.stream.qqmusic.qq.com/C400003mAan70zUy5O.m4a?guid=7254122593&vkey=D3D6476EF82BA6FD93923A0E531A6EC161F55E4FFB3BF84E1267FD60589306D6AECA3828230BE9113CAABDF5B326AF7F2303BD306A0CD1CB&uin=3710&fromtag=3&r=4180528580588103
+   http://ws.stream.qqmusic.qq.com/C400003mAan70zUy5O.flac?guid=7254122593&vkey=D3D6476EF82BA6FD93923A0E531A6EC161F55E4FFB3BF84E1267FD60589306D6AECA3828230BE9113CAABDF5B326AF7F2303BD306A0CD1CB&uin=3710&fromtag=3&r=4180528580588103
 
 
    http://isure.stream.qqmusic.qq.com/C400001L1mv24ORYiL.m4a?guid=7254122593&vkey=5C5F52389AD940693D66365725675BFE986BDF3EB3A6706A38A0A80CF6BA0D6851466DC52389845E4D2455869C8832BE55ECB7D61C17FBEB&uin=3710&fromtag=66
@@ -174,3 +174,9 @@
 
 图片信息下载：
 https://y.qq.com/n/yqq/album/004d6hms1otOrs.html
+
+
+
+
+vip音乐下载需要使用
+需要从客户端进行监听使用
