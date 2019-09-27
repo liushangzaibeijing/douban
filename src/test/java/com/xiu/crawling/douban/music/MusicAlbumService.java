@@ -157,6 +157,13 @@ public class MusicAlbumService {
      */
     private void insertAlbumBatch(List<Album> albumList) {
         for (Album album : albumList) {
+            //去除删除
+            AlbumExample albumQuery = new AlbumExample();
+            albumQuery.createCriteria().andAlbumMidEqualTo(album.getAlbumMid());
+            List<Album> albums = albumMapper.selectByExample(albumQuery);
+            if(albums==null&&albums.size()==0){
+                continue;
+            }
             albumMapper.insert(album);
         }
     }
