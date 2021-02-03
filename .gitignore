@@ -26,4 +26,4 @@ mvnw.cmd
 /dist/
 /nbdist/
 /.nb-gradle/
-/log/
+/logs/
