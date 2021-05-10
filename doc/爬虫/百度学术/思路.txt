@@ -1,0 +1,42 @@
+
+1、百度学术url分析
+
+1、搜索关键字
+https://xueshu.baidu.com/s
+   ?wd=%E7%89%9B%E8%82%89%E5%93%81%E8%B4%A8      wd=关键字
+   &pn=0                                         pn=第几行记录 0 10 20等
+   &tn=SE_baiduxueshu_c1gjeupa
+   &ie=utf-8
+   &f=3
+   &sc_f_para=sc_tasktype%3D%7BfirstSimpleSearch%7D
+   &sc_hit=1
+   &sort=sc_time      排序方式  sc_cited 按照引用量   sc_time 按照时间  默认按照相关性排序
+
+
+   例子：
+
+https://xueshu.baidu.com/s?wd=${关键字}&pn=${记录数}&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8&f=3&sc_f_para=sc_tasktype%3D%7BfirstSimpleSearch%7D&sc_hit=1&sort=sc_time
+
+
+https://xueshu.baidu.com/s?wd=Thread-Level Speculation&pn=0&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8&f=3&sc_f_para=sc_tasktype%3D%7BfirstSimpleSearch%7D&sc_hit=1&sort=sc_time
+
+
+2、详情页面
+  页面展示：
+    div id=${pn}
+      下的<h3> <a> 的href属性  a标签中的内容也是名字
+
+  https://xueshu.baidu.com/usercenter/paper/show?paperid=1m570xs0mx1904t0v83d0ah04d372341&site=xueshu_se
+
+
+
+  <div class="c_content"
+     下的
+     <div class="love_wr">
+        下的
+        <div class="label-r">
+                    <p class="">阅读量：</p>
+                    <p>12</p>
+                </div>
+            </di
+

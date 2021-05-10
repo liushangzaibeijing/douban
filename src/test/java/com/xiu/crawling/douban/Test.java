@@ -19,6 +19,7 @@ import org.springframework.util.StringUtils;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.Date;
@@ -148,7 +149,12 @@ public class Test {
     }
 
     private Movie parseMovie(String url) {
-        String result = HttpUtil.doGet(url);
+        String result = null;
+        try {
+            result = HttpUtil.doGet(url);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Movie movie = null;
         if(!StringUtils.isEmpty(result)){
            Document document = Jsoup.parse(result);

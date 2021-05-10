@@ -30,6 +30,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -68,7 +69,12 @@ public class MusicSingerService {
         do{
             log.info("页码：{}",currentPage);
             String url = ConstantMusic.getMusicSignerListUrl(currentPage++);
-            String result = HttpUtil.doGet(url);
+            String result = null;
+            try {
+                result = HttpUtil.doGet(url);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             log.info("result:{}",result);
             //出现频繁的调用导致的 ip受限
             JSONObject resultJsonObj = JSONObject.parseObject(result);

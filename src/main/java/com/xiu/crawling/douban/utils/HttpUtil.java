@@ -15,10 +15,7 @@ import org.apache.http.conn.ssl.SSLContextBuilder;
 import org.apache.http.conn.ssl.TrustStrategy;
 import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.BasicCookieStore;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.client.*;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.impl.cookie.BasicClientCookie;
 import org.apache.http.message.BasicNameValuePair;
@@ -51,7 +48,7 @@ import java.util.*;
 public class HttpUtil {
     private static PoolingHttpClientConnectionManager connMgr;
     private static RequestConfig requestConfig;
-    private static final int MAX_TIMEOUT = 7000;
+    private static final int MAX_TIMEOUT = 1000;
 
     /**
      * 模拟的浏览器请求
@@ -87,7 +84,7 @@ public class HttpUtil {
      * @param url
      * @return
      */
-    public static String doGet(String url) {
+    public static String doGet(String url) throws IOException {
         return doGet(url, null,new HashMap<String, Object>());
     }
 
@@ -104,7 +101,7 @@ public class HttpUtil {
      * @param url
      * @return
      */
-    public static String doGet(String url,HttpHost proxy) {
+    public static String doGet(String url,HttpHost proxy) throws IOException {
         return doGet(url, proxy,new HashMap<String, Object>());
     }
 
@@ -123,7 +120,7 @@ public class HttpUtil {
      * @param params
      * @return
      */
-    public static String doGet(String url,HttpHost proxy, Map<String, Object> params) {
+    public static String doGet(String url,HttpHost proxy, Map<String, Object> params) throws IOException {
         String apiUrl = url;
         StringBuffer param = new StringBuffer();
         int i = 0;
@@ -139,26 +136,23 @@ public class HttpUtil {
         }
         apiUrl += param;
         String result = null;
-        try {
-            HttpGet httpGet = new HttpGet(apiUrl);
-            httpGet.setHeader("User-Agent", Constant.userAgentArray[new Random().nextInt(Constant.userAgentArray.length)]);
-            CloseableHttpClient httpclient = getCloseableHttpClient(proxy);
 
-            HttpResponse response = httpclient.execute(httpGet);
-            int statusCode = response.getStatusLine().getStatusCode();
+        HttpGet httpGet = new HttpGet(apiUrl);
+        httpGet.setHeader("User-Agent", Constant.userAgentArray[new Random().nextInt(Constant.userAgentArray.length)]);
+        CloseableHttpClient httpclient = getCloseableHttpClient(proxy);
 
-            System.out.println("url: "+url+" 执行状态码 : " + statusCode);
-            if(statusCode == 403 ||statusCode == 404){
-                return statusCode+"";
-            }
+        HttpResponse response = httpclient.execute(httpGet);
+        int statusCode = response.getStatusLine().getStatusCode();
 
-            HttpEntity entity = response.getEntity();
-            if (entity != null) {
-                InputStream instream = entity.getContent();
-                result = IOUtils.toString(instream, "UTF-8");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        System.out.println("url: "+url+" 执行状态码 : " + statusCode);
+        if(statusCode == 403 ||statusCode == 404){
+            return statusCode+"";
+        }
+
+        HttpEntity entity = response.getEntity();
+        if (entity != null) {
+            InputStream instream = entity.getContent();
+            result = IOUtils.toString(instream, "UTF-8");
         }
         return result;
     }
@@ -281,10 +275,13 @@ public class HttpUtil {
     }
 
     private static CloseableHttpClient getCloseableHttpClient(HttpHost proxy) {
+        HttpClientBuilder httpClientBuilder = HttpClients.custom().setSSLSocketFactory(createSSLConnSocketFactory()).
+                setConnectionManager(connMgr).setDefaultRequestConfig(requestConfig);
+
         if(proxy==null){
-            return HttpClients.custom().build();
+            return httpClientBuilder.build();
         }
-        return HttpClients.custom().setProxy(proxy).build();
+        return httpClientBuilder.setProxy(proxy).build();
     }
 
     /**

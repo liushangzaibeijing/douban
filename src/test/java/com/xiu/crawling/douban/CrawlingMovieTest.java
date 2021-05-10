@@ -24,6 +24,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.util.StringUtils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -55,8 +56,12 @@ public class CrawlingMovieTest {
     @Test
     public void parseMovie(){
         String url = "https://movie.douban.com/subject/1305069/";
-        String result = HttpUtil.doGet(url);
-
+        String result = null;
+        try {
+            result = HttpUtil.doGet(url);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         MovieThreadTask task = new MovieThreadTask(null,null,null,null,null,null,null,null,null,null);
         Movie movie = task.parseMovie(Jsoup.parse(result),"");
@@ -81,7 +86,12 @@ public class CrawlingMovieTest {
         List<ErrUrl> errUrls = errUrlMapper.selectByExample(errUrlExample);
 
         for(ErrUrl errUrl : errUrls){
-            String result = HttpUtil.doGet(errUrl.getErrorUrl(),null);
+            String result = null;
+            try {
+                result = HttpUtil.doGet(errUrl.getErrorUrl(),null);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             if(result.equals("404")){
                 ErrUrlExample deleteErr = new ErrUrlExample();
                 deleteErr.createCriteria().andIdEqualTo(errUrl.getId());

@@ -29,6 +29,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.util.StringUtils;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -292,7 +293,12 @@ public class MusicSongService {
         //根据歌手 mid 获取歌曲信息 注意分页的情况
         String songListUrl = ConstantMusic.getMusicSongListDetailUrl(signerMid,currentPage);
         log.info("歌手对应的歌曲信息：{}",songListUrl);
-        String result = HttpUtil.doGet(songListUrl);
+        String result = null;
+        try {
+            result = HttpUtil.doGet(songListUrl);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         //转换为jsonObje 获取其中的key
         JSONObject songInfoJsonObj = JSONObject.parseObject(result);

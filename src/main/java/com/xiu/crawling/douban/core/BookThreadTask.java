@@ -18,6 +18,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.util.StringUtils;
+
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.CountDownLatch;
 
@@ -122,7 +124,11 @@ public class BookThreadTask extends AbstractThreadTask implements  Runnable{
         String result = null;
         while(true) {
             //获取HttpHost 从
-            result = HttpUtil.doGet(url,proxy);
+            try {
+                result = HttpUtil.doGet(url,proxy);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             proxy = checkProxy(result,proxy);
             if(proxy==null){

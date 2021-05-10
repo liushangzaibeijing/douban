@@ -34,6 +34,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.util.StringUtils;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -143,7 +144,12 @@ public class MusicAlbumService {
     private Integer getAlbumToTalPage(String singerMid) {
         String singerAblumListUrl = ConstantMusic.getAlbumList(singerMid,1);
 
-        String result = HttpUtil.doGet(singerAblumListUrl);
+        String result = null;
+        try {
+            result = HttpUtil.doGet(singerAblumListUrl);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         JSONObject albumListStr = JSONObject.parseObject(result);
         //获取专辑列表信息
         Integer total = albumListStr.getJSONObject("singerAlbum").getJSONObject("data").getInteger("total");
@@ -204,7 +210,12 @@ public class MusicAlbumService {
 
             String albumHtmlUrl = getAlbumHtml(albumMid);
 
-            String htmlResult = HttpUtil.doGet(albumHtmlUrl);
+            String htmlResult = null;
+            try {
+                htmlResult = HttpUtil.doGet(albumHtmlUrl);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 //            log.info("htmlResult:{}",htmlResult);
             Document document = Jsoup.parseBodyFragment(htmlResult);
             //从html页面中获取其他更加详细的数据信息

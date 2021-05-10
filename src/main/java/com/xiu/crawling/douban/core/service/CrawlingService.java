@@ -23,4 +23,9 @@ public interface CrawlingService {
      * @throws InterruptedException
      */
     void crawlingMovieURL() throws InterruptedException;
+
+    /**
+     * 爬取百度学术信息
+     */
+    void crawlingBaiduXueSu() throws InterruptedException;
 }

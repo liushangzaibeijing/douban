@@ -26,6 +26,7 @@ import org.jsoup.nodes.TextNode;
 import org.jsoup.select.Elements;
 import org.springframework.util.StringUtils;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -291,9 +292,13 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
     }
 
     private String findReponse(String tagName, Integer mark, UrlVO urlVO) {
-        String result;
+        String result = null ;
         while(true){
-            result = HttpUtil.doGet(urlVO.getBaseUrl(), proxy);
+            try {
+                result = HttpUtil.doGet(urlVO.getBaseUrl(), proxy);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             try {
                 Thread.sleep(SLEEPTIM);
             } catch (InterruptedException e) {
@@ -336,7 +341,7 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
      * @param url url地址
      */
     private void saveMovieChart(String tagName, String url,Integer mark) {
-        String result;//先查询总记录数
+        String result = null;//先查询总记录数
         UrlVO urlVO = null;
         urlVO = findTempUrl(tagName,mark);
         int currentIntervId = INTERVALID;
@@ -359,7 +364,11 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
             }
                 //查询总记录数
                 while(true){
-                    result = HttpUtil.doGet(countUrl.getBaseUrl(), proxy);
+                    try {
+                        result = HttpUtil.doGet(countUrl.getBaseUrl(), proxy);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     try {
                         Thread.sleep(SLEEPTIM);
                     } catch (InterruptedException e) {
@@ -464,7 +473,11 @@ public class MovieThreadTask extends AbstractThreadTask implements  Runnable{
         HttpHost proxy = proxyService.findCanUseProxy();
         String result = null;
         while (true){
-            result = HttpUtil.doGet(url, proxy);
+            try {
+                result = HttpUtil.doGet(url, proxy);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             try {
                 Thread.sleep(SLEEPTIM);
             } catch (InterruptedException e) {

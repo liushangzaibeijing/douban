@@ -26,6 +26,7 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
@@ -142,6 +143,30 @@ public class CrawlingServiceImpl implements CrawlingService{
 
     }
 
+    @Override
+    public void crawlingBaiduXueSu() throws InterruptedException {
+        //先进行查询书籍url 分页处理
+
+        //使用多线程去进行爬取数据
+        CountDownLatch latch = new CountDownLatch(THREAD_NUMBER);
+
+        ExecutorService executor = Executors.newFixedThreadPool(THREAD_NUMBER);
+
+        //关键字
+        String title = "Thread-Level Speculation";
+
+        //创建多线程任务
+        List<BaiduXueSuThreadTask> baiduXueSuThreadTasks = new ArrayList<>();
+        BookThreadTask bookThreadTask = new BookThreadTask(BaiduXueSuInfoMapper,
+              title);
+        executor.execute(bookThreadTask);
+        //Now wait till all services are checked
+        latch.await();
+
+        log.info("end ............");
+
+    }
+
     /**
      * 保存电视剧和电影信息
      * @param tag
@@ -171,7 +196,12 @@ public class CrawlingServiceImpl implements CrawlingService{
     private void saveChartUrl(String chart) {
         HttpHost proxy = proxyService.findCanUseProxy();
 
-        String result = HttpUtil.doGet(chart,proxy);
+        String result = null;
+        try {
+            result = HttpUtil.doGet(chart,proxy);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         //解析html
         List<UrlInfo> urlInfos = parseMVTags(result);
 
@@ -236,7 +266,12 @@ public class CrawlingServiceImpl implements CrawlingService{
     private void saveTVUrl(String tagurl,String type) {
         HttpHost proxy = proxyService.findCanUseProxy();
 
-        String result = HttpUtil.doGet(tagurl,proxy);
+        String result = null;
+        try {
+            result = HttpUtil.doGet(tagurl,proxy);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         if(result!=null){
 

@@ -34,6 +34,20 @@ public class ProxyServiceImpl implements ProxyService{
     public HttpHost findCanUseProxy() {
        //获取可以使用的代理记录  分页查询
 
+        List<HttpHost> proxyList = getCanUseProxy();
+
+        int size = proxyList.size();
+        if(size<=0){
+            //开启代理池ip获取
+            scheduleJobs.cronJob();
+            proxyList = getCanUseProxy();
+        }
+
+        return proxyList.get(new Random().nextInt(proxyList.size()));
+
+    }
+
+    private List<HttpHost> getCanUseProxy() {
         List<HttpHost> proxyList = new ArrayList<>();
         int i =0;
         //有可能会陷入死循环 需要返回
@@ -42,7 +56,7 @@ public class ProxyServiceImpl implements ProxyService{
             //proxydatas = proxydataMapper.selectByExample(proxydataExample);
             Map<String,Object> param = new HashMap<>();
 
-            param.put("start",i*Constant.pageSize);
+            param.put("start",i* Constant.pageSize);
             param.put("limit", Constant.pageSize);
             param.put("canUse",1);
             proxydatas =proxydataMapper.selectProxyListNoCache(param);
@@ -65,18 +79,7 @@ public class ProxyServiceImpl implements ProxyService{
             }
             i++;
         }
-
-        int size = proxyList.size();
-        if(size<=0){
-            //开启代理池ip获取
-            scheduleJobs.cronJob();
-            //递归调用
-            findCanUseProxy();
-
-        }
-
-        return proxyList.get(new Random().nextInt(size));
-
+        return proxyList;
     }
 
 
