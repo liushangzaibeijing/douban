@@ -1,0 +1,1544 @@
+<!doctype html>
+<!--STATUS OK-->
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta name="Description" content="百度学术搜索，是一个提供海量中英文文献检索的学术资源搜索平台，涵盖了各类学术期刊、学位、会议论文，旨在为国内外学者提供最好的科研体验。">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" sizes="any" mask href="//www.baidu.com/img/baidu.svg">
+    <title>
+        Thread-Level Speculation - 百度学术
+    </title>
+    <style>
+        @font-face {font-family: "iconfont";
+            src: url('/r/www/cache/scholar_mid/static/xueshu/iconfont/icomoon.eot?t=1615482094'); /* IE9*/
+            src: url('/r/www/cache/scholar_mid/static/xueshu/iconfont/icomoon.eot?t=1615482094#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('/r/www/cache/scholar_mid/static/xueshu/iconfont/icomoon.woff?t=1615482094') format('woff'), /* chrome, firefox */
+            url('/r/www/cache/scholar_mid/static/xueshu/iconfont/icomoon.ttf?t=1615482094') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+            url('/r/www/cache/scholar_mid/static/xueshu/iconfont/icomoon.svg?t=1615482094#icomoon') format('svg'); /* iOS 4.1- */
+        }
+    </style>
+    <link rel="stylesheet" href="https://dss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/scholar_mid/static/protocol/https/xueshu/css/page_848bffd.css">
+    <script src="https://dss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/scholar_mid/static/protocol/https/xueshu/js/env_8b93174.js"></script>
+    <script>
+        var name,navigate,bdQid="99ef3e69001bcd4f";
+        // 新增固定打点
+        var plat = "" || 'pc';
+        var from = uaMatch(navigator.userAgent);
+        from = from.platformid;
+        var bds={
+            se:{},
+            util:{},
+            //结果页js通用数据
+            comm : {
+                domain:"http://www.baidu.com",
+                ubsurl : "https://sp0.baidu.com/5bU_dTmfKgQFm2e88IuM_a/w.gif",
+                tn:"SE_baiduxueshu_c1gjeupa",
+                queryEnc:"Thread%252DLevel%2BSpeculation",
+                queryId:"99ef3e69001bcd4f",
+                ishome : 0,
+                isTransShow: 0,
+                query : "Thread-Level Speculation",
+                queryShow : "Thread-Level Speculation",
+                qid : "99ef3e69001bcd4f",
+                cid : "0",
+                sid : "",
+                f : "3",
+                pn : "0",
+                oq : "",
+                rsp : "",
+                sc_f_para : "",
+                stoken : "",
+                serverTime : "1620743120",
+                user : "",
+                username : "",
+                isLogin : "0",
+                loginAction : [],
+                useFavo : "",
+                pinyin : "Thread-Level Speculation",
+                favoOn : "",
+                personalData : "",
+                curResultNum:"10",
+                rightResultExist:false,
+                protectNum:0,
+                zxlNum:0,
+                pageNum:parseInt('1')||1,
+                pageSize:parseInt('10')||10,
+                taskTipsShow: 1,
+                subpro: 'xueshu_respage',
+                isSchoolShow: 0,
+                schoolEname: "",
+                resultTn:"SE_baiduxueshu_c1gjeupa",
+                scFrom:"",
+                scAsPara:"",
+                isdetailpage: 0,
+                // topBannerInfo: {
+                //     startDate: "2018\/05\/28",
+                //     endDate: "2018\/10\/11",
+                //     width: "260",
+                //     height: "130",
+                //     id: "jiangxuejin",
+                //     imgUrl: "http:\/\/ps-scholar-static.bj.bcebos.com\/homepage%2Fbaidujiangxuejing.jpeg",
+                //     jumpUrl: "http:\/\/scholarship.baidu.com\/"
+                // },
+                pageBannerInfo: {
+                    startDate: "2018\/01\/01",
+                    endDate: "2099\/01\/01",
+                    id: "checkpage"
+                }
+            }
+        };
+
+        bds.comm.upn = {"browser":"chrome","ie":"","os":"windows","win":"win10","browsertype":"chrome"};
+
+        var selfOpen = window.open;
+        eval("var open = selfOpen;");
+
+        function G(id){
+            return document.getElementById(id);
+        }
+
+        function TagQ(tag,obj){
+            return obj.getElementsByTagName(tag);
+        }
+
+        /**
+         * @description 增加sclick统计
+         * @function
+         * @name c
+         * @grammar c(1)
+         * @param {Object} q 字段集合
+         * @return {Boolean} 当发送成功时返回true
+         */
+        function c(q){
+            var p = window.document.location.href, sQ = '', sV = '', mu='', img = window["BD_PS_C" + (new Date()).getTime()] = new Image();
+            for (v in q) {
+                switch (v) {
+                    case "title":
+                        sV = encodeURIComponent(q[v].replace(/<[^<>]+>/g, ""));
+                        break;
+                    case "url":
+                        sV = escape(q[v]);
+                        break;
+                    default:
+                        sV = q[v];
+                }
+                sQ += "&" + v + "=" + sV;
+            }
+            try{
+                if (("p2" in q)&&G(q["p1"]).getAttribute("mu") && q["fm"]!="pl") {
+                    mu= "&mu=" + escape(G(q["p1"]).getAttribute("mu"));
+                }
+            }catch(e){};
+            img.src = "https://sp0.baidu.com/5bU_dTmfKgQFm2e88IuM_a/w.gif?q=" + bds.comm.queryEnc + sQ + mu + "&rsv_sid=" + bds.comm.sid + "&cid="+bds.comm.cid+"&qid="+bds.comm.qid+"&t="+new Date().getTime()+"&path="+p;
+            return true;
+        }
+
+        // 百度统计JS-API部署(http://tongji.baidu.com/open/api/more?p=guide_overview)
+        var _hmt = _hmt || [];
+
+        /**
+         * @description 增加nsclick统计
+         * @function
+         * @name c
+         * @grammar ns_c(1)
+         * @param {Object} q 字段集合
+         * @return {Boolean} 当发送成功时返回true
+         */
+        function ns_c(q){
+            ns_c_xs(q);
+        }
+
+        /**
+         * @description 增加xueshu nsclick统计
+         * @function
+         * @name c
+         * @grammar ns_c(1)
+         * @param {Object} q 字段集合
+         * @return {Boolean} 当发送成功时返回true
+         */
+
+        function ns_c_xs(q){
+            var nsclickHost =  '//nsclick.baidu.com';
+            var nsclickUrl = bds && bds.util && bds.util.domain
+                ? bds.util.domain.get('http:' + nsclickHost)
+                : 'http:' + nsclickHost;
+
+            // uda打点新增固定参数
+            q['bid'] = 1;
+            q['from'] = from;
+            q['plat'] = plat;
+
+            var p = encodeURIComponent(window.document.location.href), sQ = '',wd=bds.comm.queryEnc, sV = '', mu='', img = window["BD_PS_C" + (new Date()).getTime()] = new Image();
+            for (v in q) {
+                switch (v) {
+                    case "title":
+                        sV = encodeURIComponent(q[v].replace(/<[^<>]+>/g, ""));
+                        break;
+                    case "url":
+                        sV = encodeURIComponent(q[v]);
+                        break;
+                    default:
+                        sV = q[v]
+                }
+                sQ += v + "=" + sV + "&";
+            }
+            mu= "&mu=" + p;
+
+            // mod当前搜索是否为图书馆模式
+            var mod = bds.comm.schoolEname ? '&mod=lib_' + bds.comm.schoolEname : '';
+            //fr是否来自详情页
+            var fr = bds.comm.isdetailpage ? '&fr=detailpage' : '';
+            img.src = nsclickUrl + "/v.gif?pid=201&pj=mp_xueshu&qid=" + bds.comm.qid + "&rsv_sid=" + bds.comm.sid + "&wd=" + wd + "&" + sQ + "f=" + bds.comm.f + "&oq=" + bds.comm.oq + "&rsp=" + bds.comm.rsp + "&path=" + p + "&tn=" + bds.comm.tn + "&t=" + new Date().getTime() + '&pn=' + bds.comm.pn + mod + fr;
+            return true;
+        }
+
+        /**
+         * @description 为搜索请求添加query，并增加ie参数
+         * @function
+         * @name setHeadUrl
+         * @grammar setHeadUrl(el)
+         * @param {Object} el 点击的链接对象
+         */
+        function setHeadUrl(el){
+            var word = G("kw").value;
+            word = encodeURIComponent(word);
+            var url = el.href;
+            url = url.replace(new RegExp("(" + el.getAttribute('wdfield') + "=)[^&]*"), '\x241' + word+"&ie=utf-8");
+            el.href = url;
+        }
+
+        bds.util.getWinWidth = function(){
+            return window.document.documentElement.clientWidth;
+        };
+        //设置页面主体宽度
+        //由于此时tangram还没加载，所以不能使用baidu.dom.addClass/removeClass
+        bds.util.setContainerWidth = function(){
+            var c = G('container'),w = G('wrapper'),
+                remove = function(r,o){o.className = o.className.replace(r, '');},
+
+                add = function(cls,o){o.className = (o.className+' '+cls).replace(/^\s+/g, "");},
+                has = function(r,o){return r.test(o.className)};
+            if(bds.util.getWinWidth()<1310){
+                remove(/\bcontainer_l\b/g,c);
+                remove(/\bwrapper_l\b/g,w);
+                if(!has(/\bcontainer_s\b/,c)) add('container_s',c);
+                if(!has(/\bwrapper_s\b/,w)) add('wrapper_s',w);
+                bds.comm.containerSize = "s";
+            }else{
+                remove(/\bcontainer_s\b/g,c);
+                remove(/\bwrapper_s\b/g,w);
+                if(!has(/\bcontainer_l\b/,c)) add('container_l',c);
+                if(!has(/\bwrapper_l\b/,w)) add('wrapper_l',w);
+                bds.comm.containerSize = "l";
+            }
+        };
+        // ie版本
+        bds.util.Ieversion = function() {
+            var ua = navigator.userAgent,
+                iereg = /MSIE (\d+).*/,
+                version = ua.match(iereg);
+
+            if (version && version[1]) {
+                return parseInt(version[1]);
+            }
+            return -1;
+        };
+
+        //阿拉丁命名空间
+        window.A =  bds.aladdin = {
+            ids: [],
+            has: true,
+            list: [],
+            logs: [],
+            loadTimes: []
+        };
+
+        (function(){
+            var fns = [], isReady = false;
+            var exec = function(fn, thisobj){
+                try{
+                    fn.call(thisobj);
+                }catch(e){
+                    if(window.debugFlag) throw e;
+                }
+            };
+
+            //在js基础库加载完成后执行fn
+            bds.ready = function(fn){
+                if(typeof fn != 'function') return;
+                if(isReady){exec(fn)}
+                else{fns.push(fn);}
+            };
+
+            //手动触发ready
+            bds.doReady = function(){
+                isReady = true;
+                while(fns.length) exec(fns.shift());
+            };
+
+            //通过json字符串获取对象
+            var getJson = function(jsonString){
+                    var result = {};
+                    if(jsonString){
+                        try{
+                            var r = new Function("return " + jsonString)();
+                            if(r) result = r;
+                        }catch(e){}
+                    }
+                    return result;
+                },
+
+
+                // 获取当前阿拉丁DOM容器
+                getCurrentAladdin = (function(){
+                    var scripts = document.getElementsByTagName("script");
+                    return function(){
+                        var script = scripts[scripts.length - 1], container = script;
+                        while(container){
+                            if( container.className ){
+                                if( /(?:^|\s)result(?:-op)?(?:$|\s)/.test(container.className)){
+                                    if( tplname = container.getAttribute("tpl") ){
+                                        return container;
+                                    }
+                                }
+                            }
+                            container = container.parentNode;
+                        }
+                    };
+                })(),
+
+                // 筛选出阿拉丁结果
+                getResults = function(){
+                    var els = $(".result-op").get().concat( $(".result").get() ),
+                        alaEls = {};
+
+                    for(var i = 0, name, el; el = els[i]; i++ ){
+                        if(name = el.getAttribute("tpl")){
+                            if( alaEls[name] ){
+                                alaEls[name].push(el);
+                            }else{
+                                alaEls[name] = [el];
+                            }
+                        }
+                    }
+                    return alaEls;
+                },
+
+                // 入口事件队列
+                readyedHandlers = [],
+
+                //销毁函数列表，每项内容为
+                //{obj:instance, fn: fn}
+                //每项执行fn后即删除
+                disposeOnceHandlers = [],
+
+                //每项格式同disposeOnceHandlers
+                //每项执行后仍保留
+                //即每次销毁实例时都执行一次
+                disposeAlwaysHandlers = [],
+
+                currentSetupContainer = null,
+
+                // merge在bds.ready前的队列
+                mergeHandlers = [],
+
+                // 阿拉丁实例构造函数
+                Ala = A._Aladdin = function(){
+                    this.p1 = 0;
+                    this.mu = null;
+                };
+
+            A.merge = function(tplname, fn){
+                mergeHandlers.push({tplname: tplname, fn: fn});
+            };
+
+            // 阿拉丁入口函数
+            A.init = A.setup = function(k, v){
+
+                // 页面可能存在的空 init
+                if( k === undefined || k === null){
+                    return;
+                }
+
+                var object, container = currentSetupContainer || getCurrentAladdin();
+                if( !container){
+                    return;
+                }
+
+                object = {container: container};
+
+                if(typeof k == "function"){
+                    object.handler = k;
+
+                }else if(typeof k == 'object'){
+                    object.data = k;
+
+                }else{
+                    object.data = {};
+                    object.data[k] = v;
+                }
+
+                readyedHandlers.push( object );
+            };
+
+            // 注册每次销毁均执行的函数
+            A.addDisposeHandler = function(item){
+                disposeAlwaysHandlers.push(item);
+            };
+
+            //全局阿拉丁销毁函数，在删除阿拉丁dom节点前调用
+            A.dispose = function(){
+                // 执行阿拉丁实例dispose队列
+                while(disposeOnceHandlers.length){
+                    var d = disposeOnceHandlers.shift();
+                    exec(d.fn, d.obj);
+                }
+                // 顺序执行销毁函数
+                var handlers = disposeAlwaysHandlers;
+                for(var i=0;i<handlers.length;i++){
+                    var d = handlers[i];
+                    exec(d.fn, d.obj);
+                }
+            };
+
+            // 遍历执行所有阿拉丁实例
+            bds.ready(function(){
+
+                // 将所有的merge队列转换为setup队列
+                if( mergeHandlers.length ){
+                    var results = getResults();
+                    for(var i = 0, item; item = mergeHandlers[i]; i++){
+                        var els = results[item.tplname];
+                        if(els){
+                            for(var j = 0, el; el = els[j]; j++){
+                                currentSetupContainer = el;
+                                item.fn();
+                                currentSetupContainer = null;
+                            }
+                        }
+                    }
+                }
+
+                // 整理出的每个Aladding JS数据
+                var groupData = [],
+                    getGroupData = function(el){
+                        if(!isNaN(el.initIndex)){
+                            return  groupData[ el.initIndex * 1];
+                        }
+                        var data = { data:{}, handlers: [], container: el };
+                        groupData.push(data);
+                        el.initIndex = groupData.length - 1;
+                        return data;
+                    };
+
+                // 整理setup队列顺序
+                for(var i = 0, item; item = readyedHandlers[i]; i++){
+                    var elData = getGroupData(item.container);
+
+                    if( item.data ){
+                        for(var k in item.data){
+                            if(item.data.hasOwnProperty(k)){
+                                elData.data[k] = item.data[k];
+                            }
+                        }
+
+                    }else if (item.handler){
+                        elData.handlers.push( item.handler );
+                    }
+                }
+
+                // 遍历所有的setup
+                for(var i = 0, item; item = groupData[i]; i++){
+                    var fn,
+                        sTime,
+                        eTime,
+                        obj = {},
+                        ala = new Ala();
+
+                    ala.data = item.data;
+                    ala.container = item.container;
+                    ala._init();
+                    A.list.push(ala);
+
+                    // 执行setup队列
+                    sTime = new Date();
+                    while( fn = item.handlers.shift() ){
+                        exec(fn, ala);
+                        //执行完fn后，如果示例上定义了dispose方法
+                        //则将其保存到队列中
+                        if(typeof ala.dispose == 'function'){
+                            disposeOnceHandlers.push({
+                                obj:ala,
+                                fn: ala.dispose
+                            });
+                            ala.dispose = null;
+                        }
+                    }
+                    eTime = new Date();
+
+                    // 统计执行时间
+                    obj = { srcid: ala.srcid };
+                    obj.tpl  = ala.container.getAttribute('tpl');
+                    obj.time = eTime - sTime;
+                    A.loadTimes.push( obj );
+
+                    $.each( A._Aladdin.fixs, function(i, f){
+                        f.call(ala, ala);
+                    });
+                }
+
+            });
+
+            Ala.prototype = {
+
+                //初始化实例属性
+                _init: function() {
+                    var attrs = getJson(this.container.getAttribute('data-click'));
+                    this.p1 = attrs.p1 || this.container.id;
+                    this.mu = attrs.mu || this.container.getAttribute('mu');
+                    this.srcid = attrs.rsv_srcid || this.container.getAttribute('srcid');
+                }
+            };
+
+
+        })();
+    </script>
+    <script type="text/javascript">
+        // ssl_url_r转的dss0.bdstatic.com/9r-1bjml2gcT8tyhnq这个代理下线，换成这个
+
+
+        //https域名转换工具
+        bds.util = bds.util || {};
+        bds.util.domain = (function(){
+            var list = {
+                "graph.baidu.com": "https://sp0.baidu.com/-aYHfD0a2gU2pMbgoY3K",
+                "p.qiao.baidu.com":"https://sp0.baidu.com/5PoXdTebKgQFm2e88IuM_a",
+                "vse.baidu.com":"https://sp3.baidu.com/6qUDsjip0QIZ8tyhnq",
+                "hdpreload.baidu.com":"https://sp3.baidu.com/7LAWfjuc_wUI8t7jm9iCKT-xh_",
+                "lcr.open.baidu.com":"https://sp2.baidu.com/8LUYsjW91Qh3otqbppnN2DJv",
+                "kankan.baidu.com":"https://sp3.baidu.com/7bM1dzeaKgQFm2e88IuM_a",
+                "xapp.baidu.com":"https://sp2.baidu.com/yLMWfHSm2Q5IlBGlnYG",
+                "dr.dh.baidu.com":"https://sp0.baidu.com/-KZ1aD0a2gU2pMbgoY3K",
+                "xiaodu.baidu.com":"https://sp0.baidu.com/yLsHczq6KgQFm2e88IuM_a",
+                "sensearch.baidu.com":"https://sp1.baidu.com/5b11fzupBgM18t7jm9iCKT-xh_",
+                "s1.bdstatic.com":"https://dss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K",
+                "olime.baidu.com":"https://sp0.baidu.com/8bg4cTva2gU2pMbgoY3K",
+                "app.baidu.com":"https://sp2.baidu.com/9_QWsjip0QIZ8tyhnq",
+                "i.baidu.com":"https://sp0.baidu.com/74oIbT3kAMgDnd_",
+                "c.baidu.com":"https://sp0.baidu.com/9foIbT3kAMgDnd_",
+                "sclick.baidu.com":"https://sp0.baidu.com/5bU_dTmfKgQFm2e88IuM_a",
+                "nsclick.baidu.com":"https://sp1.baidu.com/8qUJcD3n0sgCo2Kml5_Y_D3",
+                "sestat.baidu.com":"https://sp1.baidu.com/5b1ZeDe5KgQFm2e88IuM_a",
+                "eclick.baidu.com":"https://sp3.baidu.com/-0U_dTmfKgQFm2e88IuM_a",
+                "api.map.baidu.com":"https://sp2.baidu.com/9_Q4sjOpB1gCo2Kml5_Y_D3",
+                "ecma.bdimg.com":"https://dss1.bdstatic.com/-0U0bXSm1A5BphGlnYG",
+                "ecmb.bdimg.com":"https://dss0.bdstatic.com/-0U0bnSm1A5BphGlnYG",
+                "t1.baidu.com":"https://dss0.baidu.com/6ON1bjeh1BF3odCf",
+                "t2.baidu.com":"https://dss1.baidu.com/6OZ1bjeh1BF3odCf",
+                "t3.baidu.com":"https://dss2.baidu.com/6OV1bjeh1BF3odCf",
+                "t10.baidu.com":"https://dss0.baidu.com/6ONWsjip0QIZ8tyhnq",
+                "t11.baidu.com":"https://dss1.baidu.com/6ONXsjip0QIZ8tyhnq",
+                "t12.baidu.com":"https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq",
+                "i7.baidu.com":"https://dss0.baidu.com/73F1bjeh1BF3odCf",
+                "i8.baidu.com":"https://dss0.baidu.com/73x1bjeh1BF3odCf",
+                "i9.baidu.com":"https://dss0.baidu.com/73t1bjeh1BF3odCf",
+                "b1.bdstatic.com":"https://dss0.bdstatic.com/9uN1bjq8AAUYm2zgoY3K",
+                "ss.bdimg.com":"https://dss1.bdstatic.com/5aV1bjqh_Q23odCf",
+                "opendata.baidu.com":"https://sp0.baidu.com/8aQDcjqpAAV3otqbppnN2DJv",
+                "api.open.baidu.com":"https://sp0.baidu.com/9_Q4sjW91Qh3otqbppnN2DJv",
+                "tag.baidu.com":"https://sp1.baidu.com/6LMFsjip0QIZ8tyhnq",
+                "f3.baidu.com":"https://sp2.baidu.com/-uV1bjeh1BF3odCf",
+                "s.share.baidu.com":"https://sp0.baidu.com/5foZdDe71MgCo2Kml5_Y_D3",
+                "bdimg.share.baidu.com":"https://dss1.baidu.com/9rA4cT8aBw9FktbgoI7O1ygwehsv",
+                "1.su.bdimg.com":"https://dss0.bdstatic.com/k4oZeXSm1A5BphGlnYG",
+                "2.su.bdimg.com":"https://dss1.bdstatic.com/kvoZeXSm1A5BphGlnYG",
+                "3.su.bdimg.com":"https://dss2.bdstatic.com/kfoZeXSm1A5BphGlnYG",
+                "4.su.bdimg.com":"https://dss3.bdstatic.com/lPoZeXSm1A5BphGlnYG",
+                "5.su.bdimg.com":"https://dss0.bdstatic.com/l4oZeXSm1A5BphGlnYG",
+                "6.su.bdimg.com":"https://dss1.bdstatic.com/lvoZeXSm1A5BphGlnYG",
+                "7.su.bdimg.com":"https://dss2.bdstatic.com/lfoZeXSm1A5BphGlnYG",
+                "8.su.bdimg.com":"https://dss3.bdstatic.com/iPoZeXSm1A5BphGlnYG",
+                "hiphotos.baidu.com":"https://dss3.baidu.com/7LsWdDW5_xN3otqbppnN2DJv",
+                "xueshu.baidu.com":"https://sp3.baidu.com/yK1Dfz_6KgQFm2e88IuM_a",
+                "upload.xueshu.baidu.com":"http://upload.xueshu.baidu.com",
+                "a.xueshu.baidu.com":"https://dss0.baidu.com/94oOeTu80BF3otqbppnN2DJv",
+                "bj.bcebos.com": "https://bj.bcebos.com"
+            };
+            var get = function(url) {
+                    if(location.protocol === "http:") {
+                        return url;
+                    }
+                    var reg = /^(http[s]?:\/\/)?([^\/]+)(.*)/,
+                        matches = url.match(reg);
+                    //判断传入参数是域名还是地址，分别做处理
+                    url = list.hasOwnProperty(matches[2])&&(list[matches[2]] + matches[3]) || url;
+                    return url;
+                },
+                set = function(kdomain,vdomain) {
+                    list[kdomain] = vdomain;
+                };
+            return {
+                get : get,
+                set : set
+            }
+        })();
+    </script>
+</head>
+<body link="#0000cc" class="">
+<div id="wrapper" class="wrapper_l">
+    <div id="head_wr" class="gj">
+        <div id="head" class=" gj">
+            <div class="head_input">
+                <a href="//xueshu.baidu.com/" class="s_logo" onmousedown="return ns_c_xs({'fm':'xueshu','tab':'logo'})">
+                    <div class="s_logo_img" alt="到学术首页" title="到学术首页"></div> </a>
+                <div class="s_form_wr">
+                    <form name="f" id="form" action="/s">
+                        <span class="s_ipt_wr gj"> <input name="wd" autocomplete="off" id="kw" class="s_ipt" value="Thread-Level Speculation" maxlength="255"> </span>
+                        <div class="sc_adv_search_btn">
+                            <input type="submit" value="百度一下">
+                        </div>
+                        <input type="hidden" name="tn" value="SE_baiduxueshu_c1gjeupa">
+                        <input type="hidden" name="cl" value="3">
+                        <input type="hidden" name="ie" value="utf-8">
+                        <input type="hidden" name="bs" value="Thread-Level Speculation">
+                        <input type="hidden" name="f" value="8">
+                        <input type="hidden" name="rsv_bp" value="1">
+                        <input type="hidden" name="rsv_sug2" value="1">
+                        <input type="hidden" name="sc_f_para" value="sc_tasktype={firstSimpleSearch}">
+                    </form>
+                    <div class="sc_adv_triangle_down gj">
+                        <span>高级搜索</span>
+                    </div>
+                    <div id="sc_adv">
+                        <form action="/s" id="sc_adv_frm">
+                            <div class="sc_adv_hatr">
+                                <span class="sc_adv_label">包含全部检索词</span>
+                                <span><input type="text" placeholder="" data-type="all" data-name="" class="sc_adv_keyword_ipt sc-input sc_adv_keyword1" maxlength="100" value="Thread-Level Speculation"></span>
+                            </div>
+                            <div class="sc_adv_hatr">
+                                <span class="sc_adv_label">包含精确检索词</span>
+                                <span><input type="text" placeholder="多个检索词以逗号，分隔" data-type="precise" data-name="" class="sc_adv_keyword_ipt sc-input sc_adv_keyword2" maxlength="100" value=""></span>
+                            </div>
+                            <div class="sc_adv_hatr">
+                                <span class="sc_adv_label">包含至少一个检索词</span>
+                                <span><input type="text" placeholder="多个检索词以逗号，分隔" data-type="or" data-name="" class="sc_adv_keyword_ipt sc-input" maxlength="100" value=""></span>
+                            </div>
+                            <div class="sc_adv_hatr">
+                                <span class="sc_adv_label">不包含检索词</span>
+                                <span><input type="text" placeholder="多个检索词以逗号，分隔" data-type="not" data-name="" class="sc_adv_keyword_ipt sc-input" maxlength="100" value=""></span>
+                            </div>
+                            <div class="sc_adv_hatr" style="margin-bottom:23px;">
+                                <span class="sc_adv_label">出现检索词的位置</span>
+                                <span class="sc_adv_keyword_pos">
+           <div class="sc_adv_dropdown_btn">
+            <span class="sc_adv_dropdown_text"> <a href="javascript:;" data-name="">文章任何位置</a> </span>
+            <i class="c-icon c-icon-arrow-down-gray"></i>
+            <div class="sc_adv_dropdown_group sc_adv_dropdown_group1 sc_adv_dropgroup_title" data-index="1">
+             <a href="javascript:;" data-name="intitle">位于文章标题</a>
+            </div>
+           </div> </span>
+                            </div>
+                            <div class="sc_adv_hatr">
+                                <span class="sc_adv_label">作者</span>
+                                <span><input type="text" placeholder="请输入作者名字" data-name="author" class="sc_adv_txin sc-input sc_adv_author" maxlength="50" value=""></span>
+                            </div>
+                            <div class="sc_adv_hatr">
+                                <span class="sc_adv_label">机构</span>
+                                <span><input type="text" placeholder="请输入机构名称" data-name="affs" class="sc_adv_txin sc-input sc_adv_affs" maxlength="50" value=""></span>
+                            </div>
+                            <div class="sc_adv_hatr">
+                                <span class="sc_adv_label">出版物</span>
+                                <span class="sc_adv_jour_conf"> <span class="sc_adv_dropdown_btn"> <span class="sc_adv_dropdown_text"> <a href="javascript:;" data-name="journal" data-holder="请输入期刊名称">期刊</a> </span> <i class="c-icon c-icon-arrow-down-gray"></i>
+            <div class="sc_adv_dropdown_group sc_adv_dropgroup_pub" data-index="2">
+             <a href="javascript:;" data-name="conference" data-holder="请输入会议名称">会议</a>
+            </div> </span> <input type="text" placeholder="请输入期刊名称" data-name="journal" class="sc-input sc_adv_txin sc_adv_pubipt" maxlength="100" value=""> </span>
+                            </div>
+                            <div class="sc_adv_hatr">
+                                <span class="sc_adv_label">发表时间</span>
+                                <span class="sc_adv_year"> <input type="text" data-nolog="1" pattern="[0-9]*" size="4" placeholder="年" maxlength="4" name="" class="sc-input sc-input-xmini sc_adv_input_ylo" value="">&nbsp;-&nbsp;<input type="text" data-nolog="1" pattern="[0-9]*" size="4" placeholder="年" maxlength="4" name="" class="sc-input sc-input-xmini sc_adv_input_yhi" value=""> </span>
+                            </div>
+                            <div class="sc_adv_hatr">
+                                <span class="sc_adv_label">语言检索范围</span>
+                                <span class="sc_adv_dropdown_btn"> <span class="sc_adv_dropdown_text sc_adv_lang_sel"> <a href="javascript:;" data-id="0">不限</a> </span> <i class="c-icon c-icon-arrow-down-gray"></i>
+           <div class="sc_adv_dropdown_group sc_adv_dropgroup_lang">
+            <a href="javascript:;" data-id="0" class="sc_adv_lang_hide">不限</a>
+            <a href="javascript:;" data-id="1">英文</a>
+            <a href="javascript:;" data-id="2">中文</a>
+           </div> </span>
+                            </div>
+                            <span class="sc_adv_wd_hidden"></span>
+                            <input type="hidden" name="tn" value="SE_baiduxueshu_c1gjeupa">
+                            <input type="hidden" name="cl" value="3">
+                            <input type="hidden" name="bs" value="Thread-Level Speculation">
+                            <input type="hidden" name="ie" value="utf-8">
+                            <input type="hidden" name="bcp" value="2">
+                            <input type="hidden" name="sc_f_para" value="sc_tasktype={firstAdvancedSearch}">
+                            <input type="hidden" name="sc_from" value="">
+                            <input type="hidden" name="sc_as_para" value="">
+                            <span class="sc_adv_sub s_btn_wr"><input type="submit" value="搜索" class="sc_adv_sub_btn s_btn"></span>
+                        </form>
+                    </div>
+                </div>
+                <div id="u" class=" gj xpath-log">
+       <span id="setting"><a class="settingicon" href="javascript:;"><i class="iconfont icon-setup"></i></a>
+        <div class="menuarrow">
+         <i class="c-icon c-icon-menu-triangle"></i>
+        </div>
+        <div id="setMenu" class="menuDropList">
+         <div>
+          <a id="setpref" href="javascript:;" onmousedown="return ns_c_xs({'fm':'behs','tab':'setting'})">搜索设置</a>
+          <a href="javascript:;" class="feedback" onmousedown="return ns_c_xs({'fm':'behs','tab':'tj_feedback'})">意见反馈</a>
+         </div>
+        </div></span>
+                    <a id="lb" href="https://passport.baidu.com/v2/?login&amp;tpl=xueshu&amp;u=http%3A%2F%2Fxueshu.baidu.com%2F" onclick="return false;" onmousedown="return user_c({'fm':'set','tab':'login'})">登录</a>
+                    <a href="https://passport.baidu.com/v2/?reg&amp;regType=1&amp;tpl=xueshu&amp;u=http%3A%2F%2Fxueshu.baidu.com%2F" onmousedown="return user_c({'fm':'set','tab':'reg'})" target="_blank" class="reg">注册</a>
+                </div>
+                <div id="s_mod_msg" class="s-mod-msg" style="right: 20px;display:none"></div>
+            </div>
+        </div>
+        <script>
+            bds.ready(function() {
+                $('#topnav .msg_itembtn').on('click', function(event) {
+                    bds.se.message && bds.se.message.clearMessage();
+                });
+            });
+        </script>
+    </div>
+    <div id="left_menu_content" class="LOG_WR gj" data-log="{'actblock':'menu'}">
+        <div class="left_menu_logo">
+            <a href="/">
+                <div class="sologan onlyOn"></div> <i class="iconfont onlyOff logosim"></i> </a>
+        </div>
+        <div class="main_menu_wr">
+            <div class="sch_main_menu">
+                <div class="menu_listitem">
+                    <a href="/" class="active" data-log="{'type':'xueshu_sch'}" target="_blank"> <i class="iconfont i-wx"></i><span>文献</span> </a>
+                </div>
+                <div class="menu_listitem">
+                    <a href="https://xueshu.baidu.com/usercenter/data/journal" class="" data-log="{'type':'journal'}"> <i class="iconfont i-qk"></i><span>期刊</span> </a>
+                </div>
+                <div class="menu_listitem dotPromote">
+                    <a href="https://xueshu.baidu.com/usercenter/data/authorchannel?cmd=frontpage" data-log="{'type':'authorchannel'}" class=""> <i class="iconfont i-xz"></i><span>学者</span> </a>
+                </div>
+                <div class="splite-line"></div>
+                <div class="menu_listitem">
+                    <a href="https://xueshu.baidu.com/usercenter/" data-log="{'type':'mycollect'}" class=""> <i class="iconfont i-dy"></i><span>订阅</span><i id="msimsg"></i> </a>
+                </div>
+                <div class="menu_listitem">
+                    <a href="https://xueshu.baidu.com/usercenter/?tab=collect" data-log="{'type':'mycollect'}" class=""> <i class="iconfont i-sc"></i><span>收藏</span> </a>
+                </div>
+                <div class="menu_listitem dotPapaecheck">
+                    <a href="https://xueshu.baidu.com/usercenter/papercheck/homeindex" data-log="{'type':'papaercheck'}" class=""> <i class="iconfont i-lwck"></i><span>论文查重</span> <em class="dot_tag">优惠</em> <i class="iconfont redDot"></i> </a>
+                </div>
+                <div class="menu_listitem stanardPapaecheck">
+                    <a href="https://xueshu.baidu.com/usercenter/papercheck/homeindex" data-log="{'type':'papaercheck'}" class=""> <i class="iconfont i-lwck"></i><span>论文查重</span> </a>
+                </div>
+                <div class="menu_listitem">
+                    <a href="https://xueshu.baidu.com/u/biye/?tag=paper" class="" data-log="{'type':'journal'}"> <i class="iconfont i-ktfx"></i><span>开题分析</span> </a>
+                </div>
+                <div class="menu_listitem">
+                    <a href="https://xueshu.baidu.com/u/ppv" data-log="{'type':'ppv'}" class=""> <i class="iconfont i-dpgm"></i><span>单篇购买</span> </a>
+                </div>
+                <div class="menu_listitem">
+                    <a href="https://xueshu.baidu.com/u/paperhelp" data-log="{'type':'paperhelp'}" class=""> <i class="iconfont i-wxhz"></i><span>文献互助</span> </a>
+                </div>
+                <div class="splite-line"></div>
+                <div class="menu_listitem">
+                    <a href="http://xueshu.baidu.com/u/user" class="" data-log="{'type':'user'}"> <i class="iconfont i-yhzx"></i><span>用户中心</span><i id="ucimsg"></i> </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="sc_md_s" style="display: none;"></div>
+    <div id="container" class="container_l">
+        <script>
+            bds.util.setContainerWidth();
+            bds.ready(function(){
+                $(window).on("resize",function(){
+                    bds.util.setContainerWidth();
+                });
+                bds.util.setContainerWidth();
+            });
+        </script>
+        <div id="sc_savelink_wr" class="xpath-log" style="display:none;">
+            <a href="javascript:;" class="sc_savelink_cls c-icon-close-hover"><i class="c-icon c-icon-close"></i></a>
+            <div class="sc_savelink_top">
+                <h3 class="sc_savelink_title">免费下载</h3>
+            </div>
+            <div class="sc_savelink_con" data-click="{'fm':'as'}">
+            </div>
+        </div>
+        <div id="content_right">
+            <div id="con-ar">
+            </div>
+            <div class="banner_list xpath-log"></div>
+        </div>
+        <div id="content_left" class="content_left_ls">
+            <div id="content_leftnav">
+                <div id="leftnav" class="xpath-log" data-click="{'fm':'beha'}">
+                    <div class="leftnav_item">
+                        <a href="#" class="leftnav_t" data-click="{'button_tp':'filter_year_t'}"><i class="c-icon c-icon-arrow-up-gray"></i>时间</a>
+                        <div class="leftnav_list leftnav_year_list leftnav_list_show">
+                            <div class="leftnav_list_cont">
+                                <div class="leftnav_ylo">
+                                    <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=sc_year%3D%7B2021%2C%2B%7D" class="OP_LOG_BTN leftnav_tag left_list_short_show" data-val="2021以来" data-index="2021,+" data-click="{'button_tp':'filter_year'}"><i>( 24 )</i>2021以来</a>
+                                    <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=sc_year%3D%7B2020%2C%2B%7D" class="OP_LOG_BTN leftnav_tag left_list_short_show" data-val="2020以来" data-index="2020,+" data-click="{'button_tp':'filter_year'}"><i>( 74 )</i>2020以来</a>
+                                    <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=sc_year%3D%7B2019%2C%2B%7D" class="OP_LOG_BTN leftnav_tag left_list_short_show" data-val="2019以来" data-index="2019,+" data-click="{'button_tp':'filter_year'}"><i>( 152 )</i>2019以来</a>
+                                </div>
+                                <div class="leftnav_year_in">
+                                    <form action="/s?" class="leftnav_year_fm">
+                                        <input type="text" data-nolog="1" pattern="[0-9]*" size="4" placeholder="年" maxlength="4" name="" id="leftnav_input_ylo" class="sc-input" value="">&nbsp;-&nbsp;
+                                        <input type="text" data-nolog="1" pattern="[0-9]*" size="4" placeholder="年" maxlength="4" name="" id="leftnav_input_yhi" class="sc-input" value="">
+                                        <input type="hidden" name="wd" value="Thread-Level Speculation">
+                                        <input type="hidden" name="ie" value="utf-8">
+                                        <input type="hidden" name="bcp" value="2">
+                                        <input type="hidden" name="tn" value="SE_baiduxueshu_c1gjeupa">
+                                        <input type="hidden" name="sort" value="sc_time">
+                                        <span class="leftnav_year_para" data-type="" data-cate="" data-level=""></span>
+                                        <span class="sc-btn leftnav_input_subspan" data-click="{'button_tp':'search_t'}"><input type="submit" value="确认" class="leftnav_input_sub"></span>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="leftnav_item">
+                        <a href="#" class="leftnav_t" data-click="{'button_tp':'filter_cate_t'}"><i class="c-icon c-icon-arrow-up-gray"></i>领域</a>
+                        <div class="leftnav_list leftnav_list_show left_list_short">
+                            <div class="leftnav_list_cont">
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=%28sc_c0%3A%3D%7B34%7D%29" class="OP_LOG_BTN leftnav_tag left_list_short_show" title="电子科学与技术
+" data-key="sc_c0" data-index="34" data-click="{'button_tp':'filter_cate'}"><i>( 2740 )</i>电子科学与技术</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=%28sc_c0%3A%3D%7B36%7D%29" class="OP_LOG_BTN leftnav_tag left_list_short_show" title="计算机科学与技术
+" data-key="sc_c0" data-index="36" data-click="{'button_tp':'filter_cate'}"><i>( 1638 )</i>计算机科学与...</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=%28sc_c0%3A%3D%7B41%7D%29" class="OP_LOG_BTN leftnav_tag left_list_short_show" title="仪器科学与技术
+" data-key="sc_c0" data-index="41" data-click="{'button_tp':'filter_cate'}"><i>( 733 )</i>仪器科学与技术</a>
+                                <a href="javascript:;" class="leftnav_showmore">+</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=%28sc_c0%3A%3D%7B39%7D%29" class="OP_LOG_BTN leftnav_tag " title="机械工程
+" data-key="sc_c0" data-index="39" data-click="{'button_tp':'filter_cate'}"><i>( 618 )</i>机械工程</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=%28sc_c1%3A%3D%7B0%7D%29" class="OP_LOG_BTN leftnav_tag " title="生物医学工程
+" data-key="sc_c1" data-index="0" data-click="{'button_tp':'filter_cate'}"><i>( 406 )</i>生物医学工程</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=%28sc_c0%3A%3D%7B37%7D%29" class="OP_LOG_BTN leftnav_tag " title="控制科学与工程
+" data-key="sc_c0" data-index="37" data-click="{'button_tp':'filter_cate'}"><i>( 350 )</i>控制科学与工程</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=%28sc_c0%3A%3D%7B54%7D%29" class="OP_LOG_BTN leftnav_tag " title="纺织科学与工程
+" data-key="sc_c0" data-index="54" data-click="{'button_tp':'filter_cate'}"><i>( 316 )</i>纺织科学与工程</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=%28sc_c0%3A%3D%7B35%7D%29" class="OP_LOG_BTN leftnav_tag " title="信息与通信工程
+" data-key="sc_c0" data-index="35" data-click="{'button_tp':'filter_cate'}"><i>( 306 )</i>信息与通信工程</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=%28sc_c0%3A%3D%7B60%7D%29" class="OP_LOG_BTN leftnav_tag " title="核科学与技术
+" data-key="sc_c0" data-index="60" data-click="{'button_tp':'filter_cate'}"><i>( 253 )</i>核科学与技术</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=%28sc_c1%3A%3D%7B11%7D%29" class="OP_LOG_BTN leftnav_tag " title="临床医学
+" data-key="sc_c1" data-index="11" data-click="{'button_tp':'filter_cate'}"><i>( 249 )</i>临床医学</a>
+                                <a href="javascript:;" class="leftnav_hidemore">-</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="leftnav_item">
+                        <a href="#" class="leftnav_t" data-click="{'button_tp':'filter_level_t'}"><i class="c-icon  c-icon-arrow-up-gray"></i>核心</a>
+                        <div class="leftnav_list leftnav_list_show left_list_short">
+                            <div class="leftnav_list_cont">
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=%28sc_level%3A%3D%7B3%7D%29" class="OP_LOG_BTN sc_nav_tag left_list_short_show" title="SCIE索引
+" data-index="3" data-num="426" data-click="{'button_tp':'filter_level'}"><i>( 426 )</i>SCIE索引</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=%28sc_level%3A%3D%7B2%7D%29" class="OP_LOG_BTN sc_nav_tag left_list_short_show" title="EI索引
+" data-index="2" data-num="294" data-click="{'button_tp':'filter_level'}"><i>( 294 )</i>EI索引</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=%28sc_level%3A%3D%7B1%7D%29" class="OP_LOG_BTN sc_nav_tag left_list_short_show" title="SCI索引
+" data-index="1" data-num="248" data-click="{'button_tp':'filter_level'}"><i>( 248 )</i>SCI索引</a>
+                                <a href="javascript:;" class="leftnav_showmore">+</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=%28sc_level%3A%3D%7B4%7D%29" class="OP_LOG_BTN sc_nav_tag " title="SSCI索引
+" data-index="4" data-num="54" data-click="{'button_tp':'filter_level'}"><i>( 54 )</i>SSCI索引</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=%28sc_level%3A%3D%7B8%7D%29" class="OP_LOG_BTN sc_nav_tag " title="AHCI索引
+" data-index="8" data-num="38" data-click="{'button_tp':'filter_level'}"><i>( 38 )</i>AHCI索引</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=%28sc_level%3A%3D%7B6%7D%29" class="OP_LOG_BTN sc_nav_tag " title="中国科技核心期刊
+" data-index="6" data-num="23" data-click="{'button_tp':'filter_level'}"><i>( 23 )</i>中国科技核心...</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=%28sc_level%3A%3D%7B0%7D%29" class="OP_LOG_BTN sc_nav_tag " title="北大核心期刊
+" data-index="0" data-num="21" data-click="{'button_tp':'filter_level'}"><i>( 21 )</i>北大核心期刊</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=%28sc_level%3A%3D%7B5%7D%29" class="OP_LOG_BTN sc_nav_tag " title="CSCD 索引
+" data-index="5" data-num="17" data-click="{'button_tp':'filter_level'}"><i>( 17 )</i>CSCD 索引</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=%28sc_level%3A%3D%7B7%7D%29" class="OP_LOG_BTN sc_nav_tag " title="CSSCI索引
+" data-index="7" data-num="0" data-click="{'button_tp':'filter_level'}"><i>( 0 )</i>CSSCI索引</a>
+                                <a href="javascript:;" class="leftnav_hidemore">-</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="leftnav_item">
+                        <a href="#" class="leftnav_t" data-click="{'button_tp':'filter_savetype_t'}"><i class="c-icon c-icon-arrow-up-gray"></i>获取方式</a>
+                        <div class="leftnav_list leftnav_list_show left_list_short">
+                            <div class="leftnav_list_cont">
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=%28sc_savetype%3D%7B1%7C3%7C5%7C7%7D%29" class="OP_LOG_BTN sc_nav_tag left_list_short_show" title="免费下载" data-index="1|3|5|7" data-num="2454" data-click="{'button_tp':'filter_savetype'}"><i>( 2454 )</i>免费下载</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=%28sc_savetype%3D%7B2%7C3%7C6%7C7%7D%29" class="OP_LOG_BTN sc_nav_tag left_list_short_show" title="登录查看" data-index="2|3|6|7" data-num="15" data-click="{'button_tp':'filter_savetype'}"><i>( 15 )</i>登录查看</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=%28sc_savetype%3D%7B4%7C5%7C6%7C7%7D%29" class="OP_LOG_BTN sc_nav_tag left_list_short_show" title="付费下载" data-index="4|5|6|7" data-num="111" data-click="{'button_tp':'filter_savetype'}"><i>( 111 )</i>付费下载</a>
+                                <a href="javascript:;" class="leftnav_showmore">+</a>
+                                <a href="javascript:;" class="leftnav_hidemore">-</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="leftnav_item">
+                        <a href="#" class="leftnav_t" data-click="{'button_tp':'filter_keywords'}"><i class="c-icon  c-icon-arrow-up-gray"></i>关键词</a>
+                        <div class="leftnav_list leftnav_list_show left_list_short">
+                            <div class="leftnav_list_cont">
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20keywords%3A%28transactional%20memory%29" class="OP_LOG_BTN sc_nav_tag left_list_short_show" title="transactional memory" data-index="" data-num="45" data-click="{'button_tp':'filter_keywords'}">transactional memory</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20keywords%3A%28automatic%20parallelization%29" class="OP_LOG_BTN sc_nav_tag left_list_short_show" title="automatic parallelization" data-index="" data-num="37" data-click="{'button_tp':'filter_keywords'}">automatic parallel...</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20keywords%3A%28multi-threading%29" class="OP_LOG_BTN sc_nav_tag left_list_short_show" title="multi-threading" data-index="" data-num="32" data-click="{'button_tp':'filter_keywords'}">multi-threading</a>
+                                <a href="javascript:;" class="leftnav_showmore">+</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20keywords%3A%28multicore%29" class="OP_LOG_BTN sc_nav_tag " title="multicore" data-index="" data-num="27" data-click="{'button_tp':'filter_keywords'}">multicore</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20keywords%3A%28speculation%29" class="OP_LOG_BTN sc_nav_tag " title="speculation" data-index="" data-num="22" data-click="{'button_tp':'filter_keywords'}">speculation</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20keywords%3A%28tls%29" class="OP_LOG_BTN sc_nav_tag " title="tls" data-index="" data-num="18" data-click="{'button_tp':'filter_keywords'}">tls</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20keywords%3A%28multithreading%29" class="OP_LOG_BTN sc_nav_tag " title="multithreading" data-index="" data-num="18" data-click="{'button_tp':'filter_keywords'}">multithreading</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20keywords%3A%28optimization%29" class="OP_LOG_BTN sc_nav_tag " title="optimization" data-index="" data-num="16" data-click="{'button_tp':'filter_keywords'}">optimization</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20keywords%3A%28openmp%29" class="OP_LOG_BTN sc_nav_tag " title="openmp" data-index="" data-num="16" data-click="{'button_tp':'filter_keywords'}">openmp</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20keywords%3A%28design%29" class="OP_LOG_BTN sc_nav_tag " title="design" data-index="" data-num="15" data-click="{'button_tp':'filter_keywords'}">design</a>
+                                <a href="javascript:;" class="leftnav_hidemore">-</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="leftnav_item">
+                        <a href="#" class="leftnav_t" data-click="{'button_tp':'filter_type'}"><i class="c-icon c-icon-arrow-up-gray"></i>类型</a>
+                        <div class="leftnav_list leftnav_list_show left_list_short">
+                            <div class="leftnav_list_cont">
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=sc_type%3D%7B1%7D" class="OP_LOG_BTN leftnav_tag left_list_short_show" title="期刊" data-index="1" data-click="{'button_tp':'filter_type'}">期刊</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=sc_type%3D%7B2%7D" class="OP_LOG_BTN leftnav_tag left_list_short_show" title="学位" data-index="2" data-click="{'button_tp':'filter_type'}">学位</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=sc_type%3D%7B3%7D" class="OP_LOG_BTN leftnav_tag left_list_short_show" title="会议" data-index="3" data-click="{'button_tp':'filter_type'}">会议</a>
+                                <a href="javascript:;" class="leftnav_showmore">+</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=sc_type%3D%7B4%7D" class="OP_LOG_BTN leftnav_tag " title="图书" data-index="4" data-click="{'button_tp':'filter_type'}">图书</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;filter=sc_type%3D%7B5%7D" class="OP_LOG_BTN leftnav_tag " title="专利" data-index="5" data-click="{'button_tp':'filter_type'}">专利</a>
+                                <a href="javascript:;" class="leftnav_hidemore">-</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="leftnav_item">
+                        <a href="#" class="leftnav_t" data-click="{'button_tp':'filter_authors'}"><i class="c-icon  c-icon-arrow-up-gray"></i>作者</a>
+                        <div class="leftnav_list leftnav_list_show left_list_short">
+                            <div class="leftnav_list_cont">
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20authors%3A%28Y%20Wang%29" class="OP_LOG_BTN sc_nav_tag left_list_short_show" title="Y Wang" data-index="" data-num="30" data-click="{'button_tp':'filter_authors'}">Y Wang</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20authors%3A%28Yaobin%20Wang%29" class="OP_LOG_BTN sc_nav_tag left_list_short_show" title="Yaobin Wang" data-index="" data-num="20" data-click="{'button_tp':'filter_authors'}">Yaobin Wang</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20authors%3A%28Y%20Zhang%29" class="OP_LOG_BTN sc_nav_tag left_list_short_show" title="Y Zhang" data-index="" data-num="20" data-click="{'button_tp':'filter_authors'}">Y Zhang</a>
+                                <a href="javascript:;" class="leftnav_showmore">+</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20authors%3A%28Y%20Zhao%29" class="OP_LOG_BTN sc_nav_tag " title="Y Zhao" data-index="" data-num="19" data-click="{'button_tp':'filter_authors'}">Y Zhao</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20authors%3A%28Y%20Li%29" class="OP_LOG_BTN sc_nav_tag " title="Y Li" data-index="" data-num="19" data-click="{'button_tp':'filter_authors'}">Y Li</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20authors%3A%28%E8%B5%B5%E9%93%B6%E4%BA%AE%29" class="OP_LOG_BTN sc_nav_tag " title="赵银亮" data-index="" data-num="18" data-click="{'button_tp':'filter_authors'}">赵银亮</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20authors%3A%28DR%20Llanos%29" class="OP_LOG_BTN sc_nav_tag " title="DR Llanos" data-index="" data-num="17" data-click="{'button_tp':'filter_authors'}">DR Llanos</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20authors%3A%28A%20Estebanez%29" class="OP_LOG_BTN sc_nav_tag " title="A Estebanez" data-index="" data-num="16" data-click="{'button_tp':'filter_authors'}">A Estebanez</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20authors%3A%28J%20Torrellas%29" class="OP_LOG_BTN sc_nav_tag " title="J Torrellas" data-index="" data-num="16" data-click="{'button_tp':'filter_authors'}">J Torrellas</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20authors%3A%28Hkan%20Grahn%29" class="OP_LOG_BTN sc_nav_tag " title="Hkan Grahn" data-index="" data-num="15" data-click="{'button_tp':'filter_authors'}">Hkan Grahn</a>
+                                <a href="javascript:;" class="leftnav_hidemore">-</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="leftnav_item">
+                        <a href="#" class="leftnav_t" data-click="{'button_tp':'filter_jnls'}"><i class="c-icon  c-icon-arrow-up-gray"></i>期刊</a>
+                        <div class="leftnav_list leftnav_list_show left_list_short">
+                            <div class="leftnav_list_cont">
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20jnls%3A%28%E3%80%8AAcm%20Transactions%20on%20Architecture%20%26%20Code%20Optimization%E3%80%8B%29" class="OP_LOG_BTN sc_nav_tag left_list_short_show" title="《Acm Transactions on Architecture &amp; Code Optimization》" data-index="" data-num="19" data-click="{'button_tp':'filter_jnls'}">《Acm Transactio...</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20jnls%3A%28%E3%80%8AAcm%20Sigarch%20Computer%20Architecture%20News%E3%80%8B%29" class="OP_LOG_BTN sc_nav_tag left_list_short_show" title="《Acm Sigarch Computer Architecture News》" data-index="" data-num="16" data-click="{'button_tp':'filter_jnls'}">《Acm Sigarch Co...</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20jnls%3A%28%E3%80%8AAcm%20Sigplan%20Notices%E3%80%8B%29" class="OP_LOG_BTN sc_nav_tag left_list_short_show" title="《Acm Sigplan Notices》" data-index="" data-num="16" data-click="{'button_tp':'filter_jnls'}">《Acm Sigplan No...</a>
+                                <a href="javascript:;" class="leftnav_showmore">+</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20jnls%3A%28%E3%80%8AInternational%20Journal%20of%20Parallel%20Programming%E3%80%8B%29" class="OP_LOG_BTN sc_nav_tag " title="《International Journal of Parallel Programming》" data-index="" data-num="15" data-click="{'button_tp':'filter_jnls'}">《International ...</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20jnls%3A%28%E3%80%8AConcurrency%20%26%20Computation%20Practice%20%26%20Experience%E3%80%8B%29" class="OP_LOG_BTN sc_nav_tag " title="《Concurrency &amp; Computation Practice &amp; Experience》" data-index="" data-num="14" data-click="{'button_tp':'filter_jnls'}">《Concurrency &amp; ...</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20jnls%3A%28%E3%80%8AIEEE%20Transactions%20on%20Parallel%20%26%20Distributed%20Systems%E3%80%8B%29" class="OP_LOG_BTN sc_nav_tag " title="《IEEE Transactions on Parallel &amp; Distributed Systems》" data-index="" data-num="13" data-click="{'button_tp':'filter_jnls'}">《IEEE Transacti...</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20jnls%3A%28%E3%80%8AIEEE%20Transactions%20on%20Computers%E3%80%8B%29" class="OP_LOG_BTN sc_nav_tag " title="《IEEE Transactions on Computers》" data-index="" data-num="11" data-click="{'button_tp':'filter_jnls'}">《IEEE Transacti...</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20jnls%3A%28%E3%80%8AParallel%20Computing%E3%80%8B%29" class="OP_LOG_BTN sc_nav_tag " title="《Parallel Computing》" data-index="" data-num="9" data-click="{'button_tp':'filter_jnls'}">《Parallel Compu...</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20jnls%3A%28%E3%80%8AJournal%20of%20Supercomputing%E3%80%8B%29" class="OP_LOG_BTN sc_nav_tag " title="《Journal of Supercomputing》" data-index="" data-num="9" data-click="{'button_tp':'filter_jnls'}">《Journal of Sup...</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20jnls%3A%28%E3%80%8AAcm%20Computing%20Surveys%E3%80%8B%29" class="OP_LOG_BTN sc_nav_tag " title="《Acm Computing Surveys》" data-index="" data-num="7" data-click="{'button_tp':'filter_jnls'}">《Acm Computing ...</a>
+                                <a href="javascript:;" class="leftnav_hidemore">-</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="leftnav_item">
+                        <a href="#" class="leftnav_t" data-click="{'button_tp':'filter_affs'}"><i class="c-icon  c-icon-arrow-up-gray"></i>机构</a>
+                        <div class="leftnav_list leftnav_list_show left_list_short">
+                            <div class="leftnav_list_cont">
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20affs%3A%28%E5%9B%BD%E9%98%B2%E7%A7%91%E5%AD%A6%E6%8A%80%E6%9C%AF%E5%A4%A7%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E9%99%A2%29" class="OP_LOG_BTN sc_nav_tag left_list_short_show" title="国防科学技术大学计算机学院" data-index="" data-num="6" data-click="{'button_tp':'filter_affs'}">国防科学技术大学...</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20affs%3A%28Department%20of%20Electrical%20and%20Computer%20Engineering%29" class="OP_LOG_BTN sc_nav_tag left_list_short_show" title="Department of Electrical and Computer Engineering" data-index="" data-num="5" data-click="{'button_tp':'filter_affs'}">Department of El...</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20affs%3A%28Universidad%20de%20Valladolid%29" class="OP_LOG_BTN sc_nav_tag left_list_short_show" title="Universidad de Valladolid" data-index="" data-num="4" data-click="{'button_tp':'filter_affs'}">Universidad de V...</a>
+                                <a href="javascript:;" class="leftnav_showmore">+</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20affs%3A%28Department%29" class="OP_LOG_BTN sc_nav_tag " title="Department" data-index="" data-num="4" data-click="{'button_tp':'filter_affs'}">Department</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20affs%3A%28%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%E8%B6%85%E5%A4%A7%E8%A7%84%E6%A8%A1%E9%9B%86%E6%88%90%E7%94%B5%E8%B7%AF%E8%AE%BE%E8%AE%A1%E7%A0%94%E7%A9%B6%E6%89%80%29" class="OP_LOG_BTN sc_nav_tag " title="浙江大学超大规模集成电路设计研究所" data-index="" data-num="4" data-click="{'button_tp':'filter_affs'}">浙江大学超大规模...</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20affs%3A%28Department%20of%20Computer%20Science%20and%20Engineering%29" class="OP_LOG_BTN sc_nav_tag " title="Department of Computer Science and Engineering" data-index="" data-num="3" data-click="{'button_tp':'filter_affs'}">Department of Co...</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20affs%3A%28%E5%9B%BD%E9%98%B2%E7%A7%91%E5%AD%A6%E6%8A%80%E6%9C%AF%E5%A4%A7%E5%AD%A6%29" class="OP_LOG_BTN sc_nav_tag " title="国防科学技术大学" data-index="" data-num="3" data-click="{'button_tp':'filter_affs'}">国防科学技术大学</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20affs%3A%28State%20Key%20Laboratory%20of%20High%20Performance%20Computing%29" class="OP_LOG_BTN sc_nav_tag " title="State Key Laboratory of High Performance Computing" data-index="" data-num="2" data-click="{'button_tp':'filter_affs'}">State Key Labora...</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20affs%3A%28%E5%AE%87%E9%83%BD%E5%AE%AE%E5%A4%A7%E5%AD%A6%E5%A4%A7%E5%AD%A6%E9%99%A2%E5%B7%A5%E5%AD%A6%E7%A0%94%E7%A9%B6%E7%A7%91%29" class="OP_LOG_BTN sc_nav_tag " title="宇都宮大学大学院工学研究科" data-index="" data-num="2" data-click="{'button_tp':'filter_affs'}">宇都宮大学大学院...</a>
+                                <a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;sort=sc_time&amp;bcp=2&amp;ie=utf-8&amp;tag_filter=%20%20%20affs%3A%28Oracle%20Corporation%29" class="OP_LOG_BTN sc_nav_tag " title="Oracle Corporation" data-index="" data-num="2" data-click="{'button_tp':'filter_affs'}">Oracle Corporation</a>
+                                <a href="javascript:;" class="leftnav_hidemore">-</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="content_leftrs">
+                <div id="bdxs_result_lists">
+                    <div id="toolbar">
+                        <div class="sort_container">
+                            <div class="sortwr">
+                                <div class="sort_select_default">
+                                    <i class="iconfont"></i>
+                                    <span>按时间降序</span>
+                                </div>
+                                <ul class="sort_list">
+                                    <li><a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;ie=utf-8" onmousedown="return ns_c_xs({'fm':'beha','button_tp':'asso'})" class="c-icon-down-gray-hover">按相关性</a></li>
+                                    <li><a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;ie=utf-8&amp;sort=sc_cited" onmousedown="return ns_c_xs({'fm':'beha','button_tp':'refer_num'})" class="c-icon-down-gray-hover">按被引量</a></li>
+                                    <li class="select"><a href="/s?wd=Thread-Level%20Speculation&amp;tn=SE_baiduxueshu_c1gjeupa&amp;sc_hit=1&amp;ie=utf-8&amp;sort=sc_time" onmousedown="return ns_c_xs({'fm':'beha','button_tp':'pub_t'})" class="c-icon-down-gray-hover">按时间降序</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <script>
+                            bds.ready(function() {
+                                $sortList = $('.sort_list');
+                                $('.sort_select_default').on('mouseover', function(event) {
+                                    $sortList.show();
+                                    event.stopPropagation();
+                                });
+                                $sortList.on('mouseover', function(event) {
+                                    $sortList.show();
+                                    event.stopPropagation();
+                                });
+                                $sortList.on('mouseout', function(event) {
+                                    $sortList.hide();
+                                    event.stopPropagation();
+                                });
+                                $('body').on('mouseover', function(event) {
+                                    $sortList.hide();
+                                });
+                            });
+                        </script>
+                        <span class="nums"> 找到约46,200条相关结果 </span>
+                    </div>
+                    <!--  -->
+                    <div id="1" class="result sc_default_result xpath-log" srcid="3875" tpl="se_st_sc_default" mu="                                    https://link.springer.com/chapter/10.1007%2F978-3-030-60245-1_4
+">
+                        <div class="sc_content">
+                            <h3 class="t c_font"> <a href="//xueshu.baidu.com/usercenter/paper/show?paperid=1n6r0gk0ba150jn0dp3x0vj0je697040&amp;site=xueshu_se" data-click="{'button_tp':'title'}" target="_blank">Procedure and Loop <em>Level</em> Speculative Parallelism Analysis in HPEC</a> </h3>
+                            <div class="c_abstract">
+                                Although High Performance Embedded Computing(HPEC) has been effectively analyzed on different platforms, there is still room for an in-depth analysis of
+                                <em>thread</em>
+                                <em>level</em>
+                                <em>speculation</em> (TLS), especially at the procedure
+                                <em>level</em>. This paper exp...
+                            </div>
+                            <div class="sc_info">
+          <span> <a href="
+
+/s?wd=author%3A%28Xinyi%20Wang%29%20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">X Wang</a> ， <a href="
+
+/s?wd=author%3A%28Yaobin%20Wang%29%20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">Y Wang</a> ， <a href="
+
+/s?wd=author%3A%28Ling%20Li%29%20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">L Li</a> ， ...</span>&nbsp;-&nbsp;
+                                <span> <a href="                    /usercenter/data/journal?cmd=jump&amp;wd=confuri%3A%28a4134eccacbe9569%29%20International%20Conference%20on%20Algorithms%20%26%20Architectures%20for%20Parallel%20Processing&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dpublish&amp;sort=sc_cited" target="_blank" data-click="{'button_tp':'publish'}" title="International Conference on Algorithms &amp; Architectures for Parallel Processing"> International Con... </a> </span> &nbsp;-&nbsp;
+                                <span class=""> 被引量:&nbsp; 0 </span> &nbsp;-&nbsp;
+                                <span class="sc_time" data-year="2020"> 2020年</span>
+                            </div>
+                            <div class="c_allversion">
+                                <div class="sc_allversion">
+                                    <span>来源：</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <img src="https://bj.bcebos.com/ps-scholar/xueshu/1582281977/28860/822049abc103ac423b5e712e1aeb499a.jpg" width="16" height="16"> </span> <a class="v_source" title="Springer" target="_blank" href="                                    http://link.springer.com/chapter/10.1007%2F978-3-030-60245-1_4
+" data-click="{'button_tp':'allversion_link','pub_name':'link.springer.com'}" data-isclick="2"> Springer </a> </span>
+                                    <span class="split">&nbsp;/&nbsp;</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <img src="https://bj.bcebos.com/ps-scholar/xueshu/1582281976/20844/004041d6d6a676ab199d0ac5204120e1.jpg" width="16" height="16"> </span> <a class="v_source" title="ResearchGate" target="_blank" href="                                    http://www.researchgate.net/publication/345101242_Procedure_and_Loop_Level_Speculative_Parallelism_Analysis_in_HPEC
+" data-click="{'button_tp':'allversion_link','pub_name':'www.researchgate.net'}" data-isclick="2"> ResearchGate </a> </span>
+                                    <a id="log-all-sources-init-value" data-isclick="2" data-click="{'act_id':'100024', 'button_tp':'paper_source','pub_name':'link.springer.com|www.researchgate.net'}"></a>
+                                    <a id="log-all-sources-more-value" data-isclick="3" data-click="{'act_id':'100024', 'button_tp':'paper_source_more','pub_name':''}"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sc_ext">
+                            <div class="sc_other">
+                                <a class="sc_collect c-icon-heart-hover" href="#" target="_blank" data-url="http://link.springer.com/chapter/10.1007%2F978-3-030-60245-1_4" data-urlmd="b5ddee8a1e34e622577d207b1e91092f" data-click="{'button_tp':'collect'}" title="收藏"><i class="iconfont icon-heart"></i><span>收藏</span></a>
+                                <a class="sc_q c-icon-shape-hover" href="javascript:;" data-link="http://link.springer.com/chapter/10.1007%2F978-3-030-60245-1_4" data-sign="39780c79ac876365a94ab646a240827a" data-click="{'button_tp':'cite'}" title="引用"><i class="iconfont icon-cite"></i>引用</a>
+                                <a target="_blank" class="sc_batch" href="javascript:;" data-click="{'button_tp':'batch'}" title="批量引用"><i class="iconfont icon-piliang"></i><span class="commType">批量引用&nbsp; </span></a>
+                            </div>
+                        </div>
+                        <i class="reqdata" style="display:none;" urlmd="b5ddee8a1e34e622577d207b1e91092f" url="http://link.springer.com/chapter/10.1007%2F978-3-030-60245-1_4" longsign="1n6r0gk0ba150jn0dp3x0vj0je697040" diversion="6957914987415207937" allversion="[&quot;http:\/\/link.springer.com\/chapter\/10.1007%2F978-3-030-60245-1_4&quot;,&quot;http:\/\/www.researchgate.net\/publication\/345101242_Procedure_and_Loop_Level_Speculative_Parallelism_Analysis_in_HPEC&quot;]"></i>
+                    </div>
+                    <!--  -->
+                    <div id="2" class="result sc_default_result xpath-log" srcid="3875" tpl="se_st_sc_default" mu="                                    https://ieeexplore.ieee.org/document/7336280
+">
+                        <div class="sc_content">
+                            <h3 class="t c_font"> <a href="//xueshu.baidu.com/usercenter/paper/show?paperid=1x1n06c05u0q0ch0r2400mp0ha233324&amp;site=xueshu_se" data-click="{'button_tp':'title'}" target="_blank">Hardware <em>Thread-Level</em> <em>Speculation</em> Performance Analysis</a> </h3>
+                            <div class="c_abstract">
+                                This paper presents performance analysis for hardware
+                                <em>Thread-Level</em>
+                                <em>Speculation</em> (TLS) in the IBM Blue Gene/Q computer. Unlike traditional multi-thread pr...
+                            </div>
+                            <div class="sc_info">
+          <span> <a href="
+
+/s?wd=author%3A%28Ying-Chieh%20Wang%29%20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">YC Wang</a> ， <a href="
+
+/s?wd=author%3A%28I-Hsin%20Chung%29%20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">IH Chung</a> ， <a href="
+
+/s?wd=author%3A%28Che-Rung%20Lee%29%20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">CR Lee</a> ， ...</span>&nbsp;-&nbsp;
+                                <span> <a href="                    /usercenter/data/journal?cmd=jump&amp;wd=confuri%3A%28707a5503fac0d95e%29%20IEEE%20International%20Conference%20on%20IEEE%20International%20Conference%20on%20High%20Performance%20Computing%20%26%20Communications%2C%20IEEE%20International%20Symposium%20on%20Cyberspace%20Safety%20%26%20Security&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dpublish&amp;sort=sc_cited" target="_blank" data-click="{'button_tp':'publish'}" title="IEEE International Conference on IEEE International Conference on High Performance Computing &amp; Communications, IEEE International Symposium on Cyberspace Safety &amp; Security"> IEEE Internationa... </a> </span> &nbsp;-&nbsp;
+                                <span class=""> 被引量:&nbsp; 0 </span> &nbsp;-&nbsp;
+                                <span class="sc_time" data-year="2019"> 2019年</span>
+                            </div>
+                            <div class="c_allversion">
+                                <div class="sc_allversion">
+                                    <span>来源：</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <img src="https://bj.bcebos.com/ps-scholar/xueshu/1582281973/15304/1528e47dc87e52e73fc9d8f3719a18a6.jpg" width="16" height="16"> </span> <a class="v_source" title="IEEEXplore" target="_blank" href="//xueshu.baidu.com/s?wd=paperuri%3A%281x1n06c05u0q0ch0r2400mp0ha233324%29&amp;filter=sc_long_sign&amp;tn=SE_xueshusource_2kduw22v&amp;sc_vurl=http%3A%2F%2Fieeexplore.ieee.org%2Fdocument%2F7336280&amp;ie=utf-8&amp;sc_us=2016271225147351061" data-click="{'button_tp':'allversion_link','pub_name':'ieeexplore.ieee.org'}" data-isclick="2"> IEEEXplore </a> </span>
+                                    <span class="split">&nbsp;/&nbsp;</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <img src="https://bj.bcebos.com/ps-scholar/xueshu/1582281973/91891/6ebb4f2376179ff8b2bb141b4d1f6bdb.jpg" width="16" height="16"> </span> <a class="v_source" title="IEEE Computer Society" target="_blank" href="                                    http://www.computer.org/csdl/proceedings/hpcc-css-icess/2015/8937/00/8937a900.pdf
+" data-click="{'button_tp':'allversion_link','pub_name':'www.computer.org'}" data-isclick="2"> IEEE Computer Soci... </a> <span class="v_lib">(全网免费下载)</span> </span>
+                                    <a id="log-all-sources-init-value" data-isclick="2" data-click="{'act_id':'100024', 'button_tp':'paper_source','pub_name':'ieeexplore.ieee.org|www.computer.org'}"></a>
+                                    <a id="log-all-sources-more-value" data-isclick="3" data-click="{'act_id':'100024', 'button_tp':'paper_source_more','pub_name':''}"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sc_ext">
+                            <div class="sc_other">
+                                <a class="sc_collect c-icon-heart-hover" href="#" target="_blank" data-url="http://ieeexplore.ieee.org/document/7336280" data-urlmd="165f1ab7b442e88cd3cd70bbbe906c2a" data-click="{'button_tp':'collect'}" title="收藏"><i class="iconfont icon-heart"></i><span>收藏</span></a>
+                                <a class="sc_q c-icon-shape-hover" href="javascript:;" data-link="http://ieeexplore.ieee.org/document/7336280" data-sign="df2cae4f878de8417e08add103deff07" data-click="{'button_tp':'cite'}" title="引用"><i class="iconfont icon-cite"></i>引用</a>
+                                <a target="_blank" class="sc_batch" href="javascript:;" data-click="{'button_tp':'batch'}" title="批量引用"><i class="iconfont icon-piliang"></i><span class="commType">批量引用&nbsp; </span></a>
+                                <a href="                                    http://www.computer.org/csdl/proceedings/hpcc-css-icess/2015/8937/00/8937a900.pdf
+" class="sc_download c-icon-download-hover" target="_blank" data-click="{'button_tp':'download'}" title="从IEEE Computer Society下载"><i class="iconfont icon-download"></i>免费下载&nbsp; </a>
+                            </div>
+                        </div>
+                        <i class="reqdata" style="display:none;" urlmd="165f1ab7b442e88cd3cd70bbbe906c2a" url="http://ieeexplore.ieee.org/document/7336280" longsign="1x1n06c05u0q0ch0r2400mp0ha233324" diversion="6957914987415207937" allversion="[&quot;http:\/\/ieeexplore.ieee.org\/document\/7336280&quot;]"></i>
+                    </div>
+                    <!--  -->
+                    <div id="3" class="result sc_default_result xpath-log" srcid="3875" tpl="se_st_sc_default" mu="                                    https://ieeexplore.ieee.org/document/9047348/
+">
+                        <div class="sc_content">
+                            <h3 class="t c_font"> <a href="//xueshu.baidu.com/usercenter/paper/show?paperid=182e0gx0ad3g04j0y57f0jd08s466381&amp;site=xueshu_se" data-click="{'button_tp':'title'}" target="_blank">An Improved Programming Model for <em>Thread-Level</em> <em>Speculation</em></a> </h3>
+                            <div class="c_abstract">
+                                <em>Thread-Level</em>
+                                <em>speculation</em> (TLS) is an automatic parallel technique, which partitions sequential programs with data dependencies into multithreads to be e...
+                            </div>
+                            <div class="sc_info">
+          <span> <a href="
+
+/s?wd=author%3A%28Bin%20Liu%29%20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">B Liu</a> ， <a href="
+
+/s?wd=author%3A%28Hao%20Yang%29%20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">Y Hao</a> ， <a href="
+
+/s?wd=author%3A%28Li%20Yuancheng%29%20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">Y Li</a> ， ...</span>&nbsp;-&nbsp;
+                                <span> <a href="                    /usercenter/data/journal?cmd=jump&amp;wd=confuri%3A%28d14b9b53fe50192a%29%20IEEE%20Intl%20Conf%20on%20Parallel%20%26%20Distributed%20Processing%20with%20Applications%2C%20Big%20Data%20%26%20Cloud%20Computing%2C%20Sustainable%20Computing%20%26%20Communications%2C%20Social%20Computing%20%26%20Networking&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dpublish&amp;sort=sc_cited" target="_blank" data-click="{'button_tp':'publish'}" title="IEEE Intl Conf on Parallel &amp; Distributed Processing with Applications, Big Data &amp; Cloud Computing, Sustainable Computing &amp; Communications, Social Computing &amp; Networking"> IEEE Intl Conf on... </a> </span> &nbsp;-&nbsp;
+                                <span class=""> 被引量:&nbsp; 0 </span> &nbsp;-&nbsp;
+                                <span class="sc_time" data-year="2019"> 2019年</span>
+                            </div>
+                            <div class="c_allversion">
+                                <div class="sc_allversion">
+                                    <span>来源：</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <img src="https://bj.bcebos.com/ps-scholar/xueshu/1582281973/15304/1528e47dc87e52e73fc9d8f3719a18a6.jpg" width="16" height="16"> </span> <a class="v_source" title="IEEEXplore" target="_blank" href="//xueshu.baidu.com/s?wd=paperuri%3A%28182e0gx0ad3g04j0y57f0jd08s466381%29&amp;filter=sc_long_sign&amp;tn=SE_xueshusource_2kduw22v&amp;sc_vurl=http%3A%2F%2Fieeexplore.ieee.org%2Fdocument%2F9047348%2F&amp;ie=utf-8&amp;sc_us=11311987362298472797" data-click="{'button_tp':'allversion_link','pub_name':'ieeexplore.ieee.org'}" data-isclick="2"> IEEEXplore </a> </span>
+                                    <span class="split">&nbsp;/&nbsp;</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <img src="https://bj.bcebos.com/ps-scholar/xueshu/1582281976/20844/004041d6d6a676ab199d0ac5204120e1.jpg" width="16" height="16"> </span> <a class="v_source" title="ResearchGate" target="_blank" href="                                    http://www.researchgate.net/publication/340227847_An_Improved_Programming_Model_for_Thread-Level_Speculation
+" data-click="{'button_tp':'allversion_link','pub_name':'www.researchgate.net'}" data-isclick="2"> ResearchGate </a> </span>
+                                    <a id="log-all-sources-init-value" data-isclick="2" data-click="{'act_id':'100024', 'button_tp':'paper_source','pub_name':'ieeexplore.ieee.org|www.researchgate.net'}"></a>
+                                    <a id="log-all-sources-more-value" data-isclick="3" data-click="{'act_id':'100024', 'button_tp':'paper_source_more','pub_name':''}"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sc_ext">
+                            <div class="sc_other">
+                                <a class="sc_collect c-icon-heart-hover" href="#" target="_blank" data-url="http://ieeexplore.ieee.org/document/9047348/" data-urlmd="b1d7c054a2972a3cb484bcf6dda038fd" data-click="{'button_tp':'collect'}" title="收藏"><i class="iconfont icon-heart"></i><span>收藏</span></a>
+                                <a class="sc_q c-icon-shape-hover" href="javascript:;" data-link="http://ieeexplore.ieee.org/document/9047348/" data-sign="dcf142f58980382ce5955668d47a3541" data-click="{'button_tp':'cite'}" title="引用"><i class="iconfont icon-cite"></i>引用</a>
+                                <a target="_blank" class="sc_batch" href="javascript:;" data-click="{'button_tp':'batch'}" title="批量引用"><i class="iconfont icon-piliang"></i><span class="commType">批量引用&nbsp; </span></a>
+                            </div>
+                        </div>
+                        <i class="reqdata" style="display:none;" urlmd="b1d7c054a2972a3cb484bcf6dda038fd" url="http://ieeexplore.ieee.org/document/9047348/" longsign="182e0gx0ad3g04j0y57f0jd08s466381" diversion="6957914987415207937" allversion="[&quot;http:\/\/ieeexplore.ieee.org\/document\/9047348\/&quot;,&quot;http:\/\/www.researchgate.net\/publication\/340227847_An_Improved_Programming_Model_for_Thread-Level_Speculation&quot;]"></i>
+                    </div>
+                    <!--  -->
+                    <div id="4" class="result sc_default_result xpath-log" srcid="3875" tpl="se_st_sc_default" mu="                                    https://link.springer.com/article/10.1007/s11227-019-02943-1
+">
+                        <div class="sc_content">
+                            <h3 class="t c_font"> <a href="//xueshu.baidu.com/usercenter/paper/show?paperid=141p0tn0814v0pu0b96w0aa0r2799028&amp;site=xueshu_se" data-click="{'button_tp':'title'}" target="_blank">ProCTA: program characteristic-based <em>thread</em> partition approach</a> </h3>
+                            <div class="c_abstract">
+                                As a
+                                <em>thread-level</em> automatic parallelization technique,
+                                <em>thread-level</em>
+                                <em>speculation</em> (TLS) can partition irregular serial programs into multiple threads and ...
+                            </div>
+                            <div class="sc_info">
+          <span> <a href="
+
+/s?wd=author%3A%28Yuxiang%20Li%29%20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">Y Li</a> ， <a href="
+
+/s?wd=author%3A%28Zhiyong%20Zhang%29%20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">Z Zhang</a> ， <a href="
+
+/s?wd=author%3A%28Lili%20Zhang%29%20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">L Zhang</a> ， ...</span>&nbsp;-&nbsp;
+                                <span> <a href="                    /usercenter/data/journal?cmd=jump&amp;wd=journaluri%3A%285c5a33eac780b920%29%20%E3%80%8AJournal%20of%20Supercomputing%E3%80%8B&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dpublish&amp;sort=sc_cited" target="_blank" data-click="{'button_tp':'publish'}" title="《Journal of Supercomputing》"> 《Journal of Super... </a> </span> &nbsp;-&nbsp;
+                                <span class=""> 被引量:&nbsp; 0 </span> &nbsp;-&nbsp;
+                                <span class="sc_time" data-year="2019"> 2019年</span>
+                            </div>
+                            <div class="c_allversion">
+                                <div class="sc_allversion">
+                                    <span>来源：</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <img src="https://bj.bcebos.com/ps-scholar/xueshu/1582281977/28860/822049abc103ac423b5e712e1aeb499a.jpg" width="16" height="16"> </span> <a class="v_source" title="Springer" target="_blank" href="                                    http://link.springer.com/article/10.1007/s11227-019-02943-1
+" data-click="{'button_tp':'allversion_link','pub_name':'link.springer.com'}" data-isclick="2"> Springer </a> </span>
+                                    <span class="split">&nbsp;/&nbsp;</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <img src="https://bj.bcebos.com/ps-scholar/xueshu/1582281976/20844/004041d6d6a676ab199d0ac5204120e1.jpg" width="16" height="16"> </span> <a class="v_source" title="ResearchGate" target="_blank" href="                                    http://www.researchgate.net/publication/334220376_ProCTA_program_characteristic-based_thread_partition_approach
+" data-click="{'button_tp':'allversion_link','pub_name':'www.researchgate.net'}" data-isclick="2"> ResearchGate </a> </span>
+                                    <span class="split">&nbsp;/&nbsp;</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <i class="c-icon gj-icon-link"></i> </span> <a class="v_source" title="zhangqiaokeyan.com" target="_blank" href="                                                        https://www.zhangqiaokeyan.com/academic-journal-foreign_other_thesis/0204113560279.html
+" data-click="{'button_tp':'allversion_link','ch':2,'act_id':'100001','partner_id':'64','pub_name':'www.zhangqiaokeyan.com'}" data-isclick="2"> 掌桥科研 </a> </span>
+                                    <a id="log-all-sources-init-value" data-isclick="2" data-click="{'act_id':'100024', 'button_tp':'paper_source','pub_name':'link.springer.com|www.researchgate.net|www.zhangqiaokeyan.com'}"></a>
+                                    <a id="log-all-sources-more-value" data-isclick="3" data-click="{'act_id':'100024', 'button_tp':'paper_source_more','pub_name':''}"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sc_ext">
+                            <div class="sc_other">
+                                <a class="sc_collect c-icon-heart-hover" href="#" target="_blank" data-url="http://link.springer.com/article/10.1007/s11227-019-02943-1" data-urlmd="310fc9262b90286053d6201929b3bda8" data-click="{'button_tp':'collect'}" title="收藏"><i class="iconfont icon-heart"></i><span>收藏</span></a>
+                                <a class="sc_q c-icon-shape-hover" href="javascript:;" data-link="http://link.springer.com/article/10.1007/s11227-019-02943-1" data-sign="d2c244b093e241e9e017d7f2dc9c4490" data-click="{'button_tp':'cite'}" title="引用"><i class="iconfont icon-cite"></i>引用</a>
+                                <a target="_blank" class="sc_batch" href="javascript:;" data-click="{'button_tp':'batch'}" title="批量引用"><i class="iconfont icon-piliang"></i><span class="commType">批量引用&nbsp; </span></a>
+                            </div>
+                        </div>
+                        <i class="reqdata" style="display:none;" urlmd="310fc9262b90286053d6201929b3bda8" url="http://link.springer.com/article/10.1007/s11227-019-02943-1" longsign="141p0tn0814v0pu0b96w0aa0r2799028" diversion="6957914987415207937" allversion="[&quot;http:\/\/link.springer.com\/article\/10.1007\/s11227-019-02943-1&quot;,&quot;http:\/\/www.researchgate.net\/publication\/334220376_ProCTA_program_characteristic-based_thread_partition_approach&quot;,&quot;http:\/\/www.zhangqiaokeyan.com\/academic-journal-foreign_other_thesis\/0204113560279.html&quot;]"></i>
+                    </div>
+                    <!--  -->
+                    <div id="5" class="result sc_default_result xpath-log" srcid="3875" tpl="se_st_sc_default" mu="                                    https://www.cnki.com.cn/Article/CJFDTotal-JSYJ20180709006.htm
+">
+                        <div class="sc_content">
+                            <h3 class="t c_font"> <a href="//xueshu.baidu.com/usercenter/paper/show?paperid=1p5v0j50s23m0x80mf7y0xe0gd190418&amp;site=xueshu_se" data-click="{'button_tp':'title'}" target="_blank">嵌入式应用中的循环级线程推测并行性分析</a> </h3>
+                            <div class="c_abstract">
+                                如何有效利用多核提供的丰富晶体管资源对串行程序的执行进行加速是当前研究中的热点问题.线程级推测技术(
+                                <em>thread-level</em>
+                                <em>speculation</em>,TLS)旨在充分利用多核资源,最大...
+                            </div>
+                            <div class="sc_info">
+          <span> <a href="
+
+/s?wd=authoruri%3A%28f4054515e74cb4c%29%20author%3A%28%E5%8D%9C%E5%BE%97%E5%BA%86%29%20%E8%A5%BF%E5%8D%97%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson&amp;sort=sc_cited" target="_blank" data-click="{'button_tp':'author'}">卜得庆</a> ， <a href="
+
+
+//xueshu.baidu.com/usercenter/data/author?cmd=authoruri&amp;wd=authoruri%3A%281a59d57f6c6a326e%29%20author%3A%28%E7%8E%8B%E8%80%80%E5%BD%AC%29%20%E8%A5%BF%E5%8D%97%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF%E5%AD%A6%E9%99%A2" target="_blank" data-click="{'button_tp':'author'}">王耀彬</a> ， <a href="
+
+/s?wd=authoruri%3A%28b57ae0c49ce848c8%29%20author%3A%28%E6%9D%8E%E5%87%8C%29%20%E8%A5%BF%E5%8D%97%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson&amp;sort=sc_cited" target="_blank" data-click="{'button_tp':'author'}">李凌</a> ， ...</span>&nbsp;-&nbsp;
+                                <span> <a href="                    /usercenter/data/journal?cmd=jump&amp;wd=journaluri%3A%281fa6ea5936e1931d%29%20%E3%80%8A%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%94%E7%94%A8%E7%A0%94%E7%A9%B6%E3%80%8B&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dpublish&amp;sort=sc_cited" target="_blank" data-click="{'button_tp':'publish'}" title="《计算机应用研究》"> 《计算机应用研究》 </a> </span> &nbsp;-&nbsp;
+                                <span class=""> 被引量:&nbsp; 0 </span> &nbsp;-&nbsp;
+                                <span class="sc_time" data-year="2019"> 2019年</span>
+                            </div>
+                            <div class="c_allversion">
+                                <div class="sc_allversion">
+                                    <span>来源：</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <img src="https://bj.bcebos.com/ps-scholar/xueshu/1582281975/47595/a5d78dd13b7d91cd9e47c2e48aa8c07b.jpg" width="16" height="16"> </span> <a class="v_source" title="知网" target="_blank" href="                                    http://www.cnki.com.cn/Article/CJFDTotal-JSYJ20180709006.htm
+" data-click="{'button_tp':'allversion_link','pub_name':'www.cnki.com.cn'}" data-isclick="2"> 知网 </a> </span>
+                                    <span class="split">&nbsp;/&nbsp;</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <i class="c-icon gj-icon-link"></i> </span> <a class="v_source" title="kns.cnki.net" target="_blank" href="//xueshu.baidu.com/s?wd=paperuri%3A%281p5v0j50s23m0x80mf7y0xe0gd190418%29&amp;filter=sc_long_sign&amp;tn=SE_xueshusource_2kduw22v&amp;sc_vurl=http%3A%2F%2Fkns.cnki.net%2FKCMS%2Fdetail%2Fdetail.aspx%3Fdbcode%3DCJFD%26amp%3Bfilename%3DJSYJ201909028&amp;ie=utf-8&amp;sc_us=12500364352099358268" data-click="{'button_tp':'allversion_link','pub_name':'kns.cnki.net'}" data-isclick="2"> kns.cnki.net </a> </span>
+                                    <span class="split">&nbsp;/&nbsp;</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <i class="c-icon gj-icon-link"></i> </span> <a class="v_source" title="zhangqiaokeyan.com" target="_blank" href="                                                        https://www.zhangqiaokeyan.com/academic-journal-cn_application-research-computers_thesis/0201275685993.html
+" data-click="{'button_tp':'allversion_link','ch':2,'act_id':'100001','partner_id':'64','pub_name':'www.zhangqiaokeyan.com'}" data-isclick="2"> 掌桥科研 </a> </span>
+                                    <span class="split">&nbsp;/&nbsp;</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <i class="c-icon gj-icon-pdf"></i> </span> <a class="v_source" title="chinaxiv.org" target="_blank" href="                                    http://www.chinaxiv.org/user/download.htm?id=25916
+" data-click="{'button_tp':'allversion_link','pub_name':'www.chinaxiv.org'}" data-isclick="2"> chinaxiv.org </a> <span class="v_lib">(全网免费下载)</span> </span>
+                                    <span class="split">&nbsp;/&nbsp;</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <i class="c-icon gj-icon-pdf"></i> </span> <a class="v_source" title="eprint.las.ac.cn" target="_blank" href="                                    http://eprint.las.ac.cn/user/download.htm?id=25916
+" data-click="{'button_tp':'allversion_link','pub_name':'eprint.las.ac.cn'}" data-isclick="2"> eprint.las.ac.cn </a> <span class="v_lib">(全网免费下载)</span> <a href="javascript:;" class="v_morebtn" data-click="{'button_tp':'allversion_more'}">&nbsp;&nbsp;</a> </span>
+                                    <span class="v_item_span v_item_hid"> <span class="v_icon"> <i class="c-icon gj-icon-pdf"></i> </span> <a class="v_source" title="chinaxiv.org" target="_blank" href="                                    http://chinaxiv.org/user/download.htm?id=25916
+" data-click="{'button_tp':'allversion_link','pub_name':'chinaxiv.org'}" data-isclick="3"> chinaxiv.org </a> <span class="v_lib">(全网免费下载)</span> </span>
+                                    <span class="v_item_span v_item_hid"> <span class="v_icon"> <i class="c-icon gj-icon-link"></i> </span> <a class="v_source" title="爱学术" target="_blank" href="                                    http://www.ixueshu.com/document/03d3884ec484856ceed605825cd68109318947a18e7f9386.html
+" data-click="{'button_tp':'allversion_link','ch':2,'act_id':'100001','partner_id':'17','pub_name':'www.ixueshu.com'}" data-isclick="3"> 爱学术 </a> </span>
+                                    <a id="log-all-sources-init-value" data-isclick="2" data-click="{'act_id':'100024', 'button_tp':'paper_source','pub_name':'www.cnki.com.cn|kns.cnki.net|www.zhangqiaokeyan.com|www.chinaxiv.org|eprint.las.ac.cn'}"></a>
+                                    <a id="log-all-sources-more-value" data-isclick="3" data-click="{'act_id':'100024', 'button_tp':'paper_source_more','pub_name':'chinaxiv.org|www.ixueshu.com'}"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sc_ext">
+                            <div class="sc_other">
+                                <a class="sc_collect c-icon-heart-hover" href="#" target="_blank" data-url="http://www.cnki.com.cn/Article/CJFDTotal-JSYJ20180709006.htm" data-urlmd="a9e47ae3b4b0b1bc0037ba2a3c864b2e" data-click="{'button_tp':'collect'}" title="收藏"><i class="iconfont icon-heart"></i><span>收藏</span></a>
+                                <a class="sc_q c-icon-shape-hover" href="javascript:;" data-link="http://www.cnki.com.cn/Article/CJFDTotal-JSYJ20180709006.htm" data-sign="c2679816e421448d008e5bb23a11bddb" data-click="{'button_tp':'cite'}" title="引用"><i class="iconfont icon-cite"></i>引用</a>
+                                <a target="_blank" class="sc_batch" href="javascript:;" data-click="{'button_tp':'batch'}" title="批量引用"><i class="iconfont icon-piliang"></i><span class="commType">批量引用&nbsp; </span></a>
+                                <a href="javascript:;" class="sc_download c-icon-download-hover" target="_blank" data-click="{'button_tp':'download'}" title="查看3个下载地址" data-type="2"><i class="iconfont icon-download"></i>免费下载&nbsp; </a>
+                                <div style="display:none;" class="sc_savalink_content">
+                                    <div class="sc_savelink_item" data-type="pdf" data-libbuy="0">
+                                        <p class="savesize"> 1.3M </p>
+                                        <p class="saveurl"> http://www.chinaxiv.org/user/download.htm?id=25916 </p>
+                                        <p class="saveanchor"> chinaxiv.org </p>
+                                        <p class="savefree">全网免费</p>
+                                    </div>
+                                    <div class="sc_savelink_item" data-type="pdf" data-libbuy="0">
+                                        <p class="savesize"> 1.3M </p>
+                                        <p class="saveurl"> http://eprint.las.ac.cn/user/download.htm?id=25916 </p>
+                                        <p class="saveanchor"> eprint.las.ac.cn </p>
+                                        <p class="savefree">全网免费</p>
+                                    </div>
+                                    <div class="sc_savelink_item" data-type="pdf" data-libbuy="0">
+                                        <p class="savesize"> 1.3M </p>
+                                        <p class="saveurl"> http://chinaxiv.org/user/download.htm?id=25916 </p>
+                                        <p class="saveanchor"> chinaxiv.org </p>
+                                        <p class="savefree">全网免费</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <i class="reqdata" style="display:none;" urlmd="a9e47ae3b4b0b1bc0037ba2a3c864b2e" url="http://www.cnki.com.cn/Article/CJFDTotal-JSYJ20180709006.htm" longsign="1p5v0j50s23m0x80mf7y0xe0gd190418" diversion="6957914987415207937" allversion="[&quot;http:\/\/www.cnki.com.cn\/Article\/CJFDTotal-JSYJ20180709006.htm&quot;,&quot;http:\/\/kns.cnki.net\/KCMS\/detail\/detail.aspx?dbcode=CJFD&amp;amp;filename=JSYJ201909028&quot;,&quot;http:\/\/www.zhangqiaokeyan.com\/academic-journal-cn_application-research-computers_thesis\/0201275685993.html&quot;,&quot;http:\/\/www.ixueshu.com\/document\/03d3884ec484856ceed605825cd68109318947a18e7f9386.html&quot;]"></i>
+                    </div>
+                    <!--  -->
+                    <div id="6" class="result sc_default_result xpath-log" srcid="3875" tpl="se_st_sc_default" mu="                                    https://en.cnki.com.cn/Article_en/CJFDTotal-JSYJ201909028.htm
+">
+                        <div class="sc_content">
+                            <h3 class="t c_font"> <a href="//xueshu.baidu.com/usercenter/paper/show?paperid=1c5f0g70vk6a0v40hb6s0aj0wx527877&amp;site=xueshu_se" data-click="{'button_tp':'title'}" target="_blank">Profiling loop-<em>level</em> speculative parallelism in embedded applications</a> </h3>
+                            <div class="c_abstract">
+                                <em>Thread-level</em>
+                                <em>speculation</em>( TLS) technology aims at making full use of multi-core resources and maximizing the potentially parallelism in serial code. At ...
+                            </div>
+                            <div class="sc_info">
+          <span> <a href="
+
+/s?wd=author%3A%28Bu%20Deqing%29%20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">D Bu</a> ， <a href="
+
+/s?wd=author%3A%28Wang%20Yaobin%29%20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">Y Wang</a> ， <a href="
+
+/s?wd=author%3A%28Li%20Ling%29%20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">L Li</a> ， ...</span>&nbsp;-&nbsp;
+                                <span class=""> 被引量:&nbsp; 0 </span> &nbsp;-&nbsp;
+                                <span class="sc_time" data-year="2019"> 2019年</span>
+                            </div>
+                            <div class="c_allversion">
+                                <div class="sc_allversion">
+                                    <span>来源：</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <img src="https://bj.bcebos.com/ps-scholar/xueshu/1582281975/47595/a5d78dd13b7d91cd9e47c2e48aa8c07b.jpg" width="16" height="16"> </span> <a class="v_source" title="知网" target="_blank" href="                                    http://en.cnki.com.cn/Article_en/CJFDTotal-JSYJ201909028.htm
+" data-click="{'button_tp':'allversion_link','pub_name':'en.cnki.com.cn'}" data-isclick="2"> 知网 </a> </span>
+                                    <a id="log-all-sources-init-value" data-isclick="2" data-click="{'act_id':'100024', 'button_tp':'paper_source','pub_name':'en.cnki.com.cn'}"></a>
+                                    <a id="log-all-sources-more-value" data-isclick="3" data-click="{'act_id':'100024', 'button_tp':'paper_source_more','pub_name':''}"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sc_ext">
+                            <div class="sc_other">
+                                <a class="sc_collect c-icon-heart-hover" href="#" target="_blank" data-url="http://en.cnki.com.cn/Article_en/CJFDTotal-JSYJ201909028.htm" data-urlmd="f0d7aa86e88b8f3d20ba5dfe824b3c1b" data-click="{'button_tp':'collect'}" title="收藏"><i class="iconfont icon-heart"></i><span>收藏</span></a>
+                                <a class="sc_q c-icon-shape-hover" href="javascript:;" data-link="http://en.cnki.com.cn/Article_en/CJFDTotal-JSYJ201909028.htm" data-sign="030224c4d83a7afa3018af5ae7ff38e7" data-click="{'button_tp':'cite'}" title="引用"><i class="iconfont icon-cite"></i>引用</a>
+                                <a target="_blank" class="sc_batch" href="javascript:;" data-click="{'button_tp':'batch'}" title="批量引用"><i class="iconfont icon-piliang"></i><span class="commType">批量引用&nbsp; </span></a>
+                            </div>
+                        </div>
+                        <i class="reqdata" style="display:none;" urlmd="f0d7aa86e88b8f3d20ba5dfe824b3c1b" url="http://en.cnki.com.cn/Article_en/CJFDTotal-JSYJ201909028.htm" longsign="1c5f0g70vk6a0v40hb6s0aj0wx527877" diversion="6957914987415207937" allversion="[&quot;http:\/\/en.cnki.com.cn\/Article_en\/CJFDTotal-JSYJ201909028.htm&quot;]"></i>
+                    </div>
+                    <!--  -->
+                    <div id="7" class="result sc_default_result xpath-log" srcid="3875" tpl="se_st_sc_default" mu="                                                        https://www.zhangqiaokeyan.com/academic-journal-foreign_other_thesis/0204110523891.html
+">
+                        <div class="sc_content">
+                            <h3 class="t c_font"> <a href="//xueshu.baidu.com/usercenter/paper/show?paperid=1k6v0vc0855u0m10vm680jx0q7089510&amp;site=xueshu_se" data-click="{'button_tp':'title'}" target="_blank">A speculative parallel simulated annealing algorithm based on Apache Spark</a> </h3>
+                            <div class="c_abstract">
+                                A speculative parallel simulated annealing algorithm based on Apache SparkApache Spark, parallel computing, simulated annealing,
+                                <em>thread</em>
+                                <em>level</em> speculatio...
+                            </div>
+                            <div class="sc_info">
+          <span> <a href="
+
+/s?wd=author%3A%28ZhoukaiWang%29%20Department%20of%20Computer%20Science%20andTechnology&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">ZhoukaiWang</a> ， <a href="
+
+/s?wd=author%3A%28Yinliang%20Zhao%29%20Department%20of%20Computer%20Science%20andTechnology&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">Y Zhao</a> ， <a href="
+
+/s?wd=author%3A%28Yang%20Liu%29%20Department%20of%20Computer%20Science%20andTechnology&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">Y Liu</a> ， ...</span>&nbsp;-&nbsp;
+                                <span> <a href="                    /usercenter/data/journal?cmd=jump&amp;wd=journaluri%3A%2885c21dd2de1f90ee%29%20%E3%80%8AConcurrency%20Practice%20%26%20Experience%E3%80%8B&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dpublish&amp;sort=sc_cited" target="_blank" data-click="{'button_tp':'publish'}" title="《Concurrency Practice &amp; Experience》"> 《Concurrency Prac... </a> </span> &nbsp;-&nbsp;
+                                <span class=""> 被引量:&nbsp; 0 </span> &nbsp;-&nbsp;
+                                <span class="sc_time" data-year="2018"> 2018年</span>
+                            </div>
+                            <div class="c_allversion">
+                                <div class="sc_allversion">
+                                    <span>来源：</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <i class="c-icon gj-icon-link"></i> </span> <a class="v_source" title="zhangqiaokeyan.com" target="_blank" href="                                                        https://www.zhangqiaokeyan.com/academic-journal-foreign_other_thesis/0204110523891.html
+" data-click="{'button_tp':'allversion_link','ch':2,'act_id':'100001','partner_id':'64','pub_name':'www.zhangqiaokeyan.com'}" data-isclick="2"> 掌桥科研 </a> </span>
+                                    <a id="log-all-sources-init-value" data-isclick="2" data-click="{'act_id':'100024', 'button_tp':'paper_source','pub_name':'www.zhangqiaokeyan.com'}"></a>
+                                    <a id="log-all-sources-more-value" data-isclick="3" data-click="{'act_id':'100024', 'button_tp':'paper_source_more','pub_name':''}"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sc_ext">
+                            <div class="sc_other">
+                                <a class="sc_collect c-icon-heart-hover" href="#" target="_blank" data-url="http://www.zhangqiaokeyan.com/academic-journal-foreign_other_thesis/0204110523891.html" data-urlmd="565dc89add6abdf559586e32b9885bde" data-click="{'button_tp':'collect'}" title="收藏"><i class="iconfont icon-heart"></i><span>收藏</span></a>
+                                <a class="sc_q c-icon-shape-hover" href="javascript:;" data-link="http://www.zhangqiaokeyan.com/academic-journal-foreign_other_thesis/0204110523891.html" data-sign="45686aeef175871862c1c06048aae9cb" data-click="{'button_tp':'cite'}" title="引用"><i class="iconfont icon-cite"></i>引用</a>
+                                <a target="_blank" class="sc_batch" href="javascript:;" data-click="{'button_tp':'batch'}" title="批量引用"><i class="iconfont icon-piliang"></i><span class="commType">批量引用&nbsp; </span></a>
+                            </div>
+                        </div>
+                        <i class="reqdata" style="display:none;" urlmd="565dc89add6abdf559586e32b9885bde" url="http://www.zhangqiaokeyan.com/academic-journal-foreign_other_thesis/0204110523891.html" longsign="1k6v0vc0855u0m10vm680jx0q7089510" diversion="6957914987415207937" allversion="[&quot;http:\/\/www.zhangqiaokeyan.com\/academic-journal-foreign_other_thesis\/0204110523891.html&quot;]"></i>
+                    </div>
+                    <!--  -->
+                    <div id="8" class="result sc_default_result xpath-log" srcid="3875" tpl="se_st_sc_default" mu="                                    http://smartsearch.nstl.gov.cn/paper_detail.html?id=ffa121b2b597b6237cc10c49caa9a875
+">
+                        <div class="sc_content">
+                            <h3 class="t c_font"> <a href="//xueshu.baidu.com/usercenter/paper/show?paperid=1y4e0cp0j7160c603d750mq0r7161262&amp;site=xueshu_se" data-click="{'button_tp':'title'}" target="_blank">Design Space Exploration for Implementing a Software-Based Speculative Memory System</a> </h3>
+                            <div class="c_abstract">
+                                <em>Thread-Level</em>
+                                <em>Speculation</em> (TLS)To enlarge the opportunities for parallelizingKoheiKyotoFujisawaKyotoAtsushiKyotoNunomeKyotoKiyoshiKyoto
+                            </div>
+                            <div class="sc_info">
+          <span> <a href="
+
+/s?wd=author%3A%28Kohei%29%20Kyoto&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">Kohei</a> ， <a href="
+
+/s?wd=author%3A%28Fujisawa%29%20Kyoto&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">Fujisawa</a> ， <a href="
+
+/s?wd=author%3A%28Atsushi%29%20Kyoto&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">Atsushi</a> ， ...</span>&nbsp;-&nbsp;
+                                <span> <a href="                    /usercenter/data/journal?cmd=jump&amp;wd=journaluri%3A%2884266f557e4aae07%29%20%E3%80%8AInternational%20Journal%20of%20Software%20Innovation%E3%80%8B&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dpublish&amp;sort=sc_cited" target="_blank" data-click="{'button_tp':'publish'}" title="《International Journal of Software Innovation》"> 《International Jo... </a> </span> &nbsp;-&nbsp;
+                                <span class=""> 被引量:&nbsp; 0 </span> &nbsp;-&nbsp;
+                                <span class="sc_time" data-year="2018"> 2018年</span>
+                            </div>
+                            <div class="c_allversion">
+                                <div class="sc_allversion">
+                                    <span>来源：</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <i class="c-icon gj-icon-link"></i> </span> <a class="v_source" title="smartsearch.nstl.gov.cn" target="_blank" href="                                    http://smartsearch.nstl.gov.cn/paper_detail.html?id=ffa121b2b597b6237cc10c49caa9a875
+" data-click="{'button_tp':'allversion_link','pub_name':'smartsearch.nstl.gov.cn'}" data-isclick="2"> smartsearch.nstl.g... </a> </span>
+                                    <span class="split">&nbsp;/&nbsp;</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <i class="c-icon gj-icon-link"></i> </span> <a class="v_source" title="zhangqiaokeyan.com" target="_blank" href="                                                        https://www.zhangqiaokeyan.com/academic-journal-foreign_other_thesis/020413232763.html
+" data-click="{'button_tp':'allversion_link','ch':2,'act_id':'100001','partner_id':'64','pub_name':'www.zhangqiaokeyan.com'}" data-isclick="2"> 掌桥科研 </a> </span>
+                                    <a id="log-all-sources-init-value" data-isclick="2" data-click="{'act_id':'100024', 'button_tp':'paper_source','pub_name':'smartsearch.nstl.gov.cn|www.zhangqiaokeyan.com'}"></a>
+                                    <a id="log-all-sources-more-value" data-isclick="3" data-click="{'act_id':'100024', 'button_tp':'paper_source_more','pub_name':''}"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sc_ext">
+                            <div class="sc_other">
+                                <a class="sc_collect c-icon-heart-hover" href="#" target="_blank" data-url="http://smartsearch.nstl.gov.cn/paper_detail.html?id=ffa121b2b597b6237cc10c49caa9a875" data-urlmd="2a1c16793ccf9486e2e4acc6602904f2" data-click="{'button_tp':'collect'}" title="收藏"><i class="iconfont icon-heart"></i><span>收藏</span></a>
+                                <a class="sc_q c-icon-shape-hover" href="javascript:;" data-link="http://smartsearch.nstl.gov.cn/paper_detail.html?id=ffa121b2b597b6237cc10c49caa9a875" data-sign="b6af2369dbc8a88b994f6c3cc8137d97" data-click="{'button_tp':'cite'}" title="引用"><i class="iconfont icon-cite"></i>引用</a>
+                                <a target="_blank" class="sc_batch" href="javascript:;" data-click="{'button_tp':'batch'}" title="批量引用"><i class="iconfont icon-piliang"></i><span class="commType">批量引用&nbsp; </span></a>
+                            </div>
+                        </div>
+                        <i class="reqdata" style="display:none;" urlmd="2a1c16793ccf9486e2e4acc6602904f2" url="http://smartsearch.nstl.gov.cn/paper_detail.html?id=ffa121b2b597b6237cc10c49caa9a875" longsign="1y4e0cp0j7160c603d750mq0r7161262" diversion="6957914987415207937" allversion="[&quot;http:\/\/smartsearch.nstl.gov.cn\/paper_detail.html?id=ffa121b2b597b6237cc10c49caa9a875&quot;,&quot;http:\/\/www.zhangqiaokeyan.com\/academic-journal-foreign_other_thesis\/020413232763.html&quot;]"></i>
+                    </div>
+                    <!--  -->
+                    <div id="9" class="result sc_default_result xpath-log" srcid="3875" tpl="se_st_sc_default" mu="                                    http://www.scielo.br/scielo.php?script=sci_arttext&amp;pid=S2179-84512017000300449&amp;lng=en&amp;nrm=iso
+">
+                        <div class="sc_content">
+                            <h3 class="t c_font"> <a href="//xueshu.baidu.com/usercenter/paper/show?paperid=d612117ddf73e483bbc0ca229810d663&amp;site=xueshu_se" data-click="{'button_tp':'title'}" target="_blank">Parallel Implementations of RCM Algorithm for Bandwidth Reduction of Sparse Matrices</a> </h3>
+                            <div class="c_abstract">
+                                Recently, researchers have published the first parallel version of them employing
+                                <em>thread-level</em>
+                                <em>speculation</em>. This work presents non-speculative OpenMP parallel versions of both RCM and Sloan...doi:10.5540/tema.2017.018.03.0449Thiago ...
+                            </div>
+                            <div class="sc_info">
+          <span> <a href="
+
+/s?wd=author%3A%28Thiago%20Nascimento%20Rodrigues%29%20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">TN Rodrigues</a> ， <a href="
+
+/s?wd=author%3A%28Maria%20Claudia%20Silva%20Boeres%29%20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">MCS Boeres</a> ， <a href="
+
+/s?wd=author%3A%28Lucia%20Catabriga%29%20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">L Catabriga</a> </span>&nbsp;-&nbsp;
+                                <span> <a href="                    /usercenter/data/journal?cmd=jump&amp;wd=journaluri%3A%28a31a308409be03f3%29%20%E3%80%8ATema%E3%80%8B&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dpublish&amp;sort=sc_cited" target="_blank" data-click="{'button_tp':'publish'}" title="《Tema》"> 《Tema》 </a> </span> &nbsp;-&nbsp;
+                                <span class=""> 被引量:&nbsp; 0 </span> &nbsp;-&nbsp;
+                                <span class="sc_time" data-year="2017"> 2017年</span>
+                            </div>
+                            <div class="c_allversion">
+                                <div class="sc_allversion">
+                                    <span>来源：</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <img src="https://bj.bcebos.com/ps-scholar/xueshu/1582281977/64249/61445f92c6383fb2d0010c26d7ad3636.jpg" width="16" height="16"> </span> <a class="v_source" title="SciELO" target="_blank" href="//xueshu.baidu.com/s?wd=paperuri%3A%28d612117ddf73e483bbc0ca229810d663%29&amp;filter=sc_long_sign&amp;tn=SE_xueshusource_2kduw22v&amp;sc_vurl=http%3A%2F%2Fwww.scielo.br%2Fscielo.php%3Fscript%3Dsci_arttext%26amp%3Bamp%3Bpid%3DS2179-84512017000300449%26amp%3Bamp%3Blng%3Den%26amp%3Bamp%3Bnrm%3Diso&amp;ie=utf-8&amp;sc_us=7106070491290100401" data-click="{'button_tp':'allversion_link','pub_name':'www.scielo.br'}" data-isclick="2"> SciELO </a> </span>
+                                    <span class="split">&nbsp;/&nbsp;</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <img src="https://bj.bcebos.com/ps-scholar/xueshu/1582281976/20844/004041d6d6a676ab199d0ac5204120e1.jpg" width="16" height="16"> </span> <a class="v_source" title="ResearchGate" target="_blank" href="                                    http://www.researchgate.net/publication/323688712_Parallel_Implementations_of_RCM_Algorithm_for_Bandwidth_Reduction_of_Sparse_Matrices
+" data-click="{'button_tp':'allversion_link','pub_name':'www.researchgate.net'}" data-isclick="2"> ResearchGate </a> </span>
+                                    <a id="log-all-sources-init-value" data-isclick="2" data-click="{'act_id':'100024', 'button_tp':'paper_source','pub_name':'www.scielo.br|www.researchgate.net'}"></a>
+                                    <a id="log-all-sources-more-value" data-isclick="3" data-click="{'act_id':'100024', 'button_tp':'paper_source_more','pub_name':''}"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sc_ext">
+                            <div class="sc_other">
+                                <a class="sc_collect c-icon-heart-hover" href="#" target="_blank" data-url="http://www.scielo.br/scielo.php?script=sci_arttext&amp;pid=S2179-84512017000300449&amp;lng=en&amp;nrm=iso" data-urlmd="335a8a886b4c10706b71574d05104142" data-click="{'button_tp':'collect'}" title="收藏"><i class="iconfont icon-heart"></i><span>收藏</span></a>
+                                <a class="sc_q c-icon-shape-hover" href="javascript:;" data-link="http://www.scielo.br/scielo.php?script=sci_arttext&amp;pid=S2179-84512017000300449&amp;lng=en&amp;nrm=iso" data-sign="ec865972fa0464a0e02a7407c58b3d01" data-click="{'button_tp':'cite'}" title="引用"><i class="iconfont icon-cite"></i>引用</a>
+                                <a target="_blank" class="sc_batch" href="javascript:;" data-click="{'button_tp':'batch'}" title="批量引用"><i class="iconfont icon-piliang"></i><span class="commType">批量引用&nbsp; </span></a>
+                            </div>
+                        </div>
+                        <i class="reqdata" style="display:none;" urlmd="335a8a886b4c10706b71574d05104142" url="http://www.scielo.br/scielo.php?script=sci_arttext&amp;pid=S2179-84512017000300449&amp;lng=en&amp;nrm=iso" longsign="d612117ddf73e483bbc0ca229810d663" diversion="6957914987415207937" allversion="[&quot;http:\/\/www.scielo.br\/scielo.php?script=sci_arttext&amp;amp;amp;pid=S2179-84512017000300449&amp;amp;amp;lng=en&amp;amp;amp;nrm=iso&quot;,&quot;http:\/\/www.researchgate.net\/publication\/323688712_Parallel_Implementations_of_RCM_Algorithm_for_Bandwidth_Reduction_of_Sparse_Matrices&quot;]"></i>
+                    </div>
+                    <!--  -->
+                    <div id="10" class="result sc_default_result xpath-log" srcid="3875" tpl="se_st_sc_default" mu="                                    https://onlinelibrary.wiley.com/doi/10.1002/cpe.4429
+">
+                        <div class="sc_content">
+                            <h3 class="t c_font"> <a href="//xueshu.baidu.com/usercenter/paper/show?paperid=5d1fa3c90d81420a47287daf60740c47&amp;site=xueshu_se" data-click="{'button_tp':'title'}" target="_blank">A speculative parallel simulated annealing algorithm based on Apache Spark</a> </h3>
+                            <div class="c_abstract">
+                                Then, based on the analysis, the Software
+                                <em>Thread-Level</em>
+                                <em>Speculation</em> technique is employed to help the conventional algorithm overcome the dependencies an...
+                            </div>
+                            <div class="sc_info">
+          <span> <a href="
+
+/s?wd=author%3A%28Wang%2C%20Zhoukai%29%20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">Z Wang</a> ， <a href="
+
+/s?wd=author%3A%28Zhao%2C%20Yinliang%29%20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">Y Zhao</a> ， <a href="
+
+/s?wd=author%3A%28Liu%2C%20Yang%29%20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dperson" target="_blank" data-click="{'button_tp':'author'}">Y Liu</a> ， ...</span>&nbsp;-&nbsp;
+                                <span> <a href="                    /usercenter/data/journal?cmd=jump&amp;wd=journaluri%3A%283d4915a00b897bc7%29%20%E3%80%8AConcurrency%20%26%20Computation%20Practice%20%26%20Experience%E3%80%8B&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;sc_f_para=sc_hilight%3Dpublish&amp;sort=sc_cited" target="_blank" data-click="{'button_tp':'publish'}" title="《Concurrency &amp; Computation Practice &amp; Experience》"> 《Concurrency &amp; Co... </a> </span> &nbsp;-&nbsp;
+                                <span class=""> 被引量:&nbsp; 0 </span> &nbsp;-&nbsp;
+                                <span class="sc_time" data-year="2018"> 2018年</span>
+                            </div>
+                            <div class="c_allversion">
+                                <div class="sc_allversion">
+                                    <span>来源：</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <img src="https://bj.bcebos.com/ps-scholar/xueshu/1582281977/50640/f516566e294e54c7b6490fac108c4ec0.jpg" width="16" height="16"> </span> <a class="v_source" title="Wiley" target="_blank" href="//xueshu.baidu.com/s?wd=paperuri%3A%285d1fa3c90d81420a47287daf60740c47%29&amp;filter=sc_long_sign&amp;tn=SE_xueshusource_2kduw22v&amp;sc_vurl=http%3A%2F%2Fonlinelibrary.wiley.com%2Fdoi%2F10.1002%2Fcpe.4429&amp;ie=utf-8&amp;sc_us=10264780529209861735" data-click="{'button_tp':'allversion_link','pub_name':'onlinelibrary.wiley.com'}" data-isclick="2"> Wiley </a> </span>
+                                    <span class="split">&nbsp;/&nbsp;</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <img src="https://bj.bcebos.com/ps-scholar/xueshu/1582281976/20844/004041d6d6a676ab199d0ac5204120e1.jpg" width="16" height="16"> </span> <a class="v_source" title="ResearchGate" target="_blank" href="                                    http://www.researchgate.net/publication/322874248_A_speculative_parallel_simulated_annealing_algorithm_based_on_Apache_Spark
+" data-click="{'button_tp':'allversion_link','pub_name':'www.researchgate.net'}" data-isclick="2"> ResearchGate </a> </span>
+                                    <span class="split">&nbsp;/&nbsp;</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <i class="c-icon gj-icon-link"></i> </span> <a class="v_source" title="dx.doi.org" target="_blank" href="//xueshu.baidu.com/s?wd=paperuri%3A%285d1fa3c90d81420a47287daf60740c47%29&amp;filter=sc_long_sign&amp;tn=SE_xueshusource_2kduw22v&amp;sc_vurl=http%3A%2F%2Fdx.doi.org%2F10.1002%2Fcpe.4429&amp;ie=utf-8&amp;sc_us=10264780529209861735" data-click="{'button_tp':'allversion_link','pub_name':'dx.doi.org'}" data-isclick="2"> dx.doi.org </a> </span>
+                                    <span class="split">&nbsp;/&nbsp;</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <i class="c-icon gj-icon-link"></i> </span> <a class="v_source" title="ir.xjtu.edu.cn" target="_blank" href="                                    http://www.ir.xjtu.edu.cn/item/460172
+" data-click="{'button_tp':'allversion_link','pub_name':'www.ir.xjtu.edu.cn'}" data-isclick="2"> ir.xjtu.edu.cn </a> </span>
+                                    <span class="split">&nbsp;/&nbsp;</span>
+                                    <span class="v_item_span"> <span class="v_icon"> <i class="c-icon gj-icon-link"></i> </span> <a class="v_source" title="onacademic.com" target="_blank" href="                                    http://www.onacademic.com/detail/journal_1000040221364910_6a69.html
+" data-click="{'button_tp':'allversion_link','ch':2,'act_id':'100001','partner_id':'8','pub_name':'www.onacademic.com'}" data-isclick="2"> onacademic.com </a> </span>
+                                    <a id="log-all-sources-init-value" data-isclick="2" data-click="{'act_id':'100024', 'button_tp':'paper_source','pub_name':'onlinelibrary.wiley.com|www.researchgate.net|dx.doi.org|www.ir.xjtu.edu.cn|www.onacademic.com'}"></a>
+                                    <a id="log-all-sources-more-value" data-isclick="3" data-click="{'act_id':'100024', 'button_tp':'paper_source_more','pub_name':''}"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sc_ext">
+                            <div class="sc_other">
+                                <a class="sc_collect c-icon-heart-hover" href="#" target="_blank" data-url="http://onlinelibrary.wiley.com/doi/10.1002/cpe.4429" data-urlmd="6ca8affe6563a9364cf38c3fd6acc22b" data-click="{'button_tp':'collect'}" title="收藏"><i class="iconfont icon-heart"></i><span>收藏</span></a>
+                                <a class="sc_q c-icon-shape-hover" href="javascript:;" data-link="http://onlinelibrary.wiley.com/doi/10.1002/cpe.4429" data-sign="70ec7c45466f1b7f2ff26c99c4f9f9b6" data-click="{'button_tp':'cite'}" title="引用"><i class="iconfont icon-cite"></i>引用</a>
+                                <a target="_blank" class="sc_batch" href="javascript:;" data-click="{'button_tp':'batch'}" title="批量引用"><i class="iconfont icon-piliang"></i><span class="commType">批量引用&nbsp; </span></a>
+                            </div>
+                        </div>
+                        <i class="reqdata" style="display:none;" urlmd="6ca8affe6563a9364cf38c3fd6acc22b" url="http://onlinelibrary.wiley.com/doi/10.1002/cpe.4429" longsign="5d1fa3c90d81420a47287daf60740c47" diversion="6957914987415207937" allversion="[&quot;http:\/\/onlinelibrary.wiley.com\/doi\/10.1002\/cpe.4429&quot;,&quot;http:\/\/www.researchgate.net\/publication\/322874248_A_speculative_parallel_simulated_annealing_algorithm_based_on_Apache_Spark&quot;,&quot;http:\/\/dx.doi.org\/10.1002\/cpe.4429&quot;,&quot;http:\/\/www.ir.xjtu.edu.cn\/item\/460172&quot;,&quot;http:\/\/www.onacademic.com\/detail\/journal_1000040221364910_6a69.html&quot;]"></i>
+                    </div>
+                </div>
+            </div>
+            <div id="guide-step"></div>
+            <div style="clear:both;"></div>
+            <p id="page"> <strong> <span class="fk fk_cur"><i class="c-icon c-icon-bear-p"></i></span> <span class="pc">1</span> </strong> <a href="/s?wd=Thread-Level%20Speculation&amp;pn=10&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;f=3&amp;sort=sc_time&amp;sc_hit=1"> <span class="fk fkd"><i class="c-icon c-icon-bear-pn"></i></span> <span class="pc">2</span> </a> <a href="/s?wd=Thread-Level%20Speculation&amp;pn=20&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;f=3&amp;sort=sc_time&amp;sc_hit=1"> <span class="fk"><i class="c-icon c-icon-bear-pn"></i></span> <span class="pc">3</span> </a> <a href="/s?wd=Thread-Level%20Speculation&amp;pn=30&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;f=3&amp;sort=sc_time&amp;sc_hit=1"> <span class="fk fkd"><i class="c-icon c-icon-bear-pn"></i></span> <span class="pc">4</span> </a> <a href="/s?wd=Thread-Level%20Speculation&amp;pn=40&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;f=3&amp;sort=sc_time&amp;sc_hit=1"> <span class="fk"><i class="c-icon c-icon-bear-pn"></i></span> <span class="pc">5</span> </a> <a href="/s?wd=Thread-Level%20Speculation&amp;pn=50&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;f=3&amp;sort=sc_time&amp;sc_hit=1"> <span class="fk fkd"><i class="c-icon c-icon-bear-pn"></i></span> <span class="pc">6</span> </a> <a href="/s?wd=Thread-Level%20Speculation&amp;pn=60&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;f=3&amp;sort=sc_time&amp;sc_hit=1"> <span class="fk"><i class="c-icon c-icon-bear-pn"></i></span> <span class="pc">7</span> </a> <a href="/s?wd=Thread-Level%20Speculation&amp;pn=70&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;f=3&amp;sort=sc_time&amp;sc_hit=1"> <span class="fk fkd"><i class="c-icon c-icon-bear-pn"></i></span> <span class="pc">8</span> </a> <a href="/s?wd=Thread-Level%20Speculation&amp;pn=10&amp;tn=SE_baiduxueshu_c1gjeupa&amp;ie=utf-8&amp;f=3&amp;sort=sc_time&amp;sc_hit=1&amp;rsv_page=1" class="n" style="margin-right: 19px;"><i class="c-icon-pager-next"></i></a> </p>
+        </div>
+    </div>
+</div>
+<div class="pagefoot gj xpath-log" data-click="{'act_block':'indexfooter','fm':'beha'}">
+    <div class="footcon footcon-page">
+        <span class="lawinfo"><h4>关于我们</h4><p>百度学术集成海量学术资源，融合人工智能、深度学习、大数据分析等技术，为科研工作者提供全面快捷的学术服务。在这里我们保持学习的态度，不忘初心，砥砺前行。<br><a href="//xueshu.baidu.com/usercenter/show/baiducas?cmd=page" target="_blank" style="color: #38f;">了解更多&gt;&gt;</a></p></span>
+        <span class="yqLink"><h4>友情链接</h4>
+     <div class="innerCont">
+      <a href="https://cloud.baidu.com/" target="_blank"><img src="https://bj.bcebos.com/v1/ps-scholar-amis-standard/2020-11/1606363009781/baiduyun.png" alt="百度云"></a>
+     </div></span>
+        <span class="contact"><h4>联系我们</h4>
+     <div class="innerCont">
+      <a href="http://weibo.com/baiduxueshu" target="_blank"><p class="wb"><span class="qrcode webocode"></span></p></a>
+      <p class="wx"><span class="qrcode weixincode"></span></p>
+      <a href="mailto:xueshu_support@baidu.com" target="_blank"><p class="help"></p></a>
+     </div></span>
+        <span class="moreinfo moreinfo-page"><h4>合作与服务</h4><span class="moreinfo_item"> <a href="//xueshu.baidu.com/usercenter/show/baiducas?cmd=journal" target="_blank">期刊合作</a></span><span class="moreinfo_item"> <a href="//xueshu.baidu.com/usercenter/show/baiducas?cmd=library" target="_blank">图书馆合作</a></span><span class="moreinfo_item"> <a href="https://bj.bcebos.com/v1/ps-scholar-amis-standard/archived/2021-4/1617263148292/BaiduScholar-20210401.pdf" target="_blank">下载产品手册</a></span><span class="moreinfo_item"><a href="javascript:;" class="feedback">意见反馈</a></span></span>
+    </div>
+    <p class="foottext">©2021 Baidu 百度学术声明 <a href="https://www.baidu.com/duty/" target="_blank">使用百度前必读</a></p>
+</div>
+<div class="batch-container">
+    <div id="citeBlock"></div>
+    <div class="batch-btn-wr">
+        <!-- 线下ubs调研，为后续保留
+                <div class="batch-btn btn-dy">有奖调研
+                <a href="https://iwenjuan.baidu.com/?code=d7ru1g">
+                    <img src="https://bj.bcebos.com/v1/ps-scholar-amis-standard/2020-11/1605800371695/130.png" />
+                </a>
+            </div> -->
+        <div class="batch-btn btn-collect">
+            <i class="iconfont icon-piliang"></i>
+            <span>0</span>
+            <p>引用</p>
+        </div>
+        <div class="batch-btn btn-up">
+            <i class="gj-icon-uniE604"></i>
+        </div>
+        <div class="batch-btn-tip">
+            <p>文献可以<span>批量引用</span>啦~<br>欢迎点我试用！</p>
+            <p> </p>
+        </div>
+    </div>
+</div>
+<div style="display:none">
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?43115ae30293b511088d3cbe41ec099c";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</div>
+<script src="https://code.bdstatic.com/npm/clipboard@1.7.1/dist/clipboard.min.js"></script>
+<script src="https://dss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/scholar_mid/static/protocol/https/jquery/jquery-1.10.2.min_65682a2.js"></script>
+<script src="https://ts.bdimg.com/libs/blueimp-md5/1-0-1/md5.min.js"></script>
+<script type="text/javascript" src="https://dss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/scholar_mid/static/protocol/https/xueshu/js/logic2_d6cc9ae.js" charset="utf-8"></script>
+</body>
+</html>

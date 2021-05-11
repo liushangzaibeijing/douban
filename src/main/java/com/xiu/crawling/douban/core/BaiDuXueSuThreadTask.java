@@ -1,6 +1,7 @@
 package com.xiu.crawling.douban.core;
 
 import com.xiu.crawling.douban.bean.BaiDuXueSuInfo;
+import com.xiu.crawling.douban.bean.BaiDuXueSuInfoExample;
 import com.xiu.crawling.douban.common.Constant;
 import com.xiu.crawling.douban.mapper.BaiDuXueSuInfoMapper;
 import com.xiu.crawling.douban.utils.HttpUtil;
@@ -16,6 +17,7 @@ import org.springframework.util.StringUtils;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.text.MessageFormat;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 
@@ -36,10 +38,6 @@ public class BaiDuXueSuThreadTask implements  Runnable{
 
     private static final String NOT_FOUND = "404";
 
-    /**
-     * 关键字
-     */
-    private String keyWord;
 
 
 
@@ -59,8 +57,7 @@ public class BaiDuXueSuThreadTask implements  Runnable{
      */
     private HttpHost proxy;
 
-    public BaiDuXueSuThreadTask(String keyWord, BaiDuXueSuInfoMapper baiDuXueSuInfoMapper) {
-        this.keyWord = keyWord;
+    public BaiDuXueSuThreadTask(BaiDuXueSuInfoMapper baiDuXueSuInfoMapper) {
         this.baiDuXueSuInfoMapper = baiDuXueSuInfoMapper;
     }
 
@@ -71,7 +68,7 @@ public class BaiDuXueSuThreadTask implements  Runnable{
     public void run() {
         try {
             //开始爬取以及持久化
-             crawlBaiDuXueSu(this.keyWord);
+             crawlBaiDuXueSu();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -79,16 +76,18 @@ public class BaiDuXueSuThreadTask implements  Runnable{
     }
 
 
-    /**
-     * @param keyWord 标签名
-     */
-    private void crawlBaiDuXueSu(String keyWord) {
+
+    private void crawlBaiDuXueSu() {
          int i = 0;
 
         while(true){
            try {
+               //关键字
+                 String keyWord = "Thread-Level Speculation";
                  keyWord  = URLEncoder.encode(keyWord, "UTF-8");
                  String url = MessageFormat.format(Constant.BAIDU_XUESU_SEARCH, keyWord, i * Constant.pageSize);
+
+                 log.info("url:{}",url);
                  //关键字请求
                  String result = HttpUtil.doGet(url);
                  //响应404不进行解析
@@ -98,11 +97,14 @@ public class BaiDuXueSuThreadTask implements  Runnable{
                  //解析信息
                  if(!StringUtils.isEmpty(result) || !result.equals(NOT_FOUND)){
                      Document document = Jsoup.parse(result);
-                     parseBaiDuXueSu(document,i);
+                     parseBaiDuXueSu(document, i);
+
                  }
              } catch (IOException e) {
                  e.printStackTrace();
-             }
+             }finally {
+               i+=1;
+           }
          }
 
     }
@@ -110,12 +112,13 @@ public class BaiDuXueSuThreadTask implements  Runnable{
 
 
 
-    public BaiDuXueSuInfo parseBaiDuXueSu(Document document,int index) {
-        BaiDuXueSuInfo baiDuXueSuInfo =  new BaiDuXueSuInfo();
+    public void parseBaiDuXueSu(Document document,int index) {
 
         int size = (index+1)*Constant.pageSize;
         int i = (index)*Constant.pageSize+1;
         for(;i <= size;i++){
+            BaiDuXueSuInfo baiDuXueSuInfo =  new BaiDuXueSuInfo();
+
             Elements elements =  document.select("div#"+i+" a");
             if(elements.size()==0){
                 continue;
@@ -127,19 +130,44 @@ public class BaiDuXueSuThreadTask implements  Runnable{
             String title = element.text();
             //论文名字
             baiDuXueSuInfo.setTitle(title);
-            //被引用量
-            Element citeElement =  document.select("div#"+i+" span.sc_time + span").get(0);
-            String citeInfo = citeElement.text();
-            if(!StringUtils.isEmpty(citeInfo)){
-                String cited = citeInfo.split(":")[1].trim();
-                baiDuXueSuInfo.setCited(cited);
+            //被引量
+            Elements citeElements =  document.select("div#"+i+" div.sc_info span");
+            for(int j=0;j<citeElements.size();j++){
+                String citeInfo = citeElements.get(j).text();
+
+                if(!StringUtils.isEmpty(citeInfo) && citeInfo.contains("被引量")){
+                    String cited = citeInfo.split(":")[1].replaceAll(" ","");
+                    baiDuXueSuInfo.setCited(cited);
+                }
+
+            }
+            Elements yearEles =  document.select("div#"+i+" span.sc_time");
+            if(yearEles.size()!=0){
+                final Element yearEle = yearEles.get(0);
+                baiDuXueSuInfo.setPublicYear(yearEle.text());
+
             }
 
-            crawlBaiDuXueSuDetail(detailUrl,baiDuXueSuInfo);
-        }
 
-        log.info("baiDuXueSuInfo info {}", JsonUtil.obj2str(baiDuXueSuInfo));
-        return  baiDuXueSuInfo;
+            crawlBaiDuXueSuDetail(detailUrl,baiDuXueSuInfo);
+            log.info("baiDuXueSuInfo info {}", JsonUtil.obj2str(baiDuXueSuInfo));
+
+            try{
+                BaiDuXueSuInfoExample query = new BaiDuXueSuInfoExample();
+
+                query.createCriteria()
+                        .andTitleEqualTo(baiDuXueSuInfo.getTitle());
+
+                List<BaiDuXueSuInfo> baiDuXueSuInfos = baiDuXueSuInfoMapper.selectByExample(query);
+                if(baiDuXueSuInfos==null || baiDuXueSuInfos.size()==0){
+                    baiDuXueSuInfoMapper.insert(baiDuXueSuInfo);
+                }
+
+            }catch (Exception e){
+
+            }
+
+        }
     }
 
     private void crawlBaiDuXueSuDetail(String detailUrl, BaiDuXueSuInfo baiDuXueSuInfo) {
@@ -149,18 +177,20 @@ public class BaiDuXueSuThreadTask implements  Runnable{
                 detailUrl = "https:"+detailUrl;
             }
             String result = HttpUtil.doGet(detailUrl);
+
             if(!StringUtils.isEmpty(result) || !result.equals(NOT_FOUND)){
                 Document document = Jsoup.parse(result);
                 parseBaiDuXueSuDetail(document,baiDuXueSuInfo);
             }
         } catch (IOException e) {
             e.printStackTrace();
+            return;
         }
     }
 
     private void parseBaiDuXueSuDetail(Document document, BaiDuXueSuInfo baiDuXueSuInfo) {
         //作者
-        Elements authors = document.select("div.author_wr div.author_text span");
+        Elements authors = document.select("div.author_wr p.author_text span");
         if(authors.size()!=0){
             StringBuffer authorList = new StringBuffer();
             for(int i=0;i<authors.size();i++){
@@ -178,7 +208,7 @@ public class BaiDuXueSuThreadTask implements  Runnable{
         }
 
         //关键词
-        Elements kwEles = document.select("div.abstract_wr p.kw_main_s span");
+        Elements kwEles = document.select("div.kw_wr p.kw_main_s span");
         if(kwEles.size()!=0){
             StringBuffer kwList = new StringBuffer();
             for(int i=0;i<kwEles.size();i++){
@@ -188,10 +218,17 @@ public class BaiDuXueSuThreadTask implements  Runnable{
             baiDuXueSuInfo.setKeyword(kwList.toString());
         }
 
-        // 年份
 
-        // 会议/期刊名字。
+        // 会议/期刊名字
+        Elements commonEles = document.select("div.common_wr p");
+        if(commonEles.size()>=2){
+            Element element = commonEles.get(0);
+            if(element.text().contains("会议名称")){
+                String periodicalName = commonEles.get(1).text();
+                baiDuXueSuInfo.setPeriodicalName(periodicalName);
+            }
 
+        }
 
     }
 

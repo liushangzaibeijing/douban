@@ -159,11 +159,10 @@ public class CrawlingServiceImpl implements CrawlingService{
 
         ExecutorService executor = Executors.newFixedThreadPool(THREAD_NUMBER);
 
-        //关键字
-        String keyWord = "Thread-Level Speculation";
+
 
         //创建多线程任务
-        BaiDuXueSuThreadTask baiduXueSuThreadTask = new BaiDuXueSuThreadTask(keyWord,baiDuXueSuInfoMapper);
+        BaiDuXueSuThreadTask baiduXueSuThreadTask = new BaiDuXueSuThreadTask(baiDuXueSuInfoMapper);
         executor.execute(baiduXueSuThreadTask);
 //        Now wait till all services are checked
         latch.await();
