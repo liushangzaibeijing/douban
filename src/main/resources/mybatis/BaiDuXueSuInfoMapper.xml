@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiu.crawling.douban.mapper.BaiDuXueSuInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.xiu.crawling.douban.bean.BaiDuXueSuInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="abstract_info" property="abstractInfo" jdbcType="VARCHAR" />
+    <result column="keyword" property="keyword" jdbcType="VARCHAR" />
+    <result column="cited" property="cited" jdbcType="VARCHAR" />
+    <result column="public_year" property="publicYear" jdbcType="VARCHAR" />
+    <result column="periodical_name" property="periodicalName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, title, author, abstract_info, keyword, cited, public_year, periodical_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xiu.crawling.douban.bean.BaiDuXueSuInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from baidu_xuesu_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from baidu_xuesu_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from baidu_xuesu_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xiu.crawling.douban.bean.BaiDuXueSuInfoExample" >
+    delete from baidu_xuesu_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xiu.crawling.douban.bean.BaiDuXueSuInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into baidu_xuesu_info (title, author, abstract_info, 
+      keyword, cited, public_year, 
+      periodical_name)
+    values (#{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{abstractInfo,jdbcType=VARCHAR}, 
+      #{keyword,jdbcType=VARCHAR}, #{cited,jdbcType=VARCHAR}, #{publicYear,jdbcType=VARCHAR}, 
+      #{periodicalName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiu.crawling.douban.bean.BaiDuXueSuInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into baidu_xuesu_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="abstractInfo != null" >
+        abstract_info,
+      </if>
+      <if test="keyword != null" >
+        keyword,
+      </if>
+      <if test="cited != null" >
+        cited,
+      </if>
+      <if test="publicYear != null" >
+        public_year,
+      </if>
+      <if test="periodicalName != null" >
+        periodical_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="abstractInfo != null" >
+        #{abstractInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null" >
+        #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="cited != null" >
+        #{cited,jdbcType=VARCHAR},
+      </if>
+      <if test="publicYear != null" >
+        #{publicYear,jdbcType=VARCHAR},
+      </if>
+      <if test="periodicalName != null" >
+        #{periodicalName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xiu.crawling.douban.bean.BaiDuXueSuInfoExample" resultType="java.lang.Integer" >
+    select count(*) from baidu_xuesu_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update baidu_xuesu_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.author != null" >
+        author = #{record.author,jdbcType=VARCHAR},
+      </if>
+      <if test="record.abstractInfo != null" >
+        abstract_info = #{record.abstractInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.keyword != null" >
+        keyword = #{record.keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cited != null" >
+        cited = #{record.cited,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publicYear != null" >
+        public_year = #{record.publicYear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.periodicalName != null" >
+        periodical_name = #{record.periodicalName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update baidu_xuesu_info
+    set id = #{record.id,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      author = #{record.author,jdbcType=VARCHAR},
+      abstract_info = #{record.abstractInfo,jdbcType=VARCHAR},
+      keyword = #{record.keyword,jdbcType=VARCHAR},
+      cited = #{record.cited,jdbcType=VARCHAR},
+      public_year = #{record.publicYear,jdbcType=VARCHAR},
+      periodical_name = #{record.periodicalName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiu.crawling.douban.bean.BaiDuXueSuInfo" >
+    update baidu_xuesu_info
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="abstractInfo != null" >
+        abstract_info = #{abstractInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="keyword != null" >
+        keyword = #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="cited != null" >
+        cited = #{cited,jdbcType=VARCHAR},
+      </if>
+      <if test="publicYear != null" >
+        public_year = #{publicYear,jdbcType=VARCHAR},
+      </if>
+      <if test="periodicalName != null" >
+        periodical_name = #{periodicalName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiu.crawling.douban.bean.BaiDuXueSuInfo" >
+    update baidu_xuesu_info
+    set title = #{title,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      abstract_info = #{abstractInfo,jdbcType=VARCHAR},
+      keyword = #{keyword,jdbcType=VARCHAR},
+      cited = #{cited,jdbcType=VARCHAR},
+      public_year = #{publicYear,jdbcType=VARCHAR},
+      periodical_name = #{periodicalName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -3,12 +3,14 @@ package com.xiu.crawling.douban.core.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.github.pagehelper.PageHelper;
-import com.xiu.crawling.douban.bean.*;
-import com.xiu.crawling.douban.bean.vo.Result;
-import com.xiu.crawling.douban.bean.vo.UrlVO;
-import com.xiu.crawling.douban.common.*;
+import com.xiu.crawling.douban.bean.UrlInfo;
+import com.xiu.crawling.douban.bean.UrlInfoExample;
+import com.xiu.crawling.douban.common.ActiveEnum;
+import com.xiu.crawling.douban.common.Constant;
+import com.xiu.crawling.douban.common.MarkEnum;
+import com.xiu.crawling.douban.common.MvTypeEnum;
+import com.xiu.crawling.douban.core.BaiDuXueSuThreadTask;
 import com.xiu.crawling.douban.core.BookThreadTask;
 import com.xiu.crawling.douban.core.MovieThreadTask;
 import com.xiu.crawling.douban.core.service.CrawlingService;
@@ -29,7 +31,9 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * author  Administrator
@@ -45,6 +49,9 @@ public class CrawlingServiceImpl implements CrawlingService{
     private BookMapper bookMapper;
     @Autowired
     private MovieMapper movieMapper;
+
+    @Autowired
+    private BaiDuXueSuInfoMapper baiDuXueSuInfoMapper;
     @Autowired
     private ErrUrlMapper errUrlMapper;
     @Autowired
@@ -153,15 +160,14 @@ public class CrawlingServiceImpl implements CrawlingService{
         ExecutorService executor = Executors.newFixedThreadPool(THREAD_NUMBER);
 
         //关键字
-        String title = "Thread-Level Speculation";
+        String keyWord = "Thread-Level Speculation";
 
         //创建多线程任务
-        List<BaiduXueSuThreadTask> baiduXueSuThreadTasks = new ArrayList<>();
-        BookThreadTask bookThreadTask = new BookThreadTask(BaiduXueSuInfoMapper,
-              title);
-        executor.execute(bookThreadTask);
-        //Now wait till all services are checked
+        BaiDuXueSuThreadTask baiduXueSuThreadTask = new BaiDuXueSuThreadTask(keyWord,baiDuXueSuInfoMapper);
+        executor.execute(baiduXueSuThreadTask);
+//        Now wait till all services are checked
         latch.await();
+
 
         log.info("end ............");
 

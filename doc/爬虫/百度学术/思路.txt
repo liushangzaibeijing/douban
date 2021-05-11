@@ -28,15 +28,3 @@ https://xueshu.baidu.com/s?wd=Thread-Level Speculation&pn=0&tn=SE_baiduxueshu_c1
 
   https://xueshu.baidu.com/usercenter/paper/show?paperid=1m570xs0mx1904t0v83d0ah04d372341&site=xueshu_se
 
-
-
-  <div class="c_content"
-     下的
-     <div class="love_wr">
-        下的
-        <div class="label-r">
-                    <p class="">阅读量：</p>
-                    <p>12</p>
-                </div>
-            </di
-

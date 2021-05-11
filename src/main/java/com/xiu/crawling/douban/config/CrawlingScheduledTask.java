@@ -3,7 +3,6 @@ package com.xiu.crawling.douban.config;
 import com.xiu.crawling.douban.core.service.CrawlingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 /**
@@ -21,7 +20,7 @@ public class CrawlingScheduledTask {
      * 每二十分钟执行一次 参考http://cron.qqe2.com/
      */
     //@Scheduled(cron = "0 0/20 * * * ? *")
-    @Scheduled(fixedRate=1000*60*5)
+    //@Scheduled(fixedRate=1000*60*5)
     public void crawlBookScheduledTask(){
         log.info("爬取书籍的定时任务开始");
         try {
@@ -32,7 +31,7 @@ public class CrawlingScheduledTask {
         log.info("爬取书籍的定时任务结束");
     }
 
-    @Scheduled(fixedRate=1000*60*20)
+    //@Scheduled(fixedRate=1000*60*20)
     public void crawlMovieScheduledTask(){
         log.info("爬取电影的定时任务开始");
         try {
@@ -43,8 +42,8 @@ public class CrawlingScheduledTask {
         log.info("爬取电影的定时任务结束");
     }
 
-    @Scheduled(fixedRate=1000*60*20)
-    public void crawlMovieScheduledTask(){
+    //@Scheduled(fixedRate=1000*60*20)
+    public void crawlBaiDuXueSuScheduledTask(){
         log.info("爬取百度学术的定时任务开始");
         try {
             crawlingService.crawlingBaiduXueSu();

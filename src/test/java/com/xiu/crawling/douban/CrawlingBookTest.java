@@ -11,7 +11,6 @@ import com.xiu.crawling.douban.core.service.ProxyService;
 import com.xiu.crawling.douban.mapper.BookMapper;
 import com.xiu.crawling.douban.mapper.ErrUrlMapper;
 import com.xiu.crawling.douban.mapper.UrlInfoMapper;
-import com.xiu.crawling.douban.proxypool.job.ScheduleJobs;
 import com.xiu.crawling.douban.utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;
@@ -22,7 +21,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -109,4 +109,6 @@ public class CrawlingBookTest {
         String urlDetail = "https://movie.douban.com/subject/30317630/";
         Movie movie = movieThreadTask.crawlMovie("电影", urlDetail);
     }
+
+
 }

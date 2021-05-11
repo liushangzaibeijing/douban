@@ -53,6 +53,15 @@ public class Constant {
 
 
     /**
+     * 百度学术搜索
+     */
+//    public static String BAIDU_XUESU_SEARCH = "https://xueshu.baidu.com/s?wd={0}&pn={1}&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8&f=3&sc_f_para=sc_tasktype={firstSimpleSearch}&sc_hit=1&sort=sc_time";
+    /**
+     * 百度学术搜索
+     */
+    public static String BAIDU_XUESU_SEARCH = "https://xueshu.baidu.com/s?wd={0}&pn={1}&tn=SE_baiduxueshu_c1gjeupa&ie=utf-8&f=3&sc_hit=1&sort=sc_time";
+
+    /**
      * page
      */
     public final static Integer pageSize = 10;

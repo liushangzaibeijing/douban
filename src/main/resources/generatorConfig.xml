@@ -4,6 +4,9 @@
   "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
+	<!-- classPathEntry:数据库的JDBC驱动的jar包地址 -->
+	<classPathEntry
+			location="D:\repository\mysql\mysql-connector-java\5.1.47\mysql-connector-java-5.1.47.jar"/>
 	<context id="testTables" targetRuntime="MyBatis3">
 
 		<commentGenerator>
@@ -16,7 +19,7 @@
 						<!--password="123456">-->
 		<!--</jdbcConnection>-->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-						connectionURL="jdbc:mysql://127.0.0.1:3306/utopia" userId="root"
+						connectionURL="jdbc:mysql://182.92.189.235:3306/utopia" userId="root"
 						password="123456">
 		</jdbcConnection>
 		<!-- <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
@@ -33,7 +36,7 @@
 
 		<!-- targetProject:生成PO类的位置 -->
 		<javaModelGenerator targetPackage="com.xiu.crawling.douban.bean"
-			targetProject=".\src">
+			targetProject=".\src\main">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
 			<!-- 从数据库返回的值被清理前后的空格 -->
@@ -41,14 +44,14 @@
 		</javaModelGenerator>
         <!-- targetProject:mapper映射文件生成的位置 -->
 		<sqlMapGenerator targetPackage="com.xiu.crawling.douban.mapper"
-			targetProject=".\src">
+			targetProject=".\src\main">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
 		</sqlMapGenerator>
 		<!-- targetPackage：mapper接口生成的位置 -->
 		<javaClientGenerator type="XMLMAPPER"
 			targetPackage="com.xiu.crawling.douban.mapper"
-			targetProject=".\src">
+			targetProject=".\src\main">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
@@ -74,24 +77,24 @@
 		<!--<property name="useActualColumnNames" value="false"/>-->
 		<!--<generatedKey column="id" sqlStatement="MySql" identity="true" />-->
 	    <!--</table>-->
-		<!--<table tableName="album" domainObjectName="Album"-->
-			   <!--enableInsert="true"-->
-			   <!--enableCountByExample="true" enableUpdateByExample="true"-->
-			   <!--enableDeleteByExample="true" enableSelectByExample="true"-->
-			   <!--selectByExampleQueryId="true">-->
-			<!--&lt;!&ndash; 大小写正常 &ndash;&gt;-->
-			<!--<property name="useActualColumnNames" value="false"/>-->
-			<!--<generatedKey column="id" sqlStatement="MySql" identity="true" />-->
-		<!--</table>-->
-		<table tableName="singer" domainObjectName="Singer"
-		enableInsert="true"
-		enableCountByExample="true" enableUpdateByExample="true"
-		enableDeleteByExample="true" enableSelectByExample="true"
-		selectByExampleQueryId="true">
-		<!-- 大小写正常 -->
-		<property name="useActualColumnNames" value="false"/>
-		<generatedKey column="id" sqlStatement="MySql" identity="true" />
+		<table tableName="album" domainObjectName="Album"
+			   enableInsert="true"
+			   enableCountByExample="true" enableUpdateByExample="true"
+			   enableDeleteByExample="true" enableSelectByExample="true"
+			   selectByExampleQueryId="true">
+			<!-- 大小写正常 -->
+			<property name="useActualColumnNames" value="false"/>
+			<generatedKey column="id" sqlStatement="MySql" identity="true" />
 		</table>
+		<!--<table tableName="baidu_xuesu_info" domainObjectName="BaiDuXueSuInfo"-->
+		<!--enableInsert="true"-->
+		<!--enableCountByExample="true" enableUpdateByExample="true"-->
+		<!--enableDeleteByExample="true" enableSelectByExample="true"-->
+		<!--selectByExampleQueryId="true">-->
+		<!--&lt;!&ndash; 大小写正常 &ndash;&gt;-->
+		<!--<property name="useActualColumnNames" value="false"/>-->
+		<!--<generatedKey column="id" sqlStatement="MySql" identity="true" />-->
+		<!--</table>-->
 
 	</context>
 </generatorConfiguration>
