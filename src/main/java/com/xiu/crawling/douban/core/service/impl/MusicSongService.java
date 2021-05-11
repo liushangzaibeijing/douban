@@ -1,12 +1,9 @@
-package com.xiu.crawling.douban.music;
+package com.xiu.crawling.douban.core.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
-import com.xiu.crawling.douban.DoubanApplication;
 import com.xiu.crawling.douban.bean.*;
-import com.xiu.crawling.douban.bean.dto.SongInfoResult;
-import com.xiu.crawling.douban.bean.dto.Songlist;
 import com.xiu.crawling.douban.common.ConstantMusic;
 import com.xiu.crawling.douban.core.service.ProxyService;
 import com.xiu.crawling.douban.enums.MusicTypeEnum;
@@ -15,21 +12,14 @@ import com.xiu.crawling.douban.mapper.CurrPageMapper;
 import com.xiu.crawling.douban.mapper.SingerMapper;
 import com.xiu.crawling.douban.mapper.SongMapper;
 import com.xiu.crawling.douban.utils.HttpUtil;
-import com.xiu.crawling.douban.utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;
-import org.assertj.core.util.DateUtil;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.jackson.JsonObjectDeserializer;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.text.ParseException;
+import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -39,26 +29,24 @@ import java.util.Map;
 import static com.xiu.crawling.douban.common.Constant.pageSize;
 
 @Slf4j
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = DoubanApplication.class)
-@WebAppConfiguration
+@Service("musicSongService")
 public class MusicSongService {
     /**
      * 歌手信息
      */
-    @Autowired
+    @Resource
     SingerMapper singerMapper;
 
     /**
      * 歌曲信息
      */
-    @Autowired
+    @Resource
     SongMapper songMapper;
 
     /**
      * 歌手信息 业务
      */
-    @Autowired
+    @Resource
     BusSingerMapper busSingerMapper;
 
     /**
@@ -67,7 +55,7 @@ public class MusicSongService {
     @Autowired
     ProxyService proxyService;
 
-    @Autowired
+    @Resource
     CurrPageMapper currPageMapper;
 
     /**
@@ -77,7 +65,6 @@ public class MusicSongService {
     String songResourceBasePath;
 
     //获取歌手信息
-    @Test
     public void parseSongList(){
         Integer total = busSingerMapper.selectCountSinger();
 
@@ -96,45 +83,63 @@ public class MusicSongService {
                 return;
             }
             for(Singer singer:singers){
-                //先获取歌手的歌曲总数 计算出来总页数
-                Integer pageNum = getSongListPage(singer.getSignerMid());
-                //遍历每一页的歌手信息
-                for(int songIndex = 0;songIndex<pageNum;songIndex++){
-                    SongInfoResult songInfoResult = getSongInfoResult(singer.getSignerMid(),
-                            songIndex+1);
-                    //获取一个歌手的全部信息qq音乐页面的json信息
-                    List<Songlist> songlist = songInfoResult.getSonglist();
-                    log.info("爬取的歌曲信息为：{}",JsonUtil.obj2str(songlist));
-                    HttpHost proxy = null;
-                    for (Songlist songvo : songlist){
-                        try {
-                            if(getSongIsExist(songvo.getMid())){
-                               continue;
-                            }
-                            //获取歌曲信息
-                            Song song = getSongInfo(songvo);
-                            saveSongInfo(song);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            //保存出错信息 currentPage
-                            Long id = songvo.getId();
-                            updateCurrPageInfo( id.intValue(), MusicTypeEnum.SONG.getCode(),
-                                    singer.getFullName()+"_"+e.getMessage());
-
-                        }
-                    }
-
-                }
-                log.info("歌手{} 歌曲资源爬取完毕",singer.getFullName());
-                updateSingerIsOver(singer.getId());
+                parseSong(singer);
             }
         }
     }
 
-    @Test
+    private void parseSong(Singer singer){
+        //先获取歌手的歌曲总数 计算出来总页数
+        Integer pageNum = getSongListPage(singer.getSignerMid());
+        //遍历每一页的歌手信息
+        for(int songIndex = 0;songIndex<pageNum;songIndex++){
+            JSONObject songInfoResult = getSongInfoResult(singer.getSignerMid(),
+                    songIndex + 1);
+
+            JSONArray songList = songInfoResult.getJSONArray("songlist");
+            HttpHost proxy = null;
+            JSONObject songVo = null;
+            for (int i =0;i<songList.size();i++){
+                try {
+                    songVo = songList.getJSONObject(i);
+                    String mid = songVo.getString("mid");
+                    if(getSongIsExist(mid)){
+                        continue;
+                    }
+                    //获取歌曲信息
+                    String musicResocure = getMusicResocure(songVo.getString("mid"),
+                            songVo.getString("name"),
+                            songVo.getJSONArray("singer"));
+                    Song song = generatorSong(songVo, musicResocure);
+                    saveSongInfo(song);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    //保存出错信息 currentPage
+                    Long id =  songVo.getLong("id");
+                    updateCurrPageInfo( id.intValue(), MusicTypeEnum.SONG.getCode(),
+                            singer.getFullName()+"_"+e.getMessage());
+
+                }
+            }
+
+        }
+        log.info("歌手{} 歌曲资源爬取完毕",singer.getFullName());
+        updateSingerIsOver(singer.getId());
+    }
+
+    /**
+     * 根据歌手名爬取歌曲信息
+     * @param singerName
+     */
+    public void parseSong(String singerName){
+        SingerExample query = new SingerExample();
+        query.createCriteria().andFullNameEqualTo(singerName);
+        List<Singer> singers = singerMapper.selectByExample(query);
+        for(Singer singer:singers){
+            this.parseSong(singer);
+        }
+    }
     public void resetSong(){
-
-
        String purl = "F0000039MnYb0qxYhV.flac?guid=ABB0D1BD7886FB31112EE64C48EEFC32&vkey=B48D2F08DE025E9FCE5CF873D07478BC3C3D2D5F1C6BAEA144C53D2A917802E1C59DD6548F2A18BDE0E749B8695946D5883F559184F2128F&uin=3710";
         //下载音乐
         String songDownUrl = ConstantMusic.getSongVipDownUrl(purl);
@@ -150,7 +155,7 @@ public class MusicSongService {
 
     private void saveSongInfo(Song song) throws Exception {
        try {
-               songMapper.insert(song);
+          songMapper.insert(song);
        }catch (Exception e){
            throw  new Exception(e);
        }
@@ -178,12 +183,13 @@ public class MusicSongService {
     }
 
     /**
-     * 解析歌曲信息 构建出歌曲对象插入
-     * @param songvo
+     * 爬取歌曲信息
+     * @param songMid 歌曲唯一标识
+     * @param songName 歌曲名称
+     * @param singerArray 歌曲对应的歌手
      * @return
      */
-    private Song getSongInfo(Songlist songvo) {
-        String songMid = songvo.getMid();
+    public String getMusicResocure(String songMid,String songName,JSONArray singerArray) {
         String vKeyUrl = ConstantMusic.getMusicSongVKey(songMid);
         Map<String, String> headers = generatorHeader();
         String vkeyInfo = HttpUtil.doGetByHeader(vKeyUrl,headers);
@@ -192,44 +198,53 @@ public class MusicSongService {
 
         String userIp = vkeyInfoJson.getJSONObject("req").getJSONObject("data").getString("userip");
 
-        log.info("用户登录的ip地址：{}  爬取的歌曲名称为：{}",userIp,songvo.getName());
+        log.info("用户登录的ip地址：{}  爬取的歌曲名称为：{}",userIp,songName);
         //获取到vkey
         JSONArray midurlinfos = vkeyInfoJson.getJSONObject("req_0").getJSONObject("data").getJSONArray("midurlinfo");
         StringBuilder singerIds = new StringBuilder();
-        StringBuilder singerMids = new StringBuilder();
-        for(com.xiu.crawling.douban.bean.dto.Singer singerDto:songvo.getSinger()){
-            singerIds.append(singerDto.getId()+",");
-            singerMids.append(singerDto.getMid()+",");
+
+        for(int i=0; i<singerArray.size();i++){
+            JSONObject singer = singerArray.getJSONObject(i);
+            singerIds.append(singer.getString("id")+",");
         }
         String  singerId = singerIds.substring(0,singerIds.length()-1);
-        String  singerMid = singerMids.substring(0,singerMids.length()-1);
         String musicResocure = null;
-        if(midurlinfos!=null&&midurlinfos.size()!=0){
+        if(midurlinfos != null && midurlinfos.size() != 0){
             JSONObject  midurlinfo = midurlinfos.getJSONObject(0);
             String purl = midurlinfo.getString("purl");
             //下载音乐
             String songDownUrl = ConstantMusic.getSongDownUrl(purl);
-
             log.info("下载的url:{}",songDownUrl);
             //HttpHost canUseProxy = proxyService.findCanUseProxy();
             //下载操作
             String savePathDir = generatorSaveDir(songResourceBasePath,singerId.replaceAll(",","_"));
             musicResocure = HttpUtil.doDown(songDownUrl,null,savePathDir,songMid+".m4a");
         }
-        Song song = new Song();
-        Long songId = songvo.getId();
-        song.setSongId(songId.intValue());
-        song.setSongMid(songMid);
-        song.setSongName(songvo.getName());
-        song.setSongType(String.valueOf(songvo.getType()));
-        song.setAlbumId(songvo.getAlbum().getMid());
+        return musicResocure;
+    }
 
-        song.setSongMid(songMid);
+    private Song generatorSong(JSONObject songvo,String musicResocure) {
+        Song song = new Song();
+        Long songId = songvo.getLong("id");
+        song.setSongId(songId.intValue());
+        String songMid = songvo.getString("mid");
+        song.setSongMid(songvo.getString("mid"));
+        song.setSongName(songvo.getString("name"));
+        song.setSongType(String.valueOf(songvo.getString("type")));
+        song.setAlbumId(songvo.getJSONObject("album").getString("mid"));
+        JSONArray singerArray = songvo.getJSONArray("singer");
+        StringBuilder singerMids = new StringBuilder();
+
+        for(int i=0; i<singerArray.size();i++){
+            JSONObject singer = singerArray.getJSONObject(i);
+            singerMids.append(singer.getString("mid")+",");
+        }
+        String  singerMid = singerMids.substring(0,singerMids.length()-1);
         song.setSingerMid(singerMid);
 
-        song.setTimePublic(getStrByDate(songvo.getTime_public()));
+        song.setTimePublic(getStrByDate(songvo.getDate("time_public")));
         //该字段目前可以不需要song.setSongAttr();
-        song.setDuration(String.valueOf(songvo.getInterval()));
+        song.setDuration(String.valueOf(songvo.getString("interval")));
         song.setSongUrl(musicResocure);
         //下载歌词  base64加密过后的
         String lyric = getLyric(songMid);
@@ -275,9 +290,9 @@ public class MusicSongService {
      * @return
      */
     private Integer getSongListPage(String  signerMid) {
-        SongInfoResult songInfoResult = getSongInfoResult(signerMid, 1);
+        JSONObject songInfoResult = getSongInfoResult(signerMid, 1);
         //总歌曲数目
-        int total_song = songInfoResult.getTotal_song();
+        int total_song = songInfoResult.getInteger("total_song");
         int pageNume = total_song/ConstantMusic.songpageSize;
         return total_song%ConstantMusic.songpageSize==0?pageNume:pageNume+1;
     }
@@ -288,7 +303,8 @@ public class MusicSongService {
      * @param currentPage 当前页码
      * @return
      */
-    private SongInfoResult getSongInfoResult(String  signerMid, Integer currentPage) {
+    private JSONObject getSongInfoResult(String  signerMid, Integer currentPage) {
+        Map<String,Object> param = new HashMap<>();
         //根据歌手 mid 获取歌曲信息 注意分页的情况
         String songListUrl = ConstantMusic.getMusicSongListDetailUrl(signerMid,currentPage);
         log.info("歌手对应的歌曲信息：{}",songListUrl);
@@ -296,10 +312,10 @@ public class MusicSongService {
 
         //转换为jsonObje 获取其中的key
         JSONObject songInfoJsonObj = JSONObject.parseObject(result);
-        String songResult = songInfoJsonObj.getJSONObject("singer").getJSONObject("data").toString();
-        log.info("查询的歌曲信息为：{}",songResult);
-        SongInfoResult  songInfoResult = JsonUtil.readValue(songResult,SongInfoResult.class);
+        JSONObject songInfoResult = songInfoJsonObj.getJSONObject("singer").getJSONObject("data");
+        log.info("查询的歌曲信息为：{}",songInfoResult);
         return songInfoResult;
+
     }
 
 

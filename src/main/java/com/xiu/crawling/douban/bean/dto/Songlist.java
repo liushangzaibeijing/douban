@@ -43,6 +43,7 @@ public class Songlist {
     private Volume volume;
     private String label;
     private String url;
+    private Integer tid;
     private int bpm;
     private int version;
     private String trace;
@@ -230,6 +231,14 @@ public class Songlist {
      public int getBpm() {
          return bpm;
      }
+
+    public Integer getTid() {
+        return tid;
+    }
+
+    public void setTid(Integer tid) {
+        this.tid = tid;
+    }
 
     public void setVersion(int version) {
          this.version = version;

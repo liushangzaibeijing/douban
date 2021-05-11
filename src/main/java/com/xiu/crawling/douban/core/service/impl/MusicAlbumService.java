@@ -1,15 +1,10 @@
-package com.xiu.crawling.douban.music;
+package com.xiu.crawling.douban.core.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonArrayFormatVisitor;
 import com.github.pagehelper.PageHelper;
-import com.xiu.crawling.douban.DoubanApplication;
 import com.xiu.crawling.douban.bean.*;
-import com.xiu.crawling.douban.bean.dto.SongInfoResult;
-import com.xiu.crawling.douban.bean.dto.Songlist;
 import com.xiu.crawling.douban.common.ConstantMusic;
-import com.xiu.crawling.douban.core.service.ProxyService;
 import com.xiu.crawling.douban.enums.MusicTypeEnum;
 import com.xiu.crawling.douban.mapper.AlbumMapper;
 import com.xiu.crawling.douban.mapper.BusSingerMapper;
@@ -18,36 +13,27 @@ import com.xiu.crawling.douban.mapper.SingerMapper;
 import com.xiu.crawling.douban.utils.HttpUtil;
 import com.xiu.crawling.douban.utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.HttpHost;
-import org.apache.http.client.utils.DateUtils;
-import org.assertj.core.util.DateUtil;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-import static com.xiu.crawling.douban.common.Constant.pageSize;
 import static com.xiu.crawling.douban.common.ConstantMusic.getAlbumHtml;
 
 /**
  * 歌曲专辑信息爬取
  */
 @Slf4j
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = DoubanApplication.class)
-@WebAppConfiguration
+@Service("musicAlbumService")
 public class MusicAlbumService {
     /**
      * 歌手信息
@@ -79,7 +65,6 @@ public class MusicAlbumService {
     CurrPageMapper currPageMapper;
 
     //获取专辑信息
-    @Test
     public void parseAlbumList(){
         //getAlbumList
         Integer total = busSingerMapper.selectCountSinger();

@@ -1,14 +1,11 @@
-package com.xiu.crawling.douban.music;
+package com.xiu.crawling.douban.core.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.xiu.crawling.douban.DoubanApplication;
 import com.xiu.crawling.douban.bean.*;
-import com.xiu.crawling.douban.cache.GlobalVariables;
 import com.xiu.crawling.douban.common.ConstantMusic;
 import com.xiu.crawling.douban.enums.ConvertMusicSignerEnum;
 import com.xiu.crawling.douban.enums.MusicTypeEnum;
-import com.xiu.crawling.douban.exception.CrawlingException;
 import com.xiu.crawling.douban.mapper.CurrPageInfoMapper;
 import com.xiu.crawling.douban.mapper.SingerMapper;
 import com.xiu.crawling.douban.mapper.SingerOtherMapper;
@@ -19,25 +16,20 @@ import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.Node;
 import org.dom4j.io.SAXReader;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.util.CollectionUtils;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.io.ByteArrayInputStream;
 import java.lang.reflect.Field;
-import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Slf4j
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = DoubanApplication.class)
-@WebAppConfiguration
+@Service("musicSingerService")
 public class MusicSingerService {
     /**
      * 歌手的附属信息
@@ -62,7 +54,7 @@ public class MusicSingerService {
     @Value("${singerPicBasePath}")
     String singerPicBasePath;
     //获取歌手信息
-    @Test
+    
     public void parseSigner(){
         Integer currentPage = getSingerCurPage();
         do{
