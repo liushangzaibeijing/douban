@@ -3,6 +3,7 @@ package com.xiu.crawling.douban.config;
 import com.xiu.crawling.douban.core.service.CrawlingService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
+@EnableScheduling
 public class CrawlingScheduledTask {
     @Autowired
     private CrawlingService crawlingService;
@@ -42,4 +44,17 @@ public class CrawlingScheduledTask {
         }
         log.info("爬取电影的定时任务结束");
     }
+    @Scheduled(fixedDelay=1000*60*1)
+//    @Scheduled(cron="0 0/1 * * * ? ")
+    public void raisePraise(){
+        log.info("csdn博客访问定时任务开始");
+        try {
+            crawlingService.raisePraise();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        log.info("csdn博客访问定时任务结束");
+    }
+
+
 }

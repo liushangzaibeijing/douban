@@ -53,6 +53,17 @@ public class Constant {
 
 
     /**
+     * cdsn 首页文章
+     */
+    public final static String csdnAllArticle = "https://www.csdn.net/nav/java";
+
+    /**
+     * cdsn 文章评论
+     */
+    public final static String commentSubmit = "https://blog.csdn.net/phoenix/web/v1/comment/submit";
+
+
+    /**
      * page
      */
     public final static Integer pageSize = 10;

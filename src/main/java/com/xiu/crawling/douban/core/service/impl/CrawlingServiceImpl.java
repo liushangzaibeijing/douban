@@ -3,12 +3,13 @@ package com.xiu.crawling.douban.core.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.github.pagehelper.PageHelper;
-import com.xiu.crawling.douban.bean.*;
-import com.xiu.crawling.douban.bean.vo.Result;
-import com.xiu.crawling.douban.bean.vo.UrlVO;
-import com.xiu.crawling.douban.common.*;
+import com.xiu.crawling.douban.bean.UrlInfo;
+import com.xiu.crawling.douban.bean.UrlInfoExample;
+import com.xiu.crawling.douban.common.ActiveEnum;
+import com.xiu.crawling.douban.common.Constant;
+import com.xiu.crawling.douban.common.MarkEnum;
+import com.xiu.crawling.douban.common.MvTypeEnum;
 import com.xiu.crawling.douban.core.BookThreadTask;
 import com.xiu.crawling.douban.core.MovieThreadTask;
 import com.xiu.crawling.douban.core.service.CrawlingService;
@@ -25,10 +26,14 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * author  Administrator
@@ -139,6 +144,38 @@ public class CrawlingServiceImpl implements CrawlingService{
 
         //保存选影视的标签
         saveTagUrl(Constant.TAG);
+
+    }
+
+    @Override
+    public void raisePraise() throws InterruptedException {
+        AtomicInteger pageNum = new AtomicInteger(1);
+        while(true){
+            //获取所有文章列表
+            String articleListHtml = HttpUtil.doGet("https://blog.csdn.net/liushangzaibeijing/article/list/"+pageNum.getAndIncrement());
+            if(StringUtils.isEmpty(articleListHtml)){
+                log.info("获取不到内容");
+                return;
+            }
+            Document document = Jsoup.parse(articleListHtml);
+            Elements articleList = document.select(" div.article-list a");
+            if(articleList.size()<=0){
+                return;
+            }
+            for(Element element: articleList){
+                //遍历访问文章列表
+                String href =  element.attr("href");
+                if(href.contains("download.csdn.net")){
+                    continue;
+                }
+                //文章内容
+                String contentName = element.text();
+                String content = HttpUtil.doGet(href);
+                if(!StringUtils.isEmpty(content)){
+                    log.info("{}文章访问成功",contentName);
+                }
+            }
+        }
 
     }
 

@@ -23,4 +23,12 @@ public interface CrawlingService {
      * @throws InterruptedException
      */
     void crawlingMovieURL() throws InterruptedException;
+
+
+    /**
+     * 提高csdn访问数
+     */
+    void raisePraise() throws InterruptedException;
+
+
 }

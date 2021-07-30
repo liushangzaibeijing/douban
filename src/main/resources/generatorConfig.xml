@@ -16,7 +16,7 @@
 						<!--password="123456">-->
 		<!--</jdbcConnection>-->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-						connectionURL="jdbc:mysql://127.0.0.1:3306/utopia" userId="root"
+						connectionURL="jdbc:mysql://82.92.189.235:3306/utopia" userId="root"
 						password="123456">
 		</jdbcConnection>
 		<!-- <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"

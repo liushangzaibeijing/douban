@@ -1,10 +1,8 @@
 package com.xiu.crawling.douban.utils;
 
 import com.xiu.crawling.douban.proxypool.config.Constant;
-import com.xiu.crawling.douban.proxypool.domain.Proxy;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.*;
-import org.apache.http.client.CookieStore;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -15,25 +13,18 @@ import org.apache.http.conn.ssl.SSLContextBuilder;
 import org.apache.http.conn.ssl.TrustStrategy;
 import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
-import org.apache.http.impl.cookie.BasicClientCookie;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.apache.xpath.operations.Bool;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLException;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocket;
 import java.io.*;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.security.GeneralSecurityException;
 import java.security.cert.CertificateException;
@@ -296,26 +287,31 @@ public class HttpUtil {
         return doPost(apiUrl, new HashMap<String, Object>());
     }
 
-    /**
-     * 发送 POST 请求（HTTP），K-V形式
-     * @param apiUrl API接口URL
-     * @param params 参数map
-     * @return
-     */
-    public static String doPost(String apiUrl, Map<String, Object> params) {
+
+    public static String doPost(String apiUrl, Map<String, Object> params,Map<String,String> headers) {
+        HttpPost httpPost = getHttpPost(apiUrl);
+        String httpStr;
+        for (Map.Entry<String, String> header : headers.entrySet()) {
+            httpPost.setHeader(header.getKey(),header.getValue());
+        }
+
+        httpStr = executePost(params, httpPost);
+        return httpStr;
+    }
+
+    private static HttpPost getHttpPost(String apiUrl) {
         String httpStr = null;
         HttpPost httpPost = new HttpPost(apiUrl);
-        CloseableHttpResponse response = null;
+        httpPost.setConfig(requestConfig);
+        httpPost.setHeader("User-Agent", Constant.userAgentArray[new Random().nextInt(Constant.userAgentArray.length)]);
+        return httpPost;
+    }
 
+    private static String executePost(Map<String, Object> params,  HttpPost httpPost) {
+        CloseableHttpResponse response = null;
+        String httpStr = null;
         try {
-            httpPost.setConfig(requestConfig);
-            httpPost.setHeader("User-Agent", Constant.userAgentArray[new Random().nextInt(Constant.userAgentArray.length)]);
-            List<NameValuePair> pairList = new ArrayList<>(params.size());
-            for (Map.Entry<String, Object> entry : params.entrySet()) {
-                NameValuePair pair = new BasicNameValuePair(entry.getKey(), entry
-                        .getValue().toString());
-                pairList.add(pair);
-            }
+            List<NameValuePair> pairList = getNameValuePairs(params);
             httpPost.setEntity(new UrlEncodedFormEntity(pairList, Charset.forName("UTF-8")));
             CloseableHttpClient httpclient = getCloseableHttpClient(null);
             response = httpclient.execute(httpPost);
@@ -333,6 +329,28 @@ public class HttpUtil {
                 }
             }
         }
+        return httpStr;
+    }
+
+    private static List<NameValuePair> getNameValuePairs(Map<String, Object> params) {
+        List<NameValuePair> pairList = new ArrayList<>(params.size());
+        for (Map.Entry<String, Object> entry : params.entrySet()) {
+            NameValuePair pair = new BasicNameValuePair(entry.getKey(), entry
+                    .getValue().toString());
+            pairList.add(pair);
+        }
+        return pairList;
+    }
+
+    /**
+     * 发送 POST 请求（HTTP），K-V形式
+     * @param apiUrl API接口URL
+     * @param params 参数map
+     * @return
+     */
+    public static String doPost(String apiUrl, Map<String, Object> params) {
+        HttpPost httpPost = getHttpPost(apiUrl);
+        String httpStr = executePost(params, httpPost);
         return httpStr;
     }
 
@@ -387,12 +405,7 @@ public class HttpUtil {
 
         try {
             httpPost.setConfig(requestConfig);
-            List<NameValuePair> pairList = new ArrayList<NameValuePair>(params.size());
-            for (Map.Entry<String, Object> entry : params.entrySet()) {
-                NameValuePair pair = new BasicNameValuePair(entry.getKey(), entry
-                        .getValue().toString());
-                pairList.add(pair);
-            }
+            List<NameValuePair> pairList = getNameValuePairs(params);
             httpPost.setEntity(new UrlEncodedFormEntity(pairList, Charset.forName("utf-8")));
             response = httpClient.execute(httpPost);
             int statusCode = response.getStatusLine().getStatusCode();
