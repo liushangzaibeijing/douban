@@ -132,13 +132,13 @@ public class HttpUtil {
         String result = null;
         try {
             HttpGet httpGet = new HttpGet(apiUrl);
-            httpGet.setHeader("User-Agent", Constant.userAgentArray[new Random().nextInt(Constant.userAgentArray.length)]);
+//            httpGet.setHeader("User-Agent", Constant.userAgentArray[new Random().nextInt(Constant.userAgentArray.length)]);
             CloseableHttpClient httpclient = getCloseableHttpClient(proxy);
 
             HttpResponse response = httpclient.execute(httpGet);
             int statusCode = response.getStatusLine().getStatusCode();
 
-            System.out.println("url: "+url+" 执行状态码 : " + statusCode);
+            System.out.println("url: "+apiUrl+" 执行状态码 : " + statusCode);
             if(statusCode == 403 ||statusCode == 404){
                 return statusCode+"";
             }
@@ -246,7 +246,6 @@ public class HttpUtil {
         try {
             HttpGet httpGet = new HttpGet(apiUrl);
 
-            httpGet.setHeader("User-Agent", Constant.userAgentArray[new Random().nextInt(Constant.userAgentArray.length)]);
             for(Map.Entry<String,String> header:headers.entrySet()){
                 httpGet.setHeader(header.getKey(),header.getValue());
             }
@@ -255,7 +254,7 @@ public class HttpUtil {
             HttpResponse response = httpclient.execute(httpGet);
             int statusCode = response.getStatusLine().getStatusCode();
 
-            System.out.println("url: "+url+" 执行状态码 : " + statusCode);
+            System.out.println("url: "+apiUrl+" 执行状态码 : " + statusCode);
             if(statusCode == 403 ||statusCode == 404){
                 return statusCode+"";
             }

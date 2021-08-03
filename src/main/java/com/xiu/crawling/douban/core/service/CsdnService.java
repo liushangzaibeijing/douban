@@ -1,5 +1,8 @@
 package com.xiu.crawling.douban.core.service;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+
 /**
  * @author xieqx
  * @className CsdnService

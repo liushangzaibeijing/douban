@@ -53,9 +53,14 @@ public class Constant {
 
 
     /**
-     * cdsn 首页文章
+     * cdsn java 首页文章
      */
     public final static String csdnAllArticle = "https://www.csdn.net/nav/java";
+
+    /**
+     * cdsn 文件列表
+     */
+    public final static String articleList = "https://blog.csdn.net/api/articles";
 
     /**
      * cdsn 文章评论

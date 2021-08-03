@@ -7,18 +7,140 @@
 5、博文阅读次数每超过100次：可获得1分，阅读加分最高加到100分，即文章点击上万次截止；
 
 
-dc_session_id=10_1627614187321.461853
 
-1、第一个请求
-https://event.csdn.net/logstores/csdn-pc-tracking-page-click/track_ua.gif
-?APIVersion=0.6.0
-&cid=10_20846746500-1626771699327-593336
-&sid=10_1627624820055.500600
-&pid=blog
-&uid=liushangzaibeijing
-&did=10_20846746500-1626771699327-593336
-&dc_sid=be391b40dbf0b50746e2f8c02c02c3a9
-&ref=https%3A%2F%2Fblog.csdn.net%2Fnav%2Fjava&curl=https%3A%2F%2Fblog.csdn.net%2Fweixin_43581288%2Farticle%2Fdetails%2F119053739%3Futm_medium%3Ddistribute.pc_category.none-task-blog-hot-3.nonecase%26depth_1-utm_source%3Ddistribute.pc_category.none-task-blog-hot-3.nonecase&dest=&utm=&spm=1001.2101.3001.4227&mod=1582594662_003&ab=new&t=1627630104&elePath=%2F%2F*%5B%40id%3D%22rightBox%22%5D%2Fa%5B1%5D
-&eleTop=27073.65838623047
-&cCookie=c_first_ref%3Dwww.baidu.com%3Bc_segment%3D8%3Bc_sid%3Dbe391b40dbf0b50746e2f8c02c02c3a9%3Bc_session_id%3D10_1627624820055.500600%3Bc_first_page%3Dhttps%253A%2F%2Fblog.csdn.net%2Fqq_36838406%2Farticle%2Fdetails%2F103592437%3Bc_pref%3Dhttps%253A%2F%2Fblog.csdn.net%2F%253Fspm%253D1010.2135.3001.4477%3Bc_ref%3Dhttps%253A%2F%2Fblog.csdn.net%2Fnav%2Fjava%3Bc_utm_medium%3Ddistribute.pc_category.none-task-blog-hot-3.nonecase%3Bc_page_id%3Ddefault%3Bc_tos%3Dqx1rdd%3B
-&log_id=55
+1、获取文章的shown_offset
+GET  https://www.csdn.net/nav/java
+  解析html  ul#feedlist_id 的shown-offset属性
+
+2、请求 csdn文章列表
+https://blog.csdn.net/api/articles?type=more&category=java&shown_offset=1627655913086375
+                                                                        1627691120756463
+                                                                        1627690669918783
+
+
+url: https://blog.csdn.net/api/articles?shown_offset=1627694769691247&type=mord&category=java 执行状态码 : 200
+url: https://blog.csdn.net/api/articles?shown_offset=1627694895896050&type=mord&category=java 执行状态码 : 200
+
+
+cookie  分析
+
+cookie=
+  uuid_tt_dd=10_20846746500-1626771699327-593336;
+  uuid_tt_dd=10_37460479740-1612705753149-440146;
+
+  c_first_ref=www.baidu.com;
+  c_first_ref=www.baidu.com;
+
+  c_segment=8;
+  c_segment=2;
+
+  dc_sid=be391b40dbf0b50746e2f8c02c02c3a9;
+  dc_sid=a82ecb53a558c2ca216ecc633942ca30;
+
+  UN=liushangzaibeijing;
+   UN=liushangzaibeijing;
+
+  p_uid=U010000;
+   p_uid=U010000;
+
+
+
+  Hm_ct_6bcd52f51e9b3dce32bec4a3997715ac=6525*1*10_20846746500-1626771699327-593336!5744*1*liushangzaibeijing;
+  Hm_ct_6bcd52f51e9b3dce32bec4a3997715ac=6525*1*10_37460479740-1612705753149-440146!5744*1*liushangzaibeijing;
+
+
+  Hm_up_6bcd52f51e9b3dce32bec4a3997715ac=%7B%22islogin%22%3A%7B%22value%22%3A%221%22%2C%22scope%22%3A1%7D%2C%22isonline%22%3A%7B%22value%22%3A%221%22%2C%22scope%22%3A1%7D%2C%22isvip%22%3A%7B%22value%22%3A%220%22%2C%22scope%22%3A1%7D%2C%22uid_%22%3A%7B%22value%22%3A%22liushangzaibeijing%22%2C%22scope%22%3A1%7D%7D;
+    Hm_up_6bcd52f51e9b3dce32bec4a3997715ac=%7B%22islogin%22%3A%7B%22value%22%3A%221%22%2C%22scope%22%3A1%7D%2C%22isonline%22%3A%7B%22value%22%3A%221%22%2C%22scope%22%3A1%7D%2C%22isvip%22%3A%7B%22value%22%3A%220%22%2C%22scope%22%3A1%7D%2C%22uid_%22%3A%7B%22value%22%3A%22liushangzaibeijing%22%2C%22scope%22%3A1%7D%7D;
+
+
+  Hm_lvt_6bcd52f51e9b3dce32bec4a3997715ac=1627540916,1627552404,1627611542,1627616349;
+  Hm_lvt_6bcd52f51e9b3dce32bec4a3997715ac=1627701471,1627701650,1627701742,1627780762;
+
+
+
+  Hm_lpvt_6bcd52f51e9b3dce32bec4a3997715ac=1627617206;
+   Hm_lpvt_6bcd52f51e9b3dce32bec4a3997715ac=1627780859;
+
+
+  Hm_lvt_e5ef47b9f471504959267fd614d579cd=1627616532;
+  Hm_lvt_e5ef47b9f471504959267fd614d579cd=1612854743;
+
+  SESSION=62876524-f1d2-4275-ae9f-9f079f0e45e9;
+  SESSION=71694f8e-5c71-46eb-856e-54f405d1ae52;
+
+  TY_SESSION_ID=d632c04f-fa71-48d4-a557-8d462cae03d5;
+  TY_SESSION_ID=6a294184-02d8-4c34-bb00-18a6e21db253;
+
+  UserName=liushangzaibeijing;
+    UserName=liushangzaibeijing;
+
+  UserInfo=be29ff469ea245659819bef9393726fa;
+  UserInfo=cd65f9de5e8c4860b36f0a7d119a7720;
+
+  UserToken=be29ff469ea245659819bef9393726fa;
+   UserToken=cd65f9de5e8c4860b36f0a7d119a7720;
+
+  UserNick=liushangzaibeijing;
+   UserNick=liushangzaibeijing;
+
+  ssxmod_itna=YuitDKD5BI8TGHD8D2DEDkKdQPWq4ar4KnDBPDssiDSxGKidDqxBeWjWRhg2ER+WztD7IdzY+oPooLifChvI5b2kDeDHxY=DUrlfeYD4fKGwD0eG+DD4DWDmeHDnxAQDjxGpc2LkX=DEDYpcDDoDY86RDitD4qDBzrdDKqGgFTwqFui6WmtopwYqEG+cD0t3xBdNi=T5T1cqnu0i5=IxADDHKBDCuDHom++DTEQDzL7DtutS9wdo2c=/UdiT88G0j34+bg9PlOm1+7Ge/b+XlYhLFG4o9ZwkXD4zjBDDG++qj7WTKiD=;
+  ssxmod_itna=Yq+x0DnDuDBDclKDXieox7uDCq9hoYCWDRxgb2B4GNroDZDiqAPGhDCb8Khr107GqqQ9jbA+dYi77PoqQoAA23Q3ij8G4w7mQxiTD4q07Db4GkDAqiOD7T4qovHuKD3Dm4i3DDhQDgDmKDur5DWgczDDPkDWHGSx0rZxKD0Pus+gYDN=E8IZYDQE5DPOKDvZvOf6+C62vO+xGdbmR3EYhN0EaxkDeoQnqClFRXmDRPrlmx3B0oFARuYzGPC=0D4D;
+
+
+  ssxmod_itna2=YuitDKD5BI8TGHD8D2DEDkKdQPWq4ar4KnDYikAbPzzDlaGDjRocC4cxQidqulDQujQXtDl5pPKv1C2GHlUgQhmATvooBcIulCGMr3ozpDBiozbWBc5G70cKtNNehrDB4+78dgQ2pGkA+nuQpzxt3Ug0h37XH/EUqZTX28udMUC0pe8IxNG=zbQtEU2X+3pYDw4UmBm+mzWnUtm5VewQsA65jK0fwtfDLU2vwffDAtb3+YwBmGrgPH3S51zafNl5kseMpYzudH9qAY/nhr8cstb+qF7d6XOoco+=jA0fh9tk8gMMaLkFMwtaqYbdQz23kdokr3rbFBorC4NtfF/8KWW+V0iXRQK+H/rbCbbLbhRRz/+dd+4QrQxoOn+Q+odzYY=uT22iohNvbbmOiWeKIxNT+OLSWd+NqEbZTa5SKUSbKnNv8ocorlg5v8v=1oqRAlqbPQ1AuE+PqlrObSDLWOa3ID2wr2Nl0ilrHST+Dhf5nqb0I+hEyYYkOr9xPD7QNGhnnIkmG5qAx=U9eQYMLFaTR1wrYWomYv3Iqjh8mGSD+xDKPrerLvxWSd9jGcU8lD+BRCnBdtM=7Yis2P7fqGIeemh6gvmPrTe1igdU7N198jwCHGv5mAHGGDGcDG7GxW4LzsBMqG4eIxKxFmdxoqcZTrjO65YcSD6P5K+Gl70kSG6AKVLrSgWtGrQDxrfaPK2HYDD=;
+   ssxmod_itna2=Yq+x0DnDuDBDclKDXieox7uDCq9hoYCWDRxgb2DA=a4KbPD/YVDFhGlIQoKAP4ec9CuGN43f2B9KwYq6nB0Qy0BkGh8PG/k0=vQgS1Mh8gRBur6X/4KmDBUeG+aUA77wueVl8nLUV6MUxfSYQdf+rUB7YIUCffUCwo5=eqepTED2RQZe4rjzm=+KLKo6b=bwLfzSbawKnpTuMaP2AAsiprFrcUzi3uar36Dycb+pdWC1pt1AZu/zIUtajYjlTiSiDMdh6TjiGh=Yo2qqoInQIopBCIkfLfhQLfGmffnQwrgCLf4qW2k7mcUhqeW14YnKGQeYo7WHATr4RU+ppmYTABM+hb0aGSRKL+pAqwi+n8enlvooADNwC4g9nmoVq3aGqKHNDgFW+LSrIDANQ9FQq+9oQZEocc=NuiyY7A7RABjjO=lpiTuWwaNf8RS71GwWLT3=O=OgbWxDKTxUGDo4dQ0POxxG36o4TU1D0a=PhQMirIAKtDxqGsROXOEXe7DL=oKDoqGx2gqQYX782O22exDLxD2fI4iDKelaUuhaLdf9AvLxWLxCDibnKiCf5Dx2h4qCzThAkk++l1DjQDbDNDTzTcl0j1GzzhDD;
+
+
+  AU=649;
+  AU=649;
+
+  BT=1627615871325;
+  BT=1627656142503;
+
+  c_first_page=https%3A//blog.csdn.net/weixin_43582101/article/details/90215845;
+  c_first_page=https%3A//www.csdn.net/;
+
+  c_ref=https%3A//blog.csdn.net/nav/java;
+   c_ref=https%3A//blog.csdn.net/nav/java;
+
+
+  c_utm_medium=distribute.pc_category.none-task-blog-hot-1.nonecase;
+  c_utm_medium=distribute.pc_category.none-task-blog-hot-10.nonecase;
+
+
+  c_page_id=default;
+     c_page_id=default;
+
+
+  dc_tos=qx1hh0;
+    dc_tos=qx4zqy;
+
+
+  __gads=ID=0ed9e650ae7d9de1:T=1627616416:S=ALNI_MZMiTeqTF8V_ljqFHMQdohL5a0qmg;
+  __gads=ID=5314bb25190433c5:T=1627701743:S=ALNI_MYTFVOGoZ8GAF9vprAaFxM08aHFqQ;
+
+
+  log_Id_pv=402;
+     log_Id_pv=715;
+
+
+
+
+  log_Id_view=550;
+     log_Id_view=1416;
+
+  log_Id_click=34
+    log_Id_click=373
+
+
+
+
+
+
+
+
+
+
+
+
+
